@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB5AABAB19D25977000E5C94 /* XWalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AABAA19D25977000E5C94 /* XWalkViewController.swift */; };
 		AB62A42119C72D1E00141C7E /* CrosswalkiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = AB62A42019C72D1E00141C7E /* CrosswalkiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AB62A42B19C72D1E00141C7E /* CrosswalkiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB62A42A19C72D1E00141C7E /* CrosswalkiOSTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AB5AABAA19D25977000E5C94 /* XWalkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWalkViewController.swift; sourceTree = "<group>"; };
 		AB62A41B19C72D1E00141C7E /* CrosswalkiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CrosswalkiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB62A41F19C72D1E00141C7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB62A42019C72D1E00141C7E /* CrosswalkiOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CrosswalkiOS.h; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 			children = (
 				AB62A42019C72D1E00141C7E /* CrosswalkiOS.h */,
 				AB62A41E19C72D1E00141C7E /* Supporting Files */,
+				AB5AABAA19D25977000E5C94 /* XWalkViewController.swift */,
 			);
 			path = CrosswalkiOS;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB5AABAB19D25977000E5C94 /* XWalkViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +302,7 @@
 		AB62A42F19C72D1E00141C7E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -307,12 +312,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		AB62A43019C72D1E00141C7E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -374,6 +381,7 @@
 				AB62A43019C72D1E00141C7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AB62A43119C72D1E00141C7E /* Build configuration list for PBXNativeTarget "CrosswalkiOSTests" */ = {
 			isa = XCConfigurationList;
@@ -382,6 +390,7 @@
 				AB62A43319C72D1E00141C7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
