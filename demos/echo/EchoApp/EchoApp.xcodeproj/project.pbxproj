@@ -13,6 +13,7 @@
 		AB346F8419D14884005B375C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB346F8319D14884005B375C /* Images.xcassets */; };
 		AB346F8719D14884005B375C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB346F8519D14884005B375C /* LaunchScreen.xib */; };
 		AB346F9319D14885005B375C /* EchoAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB346F9219D14885005B375C /* EchoAppTests.swift */; };
+		AB5AABBD19D275BA000E5C94 /* echo.html in Resources */ = {isa = PBXBuildFile; fileRef = AB5AABBB19D275BA000E5C94 /* echo.html */; };
 		ABFB98C819D14CAA00B64355 /* CrosswalkiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFB98C619D14CAA00B64355 /* CrosswalkiOS.framework */; };
 		ABFB98C919D14CAA00B64355 /* EchoExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFB98C719D14CAA00B64355 /* EchoExtension.framework */; };
 /* End PBXBuildFile section */
@@ -38,6 +39,7 @@
 		AB346F8C19D14885005B375C /* EchoAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EchoAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB346F9119D14885005B375C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB346F9219D14885005B375C /* EchoAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EchoAppTests.swift; sourceTree = "<group>"; };
+		AB5AABBB19D275BA000E5C94 /* echo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = echo.html; sourceTree = "<group>"; };
 		ABFB98C619D14CAA00B64355 /* CrosswalkiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrosswalkiOS.framework; path = "../../CrosswalkiOS/build/Debug-iphoneos/CrosswalkiOS.framework"; sourceTree = "<group>"; };
 		ABFB98C719D14CAA00B64355 /* EchoExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EchoExtension.framework; path = "../EchoExtension/build/Debug-iphoneos/EchoExtension.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,8 +67,8 @@
 		AB346F6E19D14884005B375C = {
 			isa = PBXGroup;
 			children = (
-				ABFB98C619D14CAA00B64355 /* CrosswalkiOS.framework */,
-				ABFB98C719D14CAA00B64355 /* EchoExtension.framework */,
+				AB5AABBA19D2759A000E5C94 /* app */,
+				AB5AABB919D27584000E5C94 /* Frameworks */,
 				AB346F7919D14884005B375C /* EchoApp */,
 				AB346F8F19D14885005B375C /* EchoAppTests */,
 				AB346F7819D14884005B375C /* Products */,
@@ -118,6 +120,23 @@
 				AB346F9119D14885005B375C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AB5AABB919D27584000E5C94 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ABFB98C619D14CAA00B64355 /* CrosswalkiOS.framework */,
+				ABFB98C719D14CAA00B64355 /* EchoExtension.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AB5AABBA19D2759A000E5C94 /* app */ = {
+			isa = PBXGroup;
+			children = (
+				AB5AABBB19D275BA000E5C94 /* echo.html */,
+			);
+			name = app;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +222,7 @@
 				AB346F8219D14884005B375C /* Main.storyboard in Resources */,
 				AB346F8719D14884005B375C /* LaunchScreen.xib in Resources */,
 				AB346F8419D14884005B375C /* Images.xcassets in Resources */,
+				AB5AABBD19D275BA000E5C94 /* echo.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

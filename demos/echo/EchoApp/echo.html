@@ -1,0 +1,19 @@
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <p id="content" />
+    <script>
+        try {
+            echo.echo("Pass", function(msg) {
+                document.title = "Pass";
+                document.getElementById("content").innerHTML = msg;
+            })
+        } catch(e) {
+            document.title = "Fail";
+            document.getElementById("content").innerHTML = e;
+        }
+    </script>
+</body>
+</html>

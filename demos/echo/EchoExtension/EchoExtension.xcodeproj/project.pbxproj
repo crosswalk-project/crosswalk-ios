@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		AB346FAC19D149DB005B375C /* EchoExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = AB346FAB19D149DB005B375C /* EchoExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AB346FB619D149DB005B375C /* EchoExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB346FB519D149DB005B375C /* EchoExtensionTests.swift */; };
+		AB5AABB119D2716B000E5C94 /* EchoExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AABB019D2716B000E5C94 /* EchoExtension.swift */; };
+		AB5AABB219D2716B000E5C94 /* EchoExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AABB019D2716B000E5C94 /* EchoExtension.swift */; };
+		AB5AABB519D2733C000E5C94 /* echo.js in Resources */ = {isa = PBXBuildFile; fileRef = AB5AABB319D2733C000E5C94 /* echo.js */; };
 		ABFB98C519D14C9D00B64355 /* CrosswalkiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFB98C419D14C9D00B64355 /* CrosswalkiOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -19,6 +22,8 @@
 		AB346FB119D149DB005B375C /* EchoExtensionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EchoExtensionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB346FB419D149DB005B375C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB346FB519D149DB005B375C /* EchoExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EchoExtensionTests.swift; sourceTree = "<group>"; };
+		AB5AABB019D2716B000E5C94 /* EchoExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EchoExtension.swift; sourceTree = "<group>"; };
+		AB5AABB319D2733C000E5C94 /* echo.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = echo.js; sourceTree = "<group>"; };
 		ABFB98C419D14C9D00B64355 /* CrosswalkiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrosswalkiOS.framework; path = "../../CrosswalkiOS/build/Debug-iphoneos/CrosswalkiOS.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -44,7 +49,8 @@
 		AB346F9C19D149DA005B375C = {
 			isa = PBXGroup;
 			children = (
-				ABFB98C419D14C9D00B64355 /* CrosswalkiOS.framework */,
+				AB5AABB819D27440000E5C94 /* Frameworks */,
+				AB5AABB719D2740A000E5C94 /* js */,
 				AB346FA819D149DB005B375C /* EchoExtension */,
 				AB346FB219D149DB005B375C /* EchoExtensionTests */,
 				AB346FA719D149DB005B375C /* Products */,
@@ -65,6 +71,7 @@
 			children = (
 				AB346FAB19D149DB005B375C /* EchoExtension.h */,
 				AB346FA919D149DB005B375C /* Supporting Files */,
+				AB5AABB019D2716B000E5C94 /* EchoExtension.swift */,
 			);
 			path = EchoExtension;
 			sourceTree = "<group>";
@@ -92,6 +99,22 @@
 				AB346FB419D149DB005B375C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AB5AABB719D2740A000E5C94 /* js */ = {
+			isa = PBXGroup;
+			children = (
+				AB5AABB319D2733C000E5C94 /* echo.js */,
+			);
+			name = js;
+			sourceTree = "<group>";
+		};
+		AB5AABB819D27440000E5C94 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ABFB98C419D14C9D00B64355 /* CrosswalkiOS.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +206,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB5AABB519D2733C000E5C94 /* echo.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB5AABB119D2716B000E5C94 /* EchoExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB5AABB219D2716B000E5C94 /* EchoExtension.swift in Sources */,
 				AB346FB619D149DB005B375C /* EchoExtensionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,6 +328,7 @@
 		AB346FBA19D149DB005B375C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -315,12 +342,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		AB346FBB19D149DB005B375C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
