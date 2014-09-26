@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import WebKit
 
-class XWalkExtensionManager {
+class XWalkExtensionManager :NSObject, WKScriptMessageHandler {
     var extensions = Dictionary<String, XWalkExtension>()
 
     func registerExtension(e: XWalkExtension) {
@@ -25,8 +26,14 @@ class XWalkExtensionManager {
         }
     }
 
-    func loadExtensions() {
-        // TODO:(jondong)
+    func loadExtensions(controller: WKUserContentController) {
+        controller.addScriptMessageHandler(self, name: "xwalk-extension")
+        // TODO:(jondong) loading extension here
+
+        for (_, e) in extensions {
+            let userScript = WKUserScript(source: e.jsAPI, injectionTime: WKUserScriptInjectionTime.AtDocumentStart, forMainFrameOnly: true)
+            controller.addUserScript(userScript)
+        }
     }
 
     func postMessage(e: XWalkExtension, instanceID: Int, message: String) {
@@ -35,5 +42,9 @@ class XWalkExtensionManager {
 
     func broadcastMessage(e: XWalkExtension, message: String) {
         // TODO:(jondong)
+    }
+
+    func userContentController(userContentController: WKUserContentController!, didReceiveScriptMessage message: WKScriptMessage!) {
+        println("script message received: \(message.body)")
     }
 }

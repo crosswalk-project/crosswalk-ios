@@ -12,18 +12,21 @@ import WebKit
 public class XWalkViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHandler {
     var webview : WKWebView?
     let userContentController : WKUserContentController = WKUserContentController()
+    var extensionManager : XWalkExtensionManager = XWalkExtensionManager()
 
     override public func viewDidLoad() {
         super.viewDidLoad()
 
         var config : WKWebViewConfiguration = WKWebViewConfiguration()
-        config.userContentController = self.userContentController
+        config.userContentController = userContentController
         var webview = WKWebView(frame: view.frame, configuration: config)
         webview.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
         webview.frame = view.frame
         webview.navigationDelegate = self
         view.addSubview(webview)
         self.webview = webview
+
+        extensionManager.loadExtensions(userContentController)
     }
 
     override public func didReceiveMemoryWarning() {
@@ -34,5 +37,9 @@ public class XWalkViewController: UIViewController, WKNavigationDelegate, WKScri
     public func userContentController(userContentController: WKUserContentController!,
         didReceiveScriptMessage message: WKScriptMessage!) {
         //TODO:(jondong) message handling codes should be add here.
+    }
+
+    public func loadURL(url: NSURL) {
+        webview?.loadRequest(NSURLRequest(URL: url));
     }
 }

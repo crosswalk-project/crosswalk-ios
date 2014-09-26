@@ -1,12 +1,14 @@
 <html>
 <head>
     <title></title>
+    <meta name = "viewport" content = "width = device-width">
 </head>
 <body>
+    <p>This is the echo demo</p>
     <p id="content" />
     <script>
         try {
-            echo.echo("Pass", function(msg) {
+            echo("HelloWorld!", function(msg) {
                 document.title = "Pass";
                 document.getElementById("content").innerHTML = msg;
             })
