@@ -7,36 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AB5AABAB19D25977000E5C94 /* XWalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AABAA19D25977000E5C94 /* XWalkViewController.swift */; };
-		AB5AABAD19D25FDE000E5C94 /* XWalkExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AABAC19D25FDE000E5C94 /* XWalkExtension.swift */; };
-		AB5AABAF19D26270000E5C94 /* XWalkExtensionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AABAE19D26270000E5C94 /* XWalkExtensionManager.swift */; };
-		AB5AABC519D40AE7000E5C94 /* extension.js in Resources */ = {isa = PBXBuildFile; fileRef = AB5AABC419D40AE7000E5C94 /* extension.js */; };
-		AB62A42119C72D1E00141C7E /* CrosswalkiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = AB62A42019C72D1E00141C7E /* CrosswalkiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AB62A42B19C72D1E00141C7E /* CrosswalkiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB62A42A19C72D1E00141C7E /* CrosswalkiOSTests.swift */; };
+		AB346FAC19D149DB005B375C /* EchoExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = AB346FAB19D149DB005B375C /* EchoExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AB346FB619D149DB005B375C /* EchoExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB346FB519D149DB005B375C /* EchoExtensionTests.swift */; };
+		AB5AABB119D2716B000E5C94 /* EchoExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AABB019D2716B000E5C94 /* EchoExtension.swift */; };
+		AB5AABB219D2716B000E5C94 /* EchoExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AABB019D2716B000E5C94 /* EchoExtension.swift */; };
+		AB5AABB519D2733C000E5C94 /* echo.js in Resources */ = {isa = PBXBuildFile; fileRef = AB5AABB319D2733C000E5C94 /* echo.js */; };
+		ABFB98C519D14C9D00B64355 /* CrosswalkiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFB98C419D14C9D00B64355 /* CrosswalkiOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AB5AABAA19D25977000E5C94 /* XWalkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWalkViewController.swift; sourceTree = "<group>"; };
-		AB5AABAC19D25FDE000E5C94 /* XWalkExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWalkExtension.swift; sourceTree = "<group>"; };
-		AB5AABAE19D26270000E5C94 /* XWalkExtensionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWalkExtensionManager.swift; sourceTree = "<group>"; };
-		AB5AABC419D40AE7000E5C94 /* extension.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = extension.js; path = js/extension.js; sourceTree = "<group>"; };
-		AB62A41B19C72D1E00141C7E /* CrosswalkiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CrosswalkiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB62A41F19C72D1E00141C7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AB62A42019C72D1E00141C7E /* CrosswalkiOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CrosswalkiOS.h; sourceTree = "<group>"; };
-		AB62A42619C72D1E00141C7E /* CrosswalkiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrosswalkiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB62A42919C72D1E00141C7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AB62A42A19C72D1E00141C7E /* CrosswalkiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrosswalkiOSTests.swift; sourceTree = "<group>"; };
+		AB346FA619D149DB005B375C /* EchoExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EchoExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB346FAA19D149DB005B375C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB346FAB19D149DB005B375C /* EchoExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EchoExtension.h; sourceTree = "<group>"; };
+		AB346FB119D149DB005B375C /* EchoExtensionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EchoExtensionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB346FB419D149DB005B375C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB346FB519D149DB005B375C /* EchoExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EchoExtensionTests.swift; sourceTree = "<group>"; };
+		AB5AABB019D2716B000E5C94 /* EchoExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EchoExtension.swift; sourceTree = "<group>"; };
+		AB5AABB319D2733C000E5C94 /* echo.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = echo.js; sourceTree = "<group>"; };
+		ABFB98C419D14C9D00B64355 /* CrosswalkiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrosswalkiOS.framework; path = "../../CrosswalkiOS/build/Debug-iphoneos/CrosswalkiOS.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		AB62A41719C72D1E00141C7E /* Frameworks */ = {
+		AB346FA219D149DB005B375C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABFB98C519D14C9D00B64355 /* CrosswalkiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AB62A42319C72D1E00141C7E /* Frameworks */ = {
+		AB346FAE19D149DB005B375C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -46,164 +46,171 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AB5AABBF19D405F3000E5C94 /* js */ = {
+		AB346F9C19D149DA005B375C = {
 			isa = PBXGroup;
 			children = (
-				AB5AABC419D40AE7000E5C94 /* extension.js */,
-			);
-			name = js;
-			sourceTree = "<group>";
-		};
-		AB62A41119C72D1E00141C7E = {
-			isa = PBXGroup;
-			children = (
-				AB62A41D19C72D1E00141C7E /* CrosswalkiOS */,
-				AB62A42719C72D1E00141C7E /* CrosswalkiOSTests */,
-				AB62A41C19C72D1E00141C7E /* Products */,
+				AB5AABB819D27440000E5C94 /* Frameworks */,
+				AB5AABB719D2740A000E5C94 /* js */,
+				AB346FA819D149DB005B375C /* EchoExtension */,
+				AB346FB219D149DB005B375C /* EchoExtensionTests */,
+				AB346FA719D149DB005B375C /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		AB62A41C19C72D1E00141C7E /* Products */ = {
+		AB346FA719D149DB005B375C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AB62A41B19C72D1E00141C7E /* CrosswalkiOS.framework */,
-				AB62A42619C72D1E00141C7E /* CrosswalkiOSTests.xctest */,
+				AB346FA619D149DB005B375C /* EchoExtension.framework */,
+				AB346FB119D149DB005B375C /* EchoExtensionTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AB62A41D19C72D1E00141C7E /* CrosswalkiOS */ = {
+		AB346FA819D149DB005B375C /* EchoExtension */ = {
 			isa = PBXGroup;
 			children = (
-				AB62A42019C72D1E00141C7E /* CrosswalkiOS.h */,
-				AB62A41E19C72D1E00141C7E /* Supporting Files */,
-				AB5AABBF19D405F3000E5C94 /* js */,
-				AB5AABAA19D25977000E5C94 /* XWalkViewController.swift */,
-				AB5AABAC19D25FDE000E5C94 /* XWalkExtension.swift */,
-				AB5AABAE19D26270000E5C94 /* XWalkExtensionManager.swift */,
+				AB346FAB19D149DB005B375C /* EchoExtension.h */,
+				AB346FA919D149DB005B375C /* Supporting Files */,
+				AB5AABB019D2716B000E5C94 /* EchoExtension.swift */,
 			);
-			path = CrosswalkiOS;
+			path = EchoExtension;
 			sourceTree = "<group>";
 		};
-		AB62A41E19C72D1E00141C7E /* Supporting Files */ = {
+		AB346FA919D149DB005B375C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				AB62A41F19C72D1E00141C7E /* Info.plist */,
+				AB346FAA19D149DB005B375C /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		AB62A42719C72D1E00141C7E /* CrosswalkiOSTests */ = {
+		AB346FB219D149DB005B375C /* EchoExtensionTests */ = {
 			isa = PBXGroup;
 			children = (
-				AB62A42A19C72D1E00141C7E /* CrosswalkiOSTests.swift */,
-				AB62A42819C72D1E00141C7E /* Supporting Files */,
+				AB346FB519D149DB005B375C /* EchoExtensionTests.swift */,
+				AB346FB319D149DB005B375C /* Supporting Files */,
 			);
-			path = CrosswalkiOSTests;
+			path = EchoExtensionTests;
 			sourceTree = "<group>";
 		};
-		AB62A42819C72D1E00141C7E /* Supporting Files */ = {
+		AB346FB319D149DB005B375C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				AB62A42919C72D1E00141C7E /* Info.plist */,
+				AB346FB419D149DB005B375C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AB5AABB719D2740A000E5C94 /* js */ = {
+			isa = PBXGroup;
+			children = (
+				AB5AABB319D2733C000E5C94 /* echo.js */,
+			);
+			name = js;
+			sourceTree = "<group>";
+		};
+		AB5AABB819D27440000E5C94 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ABFB98C419D14C9D00B64355 /* CrosswalkiOS.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		AB62A41819C72D1E00141C7E /* Headers */ = {
+		AB346FA319D149DB005B375C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB62A42119C72D1E00141C7E /* CrosswalkiOS.h in Headers */,
+				AB346FAC19D149DB005B375C /* EchoExtension.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		AB62A41A19C72D1E00141C7E /* CrosswalkiOS */ = {
+		AB346FA519D149DB005B375C /* EchoExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AB62A42E19C72D1E00141C7E /* Build configuration list for PBXNativeTarget "CrosswalkiOS" */;
+			buildConfigurationList = AB346FB919D149DB005B375C /* Build configuration list for PBXNativeTarget "EchoExtension" */;
 			buildPhases = (
-				AB62A41619C72D1E00141C7E /* Sources */,
-				AB62A41719C72D1E00141C7E /* Frameworks */,
-				AB62A41819C72D1E00141C7E /* Headers */,
-				AB62A41919C72D1E00141C7E /* Resources */,
+				AB346FA119D149DB005B375C /* Sources */,
+				AB346FA219D149DB005B375C /* Frameworks */,
+				AB346FA319D149DB005B375C /* Headers */,
+				AB346FA419D149DB005B375C /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = CrosswalkiOS;
-			productName = CrosswalkiOS;
-			productReference = AB62A41B19C72D1E00141C7E /* CrosswalkiOS.framework */;
+			name = EchoExtension;
+			productName = EchoExtension;
+			productReference = AB346FA619D149DB005B375C /* EchoExtension.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		AB62A42519C72D1E00141C7E /* CrosswalkiOSTests */ = {
+		AB346FB019D149DB005B375C /* EchoExtensionTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AB62A43119C72D1E00141C7E /* Build configuration list for PBXNativeTarget "CrosswalkiOSTests" */;
+			buildConfigurationList = AB346FBC19D149DB005B375C /* Build configuration list for PBXNativeTarget "EchoExtensionTests" */;
 			buildPhases = (
-				AB62A42219C72D1E00141C7E /* Sources */,
-				AB62A42319C72D1E00141C7E /* Frameworks */,
-				AB62A42419C72D1E00141C7E /* Resources */,
+				AB346FAD19D149DB005B375C /* Sources */,
+				AB346FAE19D149DB005B375C /* Frameworks */,
+				AB346FAF19D149DB005B375C /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = CrosswalkiOSTests;
-			productName = CrosswalkiOSTests;
-			productReference = AB62A42619C72D1E00141C7E /* CrosswalkiOSTests.xctest */;
+			name = EchoExtensionTests;
+			productName = EchoExtensionTests;
+			productReference = AB346FB119D149DB005B375C /* EchoExtensionTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		AB62A41219C72D1E00141C7E /* Project object */ = {
+		AB346F9D19D149DA005B375C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = Crosswalk;
 				TargetAttributes = {
-					AB62A41A19C72D1E00141C7E = {
-						CreatedOnToolsVersion = 6.0;
+					AB346FA519D149DB005B375C = {
+						CreatedOnToolsVersion = 6.0.1;
 					};
-					AB62A42519C72D1E00141C7E = {
-						CreatedOnToolsVersion = 6.0;
+					AB346FB019D149DB005B375C = {
+						CreatedOnToolsVersion = 6.0.1;
 					};
 				};
 			};
-			buildConfigurationList = AB62A41519C72D1E00141C7E /* Build configuration list for PBXProject "CrosswalkiOS" */;
+			buildConfigurationList = AB346FA019D149DA005B375C /* Build configuration list for PBXProject "EchoExtension" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = AB62A41119C72D1E00141C7E;
-			productRefGroup = AB62A41C19C72D1E00141C7E /* Products */;
+			mainGroup = AB346F9C19D149DA005B375C;
+			productRefGroup = AB346FA719D149DB005B375C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AB62A41A19C72D1E00141C7E /* CrosswalkiOS */,
-				AB62A42519C72D1E00141C7E /* CrosswalkiOSTests */,
+				AB346FA519D149DB005B375C /* EchoExtension */,
+				AB346FB019D149DB005B375C /* EchoExtensionTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		AB62A41919C72D1E00141C7E /* Resources */ = {
+		AB346FA419D149DB005B375C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB5AABC519D40AE7000E5C94 /* extension.js in Resources */,
+				AB5AABB519D2733C000E5C94 /* echo.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AB62A42419C72D1E00141C7E /* Resources */ = {
+		AB346FAF19D149DB005B375C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -213,28 +220,27 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		AB62A41619C72D1E00141C7E /* Sources */ = {
+		AB346FA119D149DB005B375C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB5AABAB19D25977000E5C94 /* XWalkViewController.swift in Sources */,
-				AB5AABAF19D26270000E5C94 /* XWalkExtensionManager.swift in Sources */,
-				AB5AABAD19D25FDE000E5C94 /* XWalkExtension.swift in Sources */,
+				AB5AABB119D2716B000E5C94 /* EchoExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AB62A42219C72D1E00141C7E /* Sources */ = {
+		AB346FAD19D149DB005B375C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB62A42B19C72D1E00141C7E /* CrosswalkiOSTests.swift in Sources */,
+				AB5AABB219D2716B000E5C94 /* EchoExtension.swift in Sources */,
+				AB346FB619D149DB005B375C /* EchoExtensionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		AB62A42C19C72D1E00141C7E /* Debug */ = {
+		AB346FB719D149DB005B375C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -280,7 +286,7 @@
 			};
 			name = Debug;
 		};
-		AB62A42D19C72D1E00141C7E /* Release */ = {
+		AB346FB819D149DB005B375C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -319,7 +325,7 @@
 			};
 			name = Release;
 		};
-		AB62A42F19C72D1E00141C7E /* Debug */ = {
+		AB346FBA19D149DB005B375C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -327,7 +333,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = CrosswalkiOS/Info.plist;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/jonathan/projects/crosswalk-ios/CrosswalkiOS/build/Debug-iphoneos",
+				);
+				INFOPLIST_FILE = EchoExtension/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -336,7 +346,7 @@
 			};
 			name = Debug;
 		};
-		AB62A43019C72D1E00141C7E /* Release */ = {
+		AB346FBB19D149DB005B375C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -344,7 +354,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = CrosswalkiOS/Info.plist;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/jonathan/projects/crosswalk-ios/CrosswalkiOS/build/Debug-iphoneos",
+				);
+				INFOPLIST_FILE = EchoExtension/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -352,7 +366,7 @@
 			};
 			name = Release;
 		};
-		AB62A43219C72D1E00141C7E /* Debug */ = {
+		AB346FBD19D149DB005B375C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
@@ -363,20 +377,20 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = CrosswalkiOSTests/Info.plist;
+				INFOPLIST_FILE = EchoExtensionTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		AB62A43319C72D1E00141C7E /* Release */ = {
+		AB346FBE19D149DB005B375C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = CrosswalkiOSTests/Info.plist;
+				INFOPLIST_FILE = EchoExtensionTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -385,34 +399,34 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AB62A41519C72D1E00141C7E /* Build configuration list for PBXProject "CrosswalkiOS" */ = {
+		AB346FA019D149DA005B375C /* Build configuration list for PBXProject "EchoExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AB62A42C19C72D1E00141C7E /* Debug */,
-				AB62A42D19C72D1E00141C7E /* Release */,
+				AB346FB719D149DB005B375C /* Debug */,
+				AB346FB819D149DB005B375C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AB62A42E19C72D1E00141C7E /* Build configuration list for PBXNativeTarget "CrosswalkiOS" */ = {
+		AB346FB919D149DB005B375C /* Build configuration list for PBXNativeTarget "EchoExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AB62A42F19C72D1E00141C7E /* Debug */,
-				AB62A43019C72D1E00141C7E /* Release */,
+				AB346FBA19D149DB005B375C /* Debug */,
+				AB346FBB19D149DB005B375C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AB62A43119C72D1E00141C7E /* Build configuration list for PBXNativeTarget "CrosswalkiOSTests" */ = {
+		AB346FBC19D149DB005B375C /* Build configuration list for PBXNativeTarget "EchoExtensionTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AB62A43219C72D1E00141C7E /* Debug */,
-				AB62A43319C72D1E00141C7E /* Release */,
+				AB346FBD19D149DB005B375C /* Debug */,
+				AB346FBE19D149DB005B375C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = AB62A41219C72D1E00141C7E /* Project object */;
+	rootObject = AB346F9D19D149DA005B375C /* Project object */;
 }
