@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		AB06E4DE19D91E6B0005B193 /* CrosswalkiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB06E4DD19D91E6B0005B193 /* CrosswalkiOS.framework */; };
 		AB06E4DF19D91E6B0005B193 /* CrosswalkiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB06E4DD19D91E6B0005B193 /* CrosswalkiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AB06E4E919D9294C0005B193 /* EchoExtension.framework in Resources */ = {isa = PBXBuildFile; fileRef = AB06E4E119D91EE20005B193 /* EchoExtension.framework */; };
 		AB346F7D19D14884005B375C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB346F7C19D14884005B375C /* AppDelegate.swift */; };
 		AB346F7F19D14884005B375C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB346F7E19D14884005B375C /* ViewController.swift */; };
 		AB346F8219D14884005B375C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB346F8019D14884005B375C /* Main.storyboard */; };
@@ -17,6 +16,7 @@
 		AB346F8719D14884005B375C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB346F8519D14884005B375C /* LaunchScreen.xib */; };
 		AB346F9319D14885005B375C /* EchoAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB346F9219D14885005B375C /* EchoAppTests.swift */; };
 		AB5AABBD19D275BA000E5C94 /* echo.html in Resources */ = {isa = PBXBuildFile; fileRef = AB5AABBB19D275BA000E5C94 /* echo.html */; };
+		ABD5792819DA7F280053E624 /* EchoExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB06E4E119D91EE20005B193 /* EchoExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +36,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				ABD5792819DA7F280053E624 /* EchoExtension.framework in Embed Frameworks */,
 				AB06E4DF19D91E6B0005B193 /* CrosswalkiOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -234,7 +235,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB06E4E919D9294C0005B193 /* EchoExtension.framework in Resources */,
 				AB346F8219D14884005B375C /* Main.storyboard in Resources */,
 				AB346F8719D14884005B375C /* LaunchScreen.xib in Resources */,
 				AB346F8419D14884005B375C /* Images.xcassets in Resources */,

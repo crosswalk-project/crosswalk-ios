@@ -13,7 +13,8 @@ class ViewController: XWalkViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        loadExtensionsByBundleNames(["EchoExtension"])
 
         if let path = NSBundle.mainBundle().pathForResource("echo", ofType: "html") {
             loadURL(NSURL.fileURLWithPath(path)!)
@@ -22,7 +23,6 @@ class ViewController: XWalkViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 

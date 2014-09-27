@@ -8,24 +8,25 @@
 
 import Foundation
 
-public class XWalkExtension {
-    let name: String
-    let jsAPI: String
+protocol XWalkExtensionDelegate {
+    func onPostMessageToJS(e: XWalkExtension, message: String)
+    func onBroadcastMessageToJS(e: XWalkExtension, message: String)
+}
 
-    public init(name: String, jsAPI: String) {
-        self.name = name
-        self.jsAPI = jsAPI
-    }
+public class XWalkExtension: NSObject {
+    public final var name: String = ""
+    final var jsAPI: String = ""
+    final var delegate: XWalkExtensionDelegate?
 
     public func broadcastMessage(message: String) {
-        // TODO:(jondong)
+        delegate?.onBroadcastMessageToJS(self, message: message)
     }
 
-    public func postMessage(instanceID: Int, message: String) {
-        // TODO:(jondong)
+    public func postMessage(message: String) {
+        delegate?.onPostMessageToJS(self, message: message)
     }
 
-    public func onMessage(instanceID: Int, message: String) {
-        // TODO:(jondong)
+    public func onMessage(message: String) {
+        assert(false, "XWalkExtension::onMessage should never get called directly. Override it in subclass please.")
     }
 }

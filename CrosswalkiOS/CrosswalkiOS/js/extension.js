@@ -5,7 +5,7 @@ var extension = (function () {
         if (msg == undefined) {
             return;
         }
-        window.webkit.messageHandlers.xwalk-extension.postMessage(msg);
+        window.webkit.messageHandlers.xwalk.postMessage(msg);
     }
 
     var setMessageListener = function(callback) {
