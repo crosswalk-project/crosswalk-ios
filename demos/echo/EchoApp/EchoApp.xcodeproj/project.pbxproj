@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB06E4DE19D91E6B0005B193 /* CrosswalkiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB06E4DD19D91E6B0005B193 /* CrosswalkiOS.framework */; };
+		AB06E4DF19D91E6B0005B193 /* CrosswalkiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB06E4DD19D91E6B0005B193 /* CrosswalkiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AB06E4E919D9294C0005B193 /* EchoExtension.framework in Resources */ = {isa = PBXBuildFile; fileRef = AB06E4E119D91EE20005B193 /* EchoExtension.framework */; };
 		AB346F7D19D14884005B375C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB346F7C19D14884005B375C /* AppDelegate.swift */; };
 		AB346F7F19D14884005B375C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB346F7E19D14884005B375C /* ViewController.swift */; };
 		AB346F8219D14884005B375C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB346F8019D14884005B375C /* Main.storyboard */; };
@@ -14,8 +17,6 @@
 		AB346F8719D14884005B375C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB346F8519D14884005B375C /* LaunchScreen.xib */; };
 		AB346F9319D14885005B375C /* EchoAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB346F9219D14885005B375C /* EchoAppTests.swift */; };
 		AB5AABBD19D275BA000E5C94 /* echo.html in Resources */ = {isa = PBXBuildFile; fileRef = AB5AABBB19D275BA000E5C94 /* echo.html */; };
-		ABFB98C819D14CAA00B64355 /* CrosswalkiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFB98C619D14CAA00B64355 /* CrosswalkiOS.framework */; };
-		ABFB98C919D14CAA00B64355 /* EchoExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFB98C719D14CAA00B64355 /* EchoExtension.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +29,23 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		AB06E4E019D91E6B0005B193 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AB06E4DF19D91E6B0005B193 /* CrosswalkiOS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		AB06E4DD19D91E6B0005B193 /* CrosswalkiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrosswalkiOS.framework; path = "../../../CrosswalkiOS/build/Debug-iphonesimulator/CrosswalkiOS.framework"; sourceTree = "<group>"; };
+		AB06E4E119D91EE20005B193 /* EchoExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EchoExtension.framework; path = "../EchoExtension/build/Debug-iphonesimulator/EchoExtension.framework"; sourceTree = "<group>"; };
 		AB346F7719D14884005B375C /* EchoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EchoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB346F7B19D14884005B375C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB346F7C19D14884005B375C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -40,8 +57,6 @@
 		AB346F9119D14885005B375C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB346F9219D14885005B375C /* EchoAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EchoAppTests.swift; sourceTree = "<group>"; };
 		AB5AABBB19D275BA000E5C94 /* echo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = echo.html; sourceTree = "<group>"; };
-		ABFB98C619D14CAA00B64355 /* CrosswalkiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrosswalkiOS.framework; path = "../../CrosswalkiOS/build/Debug-iphoneos/CrosswalkiOS.framework"; sourceTree = "<group>"; };
-		ABFB98C719D14CAA00B64355 /* EchoExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EchoExtension.framework; path = "../EchoExtension/build/Debug-iphoneos/EchoExtension.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,8 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABFB98C819D14CAA00B64355 /* CrosswalkiOS.framework in Frameworks */,
-				ABFB98C919D14CAA00B64355 /* EchoExtension.framework in Frameworks */,
+				AB06E4DE19D91E6B0005B193 /* CrosswalkiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,8 +139,8 @@
 		AB5AABB919D27584000E5C94 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				ABFB98C619D14CAA00B64355 /* CrosswalkiOS.framework */,
-				ABFB98C719D14CAA00B64355 /* EchoExtension.framework */,
+				AB06E4E119D91EE20005B193 /* EchoExtension.framework */,
+				AB06E4DD19D91E6B0005B193 /* CrosswalkiOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -149,6 +163,7 @@
 				AB346F7319D14884005B375C /* Sources */,
 				AB346F7419D14884005B375C /* Frameworks */,
 				AB346F7519D14884005B375C /* Resources */,
+				AB06E4E019D91E6B0005B193 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -219,6 +234,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB06E4E919D9294C0005B193 /* EchoExtension.framework in Resources */,
 				AB346F8219D14884005B375C /* Main.storyboard in Resources */,
 				AB346F8719D14884005B375C /* LaunchScreen.xib in Resources */,
 				AB346F8419D14884005B375C /* Images.xcassets in Resources */,
@@ -370,6 +386,8 @@
 					"$(inherited)",
 					"/Users/jonathan/projects/crosswalk-ios/CrosswalkiOS/build/Debug-iphoneos",
 					"/Users/jonathan/projects/crosswalk-ios/demos/EchoExtension/build/Debug-iphoneos",
+					"/Users/jonathan/projects/crosswalk-ios/CrosswalkiOS/build/Debug-iphonesimulator",
+					"/Users/jonathan/projects/crosswalk-ios/demos/echo/EchoExtension/build/Debug-iphonesimulator",
 				);
 				INFOPLIST_FILE = EchoApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -385,6 +403,8 @@
 					"$(inherited)",
 					"/Users/jonathan/projects/crosswalk-ios/CrosswalkiOS/build/Debug-iphoneos",
 					"/Users/jonathan/projects/crosswalk-ios/demos/EchoExtension/build/Debug-iphoneos",
+					"/Users/jonathan/projects/crosswalk-ios/CrosswalkiOS/build/Debug-iphonesimulator",
+					"/Users/jonathan/projects/crosswalk-ios/demos/echo/EchoExtension/build/Debug-iphonesimulator",
 				);
 				INFOPLIST_FILE = EchoApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
