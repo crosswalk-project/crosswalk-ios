@@ -7,15 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AB346FAC19D149DB005B375C /* EchoExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = AB346FAB19D149DB005B375C /* EchoExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AB06E4DC19D91E380005B193 /* CrosswalkiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB06E4DB19D91E380005B193 /* CrosswalkiOS.framework */; };
 		AB346FB619D149DB005B375C /* EchoExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB346FB519D149DB005B375C /* EchoExtensionTests.swift */; };
 		AB5AABB119D2716B000E5C94 /* EchoExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AABB019D2716B000E5C94 /* EchoExtension.swift */; };
 		AB5AABB219D2716B000E5C94 /* EchoExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AABB019D2716B000E5C94 /* EchoExtension.swift */; };
 		AB5AABB519D2733C000E5C94 /* echo.js in Resources */ = {isa = PBXBuildFile; fileRef = AB5AABB319D2733C000E5C94 /* echo.js */; };
-		ABFB98C519D14C9D00B64355 /* CrosswalkiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFB98C419D14C9D00B64355 /* CrosswalkiOS.framework */; };
+		AB6D69E919D6C3C50057ED37 /* manifest.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB6D69E819D6C3C50057ED37 /* manifest.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AB06E4DB19D91E380005B193 /* CrosswalkiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrosswalkiOS.framework; path = "../../../CrosswalkiOS/build/Debug-iphonesimulator/CrosswalkiOS.framework"; sourceTree = "<group>"; };
 		AB346FA619D149DB005B375C /* EchoExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EchoExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB346FAA19D149DB005B375C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB346FAB19D149DB005B375C /* EchoExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EchoExtension.h; sourceTree = "<group>"; };
@@ -24,7 +25,7 @@
 		AB346FB519D149DB005B375C /* EchoExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EchoExtensionTests.swift; sourceTree = "<group>"; };
 		AB5AABB019D2716B000E5C94 /* EchoExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EchoExtension.swift; sourceTree = "<group>"; };
 		AB5AABB319D2733C000E5C94 /* echo.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = echo.js; sourceTree = "<group>"; };
-		ABFB98C419D14C9D00B64355 /* CrosswalkiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrosswalkiOS.framework; path = "../../CrosswalkiOS/build/Debug-iphoneos/CrosswalkiOS.framework"; sourceTree = "<group>"; };
+		AB6D69E819D6C3C50057ED37 /* manifest.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = manifest.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,7 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABFB98C519D14C9D00B64355 /* CrosswalkiOS.framework in Frameworks */,
+				AB06E4DC19D91E380005B193 /* CrosswalkiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,6 +50,7 @@
 		AB346F9C19D149DA005B375C = {
 			isa = PBXGroup;
 			children = (
+				AB6D69E819D6C3C50057ED37 /* manifest.plist */,
 				AB5AABB819D27440000E5C94 /* Frameworks */,
 				AB5AABB719D2740A000E5C94 /* js */,
 				AB346FA819D149DB005B375C /* EchoExtension */,
@@ -112,7 +114,7 @@
 		AB5AABB819D27440000E5C94 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				ABFB98C419D14C9D00B64355 /* CrosswalkiOS.framework */,
+				AB06E4DB19D91E380005B193 /* CrosswalkiOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -124,7 +126,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB346FAC19D149DB005B375C /* EchoExtension.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB5AABB519D2733C000E5C94 /* echo.js in Resources */,
+				AB6D69E919D6C3C50057ED37 /* manifest.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +338,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/jonathan/projects/crosswalk-ios/CrosswalkiOS/build/Debug-iphoneos",
+					"/Users/jonathan/projects/crosswalk-ios/CrosswalkiOS/build/Debug-iphonesimulator",
 				);
 				INFOPLIST_FILE = EchoExtension/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -357,6 +360,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/jonathan/projects/crosswalk-ios/CrosswalkiOS/build/Debug-iphoneos",
+					"/Users/jonathan/projects/crosswalk-ios/CrosswalkiOS/build/Debug-iphonesimulator",
 				);
 				INFOPLIST_FILE = EchoExtension/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

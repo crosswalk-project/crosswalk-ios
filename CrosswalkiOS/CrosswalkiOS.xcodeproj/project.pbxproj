@@ -11,8 +11,10 @@
 		AB5AABAD19D25FDE000E5C94 /* XWalkExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AABAC19D25FDE000E5C94 /* XWalkExtension.swift */; };
 		AB5AABAF19D26270000E5C94 /* XWalkExtensionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AABAE19D26270000E5C94 /* XWalkExtensionManager.swift */; };
 		AB5AABC519D40AE7000E5C94 /* extension.js in Resources */ = {isa = PBXBuildFile; fileRef = AB5AABC419D40AE7000E5C94 /* extension.js */; };
-		AB62A42119C72D1E00141C7E /* CrosswalkiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = AB62A42019C72D1E00141C7E /* CrosswalkiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AB62A42B19C72D1E00141C7E /* CrosswalkiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB62A42A19C72D1E00141C7E /* CrosswalkiOSTests.swift */; };
+		ABD5792319DA692C0053E624 /* OBJCObjectFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = ABD5792019DA692C0053E624 /* OBJCObjectFactory.h */; };
+		ABD5792419DA692C0053E624 /* OBJCObjectFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD5792119DA692C0053E624 /* OBJCObjectFactory.m */; };
+		ABD5792519DA692C0053E624 /* ObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5792219DA692C0053E624 /* ObjectFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,10 @@
 		AB62A42619C72D1E00141C7E /* CrosswalkiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrosswalkiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB62A42919C72D1E00141C7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB62A42A19C72D1E00141C7E /* CrosswalkiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrosswalkiOSTests.swift; sourceTree = "<group>"; };
+		ABD5792019DA692C0053E624 /* OBJCObjectFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBJCObjectFactory.h; sourceTree = "<group>"; };
+		ABD5792119DA692C0053E624 /* OBJCObjectFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBJCObjectFactory.m; sourceTree = "<group>"; };
+		ABD5792219DA692C0053E624 /* ObjectFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectFactory.swift; sourceTree = "<group>"; };
+		ABD5792619DA69730053E624 /* CrosswalkiOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CrosswalkiOS-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +82,8 @@
 			isa = PBXGroup;
 			children = (
 				AB62A42019C72D1E00141C7E /* CrosswalkiOS.h */,
+				ABD5792619DA69730053E624 /* CrosswalkiOS-Bridging-Header.h */,
+				ABD5792719DA69820053E624 /* ObjectFactory */,
 				AB62A41E19C72D1E00141C7E /* Supporting Files */,
 				AB5AABBF19D405F3000E5C94 /* js */,
 				AB5AABAA19D25977000E5C94 /* XWalkViewController.swift */,
@@ -110,6 +118,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		ABD5792719DA69820053E624 /* ObjectFactory */ = {
+			isa = PBXGroup;
+			children = (
+				ABD5792019DA692C0053E624 /* OBJCObjectFactory.h */,
+				ABD5792119DA692C0053E624 /* OBJCObjectFactory.m */,
+				ABD5792219DA692C0053E624 /* ObjectFactory.swift */,
+			);
+			name = ObjectFactory;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -117,7 +135,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB62A42119C72D1E00141C7E /* CrosswalkiOS.h in Headers */,
+				ABD5792319DA692C0053E624 /* OBJCObjectFactory.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,7 +237,9 @@
 			files = (
 				AB5AABAB19D25977000E5C94 /* XWalkViewController.swift in Sources */,
 				AB5AABAF19D26270000E5C94 /* XWalkExtensionManager.swift in Sources */,
+				ABD5792519DA692C0053E624 /* ObjectFactory.swift in Sources */,
 				AB5AABAD19D25FDE000E5C94 /* XWalkExtension.swift in Sources */,
+				ABD5792419DA692C0053E624 /* OBJCObjectFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +352,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "CrosswalkiOS/CrosswalkiOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -349,6 +370,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "CrosswalkiOS/CrosswalkiOS-Bridging-Header.h";
 			};
 			name = Release;
 		};
