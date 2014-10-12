@@ -13,6 +13,9 @@
 		AB603BA519EA58CB00DECF78 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB603BA419EA58CB00DECF78 /* Images.xcassets */; };
 		AB603BA819EA58CC00DECF78 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB603BA619EA58CC00DECF78 /* LaunchScreen.xib */; };
 		AB603BB419EA58CC00DECF78 /* SysAppsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB603BB319EA58CC00DECF78 /* SysAppsTests.swift */; };
+		AB603BC219EA5CBF00DECF78 /* CrosswalkiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB603BC119EA5CBF00DECF78 /* CrosswalkiOS.framework */; };
+		AB603BC319EA5CBF00DECF78 /* CrosswalkiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB603BC119EA5CBF00DECF78 /* CrosswalkiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AB603BE619EA65FD00DECF78 /* app in Resources */ = {isa = PBXBuildFile; fileRef = AB603BE519EA65FD00DECF78 /* app */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,6 +28,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		AB603BC419EA5CBF00DECF78 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AB603BC319EA5CBF00DECF78 /* CrosswalkiOS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		AB603B9819EA58CB00DECF78 /* SysApps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SysApps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB603B9C19EA58CB00DECF78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -36,6 +53,8 @@
 		AB603BAD19EA58CC00DECF78 /* SysAppsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SysAppsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB603BB219EA58CC00DECF78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB603BB319EA58CC00DECF78 /* SysAppsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SysAppsTests.swift; sourceTree = "<group>"; };
+		AB603BC119EA5CBF00DECF78 /* CrosswalkiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrosswalkiOS.framework; path = "../Build/Products/Debug-iphonesimulator/CrosswalkiOS.framework"; sourceTree = "<group>"; };
+		AB603BE519EA65FD00DECF78 /* app */ = {isa = PBXFileReference; lastKnownFileType = folder; path = app; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB603BC219EA5CBF00DECF78 /* CrosswalkiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +79,8 @@
 		AB603B8F19EA58CB00DECF78 = {
 			isa = PBXGroup;
 			children = (
+				AB603BE519EA65FD00DECF78 /* app */,
+				AB603BC519EA5CD700DECF78 /* Frameworks */,
 				AB603B9A19EA58CB00DECF78 /* SysApps */,
 				AB603BB019EA58CC00DECF78 /* SysAppsTests */,
 				AB603B9919EA58CB00DECF78 /* Products */,
@@ -112,6 +134,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		AB603BC519EA5CD700DECF78 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AB603BC119EA5CBF00DECF78 /* CrosswalkiOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -122,6 +152,7 @@
 				AB603B9419EA58CB00DECF78 /* Sources */,
 				AB603B9519EA58CB00DECF78 /* Frameworks */,
 				AB603B9619EA58CB00DECF78 /* Resources */,
+				AB603BC419EA5CBF00DECF78 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -192,6 +223,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB603BE619EA65FD00DECF78 /* app in Resources */,
 				AB603BA319EA58CB00DECF78 /* Main.storyboard in Resources */,
 				AB603BA819EA58CC00DECF78 /* LaunchScreen.xib in Resources */,
 				AB603BA519EA58CB00DECF78 /* Images.xcassets in Resources */,
@@ -407,6 +439,7 @@
 				AB603BB919EA58CC00DECF78 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AB603BBA19EA58CC00DECF78 /* Build configuration list for PBXNativeTarget "SysAppsTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +448,7 @@
 				AB603BBC19EA58CC00DECF78 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
