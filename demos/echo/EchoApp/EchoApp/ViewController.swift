@@ -1,10 +1,6 @@
-//
-//  ViewController.swift
-//  EchoApp
-//
-//  Created by Jonathan Dong on 14/9/23.
-//  Copyright (c) 2014年 Crosswalk. All rights reserved.
-//
+// Copyright (c) 2014 Intel Corporation. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
 
 import UIKit
 import CrosswalkiOS
