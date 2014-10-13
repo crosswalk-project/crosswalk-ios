@@ -5,7 +5,7 @@
 import UIKit
 import XCTest
 
-class CrosswalkiOSTests: XCTestCase {
+class SysAppsTests: XCTestCase {
 
     override func setUp() {
         super.setUp()

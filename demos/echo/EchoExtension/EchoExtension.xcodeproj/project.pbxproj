@@ -7,15 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB001E7919E9227800A12F6A /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = AB001E7819E9227800A12F6A /* manifest.json */; };
 		AB06E4DC19D91E380005B193 /* CrosswalkiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB06E4DB19D91E380005B193 /* CrosswalkiOS.framework */; };
 		AB346FB619D149DB005B375C /* EchoExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB346FB519D149DB005B375C /* EchoExtensionTests.swift */; };
 		AB5AABB119D2716B000E5C94 /* EchoExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AABB019D2716B000E5C94 /* EchoExtension.swift */; };
 		AB5AABB219D2716B000E5C94 /* EchoExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AABB019D2716B000E5C94 /* EchoExtension.swift */; };
 		AB5AABB519D2733C000E5C94 /* echo.js in Resources */ = {isa = PBXBuildFile; fileRef = AB5AABB319D2733C000E5C94 /* echo.js */; };
-		AB6D69E919D6C3C50057ED37 /* manifest.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB6D69E819D6C3C50057ED37 /* manifest.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AB001E7819E9227800A12F6A /* manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
 		AB06E4DB19D91E380005B193 /* CrosswalkiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrosswalkiOS.framework; path = "../../../CrosswalkiOS/build/Debug-iphonesimulator/CrosswalkiOS.framework"; sourceTree = "<group>"; };
 		AB346FA619D149DB005B375C /* EchoExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EchoExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB346FAA19D149DB005B375C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -25,7 +26,6 @@
 		AB346FB519D149DB005B375C /* EchoExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EchoExtensionTests.swift; sourceTree = "<group>"; };
 		AB5AABB019D2716B000E5C94 /* EchoExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EchoExtension.swift; sourceTree = "<group>"; };
 		AB5AABB319D2733C000E5C94 /* echo.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = echo.js; sourceTree = "<group>"; };
-		AB6D69E819D6C3C50057ED37 /* manifest.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = manifest.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,7 +50,7 @@
 		AB346F9C19D149DA005B375C = {
 			isa = PBXGroup;
 			children = (
-				AB6D69E819D6C3C50057ED37 /* manifest.plist */,
+				AB001E7819E9227800A12F6A /* manifest.json */,
 				AB5AABB819D27440000E5C94 /* Frameworks */,
 				AB5AABB719D2740A000E5C94 /* js */,
 				AB346FA819D149DB005B375C /* EchoExtension */,
@@ -208,7 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB5AABB519D2733C000E5C94 /* echo.js in Resources */,
-				AB6D69E919D6C3C50057ED37 /* manifest.plist in Resources */,
+				AB001E7919E9227800A12F6A /* manifest.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,11 +335,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/jonathan/projects/crosswalk-ios/CrosswalkiOS/build/Debug-iphoneos",
-					"/Users/jonathan/projects/crosswalk-ios/CrosswalkiOS/build/Debug-iphonesimulator",
-				);
 				INFOPLIST_FILE = EchoExtension/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -357,11 +352,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/jonathan/projects/crosswalk-ios/CrosswalkiOS/build/Debug-iphoneos",
-					"/Users/jonathan/projects/crosswalk-ios/CrosswalkiOS/build/Debug-iphonesimulator",
-				);
 				INFOPLIST_FILE = EchoExtension/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB001E7719E9219E00A12F6A /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB001E7419E9219500A12F6A /* SwiftyJSON.framework */; };
 		AB5AABAB19D25977000E5C94 /* XWalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AABAA19D25977000E5C94 /* XWalkViewController.swift */; };
 		AB5AABAD19D25FDE000E5C94 /* XWalkExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AABAC19D25FDE000E5C94 /* XWalkExtension.swift */; };
 		AB5AABAF19D26270000E5C94 /* XWalkExtensionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AABAE19D26270000E5C94 /* XWalkExtensionManager.swift */; };
@@ -17,7 +18,25 @@
 		ABD5792519DA692C0053E624 /* ObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5792219DA692C0053E624 /* ObjectFactory.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		AB001E7319E9219500A12F6A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB001E6E19E9219500A12F6A /* SwiftyJSON.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2E4FEFDB19575BE100351305;
+			remoteInfo = SwiftyJSON;
+		};
+		AB001E7519E9219500A12F6A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB001E6E19E9219500A12F6A /* SwiftyJSON.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2E4FEFE619575BE100351305;
+			remoteInfo = SwiftyJSONTests;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		AB001E6E19E9219500A12F6A /* SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyJSON.xcodeproj; path = ../tools/SwiftyJSON/SwiftyJSON.xcodeproj; sourceTree = "<group>"; };
 		AB5AABAA19D25977000E5C94 /* XWalkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWalkViewController.swift; sourceTree = "<group>"; };
 		AB5AABAC19D25FDE000E5C94 /* XWalkExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWalkExtension.swift; sourceTree = "<group>"; };
 		AB5AABAE19D26270000E5C94 /* XWalkExtensionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWalkExtensionManager.swift; sourceTree = "<group>"; };
@@ -39,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB001E7719E9219E00A12F6A /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +72,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB001E6F19E9219500A12F6A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AB001E7419E9219500A12F6A /* SwiftyJSON.framework */,
+				AB001E7619E9219500A12F6A /* SwiftyJSONTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		AB5AABBF19D405F3000E5C94 /* js */ = {
 			isa = PBXGroup;
 			children = (
@@ -63,6 +92,7 @@
 		AB62A41119C72D1E00141C7E = {
 			isa = PBXGroup;
 			children = (
+				AB001E6E19E9219500A12F6A /* SwiftyJSON.xcodeproj */,
 				AB62A41D19C72D1E00141C7E /* CrosswalkiOS */,
 				AB62A42719C72D1E00141C7E /* CrosswalkiOSTests */,
 				AB62A41C19C72D1E00141C7E /* Products */,
@@ -204,6 +234,12 @@
 			mainGroup = AB62A41119C72D1E00141C7E;
 			productRefGroup = AB62A41C19C72D1E00141C7E /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = AB001E6F19E9219500A12F6A /* Products */;
+					ProjectRef = AB001E6E19E9219500A12F6A /* SwiftyJSON.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				AB62A41A19C72D1E00141C7E /* CrosswalkiOS */,
@@ -211,6 +247,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		AB001E7419E9219500A12F6A /* SwiftyJSON.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftyJSON.framework;
+			remoteRef = AB001E7319E9219500A12F6A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AB001E7619E9219500A12F6A /* SwiftyJSONTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SwiftyJSONTests.xctest;
+			remoteRef = AB001E7519E9219500A12F6A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		AB62A41919C72D1E00141C7E /* Resources */ = {

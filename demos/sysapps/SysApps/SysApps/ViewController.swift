@@ -10,9 +10,7 @@ class ViewController: XWalkViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        loadExtensionsByBundleNames(["EchoExtension"])
-
-        if let path = NSBundle.mainBundle().pathForResource("echo", ofType: "html") {
+        if let path = NSBundle.mainBundle().pathForResource("index", ofType: "html", inDirectory:"app") {
             loadURL(NSURL.fileURLWithPath(path)!)
         }
     }
@@ -21,4 +19,3 @@ class ViewController: XWalkViewController {
         super.didReceiveMemoryWarning()
     }
 }
-

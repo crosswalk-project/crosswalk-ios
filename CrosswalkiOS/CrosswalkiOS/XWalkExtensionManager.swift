@@ -1,12 +1,9 @@
-//
-//  XWalkExtensionManager.swift
-//  CrosswalkiOS
-//
-//  Created by Jonathan Dong on 14/9/24.
-//  Copyright (c) 2014年 Crosswalk. All rights reserved.
-//
+// Copyright (c) 2014 Intel Corporation. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
 
 import Foundation
+import SwiftyJSON
 import WebKit
 
 protocol XWalkExtensionManagerDelegate {
@@ -91,20 +88,20 @@ class XWalkExtensionManager: NSObject, WKScriptMessageHandler, XWalkExtensionDel
             return
         }
 
-        var plistPath = bundle.pathForResource("manifest", ofType: "plist")
-        if plistPath == nil {
-            println("Failed to find manifest.plist")
+        var configPath = bundle.pathForResource("manifest", ofType: "json")
+        if configPath == nil {
+            println("Failed to find manifest.json")
             return
         }
 
-        let config = NSDictionary(contentsOfFile: plistPath!)
+        let config = JSON(data: NSFileHandle(forReadingAtPath: configPath!).readDataToEndOfFile())
         typealias ExtensionFactory = ObjectFactory<XWalkExtension>
-        var className = config["class"] as String
+        let className = config["class"].string!
         if let e: XWalkExtension = ExtensionFactory.createInstance(className: "\(bundleName).\(className)") {
-            e.name = config["name"] as String
+            e.name = config["name"].string!
             e.delegate = self
 
-            let jsApiFileName = split(config["jsapi"] as String, { (c:Character) -> Bool in
+            let jsApiFileName = split(config["jsapi"].string!, { (c:Character) -> Bool in
                 return c == "."
             })
             if let jsPath = bundle.pathForResource(jsApiFileName[0], ofType: jsApiFileName[1]) {

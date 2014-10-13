@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>A demo for W3C SysApps DeviceCapabilities API</title>
+    <link rel="stylesheet" href="css/jquery.mobile-1.3.2.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+  </head>
+  <body> 
+  <div data-role="header" data-position="fixed">
+    <h2>Device Capabilities demo</h2>
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#" id="nav-cpu" class="ui-btn-active">CPU</a></li>
+        <li><a href="#" id="nav-memory">Memory</a></li>
+        <li><a href="#" id="nav-storage">Storage</a></li>
+        <li><a href="#" id="nav-display">Display</a></li>
+        <li><a href="#" id="nav-avcodecs">Codec</a></li>
+      </ul>
+    </div>
+  </div>
+    <div id="content">
+      <div id="cpu">
+        <h3>CPU Monitor</h3>
+        <canvas id="cpu-graph"></canvas>
+        <div id="cpu-info"></div>
+      </div>
+      <div id="memory">
+        <h3>Memory Monitor</h3>
+        <canvas id="memory-bank"></canvas>
+        <div id="memory-info"></div>
+      </div>
+      <div id="storage"></div>
+      <div id="display"></div>
+      <div id="avcodecs">
+        <h3>Check Audio/Video uploaded file</h3>
+        <label for="file-to-upload">
+          Please select an audio or video file
+        </label><br />
+        <input type="file" name="file-to-upload" id="file-to-upload"/><br />
+        <div id="upload-message"></div>
+        <input type="button" data-inline="true" data-theme="b" value="Upload"/>
+      </div>
+    </div>
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/jquery.mobile-1.3.2.min.js"></script>
+    <script src="js/sysapp.js"></script>
+  </body>
+</html>
