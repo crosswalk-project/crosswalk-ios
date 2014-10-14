@@ -107,12 +107,16 @@ class XWalkExtensionManager: NSObject, WKScriptMessageHandler, XWalkExtensionDel
             if let jsPath = bundle.pathForResource(jsApiFileName[0], ofType: jsApiFileName[1]) {
                 let jsData = NSFileHandle(forReadingAtPath: jsPath).readDataToEndOfFile()
                 e.jsAPI = NSString(data: jsData, encoding: NSUTF8StringEncoding)
-
-                let userScript = WKUserScript(source: e.jsAPI, injectionTime:
-                    WKUserScriptInjectionTime.AtDocumentStart, forMainFrameOnly: false)
-                contentController?.addUserScript(userScript)
+                injectJSCodes(e.jsAPI, extensionName: e.name)
             }
             registerExtension(e);
         }
+    }
+
+    func injectJSCodes(jsCodes: String, extensionName: String) {
+        let codesToInject = "var \(extensionName); (function() { var exports = {}; (function() {'use strict'; \(jsCodes)})(); \(extensionName) = exports; })();";
+        let userScript = WKUserScript(source: codesToInject, injectionTime:
+            WKUserScriptInjectionTime.AtDocumentStart, forMainFrameOnly: false)
+        contentController?.addUserScript(userScript)
     }
 }

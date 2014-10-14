@@ -10,7 +10,7 @@ extension.setMessageListener(function(msg) {
     }
 });
 
-var echo = function(msg, callback) {
+exports.echo = function(msg, callback) {
     echoListener = callback;
     extension.postMessage(msg);
 };
