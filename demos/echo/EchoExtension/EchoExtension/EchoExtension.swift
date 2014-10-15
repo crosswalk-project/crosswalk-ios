@@ -5,7 +5,13 @@
 import CrosswalkiOS
 
 public class EchoExtension: XWalkExtension {
-    let prefix = "Echo from native: "
+    public override func createInstance() -> XWalkExtensionInstance? {
+        return EchoExtensionInstance()
+    }
+}
+
+public class EchoExtensionInstance: XWalkExtensionInstance {
+    let prefix: String = "Echo from native: "
 
     public override func onMessage(message: String) {
         super.postMessage(prefix + message)
