@@ -10,8 +10,9 @@ protocol XWalkExtensionManagerDelegate {
     func onPostMessageToJS(message: String)
 }
 
-class XWalkExtensionManager: NSObject, WKScriptMessageHandler, XWalkExtensionDelegate {
+class XWalkExtensionManager: NSObject, WKScriptMessageHandler, XWalkExtensionInstanceDelegate {
     var extensions = Dictionary<String, XWalkExtension>()
+    var instances = Dictionary<Int, XWalkExtensionInstance>()
     var delegate: XWalkExtensionManagerDelegate?
     weak var contentController: WKUserContentController? {
         didSet {
@@ -40,19 +41,19 @@ class XWalkExtensionManager: NSObject, WKScriptMessageHandler, XWalkExtensionDel
         }
     }
 
-    func onPostMessageToJS(e: XWalkExtension, message: String) {
+    func onPostMessageToJS(instance: XWalkExtensionInstance, message: String) {
         delegate?.onPostMessageToJS(message)
     }
 
-    func onBroadcastMessageToJS(e: XWalkExtension, message: String) {
+    func onBroadcastMessageToJS(instance: XWalkExtensionInstance, message: String) {
         // (TODO) jondong
     }
 
     func userContentController(userContentController: WKUserContentController!,
         didReceiveScriptMessage message: WKScriptMessage!) {
         var msg: String = message.body as String
-        for (_, e) in extensions {
-            e.onMessage(msg)
+        for (_, instance) in instances {
+            instance.onMessage(msg)
         }
     }
 
@@ -105,7 +106,6 @@ class XWalkExtensionManager: NSObject, WKScriptMessageHandler, XWalkExtensionDel
         let className = config["class"].string!
         if let e: XWalkExtension = ExtensionFactory.createInstance(className: "\(bundleName).\(className)") {
             e.name = config["name"].string!
-            e.delegate = self
 
             let jsApiFileName = split(config["jsapi"].string!, { (c:Character) -> Bool in
                 return c == "."
@@ -116,6 +116,10 @@ class XWalkExtensionManager: NSObject, WKScriptMessageHandler, XWalkExtensionDel
                 injectJSCodes(e.jsAPI, extensionName: e.name)
             }
             registerExtension(e)
+            if let instance = e.createInstance() {
+                instance.delegate = self
+                instances[instance.id] = instance
+            }
         }
     }
 
