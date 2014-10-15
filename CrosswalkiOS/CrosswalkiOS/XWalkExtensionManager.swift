@@ -72,6 +72,12 @@ class XWalkExtensionManager: NSObject, WKScriptMessageHandler, XWalkExtensionDel
                 injectionTime: WKUserScriptInjectionTime.AtDocumentStart, forMainFrameOnly: false)
             contentController?.addUserScript(userScript)
         }
+
+        if let xwalkInternalPath = bundle.pathForResource("xwalk_internal_api", ofType: "js") {
+            let jsData = NSFileHandle(forReadingAtPath: xwalkInternalPath).readDataToEndOfFile()
+            let jsContent = NSString(data: jsData, encoding: NSUTF8StringEncoding)
+            injectJSCodes(jsContent, extensionName: "xwalk.internal")
+        }
     }
 
     func loadExtensionByBundleName(bundleName: String) {
@@ -109,12 +115,26 @@ class XWalkExtensionManager: NSObject, WKScriptMessageHandler, XWalkExtensionDel
                 e.jsAPI = NSString(data: jsData, encoding: NSUTF8StringEncoding)
                 injectJSCodes(e.jsAPI, extensionName: e.name)
             }
-            registerExtension(e);
+            registerExtension(e)
         }
     }
 
+    func codeToEnsureNamespace(extensionName: String) -> String {
+        var namespaceArray = split(extensionName, { (Character c) -> Bool in return c == "." })
+        var namespace: String = ""
+        var result: String = ""
+        for var i = 0; i < namespaceArray.count; ++i {
+            if (countElements(namespace) > 0) {
+                namespace += "."
+            }
+            namespace += namespaceArray[i]
+            result += namespace + " = " + namespace + " || {}; "
+        }
+        return result
+    }
+
     func injectJSCodes(jsCodes: String, extensionName: String) {
-        let codesToInject = "var \(extensionName); (function() { var exports = {}; (function() {'use strict'; \(jsCodes)})(); \(extensionName) = exports; })();";
+        let codesToInject = "var \(codeToEnsureNamespace(extensionName)) (function() { var exports = {}; (function() {'use strict'; \(jsCodes)})(); \(extensionName) = exports; })();";
         let userScript = WKUserScript(source: codesToInject, injectionTime:
             WKUserScriptInjectionTime.AtDocumentStart, forMainFrameOnly: false)
         contentController?.addUserScript(userScript)
