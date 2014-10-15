@@ -44,9 +44,8 @@ public class XWalkViewController: UIViewController, WKNavigationDelegate, XWalkE
         webview?.loadRequest(NSURLRequest(URL: url));
     }
 
-    func onPostMessageToJS(message: String) {
-        let script = "messageListener(\"\(message)\");"
-        webview?.evaluateJavaScript(script, completionHandler: { (object, error) -> Void in
+    func onEvaluateJavascript(jsCode: String) {
+        webview?.evaluateJavaScript(jsCode, completionHandler: { (object, error) -> Void in
             if error != nil {
                 println("Failed to execute script, with error:\(error)")
             }

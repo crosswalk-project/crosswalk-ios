@@ -11,7 +11,6 @@
 		AB5AABAB19D25977000E5C94 /* XWalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AABAA19D25977000E5C94 /* XWalkViewController.swift */; };
 		AB5AABAD19D25FDE000E5C94 /* XWalkExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AABAC19D25FDE000E5C94 /* XWalkExtension.swift */; };
 		AB5AABAF19D26270000E5C94 /* XWalkExtensionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AABAE19D26270000E5C94 /* XWalkExtensionManager.swift */; };
-		AB5AABC519D40AE7000E5C94 /* extension.js in Resources */ = {isa = PBXBuildFile; fileRef = AB5AABC419D40AE7000E5C94 /* extension.js */; };
 		AB62A42B19C72D1E00141C7E /* CrosswalkiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB62A42A19C72D1E00141C7E /* CrosswalkiOSTests.swift */; };
 		AB6694B919EE08190098D269 /* xwalk_internal_api.js in Resources */ = {isa = PBXBuildFile; fileRef = AB6694B819EE08190098D269 /* xwalk_internal_api.js */; };
 		ABD5792319DA692C0053E624 /* OBJCObjectFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = ABD5792019DA692C0053E624 /* OBJCObjectFactory.h */; };
@@ -41,7 +40,6 @@
 		AB5AABAA19D25977000E5C94 /* XWalkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWalkViewController.swift; sourceTree = "<group>"; };
 		AB5AABAC19D25FDE000E5C94 /* XWalkExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWalkExtension.swift; sourceTree = "<group>"; };
 		AB5AABAE19D26270000E5C94 /* XWalkExtensionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWalkExtensionManager.swift; sourceTree = "<group>"; };
-		AB5AABC419D40AE7000E5C94 /* extension.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = extension.js; path = js/extension.js; sourceTree = "<group>"; };
 		AB62A41B19C72D1E00141C7E /* CrosswalkiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CrosswalkiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB62A41F19C72D1E00141C7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB62A42019C72D1E00141C7E /* CrosswalkiOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CrosswalkiOS.h; sourceTree = "<group>"; };
@@ -87,7 +85,6 @@
 			isa = PBXGroup;
 			children = (
 				AB6694B819EE08190098D269 /* xwalk_internal_api.js */,
-				AB5AABC419D40AE7000E5C94 /* extension.js */,
 			);
 			name = js;
 			sourceTree = "<group>";
@@ -274,7 +271,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB6694B919EE08190098D269 /* xwalk_internal_api.js in Resources */,
-				AB5AABC519D40AE7000E5C94 /* extension.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
