@@ -72,6 +72,12 @@ class XWalkExtensionManager: NSObject, WKScriptMessageHandler, XWalkExtensionDel
                 injectionTime: WKUserScriptInjectionTime.AtDocumentStart, forMainFrameOnly: false)
             contentController?.addUserScript(userScript)
         }
+
+        if let xwalkInternalPath = bundle.pathForResource("xwalk_internal_api", ofType: "js") {
+            let jsData = NSFileHandle(forReadingAtPath: xwalkInternalPath).readDataToEndOfFile()
+            let jsContent = NSString(data: jsData, encoding: NSUTF8StringEncoding)
+            injectJSCodes(jsContent, extensionName: "xwalk.internal")
+        }
     }
 
     func loadExtensionByBundleName(bundleName: String) {
