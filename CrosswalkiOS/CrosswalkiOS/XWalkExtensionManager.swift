@@ -7,24 +7,20 @@ import SwiftyJSON
 import WebKit
 
 protocol XWalkExtensionManagerDelegate {
-    func onPostMessageToJS(message: String)
+    func onEvaluateJavascript(jsCode: String)
 }
 
-class XWalkExtensionManager: NSObject, WKScriptMessageHandler, XWalkExtensionInstanceDelegate {
+class XWalkExtensionManager: NSObject, XWalkExtensionDelegate {
     var extensions = Dictionary<String, XWalkExtension>()
-    var instances = Dictionary<Int, XWalkExtensionInstance>()
     var delegate: XWalkExtensionManagerDelegate?
-    weak var contentController: WKUserContentController? {
-        didSet {
-            contentController?.addScriptMessageHandler(self, name: "xwalk")
-            LoadDefaultExtensionScript()
-        }
-    }
+    weak var contentController: WKUserContentController?
 
     func registerExtension(e: XWalkExtension) {
         if let existingExtension = extensions[e.name] {
             println("\(e.name) is already registered!")
         } else {
+            e.delegate = self
+            e.injectJSCodes(contentController!)
             extensions[e.name] = e
         }
     }
@@ -32,6 +28,7 @@ class XWalkExtensionManager: NSObject, WKScriptMessageHandler, XWalkExtensionIns
     func unregisterExtension(name: String) {
         if let existingExtension = extensions[name] {
             extensions[name] = nil
+            contentController?.removeScriptMessageHandlerForName(name)
         }
     }
 
@@ -41,44 +38,8 @@ class XWalkExtensionManager: NSObject, WKScriptMessageHandler, XWalkExtensionIns
         }
     }
 
-    func onPostMessageToJS(instance: XWalkExtensionInstance, message: String) {
-        delegate?.onPostMessageToJS(message)
-    }
-
-    func onBroadcastMessageToJS(instance: XWalkExtensionInstance, message: String) {
-        // (TODO) jondong
-    }
-
-    func userContentController(userContentController: WKUserContentController!,
-        didReceiveScriptMessage message: WKScriptMessage!) {
-        var msg: String = message.body as String
-        for (_, instance) in instances {
-            instance.onMessage(msg)
-        }
-    }
-
-    func LoadDefaultExtensionScript() {
-        let path = NSBundle.mainBundle().pathForResource("CrosswalkiOS",
-            ofType: "framework", inDirectory:"Frameworks")
-        if path == nil {
-            println("Failed to locate bundle: CrosswalkiOS")
-            return
-        }
-
-        var bundle = NSBundle(path: path!)
-        if let scriptPath = bundle.pathForResource("extension", ofType: "js") {
-            let jsData = NSFileHandle(forReadingAtPath: scriptPath).readDataToEndOfFile()
-            let jsContent = NSString(data: jsData, encoding: NSUTF8StringEncoding)
-            let userScript = WKUserScript(source: jsContent,
-                injectionTime: WKUserScriptInjectionTime.AtDocumentStart, forMainFrameOnly: false)
-            contentController?.addUserScript(userScript)
-        }
-
-        if let xwalkInternalPath = bundle.pathForResource("xwalk_internal_api", ofType: "js") {
-            let jsData = NSFileHandle(forReadingAtPath: xwalkInternalPath).readDataToEndOfFile()
-            let jsContent = NSString(data: jsData, encoding: NSUTF8StringEncoding)
-            injectJSCodes(jsContent, extensionName: "xwalk.internal")
-        }
+    func onEvaluateJavascript(e: XWalkExtension, jsCode: String) {
+        delegate?.onEvaluateJavascript(jsCode);
     }
 
     func loadExtensionByBundleName(bundleName: String) {
@@ -107,40 +68,12 @@ class XWalkExtensionManager: NSObject, WKScriptMessageHandler, XWalkExtensionIns
         if let e: XWalkExtension = ExtensionFactory.createInstance(className: "\(bundleName).\(className)") {
             e.name = config["name"].string!
 
-            let jsApiFileName = split(config["jsapi"].string!, { (c:Character) -> Bool in
-                return c == "."
-            })
+            let jsApiFileName = config["jsapi"].string!.componentsSeparatedByString(".")
             if let jsPath = bundle.pathForResource(jsApiFileName[0], ofType: jsApiFileName[1]) {
                 let jsData = NSFileHandle(forReadingAtPath: jsPath).readDataToEndOfFile()
                 e.jsAPI = NSString(data: jsData, encoding: NSUTF8StringEncoding)
-                injectJSCodes(e.jsAPI, extensionName: e.name)
             }
             registerExtension(e)
-            if let instance = e.createInstance() {
-                instance.delegate = self
-                instances[instance.id] = instance
-            }
         }
-    }
-
-    func codeToEnsureNamespace(extensionName: String) -> String {
-        var namespaceArray = split(extensionName, { (Character c) -> Bool in return c == "." })
-        var namespace: String = ""
-        var result: String = ""
-        for var i = 0; i < namespaceArray.count; ++i {
-            if (countElements(namespace) > 0) {
-                namespace += "."
-            }
-            namespace += namespaceArray[i]
-            result += namespace + " = " + namespace + " || {}; "
-        }
-        return result
-    }
-
-    func injectJSCodes(jsCodes: String, extensionName: String) {
-        let codesToInject = "var \(codeToEnsureNamespace(extensionName)) (function() { var exports = {}; (function() {'use strict'; \(jsCodes)})(); \(extensionName) = exports; })();";
-        let userScript = WKUserScript(source: codesToInject, injectionTime:
-            WKUserScriptInjectionTime.AtDocumentStart, forMainFrameOnly: false)
-        contentController?.addUserScript(userScript)
     }
 }
