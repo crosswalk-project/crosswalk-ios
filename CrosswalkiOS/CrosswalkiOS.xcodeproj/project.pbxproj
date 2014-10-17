@@ -13,6 +13,8 @@
 		AB5AABAF19D26270000E5C94 /* XWalkExtensionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AABAE19D26270000E5C94 /* XWalkExtensionManager.swift */; };
 		AB62A42B19C72D1E00141C7E /* CrosswalkiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB62A42A19C72D1E00141C7E /* CrosswalkiOSTests.swift */; };
 		AB6694B919EE08190098D269 /* xwalk_internal_api.js in Resources */ = {isa = PBXBuildFile; fileRef = AB6694B819EE08190098D269 /* xwalk_internal_api.js */; };
+		AB92CC1319EFABC8007BF2F2 /* device_capabilities_api.js in Resources */ = {isa = PBXBuildFile; fileRef = AB92CC1219EFABC8007BF2F2 /* device_capabilities_api.js */; };
+		AB92CC1719EFAC01007BF2F2 /* DeviceCapabilitesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB92CC1619EFAC01007BF2F2 /* DeviceCapabilitesExtension.swift */; };
 		ABD5792319DA692C0053E624 /* OBJCObjectFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = ABD5792019DA692C0053E624 /* OBJCObjectFactory.h */; };
 		ABD5792419DA692C0053E624 /* OBJCObjectFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD5792119DA692C0053E624 /* OBJCObjectFactory.m */; };
 		ABD5792519DA692C0053E624 /* ObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5792219DA692C0053E624 /* ObjectFactory.swift */; };
@@ -47,6 +49,8 @@
 		AB62A42919C72D1E00141C7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB62A42A19C72D1E00141C7E /* CrosswalkiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrosswalkiOSTests.swift; sourceTree = "<group>"; };
 		AB6694B819EE08190098D269 /* xwalk_internal_api.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = xwalk_internal_api.js; path = js/xwalk_internal_api.js; sourceTree = "<group>"; };
+		AB92CC1219EFABC8007BF2F2 /* device_capabilities_api.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = device_capabilities_api.js; path = sysapps/device_capabilities_api.js; sourceTree = "<group>"; };
+		AB92CC1619EFAC01007BF2F2 /* DeviceCapabilitesExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceCapabilitesExtension.swift; path = sysapps/DeviceCapabilitesExtension.swift; sourceTree = "<group>"; };
 		ABD5792019DA692C0053E624 /* OBJCObjectFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBJCObjectFactory.h; sourceTree = "<group>"; };
 		ABD5792119DA692C0053E624 /* OBJCObjectFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBJCObjectFactory.m; sourceTree = "<group>"; };
 		ABD5792219DA692C0053E624 /* ObjectFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectFactory.swift; sourceTree = "<group>"; };
@@ -116,6 +120,7 @@
 				ABD5792719DA69820053E624 /* ObjectFactory */,
 				AB62A41E19C72D1E00141C7E /* Supporting Files */,
 				AB5AABBF19D405F3000E5C94 /* js */,
+				AB92CC1819EFAC16007BF2F2 /* sysapps */,
 				AB5AABAA19D25977000E5C94 /* XWalkViewController.swift */,
 				AB5AABAC19D25FDE000E5C94 /* XWalkExtension.swift */,
 				AB5AABAE19D26270000E5C94 /* XWalkExtensionManager.swift */,
@@ -146,6 +151,15 @@
 				AB62A42919C72D1E00141C7E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AB92CC1819EFAC16007BF2F2 /* sysapps */ = {
+			isa = PBXGroup;
+			children = (
+				AB92CC1219EFABC8007BF2F2 /* device_capabilities_api.js */,
+				AB92CC1619EFAC01007BF2F2 /* DeviceCapabilitesExtension.swift */,
+			);
+			name = sysapps;
 			sourceTree = "<group>";
 		};
 		ABD5792719DA69820053E624 /* ObjectFactory */ = {
@@ -271,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB6694B919EE08190098D269 /* xwalk_internal_api.js in Resources */,
+				AB92CC1319EFABC8007BF2F2 /* device_capabilities_api.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB92CC1719EFAC01007BF2F2 /* DeviceCapabilitesExtension.swift in Sources */,
 				AB5AABAB19D25977000E5C94 /* XWalkViewController.swift in Sources */,
 				AB5AABAF19D26270000E5C94 /* XWalkExtensionManager.swift in Sources */,
 				ABD5792519DA692C0053E624 /* ObjectFactory.swift in Sources */,
