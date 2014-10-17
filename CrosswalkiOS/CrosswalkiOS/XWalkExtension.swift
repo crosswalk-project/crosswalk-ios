@@ -97,7 +97,7 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler, XWalkExtensionIns
     }
 
     func onPostMessageToJS(instance: XWalkExtensionInstance, message: String) {
-        delegate?.onEvaluateJavascript(self, jsCode: "\(name).extension.invokeMessageListener(\"\(message)\");")
+        delegate?.onEvaluateJavascript(self, jsCode: "\(name).extension.invokeMessageListener('\(message)');")
     }
 }
 

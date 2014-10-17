@@ -13,7 +13,11 @@ protocol XWalkExtensionManagerDelegate {
 class XWalkExtensionManager: NSObject, XWalkExtensionDelegate {
     var extensions = Dictionary<String, XWalkExtension>()
     var delegate: XWalkExtensionManagerDelegate?
-    weak var contentController: WKUserContentController?
+    weak var contentController: WKUserContentController? {
+        didSet {
+            LoadDefaultExtensionScript()
+        }
+    }
 
     func registerExtension(e: XWalkExtension) {
         if let existingExtension = extensions[e.name] {
@@ -42,6 +46,23 @@ class XWalkExtensionManager: NSObject, XWalkExtensionDelegate {
         delegate?.onEvaluateJavascript(jsCode);
     }
 
+    func LoadDefaultExtensionScript() {
+        let path = NSBundle.mainBundle().pathForResource("CrosswalkiOS",
+            ofType: "framework", inDirectory:"Frameworks")
+        if path == nil {
+            println("Failed to locate bundle: CrosswalkiOS")
+            return
+        }
+        var bundle = NSBundle(path: path!)
+        if let scriptPath = bundle.pathForResource("device_capabilities_api", ofType: "js") {
+            let jsData = NSFileHandle(forReadingAtPath: scriptPath).readDataToEndOfFile()
+            let e: XWalkExtension = DeviceCapabilitesExtension()
+            e.name = "xwalk.experimental.system"
+            e.jsAPI = NSString(data: jsData, encoding: NSUTF8StringEncoding)
+            registerExtension(e)
+        }
+    }
+
     func loadExtensionByBundleName(bundleName: String) {
         let bundlePath = NSBundle.mainBundle().pathForResource(bundleName,
             ofType: "framework", inDirectory:"Frameworks")
@@ -64,11 +85,11 @@ class XWalkExtensionManager: NSObject, XWalkExtensionDelegate {
 
         let config = JSON(data: NSFileHandle(forReadingAtPath: configPath!).readDataToEndOfFile())
         typealias ExtensionFactory = ObjectFactory<XWalkExtension>
-        let className = config["class"].string!
+        let className = config["class"].stringValue
         if let e: XWalkExtension = ExtensionFactory.createInstance(className: "\(bundleName).\(className)") {
-            e.name = config["name"].string!
+            e.name = config["name"].stringValue
 
-            let jsApiFileName = config["jsapi"].string!.componentsSeparatedByString(".")
+            let jsApiFileName = config["jsapi"].stringValue.componentsSeparatedByString(".")
             if let jsPath = bundle.pathForResource(jsApiFileName[0], ofType: jsApiFileName[1]) {
                 let jsData = NSFileHandle(forReadingAtPath: jsPath).readDataToEndOfFile()
                 e.jsAPI = NSString(data: jsData, encoding: NSUTF8StringEncoding)
