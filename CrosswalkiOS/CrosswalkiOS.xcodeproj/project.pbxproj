@@ -15,6 +15,7 @@
 		AB6694B919EE08190098D269 /* xwalk_internal_api.js in Resources */ = {isa = PBXBuildFile; fileRef = AB6694B819EE08190098D269 /* xwalk_internal_api.js */; };
 		AB92CC1319EFABC8007BF2F2 /* device_capabilities_api.js in Resources */ = {isa = PBXBuildFile; fileRef = AB92CC1219EFABC8007BF2F2 /* device_capabilities_api.js */; };
 		AB92CC1719EFAC01007BF2F2 /* DeviceCapabilitesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB92CC1619EFAC01007BF2F2 /* DeviceCapabilitesExtension.swift */; };
+		ABA1975919F3B28B00F77D95 /* sysinfo.c in Sources */ = {isa = PBXBuildFile; fileRef = ABA1975719F3B28B00F77D95 /* sysinfo.c */; };
 		ABD5792319DA692C0053E624 /* OBJCObjectFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = ABD5792019DA692C0053E624 /* OBJCObjectFactory.h */; };
 		ABD5792419DA692C0053E624 /* OBJCObjectFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD5792119DA692C0053E624 /* OBJCObjectFactory.m */; };
 		ABD5792519DA692C0053E624 /* ObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5792219DA692C0053E624 /* ObjectFactory.swift */; };
@@ -51,6 +52,7 @@
 		AB6694B819EE08190098D269 /* xwalk_internal_api.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = xwalk_internal_api.js; path = js/xwalk_internal_api.js; sourceTree = "<group>"; };
 		AB92CC1219EFABC8007BF2F2 /* device_capabilities_api.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = device_capabilities_api.js; path = sysapps/device_capabilities_api.js; sourceTree = "<group>"; };
 		AB92CC1619EFAC01007BF2F2 /* DeviceCapabilitesExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceCapabilitesExtension.swift; path = sysapps/DeviceCapabilitesExtension.swift; sourceTree = "<group>"; };
+		ABA1975719F3B28B00F77D95 /* sysinfo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sysinfo.c; sourceTree = "<group>"; };
 		ABD5792019DA692C0053E624 /* OBJCObjectFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBJCObjectFactory.h; sourceTree = "<group>"; };
 		ABD5792119DA692C0053E624 /* OBJCObjectFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBJCObjectFactory.m; sourceTree = "<group>"; };
 		ABD5792219DA692C0053E624 /* ObjectFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectFactory.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 		AB92CC1819EFAC16007BF2F2 /* sysapps */ = {
 			isa = PBXGroup;
 			children = (
+				ABA1975719F3B28B00F77D95 /* sysinfo.c */,
 				AB92CC1219EFABC8007BF2F2 /* device_capabilities_api.js */,
 				AB92CC1619EFAC01007BF2F2 /* DeviceCapabilitesExtension.swift */,
 			);
@@ -304,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB92CC1719EFAC01007BF2F2 /* DeviceCapabilitesExtension.swift in Sources */,
+				ABA1975919F3B28B00F77D95 /* sysinfo.c in Sources */,
 				AB5AABAB19D25977000E5C94 /* XWalkViewController.swift in Sources */,
 				AB5AABAF19D26270000E5C94 /* XWalkExtensionManager.swift in Sources */,
 				ABD5792519DA692C0053E624 /* ObjectFactory.swift in Sources */,
