@@ -12,20 +12,21 @@ class DeviceCapabilitesExtension: XWalkExtension {
     }
 }
 
-class LinearCongruentialGenerator {
-    var lastRandom = 42.0
-    let m = 139968.0
-    let a = 3877.0
-    let c = 29573.0
-    func random() -> Double {
-        lastRandom = ((lastRandom * a + c) % m)
-        return lastRandom / m
+func getDiskSpace() -> (totalSpace:Int, totalFreeSpace:Int) {
+    var totalSpace: Int = 0
+    var totalFreeSpace: Int = 0
+    var error: NSError?
+    var paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+    if let dictionary = NSFileManager.defaultManager().attributesOfFileSystemForPath(paths.last as String, error: &error) {
+        var fileSystemSizeInBytes = dictionary[NSFileSystemSize] as? NSNumber
+        var freeFileSystemSizeInBytes = dictionary[NSFileSystemFreeSize] as? NSNumber
+        totalSpace = fileSystemSizeInBytes!.integerValue
+        totalFreeSpace = freeFileSystemSizeInBytes!.integerValue
     }
+    return (totalSpace, totalFreeSpace)
 }
 
 class DeviceCapabilitesExtensionInstance: XWalkExtensionInstance {
-    var randomGenerator: LinearCongruentialGenerator = LinearCongruentialGenerator()
-
     override func onMessage(message: String) {
         var msg = JSON(data: message.dataUsingEncoding(NSUTF8StringEncoding)!)
         var dictionary: Dictionary<String, AnyObject> = [
@@ -39,34 +40,32 @@ class DeviceCapabilitesExtensionInstance: XWalkExtensionInstance {
     }
 
     func getCPUInfo() -> Dictionary<String, AnyObject> {
+        var processInfo = NSProcessInfo.processInfo()
         return [
-            "archName":"x86_64",
-            "numOfProcessors":4,
-            "load":randomGenerator.random()
+            "archName":processInfo.operatingSystemVersionString,
+            "numOfProcessors":processInfo.processorCount,
+            "load":Double(sysinfoCpuUsage()) / 100
         ]
     }
 
     func getMemoryInfo() -> Dictionary<String, AnyObject> {
-        let capacity: Double = 8 * 1024 * 1024 * 1024
-        let availCapacity: Double = capacity * randomGenerator.random()
         return [
-            "availCapacity" : availCapacity,
-            "capacity" : capacity
+            "capacity" : Int(NSProcessInfo.processInfo().physicalMemory),
+            "availCapacity" : sysinfoFreeMemory()
         ]
     }
 
     func getStorageInfo() -> Dictionary<String, AnyObject> {
-        let gb: Double = 1024 * 1024 * 1024
+        var (totalSpace:Int, freeSpace:Int) = getDiskSpace()
         return [ "storages" : [
-            ["name":"local", "id":12345, "type":"ext4", "capacity":2 * gb, "availCapacity": 1.5 * gb],
-            ["name":"sdcard", "id":54321, "type":"FAT32", "capacity":4 * gb, "availCapacity":0.2 * gb]]
-        ]
+            ["name":"localDisk", "id":0, "type":"HSFX", "capacity":totalSpace, "availCapacity":freeSpace]
+        ]]
     }
 
     func getDisplayInfo() -> Dictionary<String, AnyObject> {
+        var screenBounds = UIScreen.mainScreen().bounds
         return [ "displays" : [
-            ["name":"local", "id":12345, "isPrimary":true, "isInternal":true, "availWidth":1024, "availHeight":768],
-            ["name":"external", "id":54321, "isPrimary":false, "isInternal":false, "availWidth":2048, "availHeight":1440]]
-        ]
+            ["name":"localDisplay", "id":0, "isPrimary":true, "isInternal":true, "availWidth":screenBounds.size.width * 2, "availHeight":screenBounds.size.height * 2]
+        ]]
     }
 }

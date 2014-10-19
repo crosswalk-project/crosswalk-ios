@@ -7,4 +7,8 @@
 
 #import "OBJCObjectFactory.h"
 
+long sysinfoUsedMemory(void);
+long sysinfoFreeMemory(void);
+float sysinfoCpuUsage(void);
+
 #endif
