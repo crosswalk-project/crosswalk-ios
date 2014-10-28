@@ -1,5 +1,5 @@
 ## Introduction
-Crosswalk iOS is an app runtime based on WebKit.framework.
+Crosswalk Lite is an app runtime based on WebKit.framework.
 
 It is an open source project started by the Intel Open Source Technology Center
 (http://www.01.org)
