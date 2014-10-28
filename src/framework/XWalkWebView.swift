@@ -9,46 +9,40 @@ public extension WKWebView {
         self.init(frame: frame, configuration: configuration)
         
     }
-    public func loadExtension(bundleName: String) {
-        let bundlePath = NSBundle.mainBundle().pathForResource(bundleName,
+
+    public func loadExtension(bundleName: String, className: String?) {
+        let path = NSBundle.mainBundle().pathForResource(bundleName,
             ofType: "framework", inDirectory:"Frameworks")
-        if bundlePath == nil {
+        if path == nil {
             println("Failed to locate extension bundle:\(bundleName)")
             return
         }
-        var bundle : NSBundle = NSBundle(path:bundlePath!)!
-        var error : NSErrorPointer = nil;
-        if !bundle.loadAndReturnError(error) {
-            println("Failed to load bundle:\(bundlePath) with error:\(error)")
-            return
-        }
-        
-        var configPath = bundle.pathForResource("manifest", ofType: "plist")
-        if configPath == nil {
-            println("Failed to find manifest.plist")
-            return
-        }
-        
-        let config = NSDictionary(contentsOfFile: configPath!)
-        typealias ExtensionFactory = ObjectFactory<XWalkExtension>
-        let className = config!["class"] as String
-        if let e: XWalkExtension = ExtensionFactory.createInstance(className: "\(bundleName).\(className)") {
-            e.name = config!["name"] as String
-            
-            let jsApiFileName = (config!["jsapi"] as String).componentsSeparatedByString(".")
-            if let jsPath = bundle.pathForResource(jsApiFileName[0], ofType: jsApiFileName[1]) {
-                let jsData = NSFileHandle(forReadingAtPath: jsPath)!.readDataToEndOfFile()
-                e.jsAPI = NSString(data: jsData, encoding: NSUTF8StringEncoding)!
+
+        if let bundle = NSBundle(path:path!) {
+            var error : NSErrorPointer = nil;
+            if !bundle.loadAndReturnError(error) {
+                println("Failed to load bundle:\(path!) with error:\(error)")
+                return
             }
-            e.injectJSCodes(self.configuration.userContentController)
+
+            let name = bundleName + "." + (className ?? NSStringFromClass(bundle.principalClass) ?? bundleName)
+            typealias ExtensionFactory = ObjectFactory<XWalkExtension>
+            let ext = ExtensionFactory.createInstance(className: "\(name)", initializer: "initWithWebView:", argument: self)
+            if ext == nil {
+                println("Can't create extension")
+            }
+        } else {
+            println("Bundle not found: \(path!)")
         }
     }
+
     public func unloadExtension(name: String) {
         self.configuration.userContentController.removeScriptMessageHandlerForName(name)
     }
+
     public func loadExtensions(names: [String]) {
         for name in names {
-            loadExtension(name)
+            loadExtension(name, className: nil)
         }
     }
 }

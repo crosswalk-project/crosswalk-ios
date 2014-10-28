@@ -62,33 +62,54 @@ func codeToEnsureNamespace(extensionName: String) -> String {
 }
 
 public class XWalkExtension: NSObject, WKScriptMessageHandler {
-    public final var name: String = ""
-    public final var jsAPI: String = ""
-    final var webView: WKWebView?
+    public final let name: String!
+    public final let jsAPI: String!
+    final var webView: WKWebView!
 
-    func injectJSCodes(controller: WKUserContentController) {
-        let codes = join("\n", [
-            "var \(codeToEnsureNamespace(name))",
-            "(function() {",
-            "    \(extensionCodes(name))",
-            "    var exports = {};",
-            "    (function() {'use strict'; ",
-            "        \(jsAPI)})();",
-            "    exports.extension = extension;",
-            "    \(name) = exports;",
-            "})();"])
-        let userScript = WKUserScript(source: codes, injectionTime:
-            WKUserScriptInjectionTime.AtDocumentStart, forMainFrameOnly: false)
-        controller.addUserScript(userScript)
-        controller.addScriptMessageHandler(self, name: nameWithoutDot(name))
+    override init() {
+    }
+    init?(WebView: WKWebView) {
+        super.init()
+        self.webView = WebView
+
+        let bundle : NSBundle = NSBundle(forClass: self.dynamicType)
+        if let mfpath = bundle.pathForResource("manifest", ofType: "plist") {
+            if let manifest = NSDictionary(contentsOfFile: mfpath) {
+                self.name = manifest["name"] as? String
+                var path = manifest["jsapi"] as? String
+                if (self.name == nil || path == nil) {
+                    return nil
+                }
+
+                // Read JavaScript stub file
+                path = bundle.pathForResource(path!.stringByDeletingPathExtension, ofType: path!.pathExtension)
+                if path == nil { return nil }
+                let file = NSFileHandle(forReadingAtPath: path!)
+                if file == nil { return nil }
+                self.jsAPI = NSString(data: file!.readDataToEndOfFile(), encoding: NSUTF8StringEncoding)
+                if self.jsAPI == nil { return nil }
+
+                // Inject into JavaScript context
+                let codes = join("\n", [
+                    "var \(codeToEnsureNamespace(self.name))",
+                    "(function() {",
+                    "    \(extensionCodes(self.name))",
+                    "    var exports = {};",
+                    "    (function() {'use strict'; ",
+                    "        \(jsAPI)})();",
+                    "    exports.extension = extension;",
+                    "    \(self.name) = exports;",
+                    "})();"])
+                let userScript = WKUserScript(source: codes, injectionTime:
+                    WKUserScriptInjectionTime.AtDocumentStart, forMainFrameOnly: false)
+                webView.configuration.userContentController.addUserScript(userScript)
+                webView.configuration.userContentController.addScriptMessageHandler(self, name: nameWithoutDot(self.name))
+            }
+        }
     }
 
     public func userContentController(userContentController: WKUserContentController,
         didReceiveScriptMessage message: WKScriptMessage) {
-            if self.webView == nil {
-                self.webView = message.webView
-            }
-
             let body = message.body as [String: AnyObject]
             let method = body["method"]! as String
             let args = body["arguments"]! as [[String: AnyObject]]
@@ -102,7 +123,7 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
             args += ", " + JSON(arguments!).rawString()!
         }
         var cmd = "\(name).extension.invokeCallback(\(callID), \(args));"
-        webView?.evaluateJavaScript(cmd, completionHandler: { (obj, err) -> Void in
+        webView.evaluateJavaScript(cmd, completionHandler: { (obj, err) -> Void in
             if err != nil {
                 println("Failed to execute script, with error:\(err)")
             }

@@ -21,7 +21,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
         webview.navigationDelegate = self
         view.addSubview(webview)
         
-        webview.loadExtensions(["EchoExtension"])
+        webview.loadExtension("EchoExtension", className: "EchoExtension")
 
         if let path = NSBundle.mainBundle().pathForResource("echo", ofType: "html") {
             webview.loadRequest(NSURLRequest(URL: NSURL.fileURLWithPath(path)!));
