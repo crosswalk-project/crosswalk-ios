@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE174E451A01FDDE00168D96 /* XWalkExtensionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE174E441A01FDDE00168D96 /* XWalkExtensionManager.swift */; };
+		EE174E781A0361CB00168D96 /* extension_api.js in Resources */ = {isa = PBXBuildFile; fileRef = EE174E771A0361CB00168D96 /* extension_api.js */; };
 		EE6268F319FA4FE500EFC3F8 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE6268F019FA4FDE00EFC3F8 /* SwiftyJSON.framework */; };
 		EE62691419FA52D100EFC3F8 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE62691319FA52D100EFC3F8 /* Info.plist */; };
 		EE62691919FA52ED00EFC3F8 /* OBJCObjectFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = EE62691619FA52ED00EFC3F8 /* OBJCObjectFactory.m */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EE174E441A01FDDE00168D96 /* XWalkExtensionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkExtensionManager.swift; path = src/framework/XWalkExtensionManager.swift; sourceTree = "<group>"; };
+		EE174E771A0361CB00168D96 /* extension_api.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = extension_api.js; path = src/framework/extension_api.js; sourceTree = "<group>"; };
 		EE62683519FA323900EFC3F8 /* CrosswalkLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CrosswalkLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE6268EA19FA4FDE00EFC3F8 /* SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyJSON.xcodeproj; path = "../src/third-party/SwiftyJSON/SwiftyJSON.xcodeproj"; sourceTree = "<group>"; };
 		EE62691319FA52D100EFC3F8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = src/framework/Info.plist; sourceTree = "<group>"; };
@@ -80,12 +84,14 @@
 		EE62683719FA323900EFC3F8 /* CrosswalkLite */ = {
 			isa = PBXGroup;
 			children = (
+				EE174E771A0361CB00168D96 /* extension_api.js */,
 				EE62691B19FA52FC00EFC3F8 /* Bridging-Header.h */,
 				EE62691C19FA52FC00EFC3F8 /* CrosswalkLite.h */,
 				EE62691D19FA52FC00EFC3F8 /* Invocation.h */,
 				EE62691E19FA52FC00EFC3F8 /* Invocation.m */,
 				EE62691F19FA52FC00EFC3F8 /* XWalkExtension.swift */,
 				EE62692019FA52FC00EFC3F8 /* XWalkWebView.swift */,
+				EE174E441A01FDDE00168D96 /* XWalkExtensionManager.swift */,
 				EE62686119FA36AE00EFC3F8 /* swift-factory */,
 				EE62683819FA323900EFC3F8 /* Supporting Files */,
 			);
@@ -211,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE62691419FA52D100EFC3F8 /* Info.plist in Resources */,
+				EE174E781A0361CB00168D96 /* extension_api.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE62691A19FA52ED00EFC3F8 /* ObjectFactory.swift in Sources */,
+				EE174E451A01FDDE00168D96 /* XWalkExtensionManager.swift in Sources */,
 				EE62692419FA52FC00EFC3F8 /* Invocation.m in Sources */,
 				EE62691919FA52ED00EFC3F8 /* OBJCObjectFactory.m in Sources */,
 				EE62692519FA52FC00EFC3F8 /* XWalkExtension.swift in Sources */,

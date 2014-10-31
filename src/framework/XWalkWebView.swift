@@ -5,44 +5,59 @@
 import WebKit
 
 public extension WKWebView {
-    convenience init(frame: CGRect, configuration: WKWebViewConfiguration!, extendable: Bool) {
+    convenience init(frame: CGRect, configuration: WKWebViewConfiguration!, script: String?) {
         self.init(frame: frame, configuration: configuration)
-        
-    }
 
-    public func loadExtension(bundleName: String, className: String?) {
-        let path = NSBundle.mainBundle().pathForResource(bundleName,
-            ofType: "framework", inDirectory:"Frameworks")
-        if path == nil {
-            println("Failed to locate extension bundle:\(bundleName)")
-            return
-        }
-
-        if let bundle = NSBundle(path:path!) {
-            var error : NSErrorPointer = nil;
-            if !bundle.loadAndReturnError(error) {
-                println("Failed to load bundle:\(path!) with error:\(error)")
-                return
+        let bundle = NSBundle(forClass: XWalkExtension.self)
+        if script != nil {
+            injectScript(script!)
+        } else if let path = bundle.pathForResource("extension_api", ofType: "js") {
+            if let file = NSFileHandle(forReadingAtPath: path) {
+                if let api = NSString(data: file.readDataToEndOfFile(), encoding: NSUTF8StringEncoding) {
+                    injectScript(api)
+                }
             }
-
-            let name = bundleName + "." + (className ?? NSStringFromClass(bundle.principalClass) ?? bundleName)
-            typealias ExtensionFactory = ObjectFactory<XWalkExtension>
-            var ext = ExtensionFactory.createInstance(className: "\(name)", initializer: "initWithWebView:", argument: self)
-            if ext == nil {
-                println("Can't create extension")
-            }
-        } else {
-            println("Bundle not found: \(path!)")
         }
     }
 
-    public func unloadExtension(name: String) {
-        self.configuration.userContentController.removeScriptMessageHandlerForName(name)
+    public func loadExtension(name: String) -> Bool {
+        if let ext = XWalkExtensionManager.defaultManager().createExtension(name) {
+            ext.webView = self
+
+            // Register message handler
+            let id = name.stringByReplacingOccurrencesOfString(".", withString: "")
+            configuration.userContentController.addScriptMessageHandler(ext, name: id)
+
+            // Inject JavaScript API
+            let code = join("\n", [
+                "(function() {",
+                "   'use strict';",
+                "    var exports = new Extension('\(name)', '\(id)');",
+                "    \(ext.getJavaScriptStub())",
+                "    \(name) = exports;",
+                "})();"])
+            injectScript(code)
+            return true
+        }
+        return false
     }
 
     public func loadExtensions(names: [String]) {
         for name in names {
-            loadExtension(name, className: nil)
+            loadExtension(name)
         }
+    }
+
+    public func unloadExtension(name: String) {
+        let id = name.stringByReplacingOccurrencesOfString(".", withString: "")
+        configuration.userContentController.removeScriptMessageHandlerForName(id)
+    }
+
+    public func injectScript(code: String) {
+        let script = WKUserScript(
+            source: code,
+            injectionTime: WKUserScriptInjectionTime.AtDocumentStart,
+            forMainFrameOnly: false)
+        configuration.userContentController.addUserScript(script)
     }
 }
