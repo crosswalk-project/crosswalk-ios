@@ -15,12 +15,15 @@ Extension = function(name, id) {
 }
 
 Extension.prototype = {
-    invokeNative: function(body) {
-        if (body == undefined || typeof(body.method) != 'string') {
+    invokeNative: function(name, args) {
+        if (typeof(name) != 'string') {
             console.error('Invalid invocation');
             return;
         }
-        window.webkit.messageHandlers[this.id].postMessage(body);
+         var body = name[0] == '.' ?
+                { 'property': name.substring(1), 'value': args } :
+                { 'method': name, 'arguments': args };
+        webkit.messageHandlers[this.id].postMessage(body);
     },
     addCallback: function(callback) {
         while (this.callbacks[this.lastCallID] != undefined) ++this.lastCallID;
@@ -36,5 +39,32 @@ Extension.prototype = {
         if (typeof(func) == 'object')  func = func[key];
         if (typeof(func) == 'function')  func.apply(null, args);
         this.removeCallback(callID);
+    },
+    addProperty: function(prop, desc) {
+        var name = "." + prop;
+        if (typeof(desc.get) === 'function') {
+            this.invokeNative(name, desc.get());
+            Object.defineProperty(this, prop, {
+                    'configurable': false,
+                    'enumerable': true,
+                    'get': desc.get,
+                    'set': function(v) { desc.set(v); this.invokeNative(name, desc.get()); }
+            });
+        } else {
+            var store = "_" + prop;
+            this.invokeNative(name, desc.value);
+            Object.defineProperty(this, store, {
+                    'configurable': false,
+                    'enumerable': false,
+                    'value': desc.value,
+                    'writable': true
+            });
+            Object.defineProperty(this, prop, {
+                    'configurable': false,
+                    'enumerable': true,
+                    'get': function() { return this[store]; },
+                    'set': function(v) { this.invokeNative(name, v); this[store] = v; }
+            });
+        }
     }
 }

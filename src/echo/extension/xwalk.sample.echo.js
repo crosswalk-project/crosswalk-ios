@@ -4,11 +4,8 @@
 
 exports.echo = function(msg, callback) {
     var callID = this.addCallback(callback);
-    this.invokeNative({
-        'method': "echo",
-        'arguments': [
+    this.invokeNative("echo", [
             {'message': msg},
             {'callback': callID}
-        ]
-    });
+    ]);
 };

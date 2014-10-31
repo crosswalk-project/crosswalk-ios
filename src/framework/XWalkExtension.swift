@@ -9,6 +9,7 @@ import SwiftyJSON
 public class XWalkExtension: NSObject, WKScriptMessageHandler {
     let name: String!
     weak var webView: WKWebView!
+    var properties: Dictionary<String, AnyObject> = [:]
 
     public init(name: String) {
         super.init()
@@ -33,10 +34,17 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
     public func userContentController(userContentController: WKUserContentController,
         didReceiveScriptMessage message: WKScriptMessage) {
             let body = message.body as [String: AnyObject]
-            let method = body["method"]! as String
-            let args = body["arguments"]! as [[String: AnyObject]]
-            let inv = Invocation(method: method, arguments: args)
-            inv.call(self)
+            if let method = body["method"] as? String {
+                let args = body["arguments"]! as [[String: AnyObject]]
+                let inv = Invocation(method: method, arguments: args)
+                inv.call(self)
+            } else if let prop = body["property"] as? String {
+                if let val: AnyObject = body["value"] {
+                    properties.updateValue(val, forKey: prop)
+                }
+            } else {
+                println("ERROR: Unknown message: \(body)")
+            }
     }
 
     public func invokeCallback(callID: Int32, key: String?, arguments: [AnyObject]?) {
@@ -50,5 +58,11 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
                 println("ERROR: Failed to execute script, \(err)")
             }
         })
+    }
+
+    public func setProperty(name: String, value: AnyObject) {
+        properties.updateValue(value, forKey: name)
+        let json = JSON(value).rawString()!
+        webView.evaluateJavaScript("\(self.name).\(name) = \(json);", nil)
     }
 }
