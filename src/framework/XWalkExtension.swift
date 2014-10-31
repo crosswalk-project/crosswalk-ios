@@ -10,7 +10,8 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
     let name: String!
     weak var webView: WKWebView!
 
-    init(name: String) {
+    public init(name: String) {
+        super.init()
         self.name = name
     }
 
@@ -51,4 +52,3 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
         })
     }
 }
-

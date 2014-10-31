@@ -24,4 +24,3 @@
 + (void)call:(id)target method:(SEL)method arguments:(NSArray *)arg;
 
 @end
-
