@@ -5,6 +5,9 @@
       location = "group:CrosswalkLite.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:SysAppsExtension.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:SysApps.xcodeproj">
    </FileRef>
 </Workspace>

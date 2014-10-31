@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB5D18DB1A01E4F100AEC1EE /* SysAppsExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB5D18DA1A01E4F100AEC1EE /* SysAppsExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AB603BC219EA5CBF00DECF78 /* CrosswalkLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB603BC119EA5CBF00DECF78 /* CrosswalkLite.framework */; };
 		AB603BC319EA5CBF00DECF78 /* CrosswalkLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB603BC119EA5CBF00DECF78 /* CrosswalkLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ABE516AA1A00ADDE0025A92E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE516A21A00ADDE0025A92E /* AppDelegate.swift */; };
@@ -25,6 +26,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				AB5D18DB1A01E4F100AEC1EE /* SysAppsExtension.framework in Embed Frameworks */,
 				AB603BC319EA5CBF00DECF78 /* CrosswalkLite.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -33,6 +35,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AB5D18DA1A01E4F100AEC1EE /* SysAppsExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SysAppsExtension.framework; path = "Build/Products/Debug-iphonesimulator/SysAppsExtension.framework"; sourceTree = "<group>"; };
 		AB603B9819EA58CB00DECF78 /* SysApps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SysApps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB603BC119EA5CBF00DECF78 /* CrosswalkLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrosswalkLite.framework; path = "Build/Products/Debug-iphonesimulator/CrosswalkLite.framework"; sourceTree = "<group>"; };
 		ABE516A21A00ADDE0025A92E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../src/sysapps/app/AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +62,7 @@
 		AB603B8F19EA58CB00DECF78 = {
 			isa = PBXGroup;
 			children = (
+				AB5D18DA1A01E4F100AEC1EE /* SysAppsExtension.framework */,
 				ABE516AF1A00AE090025A92E /* www */,
 				ABE516A21A00ADDE0025A92E /* AppDelegate.swift */,
 				ABE516A41A00ADDE0025A92E /* LaunchScreen.xib */,

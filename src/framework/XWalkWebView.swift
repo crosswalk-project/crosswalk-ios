@@ -27,7 +27,7 @@ public extension WKWebView {
 
             let name = bundleName + "." + (className ?? NSStringFromClass(bundle.principalClass) ?? bundleName)
             typealias ExtensionFactory = ObjectFactory<XWalkExtension>
-            let ext = ExtensionFactory.createInstance(className: "\(name)", initializer: "initWithWebView:", argument: self)
+            var ext = ExtensionFactory.createInstance(className: "\(name)", initializer: "initWithWebView:", argument: self)
             if ext == nil {
                 println("Can't create extension")
             }
