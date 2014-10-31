@@ -15,13 +15,13 @@ class ViewController: UIViewController, WKNavigationDelegate {
         
         var config : WKWebViewConfiguration = WKWebViewConfiguration()
         config.userContentController = userContentController
-        var webview = WKWebView(frame: view.frame, configuration: config, extendable: true)
+        var webview = WKWebView(frame: view.frame, configuration: config, script: nil)
         webview.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
         webview.frame = view.frame
         webview.navigationDelegate = self
         view.addSubview(webview)
         
-        webview.loadExtension("EchoExtension", className: "EchoExtension")
+        webview.loadExtension("xwalk.sample.echo")
 
         if let path = NSBundle.mainBundle().pathForResource("echo", ofType: "html") {
             webview.loadRequest(NSURLRequest(URL: NSURL.fileURLWithPath(path)!));

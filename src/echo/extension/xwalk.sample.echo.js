@@ -3,8 +3,8 @@
 // found in the LICENSE file.
 
 exports.echo = function(msg, callback) {
-    var callID = extension.addCallback(callback);
-    extension.invokeNative({
+    var callID = this.addCallback(callback);
+    this.invokeNative({
         'method': "echo",
         'arguments': [
             {'message': msg},
