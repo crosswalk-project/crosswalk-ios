@@ -40,31 +40,36 @@ Extension.prototype = {
         if (typeof(func) == 'function')  func.apply(null, args);
         this.removeCallback(callID);
     },
-    addProperty: function(prop, desc) {
+    defineProperty: function(prop, desc) {
         var name = "." + prop;
-        if (typeof(desc.get) === 'function') {
-            this.invokeNative(name, desc.get());
-            Object.defineProperty(this, prop, {
-                    'configurable': false,
-                    'enumerable': true,
-                    'get': desc.get,
-                    'set': function(v) { desc.set(v); this.invokeNative(name, desc.get()); }
-            });
-        } else {
-            var store = "_" + prop;
+        var d = { 'configurable': false, 'enumerable': true }
+        if (desc.hasOwnProperty("value")) {
+            // a data descriptor
             this.invokeNative(name, desc.value);
-            Object.defineProperty(this, store, {
-                    'configurable': false,
-                    'enumerable': false,
-                    'value': desc.value,
-                    'writable': true
-            });
-            Object.defineProperty(this, prop, {
-                    'configurable': false,
-                    'enumerable': true,
-                    'get': function() { return this[store]; },
-                    'set': function(v) { this.invokeNative(name, v); this[store] = v; }
-            });
+            if (desc.writable == false) {
+                // read only property
+                d.value = desc.value;
+                d.writable = false;
+            } else {
+                // read/write property
+                var store = "_" + prop;
+                Object.defineProperty(this, store, {
+                                      'configurable': false,
+                                      'enumerable': false,
+                                      'value': desc.value,
+                                      'writable': true
+                                      });
+                d.get = function() { return this[store]; }
+                d.set = function(v) { this.invokeNative(name, v); this[store] = v; }
+            }
+        } else if (typeof(desc.get) === 'function'){
+            // accessor descriptor
+            this.invokeNative(name, desc.get());
+            d.get = desc.get
+            if (typeof(desc.set) === 'function') {
+                d.set = function(v) { desc.set(v); this.invokeNative(name, desc.get()); }
+            }
         }
+        Object.defineProperty(this, prop, d);
     }
 }

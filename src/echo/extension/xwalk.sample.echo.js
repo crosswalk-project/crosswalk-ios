@@ -2,6 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+exports.defineProperty("prefix", {'value': "", 'writable': true});
+
 exports.echo = function(msg, callback) {
     var callID = this.addCallback(callback);
     this.invokeNative("echo", [

@@ -8,7 +8,8 @@
     <p id="content" />
     <script>
         try {
-            xwalk.sample.echo.echo("HelloWorld!", function(msg) {
+            xwalk.sample.echo.prefix = "Echo from native: ";
+            xwalk.sample.echo.echo("Hello World!", function(msg) {
                 document.title = "Pass";
                 document.getElementById("content").innerHTML = msg;
             })

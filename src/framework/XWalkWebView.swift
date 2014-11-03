@@ -33,7 +33,7 @@ public extension WKWebView {
                 "(function() {",
                 "   'use strict';",
                 "    var exports = new Extension('\(name)', '\(id)');",
-                "    \(ext.getJavaScriptStub())",
+                "    \(ext.jsAPIStub)",
                 "    \(name) = exports;",
                 "})();"])
             injectScript(code)

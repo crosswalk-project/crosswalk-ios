@@ -7,16 +7,16 @@ import WebKit
 import SwiftyJSON
 
 public class XWalkExtension: NSObject, WKScriptMessageHandler {
-    let name: String!
-    weak var webView: WKWebView!
-    var properties: Dictionary<String, AnyObject> = [:]
+    public final let name: String!
+    public final weak var webView: WKWebView!
+    private final var properties: Dictionary<String, AnyObject> = [:]
 
     public init(name: String) {
         super.init()
         self.name = name
     }
 
-    public func getJavaScriptStub() -> String {
+    public var jsAPIStub: String {
         let bundle : NSBundle = NSBundle(forClass: self.dynamicType)
         if let path = bundle.pathForResource(self.name, ofType: "js") {
             if let file = NSFileHandle(forReadingAtPath: path) {
@@ -33,18 +33,27 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
 
     public func userContentController(userContentController: WKUserContentController,
         didReceiveScriptMessage message: WKScriptMessage) {
-            let body = message.body as [String: AnyObject]
-            if let method = body["method"] as? String {
-                let args = body["arguments"]! as [[String: AnyObject]]
-                let inv = Invocation(method: method, arguments: args)
-                inv.call(self)
-            } else if let prop = body["property"] as? String {
-                if let val: AnyObject = body["value"] {
-                    properties.updateValue(val, forKey: prop)
-                }
+        let body = message.body as [String: AnyObject]
+        if let method = body["method"] as? String {
+            // Method call
+            let args = body["arguments"] as? [[String: AnyObject]]
+            let inv = Invocation(method: "js_" + method, arguments: args)
+            inv.call(self)
+        } else if let prop = body["property"] as? String {
+            // Property setting
+            let newValue: AnyObject? = body["value"]
+            let oldValue: AnyObject? = properties["prop"]
+            willSetProperty(prop, newValue: newValue)
+            if newValue != nil {
+                properties.updateValue(newValue!, forKey: prop)
             } else {
-                println("ERROR: Unknown message: \(body)")
+                properties.removeValueForKey(prop)
             }
+            didSetProperty(prop, oldValue: oldValue)
+        } else {
+            // TODO: support user defined message?
+            println("ERROR: Unknown message: \(body)")
+        }
     }
 
     public func invokeCallback(callID: Int32, key: String?, arguments: [AnyObject]?) {
@@ -60,9 +69,31 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
         })
     }
 
-    public func setProperty(name: String, value: AnyObject) {
-        properties.updateValue(value, forKey: name)
-        let json = JSON(value).rawString()!
-        webView.evaluateJavaScript("\(self.name).\(name) = \(json);", nil)
+    public subscript(name: String) -> AnyObject? {
+        get {
+            return properties[name]
+        }
+        set(value) {
+            let val: AnyObject = value ?? NSNull()
+            //properties.updateValue(val, forKey: name)
+            let json = JSON(val).rawString()!
+            webView.evaluateJavaScript("\(self.name).\(name) = \(json); \(self.name).\(name);", completionHandler: { (obj, err) -> Void in
+                if err == nil {
+                    self.properties.updateValue(obj, forKey: name)
+                } else {
+                    println("ERROR: Failed to execute script, \(err)")
+                }
+            })
+        }
+    }
+    // Override if you want to monitor changing of properies.
+    public func willSetProperty(name: String, newValue: AnyObject?) {
+    }
+    public func didSetProperty(name: String, oldValue: AnyObject?) {
+    }
+
+    public override func doesNotRecognizeSelector(aSelector: Selector) {
+        let method = NSStringFromSelector(aSelector)
+        println("Error: Method '\(method)' not found in extension '\(name)'")
     }
 }

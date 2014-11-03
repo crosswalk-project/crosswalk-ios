@@ -3,7 +3,6 @@
 // found in the LICENSE file.
 
 import Foundation
-import WebKit
 
 public class XWalkExtensionManager: NSObject {
     struct XWalkExtensionSource {
@@ -28,7 +27,7 @@ public class XWalkExtensionManager: NSObject {
             self.scan(path)
         }
     }
-    init(path: String) {
+    public init(path: String) {
         super.init()
         self.scan(path)
     }

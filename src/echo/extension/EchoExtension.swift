@@ -5,9 +5,8 @@
 import CrosswalkLite
 
 public class EchoExtension: XWalkExtension {
-    let prefix: String = "Echo from native: "
-
-    public func echo(message: String, callback: NSNumber) {
+    public func js_echo(message: String, callback: NSNumber) {
+        let prefix = super["prefix"] as? String ?? "\(name): ";
         super.invokeCallback(callback.intValue, key: nil, arguments: [prefix + message]);
     }
 }

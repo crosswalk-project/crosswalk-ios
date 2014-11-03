@@ -28,6 +28,11 @@
 
 + (void)call:(id)target method:(SEL)method arguments:(NSArray *)args {
     NSMethodSignature *sig = [target methodSignatureForSelector:method];
+    if (sig == nil) {
+        [target doesNotRecognizeSelector:method];
+        return;
+    }
+
     NSInvocation *inv = [NSInvocation invocationWithMethodSignature:sig];
     [inv setTarget:target];
     [inv setSelector:method];
