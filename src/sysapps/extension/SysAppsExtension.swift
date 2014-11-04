@@ -21,7 +21,7 @@ func getDiskSpace() -> (totalSpace:Int, totalFreeSpace:Int) {
 }
 
 public class SysAppsExtension: XWalkExtension {
-    public func getCPUInfo(asyncCallId: NSNumber, callback: NSNumber) {
+    public func js_getCPUInfo(asyncCallId: NSNumber, callback: NSNumber) {
         var processInfo = NSProcessInfo.processInfo()
         var data: Dictionary<String, AnyObject> = [
             "archName" : processInfo.operatingSystemVersionString,
@@ -31,7 +31,7 @@ public class SysAppsExtension: XWalkExtension {
         sendMessageToJS(asyncCallId, message: data, callback: callback)
     }
 
-    public func getMemoryInfo(asyncCallId: NSNumber, callback: NSNumber) {
+    public func js_getMemoryInfo(asyncCallId: NSNumber, callback: NSNumber) {
         var data = [
             "capacity" : Int(NSProcessInfo.processInfo().physicalMemory),
             "availCapacity" : sysinfoFreeMemory()
@@ -39,7 +39,7 @@ public class SysAppsExtension: XWalkExtension {
         sendMessageToJS(asyncCallId, message: data, callback: callback)
     }
 
-    public func getStorageInfo(asyncCallId: NSNumber, callback: NSNumber) {
+    public func js_getStorageInfo(asyncCallId: NSNumber, callback: NSNumber) {
         var (totalSpace, freeSpace) = getDiskSpace()
         var data = [ "storages" : [
             ["name":"localDisk", "id":0, "type":"HSFX", "capacity":totalSpace, "availCapacity":freeSpace]
@@ -47,7 +47,7 @@ public class SysAppsExtension: XWalkExtension {
         sendMessageToJS(asyncCallId, message: data, callback: callback)
     }
 
-    public func getDisplayInfo(asyncCallId: NSNumber, callback: NSNumber) {
+    public func js_getDisplayInfo(asyncCallId: NSNumber, callback: NSNumber) {
         var screenBounds = UIScreen.mainScreen().bounds
         var data = [ "displays" : [
             ["name":"localDisplay", "id":0, "isPrimary":true, "isInternal":true, "availWidth":screenBounds.size.width * 2, "availHeight":screenBounds.size.height * 2]

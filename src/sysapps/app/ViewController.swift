@@ -15,7 +15,6 @@ class ViewController: UIViewController, WKNavigationDelegate {
 
         var config : WKWebViewConfiguration = WKWebViewConfiguration()
         config.userContentController = userContentController
-        //var webview = WKWebView(frame: view.frame, configuration: config, extendable: true)
         var webview = WKWebView(frame: view.frame, configuration: config, script: nil)
         webview.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
         webview.frame = view.frame
