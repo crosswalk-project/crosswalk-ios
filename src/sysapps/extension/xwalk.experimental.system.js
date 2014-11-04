@@ -15,50 +15,35 @@ function AsyncCall(resolve, reject) {
     this.reject = reject;
 }
 
-function createPromise(msg) {
+function createPromise(method) {
     var promise = new Promise(function(resolve, reject) {
                                   g_async_calls[g_next_async_call_id] = new AsyncCall(resolve, reject);
                               });
-    msg.arguments = [{ 'asyncCallId' : g_next_async_call_id },
-                     { 'callback' : exports.addCallback(messageHandler) }];
-    exports.invokeNative(msg);
+    var args = [{ 'asyncCallId' : g_next_async_call_id },
+                { 'callback' : exports.addCallback(messageHandler) }];
+    exports.invokeNative(method, args);
     ++g_next_async_call_id;
     return promise;
 }
 
 exports.getCPUInfo = function() {
-    var msg = {
-        'method': 'getCPUInfo'
-    };
-    return createPromise(msg);
+    return createPromise('getCPUInfo');
 };
 
 exports.getAVCodecs = function() {
-    var msg = {
-        'method': 'getCodecsInfo'
-    };
-    return createPromise(msg);
+    return createPromise('getCodecsInfo');
 };
 
 exports.getDisplayInfo = function() {
-    var msg = {
-        'method': 'getDisplayInfo'
-    };
-    return createPromise(msg);
+    return createPromise('getDisplayInfo');
 };
 
 exports.getMemoryInfo = function() {
-    var msg = {
-        'method': 'getMemoryInfo'
-    };
-    return createPromise(msg);
+    return createPromise('getMemoryInfo');
 };
 
 exports.getStorageInfo = function() {
-    var msg = {
-        'method': 'getStorageInfo'
-    };
-    return createPromise(msg);
+    return createPromise('getStorageInfo');
 };
 
 function _addConstProperty(obj, propertyKey, propertyValue) {
