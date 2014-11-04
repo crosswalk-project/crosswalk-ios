@@ -22,5 +22,10 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>NSPrincipalClass</key>
 	<string></string>
+	<key>XWalkExtensions</key>
+	<dict>
+		<key>xwalk.experimental.system</key>
+		<string>SysAppsExtension</string>
+	</dict>
 </dict>
 </plist>

@@ -6,14 +6,6 @@ import UIKit
 import CrosswalkLite
 import WebKit
 
-/*
-class DeviceCapabilitesExtension: XWalkExtension {
-    override func createInstance() -> XWalkExtensionInstance? {
-        return DeviceCapabilitesExtensionInstance()
-    }
-}
-*/
-
 func getDiskSpace() -> (totalSpace:Int, totalFreeSpace:Int) {
     var totalSpace: Int = 0
     var totalFreeSpace: Int = 0
@@ -29,55 +21,45 @@ func getDiskSpace() -> (totalSpace:Int, totalFreeSpace:Int) {
 }
 
 public class SysAppsExtension: XWalkExtension {
-    /*override func onMessage(message: String) {
-        var msg = JSON(data: message.dataUsingEncoding(NSUTF8StringEncoding)!)
-        var dictionary: Dictionary<String, AnyObject> = [
-            "asyncCallId" : msg["asyncCallId"].intValue,
-            "data" : self.valueForKey(msg["cmd"].stringValue) as Dictionary<String, AnyObject>
-        ]
-
-        var error: NSErrorPointer = NSErrorPointer()
-        var jsonData = NSJSONSerialization.dataWithJSONObject(dictionary, options: NSJSONWritingOptions.allZeros, error:error)
-        super.postMessage(NSString(data: jsonData!, encoding: NSUTF8StringEncoding))
-    }*/
-
-    //func getCPUInfo() -> Dictionary<String, AnyObject> {
-    public func getCPUInfo(callback: NSNumber) {
+    public func getCPUInfo(asyncCallId: NSNumber, callback: NSNumber) {
         var processInfo = NSProcessInfo.processInfo()
-        var data = [
-            "archName":processInfo.operatingSystemVersionString,
-            "numOfProcessors":processInfo.processorCount,
-            "load":Double(sysinfoCpuUsage()) / 100
+        var data: Dictionary<String, AnyObject> = [
+            "archName" : processInfo.operatingSystemVersionString,
+            "numOfProcessors" : processInfo.processorCount,
+            "load" : Double(sysinfoCpuUsage()) / 100
         ]
-
-        var dictionary = [
-            "asyncCallId" : callback,
-            "data" : data
-        ]
-        super.invokeCallback(callback.intValue, key: nil, arguments: [dictionary])
+        sendMessageToJS(asyncCallId, message: data, callback: callback)
     }
 
-    //func getMemoryInfo() -> Dictionary<String, AnyObject> {
-    public func getMemoryInfo(callback: NSNumber) {
+    public func getMemoryInfo(asyncCallId: NSNumber, callback: NSNumber) {
         var data = [
             "capacity" : Int(NSProcessInfo.processInfo().physicalMemory),
             "availCapacity" : sysinfoFreeMemory()
         ]
+        sendMessageToJS(asyncCallId, message: data, callback: callback)
     }
 
-    //func getStorageInfo() -> Dictionary<String, AnyObject> {
-    public func getStorageInfo(callback: NSNumber) {
-        var (totalSpace:Int, freeSpace:Int) = getDiskSpace()
+    public func getStorageInfo(asyncCallId: NSNumber, callback: NSNumber) {
+        var (totalSpace, freeSpace) = getDiskSpace()
         var data = [ "storages" : [
             ["name":"localDisk", "id":0, "type":"HSFX", "capacity":totalSpace, "availCapacity":freeSpace]
         ]]
+        sendMessageToJS(asyncCallId, message: data, callback: callback)
     }
 
-    //func getDisplayInfo() -> Dictionary<String, AnyObject> {
-    public func getDisplayInfo(callback: NSNumber) {
+    public func getDisplayInfo(asyncCallId: NSNumber, callback: NSNumber) {
         var screenBounds = UIScreen.mainScreen().bounds
         var data = [ "displays" : [
             ["name":"localDisplay", "id":0, "isPrimary":true, "isInternal":true, "availWidth":screenBounds.size.width * 2, "availHeight":screenBounds.size.height * 2]
         ]]
+        sendMessageToJS(asyncCallId, message: data, callback: callback)
+    }
+
+    func sendMessageToJS(asyncCallId: NSNumber, message: Dictionary<String, AnyObject>, callback: NSNumber) {
+        var dictionary = [
+            "asyncCallId" : asyncCallId,
+            "data" : message
+        ]
+        invokeCallback(callback.intValue, key: nil, arguments: [dictionary])
     }
 }

@@ -7,20 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AB5D18DF1A01E52800AEC1EE /* device_capabilities_api.js in Resources */ = {isa = PBXBuildFile; fileRef = AB5D18DC1A01E52800AEC1EE /* device_capabilities_api.js */; };
+		AB5D18DF1A01E52800AEC1EE /* xwalk.experimental.system.js in Resources */ = {isa = PBXBuildFile; fileRef = AB5D18DC1A01E52800AEC1EE /* xwalk.experimental.system.js */; };
 		AB5D18E01A01E52800AEC1EE /* SysAppsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5D18DD1A01E52800AEC1EE /* SysAppsExtension.swift */; };
 		AB5D18E11A01E52800AEC1EE /* sysinfo.c in Sources */ = {isa = PBXBuildFile; fileRef = AB5D18DE1A01E52800AEC1EE /* sysinfo.c */; };
-		AB5D18E71A021B2900AEC1EE /* manifest.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB5D18E61A021B2900AEC1EE /* manifest.plist */; };
 		AB5D18E91A021D1B00AEC1EE /* CrosswalkLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB5D18E81A021D1B00AEC1EE /* CrosswalkLite.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AB5D18D71A01E3E800AEC1EE /* SysAppsExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SysAppsExtension.h; path = ../src/sysapps/extension/SysAppsExtension.h; sourceTree = "<group>"; };
-		AB5D18DC1A01E52800AEC1EE /* device_capabilities_api.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = device_capabilities_api.js; path = ../src/sysapps/extension/device_capabilities_api.js; sourceTree = "<group>"; };
+		AB5D18DC1A01E52800AEC1EE /* xwalk.experimental.system.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = xwalk.experimental.system.js; path = ../src/sysapps/extension/xwalk.experimental.system.js; sourceTree = "<group>"; };
 		AB5D18DD1A01E52800AEC1EE /* SysAppsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SysAppsExtension.swift; path = ../src/sysapps/extension/SysAppsExtension.swift; sourceTree = "<group>"; };
 		AB5D18DE1A01E52800AEC1EE /* sysinfo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sysinfo.c; path = ../src/sysapps/extension/sysinfo.c; sourceTree = "<group>"; };
 		AB5D18E41A01ED1100AEC1EE /* SysAppsExt-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SysAppsExt-Bridging-Header.h"; path = "../src/sysapps/extension/SysAppsExt-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
-		AB5D18E61A021B2900AEC1EE /* manifest.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = manifest.plist; path = ../src/sysapps/extension/manifest.plist; sourceTree = "<group>"; };
 		AB5D18E81A021D1B00AEC1EE /* CrosswalkLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrosswalkLite.framework; path = "build/Debug-iphoneos/CrosswalkLite.framework"; sourceTree = "<group>"; };
 		ABA1F18C1A01E0BA005D0850 /* SysAppsExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SysAppsExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABA1F1901A01E0BA005D0850 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../src/sysapps/extension/Info.plist; sourceTree = SOURCE_ROOT; };
@@ -43,11 +41,10 @@
 			children = (
 				AB5D18E81A021D1B00AEC1EE /* CrosswalkLite.framework */,
 				AB5D18E41A01ED1100AEC1EE /* SysAppsExt-Bridging-Header.h */,
-				AB5D18DC1A01E52800AEC1EE /* device_capabilities_api.js */,
+				AB5D18DC1A01E52800AEC1EE /* xwalk.experimental.system.js */,
 				AB5D18DD1A01E52800AEC1EE /* SysAppsExtension.swift */,
 				AB5D18DE1A01E52800AEC1EE /* sysinfo.c */,
 				AB5D18D71A01E3E800AEC1EE /* SysAppsExtension.h */,
-				AB5D18E61A021B2900AEC1EE /* manifest.plist */,
 				ABA1F18F1A01E0BA005D0850 /* Supporting Files */,
 				ABA1F18D1A01E0BA005D0850 /* Products */,
 			);
@@ -137,8 +134,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB5D18DF1A01E52800AEC1EE /* device_capabilities_api.js in Resources */,
-				AB5D18E71A021B2900AEC1EE /* manifest.plist in Resources */,
+				AB5D18DF1A01E52800AEC1EE /* xwalk.experimental.system.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
