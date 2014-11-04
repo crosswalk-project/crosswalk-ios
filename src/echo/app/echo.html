@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title></title>
+    <meta name = "viewport" content = "width = device-width">
+</head>
+<body>
+    <p>This is the echo demo</p>
+    <p id="content" />
+    <script>
+        try {
+            xwalk.sample.echo.prefix = "Echo from native: ";
+            xwalk.sample.echo.echo("Hello World!", function(msg) {
+                document.title = "Pass";
+                document.getElementById("content").innerHTML = msg;
+            })
+        } catch(e) {
+            document.title = "Fail";
+            document.getElementById("content").innerHTML = e;
+        }
+    </script>
+</body>
+</html>
