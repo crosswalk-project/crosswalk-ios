@@ -10,15 +10,11 @@ public class XWalkExtensionManager: NSObject {
         let className: String
     }
     var extensions: Dictionary<String, XWalkExtensionSource> = [:]
-
-    public class func defaultManager() -> XWalkExtensionManager {
-        if _defaultManager == nil {
-            _defaultManager = XWalkExtensionManager()
-            if _defaultManager!.extensions.count == 0 {
-                println("ERROR: No Crosswalk extension found")
-            }
+    public class var sharedInstance : XWalkExtensionManager {
+        struct Static {
+            static let instance : XWalkExtensionManager = XWalkExtensionManager()
         }
-        return _defaultManager!
+        return Static.instance
     }
 
     override init() {
@@ -64,7 +60,6 @@ public class XWalkExtensionManager: NSObject {
                 }
             }
         } else {
-            //println("WARNING: Bundle '\(bundle.bundlePath)' is not a Crosswalk extension")
             return false
         }
         return true
@@ -106,6 +101,3 @@ public class XWalkExtensionManager: NSObject {
         return nil
     }
 }
-
-// TODO: should move this into class definition once class variable is supported.
-var _defaultManager: XWalkExtensionManager? = nil
