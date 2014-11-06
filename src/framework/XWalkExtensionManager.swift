@@ -10,20 +10,20 @@ public class XWalkExtensionManager: NSObject {
         let className: String
     }
     var extensions: Dictionary<String, XWalkExtensionSource> = [:]
-    public class var sharedInstance : XWalkExtensionManager {
+    public class var singleton : XWalkExtensionManager {
         struct Static {
             static let instance : XWalkExtensionManager = XWalkExtensionManager()
         }
         return Static.instance
     }
 
-    override init() {
+    internal override init() {
         super.init()
         if let path = NSBundle.mainBundle().privateFrameworksPath {
             self.scan(path)
         }
     }
-    public init(path: String) {
+    internal init(path: String) {
         super.init()
         self.scan(path)
     }

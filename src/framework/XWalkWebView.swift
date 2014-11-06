@@ -21,7 +21,7 @@ public extension WKWebView {
     }
 
     public func loadExtension(name: String) -> Bool {
-        if let ext = XWalkExtensionManager.sharedInstance.createExtension(name) {
+        if let ext = XWalkExtensionManager.singleton.createExtension(name) {
             ext.webView = self
 
             // Register message handler
