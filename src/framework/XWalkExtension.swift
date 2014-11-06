@@ -8,7 +8,8 @@ import SwiftyJSON
 
 public class XWalkExtension: NSObject, WKScriptMessageHandler {
     public final let name: String!
-    public final weak var webView: WKWebView!
+    public final var id: Int = 0
+    private weak var webView: WKWebView?
     private var properties: Dictionary<String, AnyObject> = [:]
 
     public init(name: String) {
@@ -16,19 +17,66 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
         self.name = name
     }
 
+    private var seqenceNumber : Int {
+        struct seq{
+            static var num: Int = 0
+        }
+        return ++seq.num
+    }
+
     public var jsAPIStub: String {
         let bundle : NSBundle = NSBundle(forClass: self.dynamicType)
-        if let path = bundle.pathForResource(self.name, ofType: "js") {
+        if let path = bundle.pathForResource(name, ofType: "js") {
             if let file = NSFileHandle(forReadingAtPath: path) {
                 if let api = NSString(data: file.readDataToEndOfFile(), encoding: NSUTF8StringEncoding) {
                     return api
                 }
             }
-            println("ERROR: Can't read stub file '\(self.name).js'")
+            println("ERROR: Can't read stub file '\(name).js'")
         } else {
-            println("ERROR: Stub file '\(self.name).js' not found")
+            println("ERROR: Stub file '\(name).js' not found")
         }
         return ""
+    }
+
+    public func attach(webView: WKWebView) {
+        let controller = webView.configuration.userContentController
+        id = seqenceNumber
+
+        // Inject JavaScript API
+        let code = join("\n", [
+            "(function() {",
+            "   'use strict';",
+            "    var exports = new Extension('\(name)', '\(id)');",
+            "    \(jsAPIStub)",
+            "    \(name) = exports;",
+            "})();"])
+        let script = WKUserScript(
+            source: code,
+            injectionTime: WKUserScriptInjectionTime.AtDocumentStart,
+            forMainFrameOnly: false)
+        controller.addUserScript(script)
+
+        // Register message handler
+        controller.addScriptMessageHandler(self, name: "\(id)")
+
+        self.webView = webView
+        if webView.URL != nil {
+            evaluate(code)
+        }
+    }
+
+    public func detach() {
+        let controller = webView!.configuration.userContentController
+        controller.removeScriptMessageHandlerForName("\(id)")
+        // TODO: How to remove user script?
+        //controller.userScripts.removeAtIndex(id)
+        if webView!.URL != nil {
+            // Cleanup extension code in current context
+            evaluate("delete \(name)")
+        }
+        webView = nil
+        id = 0
     }
 
     public func userContentController(userContentController: WKUserContentController,
@@ -85,7 +133,7 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
             //properties.updateValue(val, forKey: name)
             let json = JSON(val).rawString()!
             let cmd = "\(self.name).\(name) = \(json); \(self.name).\(name);"
-            self.evaluate(cmd, success: { (obj)->Void in
+            evaluate(cmd, success: { (obj)->Void in
                 self.properties.updateValue(obj, forKey: name)
                 return
             })
@@ -126,6 +174,7 @@ extension XWalkExtension {
         })
     }
     public func evaluate(string: String, completionHandler: ((AnyObject!, NSError!)->Void)?) {
-        webView.evaluateJavaScript(string, completionHandler: completionHandler)
+        // TODO: Should call completionHandler with an NSError object when webView is nil
+        webView?.evaluateJavaScript(string, completionHandler: completionHandler)
     }
 }
