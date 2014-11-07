@@ -22,21 +22,7 @@ public extension WKWebView {
 
     public func loadExtension(name: String) -> Bool {
         if let ext = XWalkExtensionManager.singleton.createExtension(name) {
-            ext.webView = self
-
-            // Register message handler
-            let id = name.stringByReplacingOccurrencesOfString(".", withString: "")
-            configuration.userContentController.addScriptMessageHandler(ext, name: id)
-
-            // Inject JavaScript API
-            let code = join("\n", [
-                "(function() {",
-                "   'use strict';",
-                "    var exports = new Extension('\(name)', '\(id)');",
-                "    \(ext.jsAPIStub)",
-                "    \(name) = exports;",
-                "})();"])
-            injectScript(code)
+            ext.attach(self)
             return true
         }
         return false
@@ -46,11 +32,6 @@ public extension WKWebView {
         for name in names {
             loadExtension(name)
         }
-    }
-
-    public func unloadExtension(name: String) {
-        let id = name.stringByReplacingOccurrencesOfString(".", withString: "")
-        configuration.userContentController.removeScriptMessageHandlerForName(id)
     }
 
     public func injectScript(code: String) {
