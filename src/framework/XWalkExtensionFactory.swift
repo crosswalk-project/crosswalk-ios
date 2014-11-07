@@ -4,17 +4,17 @@
 
 import Foundation
 
-public class XWalkExtensionManager: NSObject {
-    struct XWalkExtensionSource {
+public class XWalkExtensionFactory: NSObject {
+    struct XWalkExtensionProvider {
         let bundle: NSBundle
         let className: String
     }
-    var extensions: Dictionary<String, XWalkExtensionSource> = [:]
-    public class var singleton : XWalkExtensionManager {
-        struct Static {
-            static let instance : XWalkExtensionManager = XWalkExtensionManager()
+    var extensions: Dictionary<String, XWalkExtensionProvider> = [:]
+    public class var singleton : XWalkExtensionFactory {
+        struct single {
+            static let instance : XWalkExtensionFactory = XWalkExtensionFactory()
         }
-        return Static.instance
+        return single.instance
     }
 
     internal override init() {
@@ -51,7 +51,7 @@ public class XWalkExtensionManager: NSObject {
             while let name = e.nextObject() as? String {
                 if let className = info[name] as? String {
                     if (extensions[name] == nil) {
-                        extensions[name] = XWalkExtensionSource(bundle: bundle, className: className)
+                        extensions[name] = XWalkExtensionProvider(bundle: bundle, className: className)
                     } else {
                         println("WARNING: duplicated extension name '\(name)'")
                     }
@@ -87,8 +87,7 @@ public class XWalkExtensionManager: NSObject {
                 //return nil
             }
 
-            typealias ExtensionFactory = ObjectFactory<XWalkExtension>
-            if let ext = ExtensionFactory.createInstance(
+            if let ext = ObjectFactory<XWalkExtension>.createInstance(
                     className: "\(className)",
                     initializer: "initWithName:",
                     argument: name) {

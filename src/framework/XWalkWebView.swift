@@ -21,7 +21,7 @@ public extension WKWebView {
     }
 
     public func loadExtension(name: String) -> Bool {
-        if let ext = XWalkExtensionManager.singleton.createExtension(name) {
+        if let ext = XWalkExtensionFactory.singleton.createExtension(name) {
             ext.attach(self)
             return true
         }
