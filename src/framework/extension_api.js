@@ -20,13 +20,14 @@ Extension.prototype = {
             console.error('Invalid invocation');
             return;
         }
-         var body = name[0] == '.' ?
+        var body = name[0] == '.' ?
                 { 'property': name.substring(1), 'value': args } :
                 { 'method': name, 'arguments': args };
         webkit.messageHandlers[this.id].postMessage(body);
     },
     addCallback: function(callback) {
-        while (this.callbacks[this.lastCallID] != undefined) ++this.lastCallID;
+        while (this.callbacks[this.lastCallID] != undefined)
+            ++this.lastCallID;
         this.callbacks[this.lastCallID] = callback;
         return this.lastCallID;
     },
@@ -36,8 +37,10 @@ Extension.prototype = {
     },
     invokeCallback: function(callID, key, args) {
         var func = this.callbacks[callID];
-        if (typeof(func) == 'object')  func = func[key];
-        if (typeof(func) == 'function')  func.apply(null, args);
+        if (typeof(func) == 'object')
+            func = func[key];
+        if (typeof(func) == 'function')
+            func.apply(null, args);
         this.removeCallback(callID);
     },
     defineProperty: function(prop, desc) {
@@ -71,5 +74,62 @@ Extension.prototype = {
             }
         }
         Object.defineProperty(this, prop, d);
+    },
+    aggregate: function(constructor, args) {
+        var ctor = constructor;
+        if (typeof(ctor) === 'string')
+            ctor = Extension[ctor];
+        if (typeof(ctor) != 'function' || typeof(ctor.prototype) != 'object')
+            return;
+        function clone(obj) {
+            var copy = {};
+            var keys = Object.getOwnPropertyNames(obj);
+            for (var i in keys)
+                copy[keys[i]] = obj[keys[i]];
+            return copy;
+        }
+        var p = clone(ctor.prototype);
+        p.__proto__ = Object.getPrototypeOf(this);
+        this.__proto__ = p;
+        ctor.apply(this, args);
+    }
+}
+
+// A simple implementation of EventTarget interface
+Extension.EventTarget = function() {
+    this.listeners = {}
+}
+
+Extension.EventTarget.prototype = {
+    addEventListener: function(type, listener, capture) {
+        if (!listener)  return;
+
+        var list = this.listeners[type];
+        if (!list) {
+            list = new Array();
+            this.listeners[type] = list;
+        } else if (list.indexOf(listener) >= 0) {
+            return;
+        }
+        list.push(listener);
+    },
+    removeEventListener: function(type, listener, capture) {
+        var list = this.listeners[type];
+        if (!list || !listener)
+            return;
+        var i = list.indexOf(listener);
+        if (i >= 0)
+            list.splice(i, 1);
+    },
+    dispatchEvent: function(event) {
+        var list = this.listeners[event.type];
+        if (!list)  return;
+        for (var i = 0; i < list.length; ++i) {
+            var func = list[i];
+            if (typeof(func) != 'function')
+                func = func.handleEvent;
+            func(event);
+        }
+        return true;
     }
 }
