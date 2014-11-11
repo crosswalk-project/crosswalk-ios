@@ -1,3 +1,6 @@
 [submodule "src/third-party/SwiftyJSON"]
 	path = src/third-party/SwiftyJSON
 	url = git@github.com:SwiftyJSON/SwiftyJSON.git
+[submodule "src/hexgl/HexGL"]
+	path = src/hexgl/HexGL
+	url = git@github.com:hmin/HexGL.git
