@@ -10,7 +10,6 @@
 		EE174E451A01FDDE00168D96 /* XWalkExtensionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE174E441A01FDDE00168D96 /* XWalkExtensionFactory.swift */; };
 		EE174E781A0361CB00168D96 /* extension_api.js in Resources */ = {isa = PBXBuildFile; fileRef = EE174E771A0361CB00168D96 /* extension_api.js */; };
 		EE6268F319FA4FE500EFC3F8 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE6268F019FA4FDE00EFC3F8 /* SwiftyJSON.framework */; };
-		EE62691419FA52D100EFC3F8 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE62691319FA52D100EFC3F8 /* Info.plist */; };
 		EE62691919FA52ED00EFC3F8 /* OBJCObjectFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = EE62691619FA52ED00EFC3F8 /* OBJCObjectFactory.m */; };
 		EE62691A19FA52ED00EFC3F8 /* ObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE62691719FA52ED00EFC3F8 /* ObjectFactory.swift */; };
 		EE62692419FA52FC00EFC3F8 /* Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = EE62691E19FA52FC00EFC3F8 /* Invocation.m */; };
@@ -219,7 +218,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE62691419FA52D100EFC3F8 /* Info.plist in Resources */,
 				EE174E781A0361CB00168D96 /* extension_api.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
