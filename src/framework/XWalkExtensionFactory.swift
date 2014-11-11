@@ -12,20 +12,20 @@ public class XWalkExtensionFactory: NSObject {
     var extensions: Dictionary<String, XWalkExtensionProvider> = [:]
     public class var singleton : XWalkExtensionFactory {
         struct single {
-            static let instance : XWalkExtensionFactory = XWalkExtensionFactory()
+            static let instance : XWalkExtensionFactory = XWalkExtensionFactory(path: nil)
         }
         return single.instance
     }
 
     internal override init() {
         super.init()
-        if let path = NSBundle.mainBundle().privateFrameworksPath {
-            self.scan(path)
-        }
+        register("Extension.loader",  className: "CrosswalkLite.XWalkExtensionLoader")
     }
-    internal init(path: String) {
-        super.init()
-        self.scan(path)
+    internal convenience init(path: String?) {
+        self.init()
+        if let dir = path ?? NSBundle.mainBundle().privateFrameworksPath {
+            self.scan(dir)
+        }
     }
 
     public func scan(path: String) -> Bool {
@@ -50,7 +50,7 @@ public class XWalkExtensionFactory: NSObject {
             let e = info.keyEnumerator()
             while let name = e.nextObject() as? String {
                 if let className = info[name] as? String {
-                    if (extensions[name] == nil) {
+                    if extensions[name] == nil {
                         extensions[name] = XWalkExtensionProvider(bundle: bundle, className: className)
                     } else {
                         println("WARNING: duplicated extension name '\(name)'")
@@ -63,6 +63,17 @@ public class XWalkExtensionFactory: NSObject {
             return false
         }
         return true
+    }
+
+    public func register(name: String, className: String) -> Bool {
+        if extensions[name] == nil {
+            if let cls: AnyClass = NSClassFromString(className) {
+                let bundle = NSBundle(forClass: cls.self)
+                extensions[name] = XWalkExtensionProvider(bundle: bundle, className: className)
+                return true
+            }
+        }
+        return false
     }
 
     public func createExtension(name: String) -> XWalkExtension? {

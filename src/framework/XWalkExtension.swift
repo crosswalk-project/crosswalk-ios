@@ -9,7 +9,7 @@ import SwiftyJSON
 public class XWalkExtension: NSObject, WKScriptMessageHandler {
     public final let name: String!
     public final var id: Int = 0
-    private weak var webView: WKWebView?
+    internal weak var webView: WKWebView?
     private var properties: Dictionary<String, AnyObject> = [:]
 
     public init(name: String) {

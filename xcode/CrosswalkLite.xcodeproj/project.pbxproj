@@ -16,6 +16,7 @@
 		EE62692419FA52FC00EFC3F8 /* Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = EE62691E19FA52FC00EFC3F8 /* Invocation.m */; };
 		EE62692519FA52FC00EFC3F8 /* XWalkExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE62691F19FA52FC00EFC3F8 /* XWalkExtension.swift */; };
 		EE62692619FA52FC00EFC3F8 /* XWalkWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE62692019FA52FC00EFC3F8 /* XWalkWebView.swift */; };
+		EE7886761A0D0CE30013A855 /* XWalkExtensionLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7886751A0D0CE30013A855 /* XWalkExtensionLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		EE62691E19FA52FC00EFC3F8 /* Invocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Invocation.m; path = src/framework/Invocation.m; sourceTree = "<group>"; };
 		EE62691F19FA52FC00EFC3F8 /* XWalkExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkExtension.swift; path = src/framework/XWalkExtension.swift; sourceTree = "<group>"; };
 		EE62692019FA52FC00EFC3F8 /* XWalkWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkWebView.swift; path = src/framework/XWalkWebView.swift; sourceTree = "<group>"; };
+		EE7886751A0D0CE30013A855 /* XWalkExtensionLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkExtensionLoader.swift; path = src/framework/XWalkExtensionLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				EE62691F19FA52FC00EFC3F8 /* XWalkExtension.swift */,
 				EE62692019FA52FC00EFC3F8 /* XWalkWebView.swift */,
 				EE174E441A01FDDE00168D96 /* XWalkExtensionFactory.swift */,
+				EE7886751A0D0CE30013A855 /* XWalkExtensionLoader.swift */,
 				EE62686119FA36AE00EFC3F8 /* swift-factory */,
 				EE62683819FA323900EFC3F8 /* Supporting Files */,
 			);
@@ -229,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE62691A19FA52ED00EFC3F8 /* ObjectFactory.swift in Sources */,
+				EE7886761A0D0CE30013A855 /* XWalkExtensionLoader.swift in Sources */,
 				EE174E451A01FDDE00168D96 /* XWalkExtensionFactory.swift in Sources */,
 				EE62692419FA52FC00EFC3F8 /* Invocation.m in Sources */,
 				EE62691919FA52ED00EFC3F8 /* OBJCObjectFactory.m in Sources */,
