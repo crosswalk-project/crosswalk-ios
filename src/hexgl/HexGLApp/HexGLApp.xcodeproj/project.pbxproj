@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6FA24A34A89C70DDC824A65D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 406ADA713ED14AC10F49615D /* libPods.a */; };
+		AB4527AB1A11FEE300EB020A /* PresentationExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB4527AA1A11FEE300EB020A /* PresentationExtension.framework */; };
+		AB4527AC1A11FEE300EB020A /* PresentationExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB4527AA1A11FEE300EB020A /* PresentationExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ABE1BDEA1A0B5322000B8102 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE1BDE91A0B5322000B8102 /* AppDelegate.swift */; };
 		ABE1BDEC1A0B5322000B8102 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE1BDEB1A0B5322000B8102 /* ViewController.swift */; };
 		ABE1BDEF1A0B5322000B8102 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABE1BDED1A0B5322000B8102 /* Main.storyboard */; };
@@ -25,6 +27,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				AB4527AC1A11FEE300EB020A /* PresentationExtension.framework in Embed Frameworks */,
 				ABE472AA1A0C9FBF00007E6C /* CrosswalkLite.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -36,6 +39,7 @@
 		239ECC8657AA1DFC46E557B3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		27223EA25EC1328C5D557B3B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		406ADA713ED14AC10F49615D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB4527AA1A11FEE300EB020A /* PresentationExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PresentationExtension.framework; path = "Build/Products/Debug-iphonesimulator/PresentationExtension.framework"; sourceTree = "<group>"; };
 		ABE1BDE41A0B5322000B8102 /* HexGLApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HexGLApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABE1BDE81A0B5322000B8102 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABE1BDE91A0B5322000B8102 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +58,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABE472A91A0C9FBF00007E6C /* CrosswalkLite.framework in Frameworks */,
+				AB4527AB1A11FEE300EB020A /* PresentationExtension.framework in Frameworks */,
 				6FA24A34A89C70DDC824A65D /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -81,6 +86,7 @@
 		ABE1BDDB1A0B5322000B8102 = {
 			isa = PBXGroup;
 			children = (
+				AB4527AA1A11FEE300EB020A /* PresentationExtension.framework */,
 				ABE472A81A0C9FBF00007E6C /* CrosswalkLite.framework */,
 				ABE1BE0D1A0B552C000B8102 /* HexGL */,
 				ABE1BDE61A0B5322000B8102 /* HexGLApp */,
