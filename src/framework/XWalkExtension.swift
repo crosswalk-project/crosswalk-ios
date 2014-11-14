@@ -8,6 +8,7 @@ import SwiftyJSON
 
 public class XWalkExtension: NSObject, WKScriptMessageHandler {
     public final let name: String!
+    public final var namespace: String!
     public final var id: Int = 0
     internal weak var webView: WKWebView?
     private var properties: Dictionary<String, AnyObject> = [:]
@@ -15,6 +16,7 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
     public init(name: String) {
         super.init()
         self.name = name
+        namespace = name
     }
 
     private var seqenceNumber : Int {
@@ -39,18 +41,16 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
         return ""
     }
 
-    public func attach(webView: WKWebView) {
+    public func attach(webView: WKWebView, namespace: String? = nil) {
         let controller = webView.configuration.userContentController
         id = seqenceNumber
+        self.namespace = namespace ?? name
 
         // Inject JavaScript API
-        let code = join("\n", [
-            "(function() {",
-            "   'use strict';",
-            "    var exports = new Extension('\(name)', '\(id)');",
-            "    \(jsAPIStub)",
-            "    \(name) = exports;",
-            "})();"])
+        let code = "(function(exports) {" +
+            "   'use strict';" +
+            "    \(jsAPIStub)" +
+            "})(Extension.create(\(id), '\(self.namespace)'));"
         let script = WKUserScript(
             source: code,
             injectionTime: WKUserScriptInjectionTime.AtDocumentStart,
@@ -73,7 +73,7 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
         //controller.userScripts.removeAtIndex(id)
         if webView!.URL != nil {
             // Cleanup extension code in current context
-            evaluate("delete \(name)")
+            evaluate("delete \(namespace);")
         }
         webView = nil
         id = 0
@@ -85,6 +85,11 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
         if let method = body["method"] as? String {
             // Method call
             let args = body["arguments"] as? [[String: AnyObject]]
+            if args?.filter({$0 == [:]}).count > 0 {
+                // WKWebKit can't handle undefined type well
+                println("ERROR: parameters contain undefined value")
+                return
+            }
             let inv = Invocation(method: "js_" + method, arguments: args)
             inv.call(self)
         } else if let prop = body["property"] as? String {
@@ -113,7 +118,7 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
         var f: String = function
         if f[f.startIndex] == "." {
             // Invoke a method of this object
-            f = name + function
+            f = namespace + function
         }
         if let json = JSON(arguments).rawString() {
             // Remove the top level brackets
@@ -132,7 +137,7 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
             let val: AnyObject = value ?? NSNull()
             //properties.updateValue(val, forKey: name)
             let json = JSON(val).rawString()!
-            let cmd = "\(self.name).\(name) = \(json); \(self.name).\(name);"
+            let cmd = "\(namespace).\(name) = \(json); \(namespace).\(name);"
             evaluate(cmd, success: { (obj)->Void in
                 self.properties.updateValue(obj, forKey: name)
                 return

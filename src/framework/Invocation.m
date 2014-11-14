@@ -38,7 +38,9 @@
     [inv setSelector:method];
     for(int i = 0; i < args.count; ++i) {
         NSDictionary *pair = [args objectAtIndex:i];
-        id val = [pair.allValues objectAtIndex:0];
+        NSObject* val = [pair.allValues objectAtIndex:0];
+        if (val.class == NSNull.class)
+            val = nil;
         [inv setArgument:&val atIndex:(i + 2)];
     }
     [inv retainArguments];

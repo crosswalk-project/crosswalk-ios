@@ -20,9 +20,9 @@ public extension WKWebView {
         }
     }
 
-    public func loadExtension(name: String) -> Bool {
+    public func loadExtension(name: String, namespace: String? = nil) -> Bool {
         if let ext = XWalkExtensionFactory.singleton.createExtension(name) {
-            ext.attach(self)
+            ext.attach(self, namespace: namespace)
             return true
         }
         return false

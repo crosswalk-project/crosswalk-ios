@@ -5,7 +5,7 @@
 import Foundation
 
 private let api: String = "" +
-    "exports.load = function(name) {" +
+    "exports.load = function(name, namespace) {" +
     "    var loader = this;" +
     "    return new Promise(function(resolve, reject) {" +
     "        var callID = loader.addCallback({" +
@@ -14,6 +14,7 @@ private let api: String = "" +
     "        });" +
     "        loader.invokeNative('load', [" +
     "                {'name': name}," +
+    "                {'namespace': namespace? namespace: null}," +
     "                {'callback': callID}" +
     "        ]);" +
     "    });" +
@@ -24,9 +25,9 @@ class XWalkExtensionLoader: XWalkExtension {
         return api
     }
 
-    func js_load(name: String, callback: NSNumber) {
+    func js_load(name: String, namespace: String?, callback: NSNumber) {
         if let ext = XWalkExtensionFactory.singleton.createExtension(name) {
-            ext.attach(super.webView!)
+            ext.attach(super.webView!, namespace: namespace)
             invokeCallback(callback.intValue, key: "resolve", arguments: nil)
         } else {
             invokeCallback(callback.intValue, key: "reject", arguments: nil)
