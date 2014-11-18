@@ -2,15 +2,38 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-Extension = function(name, id) {
+Extension = function(id) {
     this.id = id;
     this.lastCallID = 0;
     this.callbacks = [];
+}
 
-    var a = name.split(".");
-    if (a.length > 1) {
-        for (var i = 0, n = window; i < a.length; n = n[a[i]], i++)
-            if (!n[a[i]]) n[a[i]] = {};
+Extension.create = function(id, namespace) {
+    if (!webkit.messageHandlers[id])
+        return null;  // channel has not established
+
+    var obj = window;
+    var ns = namespace.split('.');
+    var last = ns.pop();
+    ns.forEach(function(p){
+        if (!obj[p]) obj[p] = {};
+        obj = obj[p];
+    });
+    if (obj[last] instanceof this)
+        return null;  // channel is occupied
+    return obj[last] = new this(id);
+}
+
+Extension.destroy = function(namespace) {
+    var ns = namespace.split('.');
+    for (var i = 0; ns.length; ++i) {
+        var o = window;
+        var p = ns.pop();
+        ns.forEach(function(v){o = o[v];});
+        if ((i || !(o[p] instanceof this)) &&
+            Object.getOwnPropertyNames(o[p]).length)
+            break;
+        delete o[p];
     }
 }
 
