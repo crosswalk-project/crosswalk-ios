@@ -8,12 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		AB4527941A11FDFB00EB020A /* PresentationExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = AB4527931A11FDFB00EB020A /* PresentationExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AB4527AE1A12034500EB020A /* PresentationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4527AD1A12034500EB020A /* PresentationExtension.swift */; };
+		AB4527B01A12036C00EB020A /* CrosswalkLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB4527AF1A12036C00EB020A /* CrosswalkLite.framework */; };
+		AB4527B21A12042300EB020A /* navigator.presentation.js in Resources */ = {isa = PBXBuildFile; fileRef = AB4527B11A12042300EB020A /* navigator.presentation.js */; };
+		AB4859B21A1485A100197BC7 /* RemoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4859B11A1485A100197BC7 /* RemoteViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AB45278E1A11FDFB00EB020A /* PresentationExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PresentationExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB4527921A11FDFB00EB020A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB4527931A11FDFB00EB020A /* PresentationExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresentationExtension.h; sourceTree = "<group>"; };
+		AB4527AD1A12034500EB020A /* PresentationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationExtension.swift; sourceTree = "<group>"; };
+		AB4527AF1A12036C00EB020A /* CrosswalkLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrosswalkLite.framework; path = "../../../xcode/build/Debug-iphoneos/CrosswalkLite.framework"; sourceTree = "<group>"; };
+		AB4527B11A12042300EB020A /* navigator.presentation.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = navigator.presentation.js; sourceTree = "<group>"; };
+		AB4859B11A1485A100197BC7 /* RemoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -21,6 +29,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB4527B01A12036C00EB020A /* CrosswalkLite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -30,6 +39,7 @@
 		AB4527841A11FDFB00EB020A = {
 			isa = PBXGroup;
 			children = (
+				AB4527AF1A12036C00EB020A /* CrosswalkLite.framework */,
 				AB4527901A11FDFB00EB020A /* PresentationExtension */,
 				AB45278F1A11FDFB00EB020A /* Products */,
 			);
@@ -47,6 +57,9 @@
 			isa = PBXGroup;
 			children = (
 				AB4527931A11FDFB00EB020A /* PresentationExtension.h */,
+				AB4527B11A12042300EB020A /* navigator.presentation.js */,
+				AB4527AD1A12034500EB020A /* PresentationExtension.swift */,
+				AB4859B11A1485A100197BC7 /* RemoteViewController.swift */,
 				AB4527911A11FDFB00EB020A /* Supporting Files */,
 			);
 			path = PresentationExtension;
@@ -128,6 +141,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB4527B21A12042300EB020A /* navigator.presentation.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +152,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB4859B21A1485A100197BC7 /* RemoteViewController.swift in Sources */,
+				AB4527AE1A12034500EB020A /* PresentationExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,25 +248,36 @@
 		AB4527A51A11FDFB00EB020A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/jonathan/projects/crosswalk-ios/xcode/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = PresentationExtension/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		AB4527A61A11FDFB00EB020A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/jonathan/projects/crosswalk-ios/xcode/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = PresentationExtension/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

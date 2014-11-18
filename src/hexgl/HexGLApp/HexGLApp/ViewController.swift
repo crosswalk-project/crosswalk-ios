@@ -27,6 +27,8 @@ class ViewController: UIViewController, WKNavigationDelegate {
         webview.navigationDelegate = self
         view.addSubview(webview)
 
+        webview.loadExtension("navigator.presentation")
+
         var url: NSURL = NSURL(scheme: "http", host: "localhost:8080", path: "/index.html")!
         webview.loadRequest(NSURLRequest(URL: url))
     }

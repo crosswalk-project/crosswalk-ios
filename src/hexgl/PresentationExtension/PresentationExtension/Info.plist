@@ -22,5 +22,10 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>NSPrincipalClass</key>
 	<string></string>
+	<key>XWalkExtensions</key>
+	<dict>
+		<key>navigator.presentation</key>
+		<string>PresentationExtension</string>
+	</dict>
 </dict>
 </plist>
