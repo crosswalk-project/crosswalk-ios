@@ -10,7 +10,7 @@
 		AB5D18DF1A01E52800AEC1EE /* xwalk.experimental.system.js in Resources */ = {isa = PBXBuildFile; fileRef = AB5D18DC1A01E52800AEC1EE /* xwalk.experimental.system.js */; };
 		AB5D18E01A01E52800AEC1EE /* SysAppsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5D18DD1A01E52800AEC1EE /* SysAppsExtension.swift */; };
 		AB5D18E11A01E52800AEC1EE /* sysinfo.c in Sources */ = {isa = PBXBuildFile; fileRef = AB5D18DE1A01E52800AEC1EE /* sysinfo.c */; };
-		AB5D18E91A021D1B00AEC1EE /* CrosswalkLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB5D18E81A021D1B00AEC1EE /* CrosswalkLite.framework */; };
+		ABD5778A1A1B0E0500E47402 /* CrosswalkLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD577891A1B0E0500E47402 /* CrosswalkLite.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,9 +19,9 @@
 		AB5D18DD1A01E52800AEC1EE /* SysAppsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SysAppsExtension.swift; path = ../src/sysapps/extension/SysAppsExtension.swift; sourceTree = "<group>"; };
 		AB5D18DE1A01E52800AEC1EE /* sysinfo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sysinfo.c; path = ../src/sysapps/extension/sysinfo.c; sourceTree = "<group>"; };
 		AB5D18E41A01ED1100AEC1EE /* SysAppsExt-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SysAppsExt-Bridging-Header.h"; path = "../src/sysapps/extension/SysAppsExt-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
-		AB5D18E81A021D1B00AEC1EE /* CrosswalkLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrosswalkLite.framework; path = "build/Debug-iphoneos/CrosswalkLite.framework"; sourceTree = "<group>"; };
 		ABA1F18C1A01E0BA005D0850 /* SysAppsExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SysAppsExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABA1F1901A01E0BA005D0850 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../src/sysapps/extension/Info.plist; sourceTree = SOURCE_ROOT; };
+		ABD577891A1B0E0500E47402 /* CrosswalkLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrosswalkLite.framework; path = "Build/Products/Debug-iphoneos/CrosswalkLite.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,7 +29,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB5D18E91A021D1B00AEC1EE /* CrosswalkLite.framework in Frameworks */,
+				ABD5778A1A1B0E0500E47402 /* CrosswalkLite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -39,7 +39,7 @@
 		ABA1F1821A01E0BA005D0850 = {
 			isa = PBXGroup;
 			children = (
-				AB5D18E81A021D1B00AEC1EE /* CrosswalkLite.framework */,
+				ABD577891A1B0E0500E47402 /* CrosswalkLite.framework */,
 				AB5D18E41A01ED1100AEC1EE /* SysAppsExt-Bridging-Header.h */,
 				AB5D18DC1A01E52800AEC1EE /* xwalk.experimental.system.js */,
 				AB5D18DD1A01E52800AEC1EE /* SysAppsExtension.swift */,
@@ -250,6 +250,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Build/Products/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/../src/sysapps/extension/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -269,6 +270,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Build/Products/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/../src/sysapps/extension/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
