@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ABD475E31A4129FC00F3BDEB /* Invocation.h in Headers */ = {isa = PBXBuildFile; fileRef = EE62691D19FA52FC00EFC3F8 /* Invocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ABD5E6291A19F0F900EAD102 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE6268F019FA4FDE00EFC3F8 /* SwiftyJSON.framework */; };
 		EE174E451A01FDDE00168D96 /* XWalkExtensionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE174E441A01FDDE00168D96 /* XWalkExtensionFactory.swift */; };
 		EE174E781A0361CB00168D96 /* extension_api.js in Resources */ = {isa = PBXBuildFile; fileRef = EE174E771A0361CB00168D96 /* extension_api.js */; };
@@ -119,6 +120,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABD475E31A4129FC00F3BDEB /* Invocation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

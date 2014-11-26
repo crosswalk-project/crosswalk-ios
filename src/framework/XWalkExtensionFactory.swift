@@ -36,7 +36,7 @@ public class XWalkExtensionFactory: NSObject {
                 if name.pathExtension == "framework" {
                     let bundlePath = path.stringByAppendingPathComponent(name)
                     if let bundle = NSBundle(path: bundlePath) {
-                        scan(bundle)
+                        scanBundle(bundle)
                     }
                 }
             }
@@ -45,7 +45,7 @@ public class XWalkExtensionFactory: NSObject {
         return false
     }
 
-    public func scan(bundle: NSBundle) -> Bool {
+    public func scanBundle(bundle: NSBundle) -> Bool {
         if let info = bundle.objectForInfoDictionaryKey("XWalkExtensions") as? NSDictionary {
             let e = info.keyEnumerator()
             while let name = e.nextObject() as? String {
