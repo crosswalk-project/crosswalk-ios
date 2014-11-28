@@ -4,8 +4,9 @@
 
 Extension = function(id) {
     this.id = id;
-    this.lastCallID = 0;
-    this.callbacks = [];
+    this.lastCallID = 1;
+    this.calls = [];
+    this.properties = [];
 }
 
 Extension.create = function(id, namespace) {
@@ -39,70 +40,113 @@ Extension.destroy = function(namespace) {
 
 Extension.prototype = {
     invokeNative: function(name, args) {
-        if (typeof(name) != 'string') {
+        if (typeof(name) != 'string' && !(name instanceof String)) {
             console.error('Invalid invocation');
             return;
         }
-        var body = name[0] == '.' ?
-                { 'property': name.substring(1), 'value': args } :
-                { 'method': name, 'arguments': args };
+
+        if (name[0] == '.') {
+            webkit.messageHandlers[this.id].postMessage({
+                    'property': name.substring(1),
+                    'value': args
+            });
+            return;
+        }
+
+        // Only serializable objects can be passed by value.
+        var isSerializable = function(obj) {
+            if (!(obj instanceof Object))
+                return true;
+            if (obj instanceof Function)
+                return false;
+            // TODO: support other types of object (eg. ArrayBuffer)
+            // See WebCode::CloneSerializer::dumpIfTerminal() in
+            // Source/WebCore/bindings/js/SerializedScriptValue.cpp
+            if (obj instanceof Boolean ||
+                obj instanceof Date ||
+                obj instanceof Number ||
+                obj instanceof RegExp ||
+                obj instanceof String)
+                return true;
+            for (var p of Object.getOwnPropertyNames(obj))
+                if (!arguments.callee(obj[p]))
+                    return false;
+            return true;
+        }
+        var objectRef = function(cid, vid) {
+        /*  return {
+                'mag': 0x58574C4B ^ 0x4A534F52;
+                'id' : (cid << 8) + vid,
+            }*/
+            return (cid << 8) + vid;
+        }
+
+        while (this.calls[this.lastCallID] != undefined)
+            ++this.lastCallID;
+        var cid = this.lastCallID;
+
+        // Retain objects which had to pass by reference
+        var call = [];
+        args.forEach(function(pair, vid, a) {
+            var key = Object.getOwnPropertyNames(pair);
+            if (key.length != 1)  return;
+            key = key[0];
+            if (!isSerializable(pair[key])) {
+                call[vid] = pair[key];
+                pair[key] = objectRef(cid, vid);
+            }
+        })
+        if (call.length)
+            this.calls[cid] = call;
+        else
+            cid = 0;
+
+        var body = {
+            'callid': cid,
+            'method': name,
+            'arguments': args
+        };
         webkit.messageHandlers[this.id].postMessage(body);
     },
-    addCallback: function(callback) {
-        while (this.callbacks[this.lastCallID] != undefined)
-            ++this.lastCallID;
-        this.callbacks[this.lastCallID] = callback;
-        return this.lastCallID;
+    invokeCallback: function(id, key, args) {
+        var cid = id >>> 8;
+        var vid = id & 0xFF;
+        var obj = this.calls[cid][vid];
+        if (typeof(key) === 'number' || key instanceof Number)
+            obj = obj[key];
+        else if (typeof(key) === 'string' || key instanceof String)
+            key.split('.').forEach(function(p){ obj = obj[p]; });
+
+        if (obj instanceof Function)
+            obj.apply(null, args);
     },
-    removeCallback: function(callID) {
-        delete this.callbacks[callID];
-        this.lastCallID = callID;
+    releaseArguments: function(cid) {
+        if (cid) {
+            delete this.calls[cid];
+            this.lastCallID = cid;
+        }
     },
-    invokeCallback: function(callID, key, args) {
-        var func = this.callbacks[callID];
-        if (typeof(func) == 'object')
-            func = func[key];
-        if (typeof(func) == 'function')
-            func.apply(null, args);
-        this.removeCallback(callID);
-    },
-    defineProperty: function(prop, desc) {
-        var name = "." + prop;
-        var d = { 'configurable': false, 'enumerable': true }
-        if (desc.hasOwnProperty("value")) {
-            // a data descriptor
-            this.invokeNative(name, desc.value);
-            if (desc.writable == false) {
-                // read only property
-                d.value = desc.value;
-                d.writable = false;
-            } else {
-                // read/write property
-                var store = "_" + prop;
-                Object.defineProperty(this, store, {
-                                      'configurable': false,
-                                      'enumerable': false,
-                                      'value': desc.value,
-                                      'writable': true
-                                      });
-                d.get = function() { return this[store]; }
-                d.set = function(v) { this.invokeNative(name, v); this[store] = v; }
-            }
-        } else if (typeof(desc.get) === 'function'){
-            // accessor descriptor
-            this.invokeNative(name, desc.get());
-            d.get = desc.get
-            if (typeof(desc.set) === 'function') {
-                d.set = function(v) { desc.set(v); this.invokeNative(name, desc.get()); }
+
+    defineProperty: function(prop, value, writable) {
+        var desc = {
+            'configurable': false,
+            'enumerable': true,
+            'get': function() { return this.properties[prop]; }
+        }
+        if (writable) {
+            desc.set = function(v) {
+                this.invokeNative('.' + prop, v);
+                this.properties[prop] = v;
             }
         }
-        Object.defineProperty(this, prop, d);
+        this.properties[prop] = value;
+        Object.defineProperty(this, prop, desc);
     },
     aggregate: function(constructor, args) {
         var ctor = constructor;
-        if (typeof(ctor) === 'string')
+        if (typeof(ctor) === 'string' || ctor instanceof String)
             ctor = Extension[ctor];
-        if (typeof(ctor) != 'function' || typeof(ctor.prototype) != 'object')
+        if (!(ctor instanceof Function) || !(ctor.prototype instanceof Object))
             return;
         function clone(obj) {
             var copy = {};
@@ -149,7 +193,7 @@ Extension.EventTarget.prototype = {
         if (!list)  return;
         for (var i = 0; i < list.length; ++i) {
             var func = list[i];
-            if (typeof(func) != 'function')
+            if (!(func instanceof Function))
                 func = func.handleEvent;
             func(event);
         }

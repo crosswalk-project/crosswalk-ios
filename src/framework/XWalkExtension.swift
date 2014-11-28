@@ -11,7 +11,6 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
     public final var namespace: String!
     public final var id: Int = 0
     internal weak var webView: WKWebView?
-    private var properties: Dictionary<String, AnyObject> = [:]
 
     public init(name: String) {
         super.init()
@@ -27,18 +26,64 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
     }
 
     public var jsAPIStub: String {
+        var jsapi: String = ""
+
+        // Generate JavaScript through introspection
+        for var mlist = class_copyMethodList(self.dynamicType, nil); mlist.memory != nil; mlist = mlist.successor() {
+            let method:String = NSStringFromSelector(method_getName(mlist.memory))
+            if method.hasPrefix("jsfunc_") && method.hasSuffix(":") {
+                var args = method.componentsSeparatedByString(":")
+                let name = args.first!.substringFromIndex(advance(method.startIndex, 7))
+                args.removeAtIndex(0)
+                args.removeLast()
+
+                var stub = "this.invokeNative(\"\(name)\", ["
+                var isPromise = false
+                for a in args {
+                    if a != "_Promise" {
+                        stub += "\n        {'\(a)': \(a)},"
+                    } else {
+                        assert(!isPromise)
+                        isPromise = true
+                        stub += "\n        {'\(a)': [resolve, reject]},"
+                    }
+                }
+                if args.count > 0 {
+                    stub.removeAtIndex(stub.endIndex.predecessor())
+                }
+                stub += "\n    ]);"
+                if isPromise {
+                    stub = "\n    ".join(stub.componentsSeparatedByString("\n"))
+                    stub = "var _this = this;\n    return new Promise(function(resolve, reject) {\n        _" + stub + "\n    });"
+                }
+                stub = "exports.\(name) = function(" + ", ".join(args) + ") {\n    \(stub)\n}"
+                println(stub)
+                jsapi += "\(stub)\n"
+            } else if method.hasPrefix("jsprop_") && !method.hasSuffix(":") {
+                let name = method.substringFromIndex(advance(method.startIndex, 7))
+                let writable = self.dynamicType.instancesRespondToSelector(NSSelectorFromString("setJsprop_\(name):"))
+                var val: AnyObject = Invocation.call(self, method: method_getName(mlist.memory), arguments: nil)
+                if val.isKindOfClass(NSString.classForCoder()) {
+                    val = NSString(format: "'\(val as String)'")
+                }
+                jsapi += "exports.defineProperty('\(name)', \(JSON(val).rawString()!), \(writable));\n"
+            }
+            //println("Method : \(method), \(NSString(UTF8String: method_getTypeEncoding(mlist.memory))!)")
+        }
+
+        // Append the content of file if exist.
         let bundle : NSBundle = NSBundle(forClass: self.dynamicType)
         if let path = bundle.pathForResource(name, ofType: "js") {
             if let file = NSFileHandle(forReadingAtPath: path) {
-                if let api = NSString(data: file.readDataToEndOfFile(), encoding: NSUTF8StringEncoding) {
-                    return api
+                if let txt = NSString(data: file.readDataToEndOfFile(), encoding: NSUTF8StringEncoding) {
+                    jsapi += txt
+                } else {
+                    println("ERROR: Encoding of file '\(name).js' must be UTF-8")
                 }
             }
-            println("ERROR: Can't read stub file '\(name).js'")
-        } else {
-            println("ERROR: Stub file '\(name).js' not found")
         }
-        return ""
+
+        return jsapi
     }
 
     public func attach(webView: WKWebView, namespace: String? = nil) {
@@ -47,9 +92,9 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
         self.namespace = namespace ?? name
 
         // Inject JavaScript API
-        let code = "(function(exports) {" +
-            "   'use strict';" +
-            "    \(jsAPIStub)" +
+        let code = "(function(exports) {\n\n" +
+            "'use strict';\n" +
+            "\(jsAPIStub)\n\n" +
             "})(Extension.create(\(id), '\(self.namespace)'));"
         let script = WKUserScript(
             source: code,
@@ -84,46 +129,48 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
         let body = message.body as [String: AnyObject]
         if let method = body["method"] as? String {
             // Method call
-            let args = body["arguments"] as? [[String: AnyObject]]
-            if args?.filter({$0 == [:]}).count > 0 {
-                // WKWebKit can't handle undefined type well
-                println("ERROR: parameters contain undefined value")
-                return
+            if var args = body["arguments"] as? [[String: AnyObject]] {
+                if args.filter({$0 == [:]}).count > 0 {
+                    // WKWebKit can't handle undefined type well
+                    println("ERROR: parameters contain undefined value")
+                    return
+                }
+                args = Array<[String: AnyObject]>(args)
+                args.insert(["id": body["callid"]!], atIndex: 0)
+                let inv = Invocation(method: "jsfunc_" + method, arguments: args)
+                if inv.call(self) == nil {
+                    invokeJavaScript(".releaseArguments", arguments: [body["callid"]!])
+                }
             }
-            let inv = Invocation(method: "js_" + method, arguments: args)
-            inv.call(self)
         } else if let prop = body["property"] as? String {
             // Property setting
-            let newValue: AnyObject? = body["value"]
-            let oldValue: AnyObject? = properties["prop"]
-            willSetProperty(prop, newValue: newValue)
-            if newValue != nil {
-                properties.updateValue(newValue!, forKey: prop)
-            } else {
-                properties.removeValueForKey(prop)
-            }
-            didSetProperty(prop, oldValue: oldValue)
+            var args = [ ["val": body["value"]!] ]
+            let inv = Invocation(method: "setJsprop_\(prop)", arguments: args)
+            inv.call(self)
         } else {
             // TODO: support user defined message?
             println("ERROR: Unknown message: \(body)")
         }
     }
 
-    public func invokeCallback(callID: Int32, key: String?, arguments: [AnyObject]?) {
-        var arg : [AnyObject] = [ NSNumber(int: callID), key ?? NSNull(), arguments ?? [] ]
-        invokeJavaScript(".invokeCallback", arguments: arg)
+    public func invokeCallback(id: UInt32, key: String? = nil, arguments: [AnyObject] = []) {
+        let args = NSArray(array: [NSNumber(unsignedInt: id), key ?? NSNull(), arguments])
+        invokeJavaScript(".invokeCallback", arguments: args)
     }
-
+    public func invokeCallback(id: UInt32, index: UInt32, arguments: [AnyObject] = []) {
+        let args = NSArray(array: [NSNumber(unsignedInt: id), NSNumber(unsignedInt: index), arguments])
+        invokeJavaScript(".invokeCallback", arguments: args)
+    }
     public func invokeJavaScript(function: String, arguments: [AnyObject] = []) {
-        var f: String = function
+        var f = function
+        var this = "null"
         if f[f.startIndex] == "." {
             // Invoke a method of this object
             f = namespace + function
+            this = namespace
         }
         if let json = JSON(arguments).rawString() {
-            // Remove the top level brackets
-            let a = json[Range<String.Index>(start: json.startIndex.successor(), end: json.endIndex.predecessor())]
-            evaluate("\(f)(\(a));")
+            evaluate("\(f).apply(\(this), \(json));")
         } else {
             println("ERROR: Invalid argument list: \(arguments)")
         }
@@ -131,23 +178,19 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
 
     public subscript(name: String) -> AnyObject? {
         get {
-            return properties[name]
+            let inv = Invocation(method: "jsprop_\(name)", arguments: nil)
+            return inv.call(self)
         }
         set(value) {
-            let val: AnyObject = value ?? NSNull()
-            //properties.updateValue(val, forKey: name)
+            var val: AnyObject = value ?? NSNull()
+            if val.isKindOfClass(NSString.classForCoder()) {
+                val = NSString(format: "'\(val as String)'")
+            }
             let json = JSON(val).rawString()!
-            let cmd = "\(namespace).\(name) = \(json); \(namespace).\(name);"
-            evaluate(cmd, success: { (obj)->Void in
-                self.properties.updateValue(obj, forKey: name)
-                return
-            })
+            let cmd = "\(namespace).\(name) = \(json);"
+            evaluate(cmd)
+            // Native property updating will be triggered by JavaScrpt property setter.
         }
-    }
-    // Override if you want to monitor changing of properies.
-    public func willSetProperty(name: String, newValue: AnyObject?) {
-    }
-    public func didSetProperty(name: String, oldValue: AnyObject?) {
     }
 
     public override func doesNotRecognizeSelector(aSelector: Selector) {
@@ -168,7 +211,7 @@ extension XWalkExtension {
     }
     public func evaluate(string: String, success: ((AnyObject!)->Void)?) {
         evaluate(string, completionHandler: { (obj, err) -> Void in
-            err == nil ? success?(obj) : println("ERROR: Failed to execute script, \(err)")
+            err == nil ? success?(obj) : println("ERROR: Failed to execute script, \(err)\n------------\n\(string)\n------------")
             return    // To make compiler happy
         })
     }

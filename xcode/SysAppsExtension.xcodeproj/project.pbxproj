@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AB5D18DF1A01E52800AEC1EE /* xwalk.experimental.system.js in Resources */ = {isa = PBXBuildFile; fileRef = AB5D18DC1A01E52800AEC1EE /* xwalk.experimental.system.js */; };
 		AB5D18E01A01E52800AEC1EE /* SysAppsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5D18DD1A01E52800AEC1EE /* SysAppsExtension.swift */; };
 		AB5D18E11A01E52800AEC1EE /* sysinfo.c in Sources */ = {isa = PBXBuildFile; fileRef = AB5D18DE1A01E52800AEC1EE /* sysinfo.c */; };
 		AB5D18E91A021D1B00AEC1EE /* CrosswalkLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB5D18E81A021D1B00AEC1EE /* CrosswalkLite.framework */; };
@@ -15,7 +14,6 @@
 
 /* Begin PBXFileReference section */
 		AB5D18D71A01E3E800AEC1EE /* SysAppsExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SysAppsExtension.h; path = ../src/sysapps/extension/SysAppsExtension.h; sourceTree = "<group>"; };
-		AB5D18DC1A01E52800AEC1EE /* xwalk.experimental.system.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = xwalk.experimental.system.js; path = ../src/sysapps/extension/xwalk.experimental.system.js; sourceTree = "<group>"; };
 		AB5D18DD1A01E52800AEC1EE /* SysAppsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SysAppsExtension.swift; path = ../src/sysapps/extension/SysAppsExtension.swift; sourceTree = "<group>"; };
 		AB5D18DE1A01E52800AEC1EE /* sysinfo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sysinfo.c; path = ../src/sysapps/extension/sysinfo.c; sourceTree = "<group>"; };
 		AB5D18E41A01ED1100AEC1EE /* SysAppsExt-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SysAppsExt-Bridging-Header.h"; path = "../src/sysapps/extension/SysAppsExt-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
@@ -41,7 +39,6 @@
 			children = (
 				AB5D18E81A021D1B00AEC1EE /* CrosswalkLite.framework */,
 				AB5D18E41A01ED1100AEC1EE /* SysAppsExt-Bridging-Header.h */,
-				AB5D18DC1A01E52800AEC1EE /* xwalk.experimental.system.js */,
 				AB5D18DD1A01E52800AEC1EE /* SysAppsExtension.swift */,
 				AB5D18DE1A01E52800AEC1EE /* sysinfo.c */,
 				AB5D18D71A01E3E800AEC1EE /* SysAppsExtension.h */,
@@ -134,7 +131,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB5D18DF1A01E52800AEC1EE /* xwalk.experimental.system.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

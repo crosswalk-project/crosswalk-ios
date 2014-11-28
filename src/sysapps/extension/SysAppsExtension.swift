@@ -4,62 +4,52 @@
 
 import UIKit
 import CrosswalkLite
-import WebKit
 
 func getDiskSpace() -> (totalSpace:Int, totalFreeSpace:Int) {
     var totalSpace: Int = 0
     var totalFreeSpace: Int = 0
     var error: NSError?
-    var paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+    let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
     if let dictionary = NSFileManager.defaultManager().attributesOfFileSystemForPath(paths.last as String, error: &error) {
-        var fileSystemSizeInBytes = dictionary[NSFileSystemSize] as? NSNumber
-        var freeFileSystemSizeInBytes = dictionary[NSFileSystemFreeSize] as? NSNumber
+        let fileSystemSizeInBytes = dictionary[NSFileSystemSize] as? NSNumber
+        let freeFileSystemSizeInBytes = dictionary[NSFileSystemFreeSize] as? NSNumber
         totalSpace = fileSystemSizeInBytes!.integerValue
         totalFreeSpace = freeFileSystemSizeInBytes!.integerValue
     }
     return (totalSpace, totalFreeSpace)
 }
 
-public class SysAppsExtension: XWalkExtension {
-    public func js_getCPUInfo(asyncCallId: NSNumber, callback: NSNumber) {
-        var processInfo = NSProcessInfo.processInfo()
-        var data: Dictionary<String, AnyObject> = [
+class SysAppsExtension: XWalkExtension {
+    func jsfunc_getCPUInfo(cid: NSNumber, _Promise: NSNumber) {
+        let processInfo = NSProcessInfo.processInfo()
+        let data: Dictionary<String, AnyObject> = [
             "archName" : processInfo.operatingSystemVersionString,
             "numOfProcessors" : processInfo.processorCount,
             "load" : Double(sysinfoCpuUsage()) / 100
         ]
-        sendMessageToJS(asyncCallId, message: data, callback: callback)
+        invokeCallback(_Promise.unsignedIntValue, index: 0, arguments: [data])
     }
-
-    public func js_getMemoryInfo(asyncCallId: NSNumber, callback: NSNumber) {
-        var data = [
+    func jsfunc_getMemoryInfo(cid: NSNumber, _Promise: NSNumber) {
+        let data = [
             "capacity" : Int(NSProcessInfo.processInfo().physicalMemory),
             "availCapacity" : sysinfoFreeMemory()
         ]
-        sendMessageToJS(asyncCallId, message: data, callback: callback)
+        invokeCallback(_Promise.unsignedIntValue, index: 0, arguments: [data])
     }
 
-    public func js_getStorageInfo(asyncCallId: NSNumber, callback: NSNumber) {
-        var (totalSpace, freeSpace) = getDiskSpace()
-        var data = [ "storages" : [
+    func jsfunc_getStorageInfo(cid: NSNumber, _Promise: NSNumber) {
+        let (totalSpace, freeSpace) = getDiskSpace()
+        let data = [ "storages" : [
             ["name":"localDisk", "id":0, "type":"HSFX", "capacity":totalSpace, "availCapacity":freeSpace]
         ]]
-        sendMessageToJS(asyncCallId, message: data, callback: callback)
+        invokeCallback(_Promise.unsignedIntValue, index: 0, arguments: [data])
     }
 
-    public func js_getDisplayInfo(asyncCallId: NSNumber, callback: NSNumber) {
-        var screenBounds = UIScreen.mainScreen().bounds
-        var data = [ "displays" : [
+    func jsfunc_getDisplayInfo(cid: NSNumber, _Promise: NSNumber) {
+        let screenBounds = UIScreen.mainScreen().bounds
+        let data = [ "displays" : [
             ["name":"localDisplay", "id":0, "isPrimary":true, "isInternal":true, "availWidth":screenBounds.size.width * 2, "availHeight":screenBounds.size.height * 2]
         ]]
-        sendMessageToJS(asyncCallId, message: data, callback: callback)
-    }
-
-    func sendMessageToJS(asyncCallId: NSNumber, message: Dictionary<String, AnyObject>, callback: NSNumber) {
-        var dictionary = [
-            "asyncCallId" : asyncCallId,
-            "data" : message
-        ]
-        invokeCallback(callback.intValue, key: nil, arguments: [dictionary])
+        invokeCallback(_Promise.unsignedIntValue, index: 0, arguments: [data])
     }
 }

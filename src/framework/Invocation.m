@@ -22,20 +22,20 @@
     return self;
 }
 
-- (void)call:(id)target {
-    [Invocation call:target method:method arguments:arguments];
+- (id)call:(id)target {
+    return [Invocation call:target method:method arguments:arguments];
 }
 
-+ (void)call:(id)target method:(SEL)method arguments:(NSArray *)args {
++ (id)call:(id)target method:(SEL)method arguments:(NSArray *)args {
     NSMethodSignature *sig = [target methodSignatureForSelector:method];
     if (sig == nil) {
         [target doesNotRecognizeSelector:method];
-        return;
+        return nil;
     }
 
     NSInvocation *inv = [NSInvocation invocationWithMethodSignature:sig];
-    [inv setTarget:target];
     [inv setSelector:method];
+
     for(int i = 0; i < args.count; ++i) {
         NSDictionary *pair = [args objectAtIndex:i];
         NSObject* val = [pair.allValues objectAtIndex:0];
@@ -43,8 +43,14 @@
             val = nil;
         [inv setArgument:&val atIndex:(i + 2)];
     }
+    if (args.count)
     [inv retainArguments];
-    [inv invoke];
+
+    id result = nil;
+    [inv invokeWithTarget:target];
+    if (sizeof(id) == [sig methodReturnLength])
+        [inv getReturnValue:&result];
+    return result;
 }
 
 @end
