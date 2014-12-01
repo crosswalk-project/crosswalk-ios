@@ -19,8 +19,8 @@
 
 - (id)initWithMethod:(NSString *)method arguments:(NSArray *)arg;
 
-- (void)call:(id)target;
+- (id)call:(id)target;
 
-+ (void)call:(id)target method:(SEL)method arguments:(NSArray *)arg;
++ (id)call:(id)target method:(SEL)method arguments:(NSArray *)arg;
 
 @end

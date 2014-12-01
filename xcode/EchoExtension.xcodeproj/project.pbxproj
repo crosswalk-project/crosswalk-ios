@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		EE62692819FA53D000EFC3F8 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE62692719FA53D000EFC3F8 /* Info.plist */; };
-		EE62692C19FA53E500EFC3F8 /* xwalk.sample.echo.js in Resources */ = {isa = PBXBuildFile; fileRef = EE62692919FA53E500EFC3F8 /* xwalk.sample.echo.js */; };
 		EE62692D19FA53E500EFC3F8 /* EchoExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE62692A19FA53E500EFC3F8 /* EchoExtension.swift */; };
 		EE62694119FA551800EFC3F8 /* CrosswalkLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE62694019FA551800EFC3F8 /* CrosswalkLite.framework */; };
 /* End PBXBuildFile section */
@@ -16,7 +15,6 @@
 /* Begin PBXFileReference section */
 		EE62688519FA45FE00EFC3F8 /* EchoExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EchoExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE62692719FA53D000EFC3F8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = src/echo/extension/Info.plist; sourceTree = "<group>"; };
-		EE62692919FA53E500EFC3F8 /* xwalk.sample.echo.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = xwalk.sample.echo.js; path = src/echo/extension/xwalk.sample.echo.js; sourceTree = "<group>"; };
 		EE62692A19FA53E500EFC3F8 /* EchoExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EchoExtension.swift; path = src/echo/extension/EchoExtension.swift; sourceTree = "<group>"; };
 		EE62694019FA551800EFC3F8 /* CrosswalkLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrosswalkLite.framework; path = "build/Debug-iphoneos/CrosswalkLite.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -53,7 +51,6 @@
 		EE62688719FA45FE00EFC3F8 /* EchoExtension */ = {
 			isa = PBXGroup;
 			children = (
-				EE62692919FA53E500EFC3F8 /* xwalk.sample.echo.js */,
 				EE62692A19FA53E500EFC3F8 /* EchoExtension.swift */,
 				EE62688819FA45FE00EFC3F8 /* Supporting Files */,
 			);
@@ -137,7 +134,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE62692819FA53D000EFC3F8 /* Info.plist in Resources */,
-				EE62692C19FA53E500EFC3F8 /* xwalk.sample.echo.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

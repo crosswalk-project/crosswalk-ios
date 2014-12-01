@@ -4,33 +4,13 @@
 
 import Foundation
 
-private let api: String = "" +
-    "exports.load = function(name, namespace) {" +
-    "    var loader = this;" +
-    "    return new Promise(function(resolve, reject) {" +
-    "        var callID = loader.addCallback({" +
-    "                'resolve': resolve," +
-    "                'reject': reject" +
-    "        });" +
-    "        loader.invokeNative('load', [" +
-    "                {'name': name}," +
-    "                {'namespace': namespace? namespace: null}," +
-    "                {'callback': callID}" +
-    "        ]);" +
-    "    });" +
-    "}"
-
 class XWalkExtensionLoader: XWalkExtension {
-    override var jsAPIStub : String {
-        return api
-    }
-
-    func js_load(name: String, namespace: String?, callback: NSNumber) {
+    func jsfunc_load(cid: NSNumber, name: String, namespace: String?, _Promise: NSNumber) {
         if let ext = XWalkExtensionFactory.singleton.createExtension(name) {
             ext.attach(super.webView!, namespace: namespace)
-            invokeCallback(callback.intValue, key: "resolve", arguments: nil)
+            invokeCallback(_Promise.unsignedIntValue, index: 0)
         } else {
-            invokeCallback(callback.intValue, key: "reject", arguments: nil)
+            invokeCallback(_Promise.unsignedIntValue, index: 1)
         }
     }
 }
