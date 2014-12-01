@@ -20,36 +20,40 @@ func getDiskSpace() -> (totalSpace:Int, totalFreeSpace:Int) {
 }
 
 class SysAppsExtension: XWalkExtension {
-    func jsfunc_getCPUInfo(cid: NSNumber, _Promise: NSNumber) {
+    func jsfunc_getCPUInfo(cid: UInt32, _Promise: UInt32) -> Bool {
         let processInfo = NSProcessInfo.processInfo()
         let data: Dictionary<String, AnyObject> = [
             "archName" : processInfo.operatingSystemVersionString,
             "numOfProcessors" : processInfo.processorCount,
             "load" : Double(sysinfoCpuUsage()) / 100
         ]
-        invokeCallback(_Promise.unsignedIntValue, index: 0, arguments: [data])
+        invokeCallback(_Promise, index: 0, arguments: [data])
+        return true
     }
-    func jsfunc_getMemoryInfo(cid: NSNumber, _Promise: NSNumber) {
+    func jsfunc_getMemoryInfo(cid: UInt32, _Promise: UInt32) -> Bool {
         let data = [
             "capacity" : Int(NSProcessInfo.processInfo().physicalMemory),
             "availCapacity" : sysinfoFreeMemory()
         ]
-        invokeCallback(_Promise.unsignedIntValue, index: 0, arguments: [data])
+        invokeCallback(_Promise, index: 0, arguments: [data])
+        return true
     }
 
-    func jsfunc_getStorageInfo(cid: NSNumber, _Promise: NSNumber) {
+    func jsfunc_getStorageInfo(cid: UInt32, _Promise: UInt32) -> Bool {
         let (totalSpace, freeSpace) = getDiskSpace()
         let data = [ "storages" : [
             ["name":"localDisk", "id":0, "type":"HSFX", "capacity":totalSpace, "availCapacity":freeSpace]
         ]]
-        invokeCallback(_Promise.unsignedIntValue, index: 0, arguments: [data])
+        invokeCallback(_Promise, index: 0, arguments: [data])
+        return true
     }
 
-    func jsfunc_getDisplayInfo(cid: NSNumber, _Promise: NSNumber) {
+    func jsfunc_getDisplayInfo(cid: UInt32, _Promise: UInt32) -> Bool {
         let screenBounds = UIScreen.mainScreen().bounds
         let data = [ "displays" : [
             ["name":"localDisplay", "id":0, "isPrimary":true, "isInternal":true, "availWidth":screenBounds.size.width * 2, "availHeight":screenBounds.size.height * 2]
         ]]
-        invokeCallback(_Promise.unsignedIntValue, index: 0, arguments: [data])
+        invokeCallback(_Promise, index: 0, arguments: [data])
+        return true
     }
 }
