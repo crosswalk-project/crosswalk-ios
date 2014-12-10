@@ -5,8 +5,8 @@
 import Foundation
 
 class XWalkExtensionLoader: XWalkExtension {
-    func jsfunc_load(cid: UInt32, name: String, namespace: String?, _Promise: UInt32) -> Bool {
-        if let ext = XWalkExtensionFactory.singleton.createExtension(name) {
+    func jsfunc_load(cid: UInt32, name: String, namespace: String?, parameter: AnyObject?, _Promise: UInt32) -> Bool {
+        if let ext = XWalkExtensionFactory.singleton.createExtension(name, parameter: parameter) {
             ext.attach(super.webView!, namespace: namespace)
             invokeCallback(_Promise, index: 0)
         } else {

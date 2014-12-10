@@ -7,16 +7,27 @@
     <p>This is the echo demo</p>
     <p id="content" />
     <script>
-        try {
-            xwalk.sample.echo.prefix = "Echo from native: ";
-            xwalk.sample.echo.echo("Hello World!", function(msg) {
-                document.title = "Pass";
-                document.getElementById("content").innerHTML = msg;
-            })
-        } catch(e) {
-            document.title = "Fail";
-            document.getElementById("content").innerHTML = e;
-        }
+
+    var resolve = function() {
+        echo.prefix = 'Echo from native: ';
+        echo.echo('Hello World!', function(msg) {
+                document.title = 'Pass';
+                document.getElementById('content').innerHTML = msg;
+        })
+    }
+    var reject = function() {
+        document.title = 'Fail';
+        document.getElementById('content').innerHTML = 'Fail';
+    }
+    if (typeof(echo) === 'object') {
+        // EchoExtension has loaded
+        resolve();
+    } else if (typeof(Extension) === 'function' && Extension["loader"]) {
+        // Load now
+        Extension.loader.load('xwalk.sample.echo', 'echo', 'Native: ').then(resolve, reject);
+    } else {
+        reject();
+    }
     </script>
 </body>
 </html>

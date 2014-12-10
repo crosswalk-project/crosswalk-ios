@@ -7,16 +7,9 @@ import WebKit
 import SwiftyJSON
 
 public class XWalkExtension: NSObject, WKScriptMessageHandler {
-    public final let name: String!
-    public final var namespace: String!
+    public final var namespace: String = ""
     public final var id: Int = 0
     internal weak var webView: WKWebView?
-
-    public init(name: String) {
-        super.init()
-        self.name = name
-        namespace = name
-    }
 
     private var seqenceNumber : Int {
         struct seq{
@@ -69,14 +62,16 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
             }
         }
 
-        // Append the content of file if exist.
+        // Append the content of stub file if exist.
         let bundle : NSBundle = NSBundle(forClass: self.dynamicType)
-        if let path = bundle.pathForResource(name, ofType: "js") {
+        var fileName = NSStringFromClass(self.dynamicType)
+        fileName = fileName.pathExtension.isEmpty ? fileName : fileName.pathExtension
+        if let path = bundle.pathForResource(fileName, ofType: "js") {
             if let file = NSFileHandle(forReadingAtPath: path) {
                 if let txt = NSString(data: file.readDataToEndOfFile(), encoding: NSUTF8StringEncoding) {
                     jsapi += txt
                 } else {
-                    println("ERROR: Encoding of file '\(name).js' must be UTF-8")
+                    NSException(name: "EncodingError", reason: "The encoding of .js file must be UTF-8.", userInfo: nil).raise()
                 }
             }
         }
@@ -85,28 +80,26 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
     }
 
     public func attach(webView: WKWebView, namespace: String? = nil) {
-        let controller = webView.configuration.userContentController
+        if namespace != nil && !namespace!.isEmpty {
+            self.namespace = namespace!
+        } else if let defaultNamespace = XWalkExtensionFactory.singleton.getNameByClass(self.dynamicType) {
+            self.namespace = defaultNamespace
+        } else {
+            NSException(name: "NoNamespace", reason: "JavaScript namespace is undetermined.", userInfo: nil).raise()
+        }
+        self.webView = webView
+
+        // Establish the message channel
         id = seqenceNumber
-        self.namespace = namespace ?? name
+        webView.MakeExtensible()
+        webView.configuration.userContentController.addScriptMessageHandler(self, name: "\(id)")
 
         // Inject JavaScript API
         let code = "(function(exports) {\n\n" +
             "'use strict';\n" +
             "\(jsAPIStub)\n\n" +
             "})(Extension.create(\(id), '\(self.namespace)'));"
-        let script = WKUserScript(
-            source: code,
-            injectionTime: WKUserScriptInjectionTime.AtDocumentStart,
-            forMainFrameOnly: false)
-        controller.addUserScript(script)
-
-        // Register message handler
-        controller.addScriptMessageHandler(self, name: "\(id)")
-
-        self.webView = webView
-        if webView.URL != nil {
-            evaluate(code)
-        }
+        webView.injectScript(code)
     }
 
     public func detach() {
@@ -146,7 +139,7 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
                             invokeJavaScript(".releaseArguments", arguments: [body["callid"]!])
                         }
                     } else {
-                        NSException(name: "WrongType", reason: "The return value of native method must be BOOL type.", userInfo: nil).raise()
+                        NSException(name: "TypeError", reason: "The return value of native method must be BOOL type.", userInfo: nil).raise()
                     }
                 }
             }
@@ -191,10 +184,10 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
                 if let obj: AnyObject = result.object ?? result.number {
                     return obj
                 } else {
-                    NSException(name: "WrongType", reason: "Unknown return type of property's getter.", userInfo: nil).raise()
+                    NSException(name: "TypeError", reason: "Unknown return type of property's getter.", userInfo: nil).raise()
                 }
             } else {
-                NSException(name: "ProperyNotFound", reason: "Property is not defined on native side.", userInfo: nil).raise()
+                NSException(name: "NoSuchPropery", reason: "Property is not defined on native side.", userInfo: nil).raise()
             }
             return nil
         }
@@ -213,7 +206,7 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
     public override func doesNotRecognizeSelector(aSelector: Selector) {
         // TODO: throw an exception to JavaScript context
         let method = NSStringFromSelector(aSelector)
-        println("Error: Method '\(method)' not found in extension '\(name)'")
+        println("ERROR: Native method '\(method)' not found in extension '\(namespace)'")
     }
 }
 

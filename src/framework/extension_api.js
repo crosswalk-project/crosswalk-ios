@@ -91,7 +91,9 @@ Extension.prototype = {
             var key = Object.getOwnPropertyNames(pair);
             if (key.length != 1)  return;
             key = key[0];
-            if (!isSerializable(pair[key])) {
+            if (pair[key] == undefined) {
+                pair[key] = null
+            } else if (!isSerializable(pair[key])) {
                 call[vid] = pair[key];
                 pair[key] = objectRef(cid, vid);
             }
