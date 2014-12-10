@@ -5,12 +5,13 @@
 import Foundation
 
 class XWalkExtensionLoader: XWalkExtension {
-    func jsfunc_load(cid: NSNumber, name: String, namespace: String?, _Promise: NSNumber) {
+    func jsfunc_load(cid: UInt32, name: String, namespace: String?, _Promise: UInt32) -> Bool {
         if let ext = XWalkExtensionFactory.singleton.createExtension(name) {
             ext.attach(super.webView!, namespace: namespace)
-            invokeCallback(_Promise.unsignedIntValue, index: 0)
+            invokeCallback(_Promise, index: 0)
         } else {
-            invokeCallback(_Promise.unsignedIntValue, index: 1)
+            invokeCallback(_Promise, index: 1)
         }
+        return true
     }
 }

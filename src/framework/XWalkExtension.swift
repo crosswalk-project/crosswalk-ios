@@ -57,18 +57,16 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
                     stub = "var _this = this;\n    return new Promise(function(resolve, reject) {\n        _" + stub + "\n    });"
                 }
                 stub = "exports.\(name) = function(" + ", ".join(args) + ") {\n    \(stub)\n}"
-                println(stub)
                 jsapi += "\(stub)\n"
             } else if method.hasPrefix("jsprop_") && !method.hasSuffix(":") {
                 let name = method.substringFromIndex(advance(method.startIndex, 7))
                 let writable = self.dynamicType.instancesRespondToSelector(NSSelectorFromString("setJsprop_\(name):"))
-                var val: AnyObject = Invocation.call(self, method: method_getName(mlist.memory), arguments: nil)
+                var val: AnyObject = self[name]!
                 if val.isKindOfClass(NSString.classForCoder()) {
                     val = NSString(format: "'\(val as String)'")
                 }
                 jsapi += "exports.defineProperty('\(name)', \(JSON(val).rawString()!), \(writable));\n"
             }
-            //println("Method : \(method), \(NSString(UTF8String: method_getTypeEncoding(mlist.memory))!)")
         }
 
         // Append the content of file if exist.
@@ -129,23 +127,33 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
         let body = message.body as [String: AnyObject]
         if let method = body["method"] as? String {
             // Method call
-            if var args = body["arguments"] as? [[String: AnyObject]] {
+            if let args = body["arguments"] as? [[String: AnyObject]] {
                 if args.filter({$0 == [:]}).count > 0 {
                     // WKWebKit can't handle undefined type well
                     println("ERROR: parameters contain undefined value")
                     return
                 }
-                args = Array<[String: AnyObject]>(args)
-                args.insert(["id": body["callid"]!], atIndex: 0)
-                let inv = Invocation(method: "jsfunc_" + method, arguments: args)
-                if inv.call(self) == nil {
-                    invokeJavaScript(".releaseArguments", arguments: [body["callid"]!])
+                let inv = Invocation(name: "jsfunc_" + method)
+                inv.appendArgument("cid", value: body["callid"])
+                for a in args {
+                    for (k, v) in a {
+                        inv.appendArgument(k, value: v is NSNull ? nil : v)
+                    }
+                }
+                if let result = inv.call(self) {
+                    if result.isBool {
+                        if result.boolValue {
+                            invokeJavaScript(".releaseArguments", arguments: [body["callid"]!])
+                        }
+                    } else {
+                        NSException(name: "WrongType", reason: "The return value of native method must be BOOL type.", userInfo: nil).raise()
+                    }
                 }
             }
         } else if let prop = body["property"] as? String {
             // Property setting
-            var args = [ ["val": body["value"]!] ]
-            let inv = Invocation(method: "setJsprop_\(prop)", arguments: args)
+            let inv = Invocation(name: "setJsprop_\(prop)")
+            inv.appendArgument("val", value: body["value"])
             inv.call(self)
         } else {
             // TODO: support user defined message?
@@ -178,8 +186,17 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
 
     public subscript(name: String) -> AnyObject? {
         get {
-            let inv = Invocation(method: "jsprop_\(name)", arguments: nil)
-            return inv.call(self)
+            let inv = Invocation(name: "jsprop_\(name)")
+            if let result = inv.call(self) {
+                if let obj: AnyObject = result.object ?? result.number {
+                    return obj
+                } else {
+                    NSException(name: "WrongType", reason: "Unknown return type of property's getter.", userInfo: nil).raise()
+                }
+            } else {
+                NSException(name: "ProperyNotFound", reason: "Property is not defined on native side.", userInfo: nil).raise()
+            }
+            return nil
         }
         set(value) {
             var val: AnyObject = value ?? NSNull()
@@ -194,6 +211,7 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
     }
 
     public override func doesNotRecognizeSelector(aSelector: Selector) {
+        // TODO: throw an exception to JavaScript context
         let method = NSStringFromSelector(aSelector)
         println("Error: Method '\(method)' not found in extension '\(name)'")
     }
