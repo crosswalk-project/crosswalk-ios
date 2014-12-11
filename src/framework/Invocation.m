@@ -12,39 +12,62 @@
 
 
 @implementation Invocation {
-    NSMutableString *name_;
+    NSString *name_;
+    NSMutableString *selector_;
     NSMutableArray *arguments_;
 }
 
 - (id)initWithName:(NSString *)name {
-    name_ = [NSMutableString stringWithString:name];
+    name_ = name;
+    selector_ = [NSMutableString stringWithString:name];
     arguments_ = [NSMutableArray new];
     return self;
 }
 
-- (id)initWithArguments:(NSString *)name arguments:(NSArray *)args {
-    name_ = [NSMutableString stringWithString:name];
-    arguments_ = [NSMutableArray new];
+- (id)initWithName:(NSString *)name arguments:(NSArray *)args {
+    self = [self initWithName:name];
     for (int i = 0; i < args.count; ++i) {
         NSDictionary *pair = [args objectAtIndex:i];
-        NSString *key = i ? [pair.allKeys objectAtIndex:0] : [NSString string];
-        [name_ appendFormat:@"%@:", key];
-        [arguments_ addObject:[pair.allValues objectAtIndex:0]];
+        NSString *key = [pair.allKeys objectAtIndex:0];
+        id value = [pair.allValues objectAtIndex:0];
+        [self appendArgument:key value:value];
     }
     return self;
 }
 
+// TODO: support of scalar type
 - (void)appendArgument:(NSString *)name value:(id)value {
-    if (arguments_.count)
-        [name_ appendFormat:@"%@:", name];
-    else
-        [name_ appendString:@":"];
+    if (!arguments_.count) {
+        if (name && name.length) {
+            unichar ch = toupper([name characterAtIndex:0]);
+            NSMutableString *str = [NSMutableString stringWithCharacters:&ch length:1];
+            [str appendString:[name substringFromIndex:1]];
+            [selector_ appendFormat:@"With%@:", str];
+        } else {
+            // first parameter without external name
+            [selector_ appendString:@":"];
+        }
+    } else if (name) {
+        // non-first parameter
+        [selector_ appendFormat:@"%@:", name];
+    } // else variadic parameter
     [arguments_ addObject:(value ?: NSNull.null)];
 }
 
+- (id)construct {
+    Class class = NSClassFromString(name_);
+    if (class == nil)  return nil;
+
+    NSRange range = { 0, name_.length };
+    [selector_ replaceCharactersInRange:range withString:@"init"];
+    SEL sel = NSSelectorFromString(selector_);
+    ReturnValue *result = [Invocation call:[class alloc] selector:sel arguments:arguments_];
+    return [result object];
+}
+
 - (ReturnValue *)call:(id)target {
-    SEL selector = NSSelectorFromString(name_);
-    return [Invocation call:target selector:selector arguments:arguments_];
+    SEL sel = NSSelectorFromString(selector_);
+    return [Invocation call:target selector:sel arguments:arguments_];
 }
 
 + (ReturnValue *)call:(id)target selector:(SEL)selector arguments:(NSArray *)args {
