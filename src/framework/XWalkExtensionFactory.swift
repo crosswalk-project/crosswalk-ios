@@ -19,7 +19,7 @@ public class XWalkExtensionFactory: NSObject {
 
     internal override init() {
         super.init()
-        register("Extension.loader",  className: "CrosswalkLite.XWalkExtensionLoader")
+        register("Extension.loader",  cls: XWalkExtensionLoader.self)
     }
     internal convenience init(path: String?) {
         self.init()
@@ -65,18 +65,18 @@ public class XWalkExtensionFactory: NSObject {
         return true
     }
 
-    public func register(name: String, className: String) -> Bool {
+    public func register(name: String, cls: AnyClass) -> Bool {
         if extensions[name] == nil {
-            if let cls: AnyClass = NSClassFromString(className) {
-                let bundle = NSBundle(forClass: cls.self)
-                extensions[name] = XWalkExtensionProvider(bundle: bundle, className: className)
-                return true
-            }
+            let bundle = NSBundle(forClass: cls)
+            var className = NSStringFromClass(cls)
+            className = className.pathExtension.isEmpty ? className : className.pathExtension
+            extensions[name] = XWalkExtensionProvider(bundle: bundle, className: className)
+            return true
         }
         return false
     }
 
-    public func createExtension(name: String) -> XWalkExtension? {
+    public func createExtension(name: String, parameter: AnyObject? = nil) -> XWalkExtension? {
         if let src = extensions[name] {
             // Load bundle
             if !src.bundle.loaded {
@@ -98,15 +98,29 @@ public class XWalkExtensionFactory: NSObject {
                 //return nil
             }
 
-            if let ext = ObjectFactory<XWalkExtension>.createInstance(
+            if parameter == nil {
+                if let ext = ObjectFactory<XWalkExtension>.createInstance(className: "\(className)") {
+                    return ext
+                }
+            } else if let ext = ObjectFactory<XWalkExtension>.createInstance(
                     className: "\(className)",
-                    initializer: "initWithName:",
-                    argument: name) {
+                    initializer: "initWithParam:",
+                    argument: parameter!) {
                 return ext
             }
             println("ERROR: Can't create extension '\(name)'")
         } else {
             println("ERROR: Extension '\(name)' not found")
+        }
+        return nil
+    }
+
+    internal func getNameByClass(cls: AnyClass) -> String? {
+        for (name, provider) in extensions {
+            let className = (provider.bundle.executablePath?.lastPathComponent)! + "." + provider.className
+            if cls === NSClassFromString(className) {
+                return name
+            }
         }
         return nil
     }

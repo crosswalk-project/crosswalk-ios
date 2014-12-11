@@ -15,6 +15,9 @@
 		EE62693619FA548E00EFC3F8 /* echo.html in Resources */ = {isa = PBXBuildFile; fileRef = EE62693219FA548E00EFC3F8 /* echo.html */; };
 		EE62693719FA548E00EFC3F8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE62693319FA548E00EFC3F8 /* Images.xcassets */; };
 		EE62693819FA548E00EFC3F8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE62693419FA548E00EFC3F8 /* ViewController.swift */; };
+		EE93F76F1A382B470091A508 /* CrosswalkLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE93F76D1A382B470091A508 /* CrosswalkLite.framework */; };
+		EE93F7701A382B470091A508 /* CrosswalkLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EE93F76D1A382B470091A508 /* CrosswalkLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EE93F7721A382B470091A508 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EE93F76E1A382B470091A508 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +27,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				EE93F7701A382B470091A508 /* CrosswalkLite.framework in Embed Frameworks */,
 				EE174E651A02375A00168D96 /* EchoExtension.framework in Embed Frameworks */,
+				EE93F7721A382B470091A508 /* SwiftyJSON.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -33,7 +38,6 @@
 
 /* Begin PBXFileReference section */
 		EE174E631A02375A00168D96 /* EchoExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EchoExtension.framework; path = "Build/Products/Debug-iphonesimulator/EchoExtension.framework"; sourceTree = "<group>"; };
-		EE174E711A0260A600168D96 /* CrosswalkLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrosswalkLite.framework; path = "build/Debug-iphoneos/CrosswalkLite.framework"; sourceTree = "<group>"; };
 		EE6268B319FA494000EFC3F8 /* EchoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EchoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE62692F19FA546B00EFC3F8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = src/echo/app/Info.plist; sourceTree = "<group>"; };
 		EE62693119FA548E00EFC3F8 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = src/echo/app/AppDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +46,8 @@
 		EE62693419FA548E00EFC3F8 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = src/echo/app/ViewController.swift; sourceTree = "<group>"; };
 		EE62693A19FA54AC00EFC3F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = src/echo/app/Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		EE62693C19FA54AC00EFC3F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = src/echo/app/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EE93F76D1A382B470091A508 /* CrosswalkLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrosswalkLite.framework; path = "Build/Products/Debug-iphonesimulator/CrosswalkLite.framework"; sourceTree = "<group>"; };
+		EE93F76E1A382B470091A508 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Build/Products/Debug-iphonesimulator/SwiftyJSON.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE93F76F1A382B470091A508 /* CrosswalkLite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,7 +65,8 @@
 		EE6268AA19FA494000EFC3F8 = {
 			isa = PBXGroup;
 			children = (
-				EE174E711A0260A600168D96 /* CrosswalkLite.framework */,
+				EE93F76D1A382B470091A508 /* CrosswalkLite.framework */,
+				EE93F76E1A382B470091A508 /* SwiftyJSON.framework */,
 				EE174E631A02375A00168D96 /* EchoExtension.framework */,
 				EE6268B519FA494000EFC3F8 /* EchoApp */,
 				EE6268B419FA494000EFC3F8 /* Products */,
