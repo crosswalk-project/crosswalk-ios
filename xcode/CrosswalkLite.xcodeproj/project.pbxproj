@@ -10,8 +10,6 @@
 		ABD5E6291A19F0F900EAD102 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE6268F019FA4FDE00EFC3F8 /* SwiftyJSON.framework */; };
 		EE174E451A01FDDE00168D96 /* XWalkExtensionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE174E441A01FDDE00168D96 /* XWalkExtensionFactory.swift */; };
 		EE174E781A0361CB00168D96 /* extension_api.js in Resources */ = {isa = PBXBuildFile; fileRef = EE174E771A0361CB00168D96 /* extension_api.js */; };
-		EE62691919FA52ED00EFC3F8 /* OBJCObjectFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = EE62691619FA52ED00EFC3F8 /* OBJCObjectFactory.m */; };
-		EE62691A19FA52ED00EFC3F8 /* ObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE62691719FA52ED00EFC3F8 /* ObjectFactory.swift */; };
 		EE62692419FA52FC00EFC3F8 /* Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = EE62691E19FA52FC00EFC3F8 /* Invocation.m */; };
 		EE62692519FA52FC00EFC3F8 /* XWalkExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE62691F19FA52FC00EFC3F8 /* XWalkExtension.swift */; };
 		EE62692619FA52FC00EFC3F8 /* XWalkWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE62692019FA52FC00EFC3F8 /* XWalkWebView.swift */; };
@@ -41,9 +39,6 @@
 		EE62683519FA323900EFC3F8 /* CrosswalkLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CrosswalkLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE6268EA19FA4FDE00EFC3F8 /* SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyJSON.xcodeproj; path = "../src/third-party/SwiftyJSON/SwiftyJSON.xcodeproj"; sourceTree = "<group>"; };
 		EE62691319FA52D100EFC3F8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = src/framework/Info.plist; sourceTree = "<group>"; };
-		EE62691519FA52ED00EFC3F8 /* OBJCObjectFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OBJCObjectFactory.h; path = "src/third-party/swift-factory/OBJCObjectFactory.h"; sourceTree = "<group>"; };
-		EE62691619FA52ED00EFC3F8 /* OBJCObjectFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OBJCObjectFactory.m; path = "src/third-party/swift-factory/OBJCObjectFactory.m"; sourceTree = "<group>"; };
-		EE62691719FA52ED00EFC3F8 /* ObjectFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ObjectFactory.swift; path = "src/third-party/swift-factory/ObjectFactory.swift"; sourceTree = "<group>"; };
 		EE62691B19FA52FC00EFC3F8 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "src/framework/Bridging-Header.h"; sourceTree = "<group>"; };
 		EE62691C19FA52FC00EFC3F8 /* CrosswalkLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CrosswalkLite.h; path = src/framework/CrosswalkLite.h; sourceTree = "<group>"; };
 		EE62691D19FA52FC00EFC3F8 /* Invocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Invocation.h; path = src/framework/Invocation.h; sourceTree = "<group>"; };
@@ -94,7 +89,6 @@
 				EE62692019FA52FC00EFC3F8 /* XWalkWebView.swift */,
 				EE174E441A01FDDE00168D96 /* XWalkExtensionFactory.swift */,
 				EE7886751A0D0CE30013A855 /* XWalkExtensionLoader.swift */,
-				EE62686119FA36AE00EFC3F8 /* swift-factory */,
 				EE62683819FA323900EFC3F8 /* Supporting Files */,
 			);
 			name = CrosswalkLite;
@@ -107,16 +101,6 @@
 				EE62691319FA52D100EFC3F8 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		EE62686119FA36AE00EFC3F8 /* swift-factory */ = {
-			isa = PBXGroup;
-			children = (
-				EE62691519FA52ED00EFC3F8 /* OBJCObjectFactory.h */,
-				EE62691619FA52ED00EFC3F8 /* OBJCObjectFactory.m */,
-				EE62691719FA52ED00EFC3F8 /* ObjectFactory.swift */,
-			);
-			name = "swift-factory";
 			sourceTree = "<group>";
 		};
 		EE6268EB19FA4FDE00EFC3F8 /* Products */ = {
@@ -229,11 +213,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE62691A19FA52ED00EFC3F8 /* ObjectFactory.swift in Sources */,
 				EE7886761A0D0CE30013A855 /* XWalkExtensionLoader.swift in Sources */,
 				EE174E451A01FDDE00168D96 /* XWalkExtensionFactory.swift in Sources */,
 				EE62692419FA52FC00EFC3F8 /* Invocation.m in Sources */,
-				EE62691919FA52ED00EFC3F8 /* OBJCObjectFactory.m in Sources */,
 				EE62692519FA52FC00EFC3F8 /* XWalkExtension.swift in Sources */,
 				EE62692619FA52FC00EFC3F8 /* XWalkWebView.swift in Sources */,
 			);

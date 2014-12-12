@@ -5,7 +5,6 @@
 #ifndef Bridging_Header_h
 #define Bridging_Header_h
 
-#import "../third-party/swift-factory/OBJCObjectFactory.h"
 #import "Invocation.h"
 
 #endif

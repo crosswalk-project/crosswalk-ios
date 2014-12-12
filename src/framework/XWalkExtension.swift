@@ -30,6 +30,13 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
                 args.removeAtIndex(0)
                 args.removeLast()
 
+                // deal with parameters without external name
+                for i in 0...args.count-1 {
+                    if args[i].isEmpty {
+                        args[i] = "__\(i)"
+                    }
+                }
+
                 var stub = "this.invokeNative(\"\(name)\", ["
                 var isPromise = false
                 for a in args {
@@ -127,10 +134,10 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
                     return
                 }
                 let inv = Invocation(name: "jsfunc_" + method)
-                inv.appendArgument("cid", value: body["callid"])
+                inv.appendArgument("", value: body["callid"])
                 for a in args {
                     for (k, v) in a {
-                        inv.appendArgument(k, value: v is NSNull ? nil : v)
+                        inv.appendArgument(k.hasPrefix("__") ? "" : k, value: v is NSNull ? nil : v)
                     }
                 }
                 if let result = inv.call(self) {
@@ -146,7 +153,7 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
         } else if let prop = body["property"] as? String {
             // Property setting
             let inv = Invocation(name: "setJsprop_\(prop)")
-            inv.appendArgument("val", value: body["value"])
+            inv.appendArgument("", value: body["value"])
             inv.call(self)
         } else {
             // TODO: support user defined message?

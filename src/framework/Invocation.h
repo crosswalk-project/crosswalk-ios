@@ -64,11 +64,12 @@
 @interface Invocation : NSObject
 
 - (id)initWithName:(NSString *)name;
-- (id)initWithArguments:(NSString *)name arguments:(NSArray *)arg;
+- (id)initWithName:(NSString *)name arguments:(NSArray *)arg;
 
 - (void)appendArgument:(NSString *)name value:(id)value;
 
 - (ReturnValue *)call:(id)target;
+- (id)construct;
 
 + (ReturnValue *)call:(id)target selector:(SEL)selector arguments:(NSArray *)arg;
 

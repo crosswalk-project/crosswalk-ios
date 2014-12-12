@@ -98,14 +98,11 @@ public class XWalkExtensionFactory: NSObject {
                 //return nil
             }
 
-            if parameter == nil {
-                if let ext = ObjectFactory<XWalkExtension>.createInstance(className: "\(className)") {
-                    return ext
-                }
-            } else if let ext = ObjectFactory<XWalkExtension>.createInstance(
-                    className: "\(className)",
-                    initializer: "initWithParam:",
-                    argument: parameter!) {
+            let inv = Invocation(name: className)
+            if parameter != nil {
+                inv.appendArgument("param", value: parameter!)
+            }
+            if let ext = inv.construct() as? XWalkExtension {
                 return ext
             }
             println("ERROR: Can't create extension '\(name)'")
