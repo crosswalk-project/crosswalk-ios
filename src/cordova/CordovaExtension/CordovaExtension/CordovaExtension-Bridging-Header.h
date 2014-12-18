@@ -7,5 +7,6 @@
 
 #import "CDVJSON.h"
 #import "CDVPlugin.h"
+#import "CDVPluginResult.h"
 
 #endif

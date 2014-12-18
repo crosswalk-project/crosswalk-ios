@@ -3,10 +3,46 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+        }
+    </style>
     <title>Cordova device API plugin demo</title>
 </head>
 <body>
     <p>This is the demo page for testing org.cordova.plugin.device.</p>
-    <p id="content"></p>
+    <table id='table' style='width:100%'>
+        <caption>Device Properties</caption>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+    </table>
+    <script>
+        document.addEventListener("deviceready", onDeviceReady, false);
+        function onDeviceReady() {
+            var table = document.getElementById('table');
+            for (var propName in device) {;
+                if (typeof(device[propName]) == 'function') {
+                    continue;
+                }
+                var row = document.createElement('tr');
+                var name = document.createElement('td');
+                var value = document.createElement('td');
+                name.innerHTML = propName;
+                value.innerHTML = device[propName];
+                row.appendChild(name);
+                row.appendChild(value);
+                table.appendChild(row);
+            }
+        }
+    </script>
 </body>
 </html>
