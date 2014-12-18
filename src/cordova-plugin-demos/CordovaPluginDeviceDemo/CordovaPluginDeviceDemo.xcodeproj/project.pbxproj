@@ -16,10 +16,8 @@
 		AB4CDD491A27001D000841F5 /* CordovaPluginDeviceDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4CDD481A27001D000841F5 /* CordovaPluginDeviceDemoTests.m */; };
 		AB4CDD551A2701D4000841F5 /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4CDD541A2701D4000841F5 /* CDVDevice.m */; };
 		AB9A76E21A3FD1C30039D8DC /* CordovaExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9A76DA1A3FD15E0039D8DC /* CordovaExtension.framework */; };
-		AB9A76E31A3FD1C30039D8DC /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9A76D81A3FD14A0039D8DC /* SwiftyJSON.framework */; };
 		AB9A76E41A3FD1C30039D8DC /* CrosswalkLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9A76D61A3FD1350039D8DC /* CrosswalkLite.framework */; };
 		AB9A76E51A3FD1C70039D8DC /* CordovaExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB9A76DA1A3FD15E0039D8DC /* CordovaExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AB9A76E61A3FD1C70039D8DC /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB9A76D81A3FD14A0039D8DC /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AB9A76E71A3FD1C70039D8DC /* CrosswalkLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB9A76D61A3FD1350039D8DC /* CrosswalkLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ABCAC35E1A359C89008C4501 /* www in Resources */ = {isa = PBXBuildFile; fileRef = ABCAC35D1A359C89008C4501 /* www */; };
 /* End PBXBuildFile section */
@@ -42,7 +40,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				AB9A76E51A3FD1C70039D8DC /* CordovaExtension.framework in Embed Frameworks */,
-				AB9A76E61A3FD1C70039D8DC /* SwiftyJSON.framework in Embed Frameworks */,
 				AB9A76E71A3FD1C70039D8DC /* CrosswalkLite.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -78,7 +75,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB9A76E21A3FD1C30039D8DC /* CordovaExtension.framework in Frameworks */,
-				AB9A76E31A3FD1C30039D8DC /* SwiftyJSON.framework in Frameworks */,
 				AB9A76E41A3FD1C30039D8DC /* CrosswalkLite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

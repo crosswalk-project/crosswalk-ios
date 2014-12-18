@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ABA6840E1A42C751003A71D9 /* json.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA6840D1A42C751003A71D9 /* json.swift */; };
 		ABD475E31A4129FC00F3BDEB /* Invocation.h in Headers */ = {isa = PBXBuildFile; fileRef = EE62691D19FA52FC00EFC3F8 /* Invocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ABD5E6291A19F0F900EAD102 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE6268F019FA4FDE00EFC3F8 /* SwiftyJSON.framework */; };
 		EE174E451A01FDDE00168D96 /* XWalkExtensionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE174E441A01FDDE00168D96 /* XWalkExtensionFactory.swift */; };
 		EE174E781A0361CB00168D96 /* extension_api.js in Resources */ = {isa = PBXBuildFile; fileRef = EE174E771A0361CB00168D96 /* extension_api.js */; };
 		EE62692419FA52FC00EFC3F8 /* Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = EE62691E19FA52FC00EFC3F8 /* Invocation.m */; };
@@ -17,28 +17,11 @@
 		EE7886761A0D0CE30013A855 /* XWalkExtensionLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7886751A0D0CE30013A855 /* XWalkExtensionLoader.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		EE6268EF19FA4FDE00EFC3F8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EE6268EA19FA4FDE00EFC3F8 /* SwiftyJSON.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2E4FEFDB19575BE100351305;
-			remoteInfo = SwiftyJSON;
-		};
-		EE6268F119FA4FDE00EFC3F8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EE6268EA19FA4FDE00EFC3F8 /* SwiftyJSON.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2E4FEFE619575BE100351305;
-			remoteInfo = SwiftyJSONTests;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		ABA6840D1A42C751003A71D9 /* json.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = json.swift; path = "src/third-party/swifty-json/json/json.swift"; sourceTree = "<group>"; };
 		EE174E441A01FDDE00168D96 /* XWalkExtensionFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkExtensionFactory.swift; path = src/framework/XWalkExtensionFactory.swift; sourceTree = "<group>"; };
 		EE174E771A0361CB00168D96 /* extension_api.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = extension_api.js; path = src/framework/extension_api.js; sourceTree = "<group>"; };
 		EE62683519FA323900EFC3F8 /* CrosswalkLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CrosswalkLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EE6268EA19FA4FDE00EFC3F8 /* SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyJSON.xcodeproj; path = "../src/third-party/SwiftyJSON/SwiftyJSON.xcodeproj"; sourceTree = "<group>"; };
 		EE62691319FA52D100EFC3F8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = src/framework/Info.plist; sourceTree = "<group>"; };
 		EE62691B19FA52FC00EFC3F8 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "src/framework/Bridging-Header.h"; sourceTree = "<group>"; };
 		EE62691C19FA52FC00EFC3F8 /* CrosswalkLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CrosswalkLite.h; path = src/framework/CrosswalkLite.h; sourceTree = "<group>"; };
@@ -54,18 +37,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABD5E6291A19F0F900EAD102 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ABA6840F1A42C759003A71D9 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				ABA6840D1A42C751003A71D9 /* json.swift */,
+			);
+			name = Utils;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		EE62682B19FA323900EFC3F8 = {
 			isa = PBXGroup;
 			children = (
-				EE6268EA19FA4FDE00EFC3F8 /* SwiftyJSON.xcodeproj */,
 				EE62683719FA323900EFC3F8 /* CrosswalkLite */,
+				ABA6840F1A42C759003A71D9 /* Utils */,
 				EE62683619FA323900EFC3F8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -102,15 +93,6 @@
 				EE62691319FA52D100EFC3F8 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		EE6268EB19FA4FDE00EFC3F8 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				EE6268F019FA4FDE00EFC3F8 /* SwiftyJSON.framework */,
-				EE6268F219FA4FDE00EFC3F8 /* SwiftyJSONTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,35 +151,12 @@
 			mainGroup = EE62682B19FA323900EFC3F8;
 			productRefGroup = EE62683619FA323900EFC3F8 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = EE6268EB19FA4FDE00EFC3F8 /* Products */;
-					ProjectRef = EE6268EA19FA4FDE00EFC3F8 /* SwiftyJSON.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				EE62683419FA323900EFC3F8 /* CrosswalkLite */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		EE6268F019FA4FDE00EFC3F8 /* SwiftyJSON.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SwiftyJSON.framework;
-			remoteRef = EE6268EF19FA4FDE00EFC3F8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		EE6268F219FA4FDE00EFC3F8 /* SwiftyJSONTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = SwiftyJSONTests.xctest;
-			remoteRef = EE6268F119FA4FDE00EFC3F8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		EE62683319FA323900EFC3F8 /* Resources */ = {
@@ -220,6 +179,7 @@
 				EE62692419FA52FC00EFC3F8 /* Invocation.m in Sources */,
 				EE62692519FA52FC00EFC3F8 /* XWalkExtension.swift in Sources */,
 				EE62692619FA52FC00EFC3F8 /* XWalkWebView.swift in Sources */,
+				ABA6840E1A42C751003A71D9 /* json.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

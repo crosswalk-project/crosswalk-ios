@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		ABD577811A1B0DE400E47402 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD577801A1B0DE400E47402 /* SwiftyJSON.framework */; };
-		ABD577821A1B0DE400E47402 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ABD577801A1B0DE400E47402 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ABD577841A1B0DE700E47402 /* CrosswalkLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD577831A1B0DE700E47402 /* CrosswalkLite.framework */; };
 		ABD577851A1B0DE700E47402 /* CrosswalkLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ABD577831A1B0DE700E47402 /* CrosswalkLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ABD577871A1B0DED00E47402 /* SysAppsExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD577861A1B0DED00E47402 /* SysAppsExtension.framework */; };
@@ -31,7 +29,6 @@
 			files = (
 				ABD577881A1B0DED00E47402 /* SysAppsExtension.framework in Embed Frameworks */,
 				ABD577851A1B0DE700E47402 /* CrosswalkLite.framework in Embed Frameworks */,
-				ABD577821A1B0DE400E47402 /* SwiftyJSON.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -40,7 +37,6 @@
 
 /* Begin PBXFileReference section */
 		AB603B9819EA58CB00DECF78 /* SysApps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SysApps.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		ABD577801A1B0DE400E47402 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = SwiftyJSON.framework; path = "/Users/jonathan/projects/crosswalk-ios/xcode/Build/Products/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<absolute>"; };
 		ABD577831A1B0DE700E47402 /* CrosswalkLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = CrosswalkLite.framework; path = "/Users/jonathan/projects/crosswalk-ios/xcode/Build/Products/Debug-iphoneos/CrosswalkLite.framework"; sourceTree = "<absolute>"; };
 		ABD577861A1B0DED00E47402 /* SysAppsExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = SysAppsExtension.framework; path = "/Users/jonathan/projects/crosswalk-ios/xcode/Build/Products/Debug-iphoneos/SysAppsExtension.framework"; sourceTree = "<absolute>"; };
 		ABE516A21A00ADDE0025A92E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../src/sysapps/app/AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,7 +55,6 @@
 			files = (
 				ABD577871A1B0DED00E47402 /* SysAppsExtension.framework in Frameworks */,
 				ABD577841A1B0DE700E47402 /* CrosswalkLite.framework in Frameworks */,
-				ABD577811A1B0DE400E47402 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,7 +98,6 @@
 			children = (
 				ABD577861A1B0DED00E47402 /* SysAppsExtension.framework */,
 				ABD577831A1B0DE700E47402 /* CrosswalkLite.framework */,
-				ABD577801A1B0DE400E47402 /* SwiftyJSON.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

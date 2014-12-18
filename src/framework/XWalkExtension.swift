@@ -4,7 +4,6 @@
 
 import Foundation
 import WebKit
-import SwiftyJSON
 
 public class XWalkExtension: NSObject, WKScriptMessageHandler {
     public final var namespace: String = ""
@@ -65,7 +64,7 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
                 if val.isKindOfClass(NSString.classForCoder()) {
                     val = NSString(format: "'\(val as String)'")
                 }
-                jsapi += "exports.defineProperty('\(name)', \(JSON(val).rawString()!), \(writable));\n"
+                jsapi += "exports.defineProperty('\(name)', \(JSON(val).toString()), \(writable));\n"
             }
         }
 
@@ -177,11 +176,7 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
             f = namespace + function
             this = namespace
         }
-        if let json = JSON(arguments).rawString() {
-            evaluate("\(f).apply(\(this), \(json));")
-        } else {
-            println("ERROR: Invalid argument list: \(arguments)")
-        }
+        evaluate("\(f).apply(\(this), \(JSON(arguments).toString()));")
     }
 
     public subscript(name: String) -> AnyObject? {
@@ -203,7 +198,7 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
             if val.isKindOfClass(NSString.classForCoder()) {
                 val = NSString(format: "'\(val as String)'")
             }
-            let json = JSON(val).rawString()!
+            let json = JSON(val).toString()
             let cmd = "\(namespace).\(name) = \(json);"
             evaluate(cmd)
             // Native property updating will be triggered by JavaScrpt property setter.

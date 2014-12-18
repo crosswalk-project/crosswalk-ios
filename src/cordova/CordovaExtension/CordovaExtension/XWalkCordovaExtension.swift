@@ -3,7 +3,6 @@
 // found in the LICENSE file.
 
 import CrosswalkLite
-import SwiftyJSON
 
 class XWalkCordovaExtension: XWalkExtension, CommandQueueDelegate, CDVCommandDelegate {
     var plugins: Dictionary<String, CDVPlugin> = [:]
