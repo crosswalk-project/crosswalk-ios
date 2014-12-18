@@ -19,6 +19,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CDVPluginResult.h"
+#import "CDVJSON.h"
 
 @interface CDVPluginResult ()
 
@@ -43,6 +44,18 @@
 + (CDVPluginResult*)resultWithStatus:(CDVCommandStatus)statusOrdinal messageAsDictionary:(NSDictionary*)theMessage
 {
     return [[self alloc] initWithStatus:statusOrdinal message:theMessage];
+}
+
+- (NSString*)argumentsAsJSON
+{
+    id arguments = (self.message == nil ? [NSNull null] : self.message);
+    NSArray* argumentsWrappedInArray = [NSArray arrayWithObject:arguments];
+
+    NSString* argumentsJSON = [argumentsWrappedInArray JSONString];
+
+    argumentsJSON = [argumentsJSON substringWithRange:NSMakeRange(1, [argumentsJSON length] - 2)];
+
+    return argumentsJSON;
 }
 
 @end

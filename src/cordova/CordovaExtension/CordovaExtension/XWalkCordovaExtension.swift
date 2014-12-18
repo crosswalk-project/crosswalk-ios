@@ -5,12 +5,12 @@
 import CrosswalkLite
 import SwiftyJSON
 
-class XWalkCordovaExtension: XWalkExtension, CommandQueueDelegate {
+class XWalkCordovaExtension: XWalkExtension, CommandQueueDelegate, CDVCommandDelegate {
     var plugins: Dictionary<String, CDVPlugin> = [:]
-    var commandQueue: CommandQueue
+    var commandQueue: CommandQueue = CommandQueue()
+    lazy var callbackIdPattern: NSRegularExpression = NSRegularExpression(pattern: "[^A-Za-z0-9._-]", options: NSRegularExpressionOptions.allZeros, error: nil)!
 
     override init() {
-        commandQueue = CommandQueue()
         super.init()
         commandQueue.delegate = self
         scanForPlugins()
@@ -31,6 +31,7 @@ class XWalkCordovaExtension: XWalkExtension, CommandQueueDelegate {
     }
 
     func registerPlugin(plugin: CDVPlugin, className: String) {
+        plugin.commandDelegate = self
         plugins[className.lowercaseString] = plugin
         plugin.pluginInitialize()
     }
@@ -44,6 +45,18 @@ class XWalkCordovaExtension: XWalkExtension, CommandQueueDelegate {
         return true
     }
 
+    func isValidCallbackId(callbackId: String) -> Bool {
+        let stringLength = countElements(callbackId)
+        // Disallow if too long or if any invalid characters were found.
+        if stringLength > 100 {
+            return false
+        } else if let i = callbackIdPattern.firstMatchInString(callbackId, options: NSMatchingOptions.allZeros, range: NSMakeRange(0, stringLength)) {
+            return false
+        }
+        return true
+    }
+
+/// CommandQueueDelegate Impl
     func getPluginInstance(className: String) -> CDVPlugin? {
         if let plugin = plugins[className.lowercaseString] {
             return plugin
@@ -51,5 +64,53 @@ class XWalkCordovaExtension: XWalkExtension, CommandQueueDelegate {
             println("Failed to find registered plugin by class name:\(className)")
         }
         return nil
+    }
+
+/// CDVCommandDelegate Impl
+    func pathForResource(resourcepath: String!) -> String! {
+        // TODO: (jondong) To be implemented when needed
+        return ""
+    }
+
+
+    func getCommandInstance(pluginName: String!) -> AnyObject! {
+        // TODO: (jondong) To be implemented when needed
+        return NSObject()
+    }
+
+    func sendPluginResult(result: CDVPluginResult!, callbackId: String!) {
+        if callbackId == "INVALID" {
+            return
+        }
+        if !self.isValidCallbackId(callbackId) {
+            println("Invalid callback id received by sendPluginResult")
+            return
+        }
+        var js = "cordova.require('cordova/exec').nativeCallback('\(callbackId)', \(result.status.intValue), \(result.argumentsAsJSON()), \(result.keepCallback.boolValue))"
+
+        self.evaluate(js)
+    }
+
+    func evalJs(js: String!) {
+        evalJs(js, scheduledOnRunLoop: true)
+    }
+
+    func evalJs(js: String!, scheduledOnRunLoop: Bool) {
+        var message = "cordova.require('cordova/exec').nativeEvalAndFetch(function(){\(js)})"
+        self.evaluate(message)
+    }
+
+    func runInBackground(block: (() -> Void)!) {
+        // TODO: (jondong) To be implemented when needed
+    }
+
+    func userAgent() -> String! {
+        // TODO: (jondong) To be implemented when needed
+        return ""
+    }
+
+    func URLIsWhitelisted(url: NSURL!) -> Bool {
+        // TODO: (jondong) To be implemented when needed
+        return true
     }
 }

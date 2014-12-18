@@ -41,4 +41,5 @@ typedef enum {
 
 + (CDVPluginResult*)resultWithStatus:(CDVCommandStatus)statusOrdinal messageAsDictionary:(NSDictionary*)theMessage;
 
+- (NSString*)argumentsAsJSON;
 @end
