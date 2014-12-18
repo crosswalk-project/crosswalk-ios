@@ -12,8 +12,6 @@
 		ABD5E6311A19F18300EAD102 /* CrosswalkLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ABD5E62A1A19F13900EAD102 /* CrosswalkLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ABD5E6331A19F18A00EAD102 /* PresentationExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD5E62C1A19F13D00EAD102 /* PresentationExtension.framework */; };
 		ABD5E6341A19F18A00EAD102 /* PresentationExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ABD5E62C1A19F13D00EAD102 /* PresentationExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		ABD5E6361A19F19100EAD102 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD5E6351A19F19100EAD102 /* SwiftyJSON.framework */; };
-		ABD5E6371A19F19100EAD102 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ABD5E6351A19F19100EAD102 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ABE1BDEA1A0B5322000B8102 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE1BDE91A0B5322000B8102 /* AppDelegate.swift */; };
 		ABE1BDEC1A0B5322000B8102 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE1BDEB1A0B5322000B8102 /* ViewController.swift */; };
 		ABE1BDEF1A0B5322000B8102 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABE1BDED1A0B5322000B8102 /* Main.storyboard */; };
@@ -31,7 +29,6 @@
 			files = (
 				ABD5E6341A19F18A00EAD102 /* PresentationExtension.framework in Embed Frameworks */,
 				ABD5E6311A19F18300EAD102 /* CrosswalkLite.framework in Embed Frameworks */,
-				ABD5E6371A19F19100EAD102 /* SwiftyJSON.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -44,7 +41,6 @@
 		406ADA713ED14AC10F49615D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABD5E62A1A19F13900EAD102 /* CrosswalkLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrosswalkLite.framework; path = "Build/Products/Debug-iphoneos/CrosswalkLite.framework"; sourceTree = "<group>"; };
 		ABD5E62C1A19F13D00EAD102 /* PresentationExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PresentationExtension.framework; path = "Build/Products/Debug-iphoneos/PresentationExtension.framework"; sourceTree = "<group>"; };
-		ABD5E6351A19F19100EAD102 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = SwiftyJSON.framework; path = "/Users/jonathan/projects/crosswalk-ios/src/hexgl/HexGLApp/Build/Products/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<absolute>"; };
 		ABE1BDE41A0B5322000B8102 /* HexGLApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HexGLApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABE1BDE81A0B5322000B8102 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABE1BDE91A0B5322000B8102 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -61,7 +57,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABD5E6361A19F19100EAD102 /* SwiftyJSON.framework in Frameworks */,
 				ABD5E6301A19F18300EAD102 /* CrosswalkLite.framework in Frameworks */,
 				ABD5E6331A19F18A00EAD102 /* PresentationExtension.framework in Frameworks */,
 				6FA24A34A89C70DDC824A65D /* libPods.a in Frameworks */,
@@ -74,7 +69,6 @@
 		4EBCD167630560F8DA280B37 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				ABD5E6351A19F19100EAD102 /* SwiftyJSON.framework */,
 				ABD5E62C1A19F13D00EAD102 /* PresentationExtension.framework */,
 				ABD5E62A1A19F13900EAD102 /* CrosswalkLite.framework */,
 				406ADA713ED14AC10F49615D /* libPods.a */,

@@ -17,7 +17,6 @@
 		EE62693819FA548E00EFC3F8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE62693419FA548E00EFC3F8 /* ViewController.swift */; };
 		EE93F76F1A382B470091A508 /* CrosswalkLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE93F76D1A382B470091A508 /* CrosswalkLite.framework */; };
 		EE93F7701A382B470091A508 /* CrosswalkLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EE93F76D1A382B470091A508 /* CrosswalkLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EE93F7721A382B470091A508 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EE93F76E1A382B470091A508 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,7 +28,6 @@
 			files = (
 				EE93F7701A382B470091A508 /* CrosswalkLite.framework in Embed Frameworks */,
 				EE174E651A02375A00168D96 /* EchoExtension.framework in Embed Frameworks */,
-				EE93F7721A382B470091A508 /* SwiftyJSON.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -47,7 +45,6 @@
 		EE62693A19FA54AC00EFC3F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = src/echo/app/Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		EE62693C19FA54AC00EFC3F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = src/echo/app/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EE93F76D1A382B470091A508 /* CrosswalkLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrosswalkLite.framework; path = "Build/Products/Debug-iphonesimulator/CrosswalkLite.framework"; sourceTree = "<group>"; };
-		EE93F76E1A382B470091A508 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Build/Products/Debug-iphonesimulator/SwiftyJSON.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +63,6 @@
 			isa = PBXGroup;
 			children = (
 				EE93F76D1A382B470091A508 /* CrosswalkLite.framework */,
-				EE93F76E1A382B470091A508 /* SwiftyJSON.framework */,
 				EE174E631A02375A00168D96 /* EchoExtension.framework */,
 				EE6268B519FA494000EFC3F8 /* EchoApp */,
 				EE6268B419FA494000EFC3F8 /* Products */,

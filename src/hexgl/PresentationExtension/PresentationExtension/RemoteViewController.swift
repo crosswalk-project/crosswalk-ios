@@ -23,7 +23,7 @@ class RemoteViewController: UIViewController, WKNavigationDelegate {
         config.allowsInlineMediaPlayback = true
         config.mediaPlaybackRequiresUserAction = false
         config.userContentController = userContentController
-        var webview = WKWebView(frame: view.frame, configuration: config, script: nil)
+        var webview = WKWebView(frame: view.frame, configuration: config)
         webview.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
         webview.frame = view.frame
         webview.navigationDelegate = self

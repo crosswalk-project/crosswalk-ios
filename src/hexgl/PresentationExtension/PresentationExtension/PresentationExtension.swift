@@ -15,8 +15,8 @@ public class PresentationExtension: XWalkExtension {
     var remoteWindows: Array<UIWindow> = []
     var remoteViewController: RemoteViewController?
 
-    override init(name: String) {
-        super.init(name: name)
+    override init() {
+        super.init()
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "screenDidConnect", name: UIScreenDidConnectNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self,
