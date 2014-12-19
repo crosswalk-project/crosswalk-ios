@@ -15,10 +15,10 @@
 		AB4CDD3D1A27001D000841F5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB4CDD3B1A27001D000841F5 /* LaunchScreen.xib */; };
 		AB4CDD491A27001D000841F5 /* CordovaPluginDeviceDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4CDD481A27001D000841F5 /* CordovaPluginDeviceDemoTests.m */; };
 		AB4CDD551A2701D4000841F5 /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4CDD541A2701D4000841F5 /* CDVDevice.m */; };
-		AB9A76E21A3FD1C30039D8DC /* CordovaExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9A76DA1A3FD15E0039D8DC /* CordovaExtension.framework */; };
 		AB9A76E41A3FD1C30039D8DC /* CrosswalkLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9A76D61A3FD1350039D8DC /* CrosswalkLite.framework */; };
-		AB9A76E51A3FD1C70039D8DC /* CordovaExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB9A76DA1A3FD15E0039D8DC /* CordovaExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AB9A76E71A3FD1C70039D8DC /* CrosswalkLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB9A76D61A3FD1350039D8DC /* CrosswalkLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		ABA684631A441CEE003A71D9 /* Cordova.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABA684621A441CEE003A71D9 /* Cordova.framework */; };
+		ABA684641A441CF7003A71D9 /* Cordova.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ABA684621A441CEE003A71D9 /* Cordova.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ABCAC35E1A359C89008C4501 /* www in Resources */ = {isa = PBXBuildFile; fileRef = ABCAC35D1A359C89008C4501 /* www */; };
 /* End PBXBuildFile section */
 
@@ -39,8 +39,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AB9A76E51A3FD1C70039D8DC /* CordovaExtension.framework in Embed Frameworks */,
 				AB9A76E71A3FD1C70039D8DC /* CrosswalkLite.framework in Embed Frameworks */,
+				ABA684641A441CF7003A71D9 /* Cordova.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -64,8 +64,7 @@
 		AB4CDD531A2701D4000841F5 /* CDVDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVDevice.h; sourceTree = "<group>"; };
 		AB4CDD541A2701D4000841F5 /* CDVDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVDevice.m; sourceTree = "<group>"; };
 		AB9A76D61A3FD1350039D8DC /* CrosswalkLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrosswalkLite.framework; path = "../Build/Products/Debug-iphonesimulator/CrosswalkLite.framework"; sourceTree = "<group>"; };
-		AB9A76D81A3FD14A0039D8DC /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../Build/Products/Debug-iphonesimulator/SwiftyJSON.framework"; sourceTree = "<group>"; };
-		AB9A76DA1A3FD15E0039D8DC /* CordovaExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CordovaExtension.framework; path = "../Build/Products/Debug-iphonesimulator/CordovaExtension.framework"; sourceTree = "<group>"; };
+		ABA684621A441CEE003A71D9 /* Cordova.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cordova.framework; path = "../Build/Products/Debug-iphonesimulator/Cordova.framework"; sourceTree = "<group>"; };
 		ABCAC35D1A359C89008C4501 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = CordovaPluginDeviceDemo/www; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,7 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB9A76E21A3FD1C30039D8DC /* CordovaExtension.framework in Frameworks */,
+				ABA684631A441CEE003A71D9 /* Cordova.framework in Frameworks */,
 				AB9A76E41A3FD1C30039D8DC /* CrosswalkLite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,8 +154,7 @@
 		AB921FAC1A27134C00B5B253 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AB9A76DA1A3FD15E0039D8DC /* CordovaExtension.framework */,
-				AB9A76D81A3FD14A0039D8DC /* SwiftyJSON.framework */,
+				ABA684621A441CEE003A71D9 /* Cordova.framework */,
 				AB9A76D61A3FD1350039D8DC /* CrosswalkLite.framework */,
 			);
 			name = Frameworks;

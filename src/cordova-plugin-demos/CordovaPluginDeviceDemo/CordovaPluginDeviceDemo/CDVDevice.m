@@ -20,7 +20,7 @@
 #include <sys/types.h>
 #include <sys/sysctl.h>
 
-#import <CordovaExtension/Cordova/CDV.h>
+#import <Cordova/CDV.h>
 #import "CDVDevice.h"
 
 @implementation UIDevice (ModelVersion)
