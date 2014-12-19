@@ -5,7 +5,7 @@
       location = "group:../../xcode/CrosswalkLite.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:../cordova/CordovaExtension/CordovaExtension.xcodeproj">
+      location = "group:../cordova/Cordova/Cordova.xcodeproj">
    </FileRef>
    <FileRef
       location = "container:CordovaPluginDeviceDemo/CordovaPluginDeviceDemo.xcodeproj">
