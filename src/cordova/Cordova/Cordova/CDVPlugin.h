@@ -23,9 +23,11 @@
 
 @interface CDVPlugin : NSObject
 
-@property (nonatomic, weak) WKWebView* webview;
+@property (nonatomic, weak) UIWebView* webView;
+@property (nonatomic, weak) UIViewController* viewController;
 @property (nonatomic, weak) id<CDVCommandDelegate> commandDelegate;
 
+- (CDVPlugin*)initWithWebView:(UIWebView*)theWebView;
 - (void)pluginInitialize;
 
 @end
