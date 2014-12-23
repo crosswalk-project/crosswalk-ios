@@ -20,13 +20,63 @@
 #import <Foundation/Foundation.h>
 #import "CDVPlugin.h"
 
+NSString* const CDVPageDidLoadNotification = @"CDVPageDidLoadNotification";
+NSString* const CDVPluginHandleOpenURLNotification = @"CDVPluginHandleOpenURLNotification";
+NSString* const CDVPluginResetNotification = @"CDVPluginResetNotification";
+NSString* const CDVLocalNotification = @"CDVLocalNotification";
+NSString* const CDVRemoteNotification = @"CDVRemoteNotification";
+NSString* const CDVRemoteNotificationError = @"CDVRemoteNotificationError";
+
 @interface CDVPlugin ()
 
 @end
 
 @implementation CDVPlugin
 
+- (CDVPlugin*)initWithWebView:(UIWebView*)theWebView
+{
+    self = [super init];
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onAppTerminate) name:UIApplicationWillTerminateNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onMemoryWarning) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleOpenURL:) name:CDVPluginHandleOpenURLNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onReset) name:CDVPluginResetNotification object:theWebView];
+
+        self.webView = theWebView;
+    }
+    return self;
+}
+
 - (void)pluginInitialize {
+}
+
+/* NOTE: calls into JavaScript must not call or trigger any blocking UI, like alerts */
+- (void)handleOpenURL:(NSNotification*)notification
+{
+    // override to handle urls sent to your app
+    // register your url schemes in your App-Info.plist
+
+    NSURL* url = [notification object];
+
+    if ([url isKindOfClass:[NSURL class]]) {
+        /* Do your thing! */
+    }
+}
+
+/* NOTE: calls into JavaScript must not call or trigger any blocking UI, like alerts */
+- (void)onAppTerminate
+{
+    // override this if you need to do any cleanup on app exit
+}
+
+- (void)onMemoryWarning
+{
+    // override to remove caches, etc
+}
+
+- (void)onReset
+{
+    // Override to cancel any long-running requests when the WebView navigates or refreshes.
 }
 
 @end

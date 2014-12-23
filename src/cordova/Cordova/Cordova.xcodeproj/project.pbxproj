@@ -30,6 +30,16 @@
 		ABA6845B1A44192C003A71D9 /* XWalkCordovaExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA684491A44192C003A71D9 /* XWalkCordovaExtension.swift */; };
 		ABA6845F1A441A13003A71D9 /* CrosswalkLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABA6845E1A441A13003A71D9 /* CrosswalkLite.framework */; };
 		ABA684611A441C65003A71D9 /* CommandQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA684601A441C65003A71D9 /* CommandQueue.swift */; };
+		ABAB76961A47D80400E392B6 /* CDVTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = ABAB768E1A47D80400E392B6 /* CDVTimer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ABAB76971A47D80400E392B6 /* CDVTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAB768F1A47D80400E392B6 /* CDVTimer.m */; };
+		ABAB76981A47D80400E392B6 /* NSArray+Comparisons.h in Headers */ = {isa = PBXBuildFile; fileRef = ABAB76901A47D80400E392B6 /* NSArray+Comparisons.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ABAB76991A47D80400E392B6 /* NSArray+Comparisons.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAB76911A47D80400E392B6 /* NSArray+Comparisons.m */; };
+		ABAB769A1A47D80400E392B6 /* NSDictionary+Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = ABAB76921A47D80400E392B6 /* NSDictionary+Extensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ABAB769B1A47D80400E392B6 /* NSDictionary+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAB76931A47D80400E392B6 /* NSDictionary+Extensions.m */; };
+		ABAB769C1A47D80400E392B6 /* NSMutableArray+QueueAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = ABAB76941A47D80400E392B6 /* NSMutableArray+QueueAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ABAB769D1A47D80400E392B6 /* NSMutableArray+QueueAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAB76951A47D80400E392B6 /* NSMutableArray+QueueAdditions.m */; };
+		ABAB76A01A47DB0F00E392B6 /* CDVViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = ABAB769E1A47DB0F00E392B6 /* CDVViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ABAB76A11A47DB0F00E392B6 /* CDVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAB769F1A47DB0F00E392B6 /* CDVViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +80,16 @@
 		ABA684491A44192C003A71D9 /* XWalkCordovaExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWalkCordovaExtension.swift; sourceTree = "<group>"; };
 		ABA6845E1A441A13003A71D9 /* CrosswalkLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrosswalkLite.framework; path = "../../cordova-plugin-demos/Build/Products/Debug-iphonesimulator/CrosswalkLite.framework"; sourceTree = "<group>"; };
 		ABA684601A441C65003A71D9 /* CommandQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandQueue.swift; sourceTree = "<group>"; };
+		ABAB768E1A47D80400E392B6 /* CDVTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVTimer.h; sourceTree = "<group>"; };
+		ABAB768F1A47D80400E392B6 /* CDVTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVTimer.m; sourceTree = "<group>"; };
+		ABAB76901A47D80400E392B6 /* NSArray+Comparisons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Comparisons.h"; sourceTree = "<group>"; };
+		ABAB76911A47D80400E392B6 /* NSArray+Comparisons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Comparisons.m"; sourceTree = "<group>"; };
+		ABAB76921A47D80400E392B6 /* NSDictionary+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extensions.h"; sourceTree = "<group>"; };
+		ABAB76931A47D80400E392B6 /* NSDictionary+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Extensions.m"; sourceTree = "<group>"; };
+		ABAB76941A47D80400E392B6 /* NSMutableArray+QueueAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+QueueAdditions.h"; sourceTree = "<group>"; };
+		ABAB76951A47D80400E392B6 /* NSMutableArray+QueueAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+QueueAdditions.m"; sourceTree = "<group>"; };
+		ABAB769E1A47DB0F00E392B6 /* CDVViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVViewController.h; sourceTree = "<group>"; };
+		ABAB769F1A47DB0F00E392B6 /* CDVViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +186,8 @@
 				ABA684411A44192C003A71D9 /* CDVPlugin.m */,
 				ABA684421A44192C003A71D9 /* CDVPluginResult.h */,
 				ABA684431A44192C003A71D9 /* CDVPluginResult.m */,
+				ABAB769E1A47DB0F00E392B6 /* CDVViewController.h */,
+				ABAB769F1A47DB0F00E392B6 /* CDVViewController.m */,
 			);
 			name = CordovaPlugin;
 			sourceTree = "<group>";
@@ -173,6 +195,14 @@
 		ABA6845D1A441947003A71D9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				ABAB768E1A47D80400E392B6 /* CDVTimer.h */,
+				ABAB768F1A47D80400E392B6 /* CDVTimer.m */,
+				ABAB76901A47D80400E392B6 /* NSArray+Comparisons.h */,
+				ABAB76911A47D80400E392B6 /* NSArray+Comparisons.m */,
+				ABAB76921A47D80400E392B6 /* NSDictionary+Extensions.h */,
+				ABAB76931A47D80400E392B6 /* NSDictionary+Extensions.m */,
+				ABAB76941A47D80400E392B6 /* NSMutableArray+QueueAdditions.h */,
+				ABAB76951A47D80400E392B6 /* NSMutableArray+QueueAdditions.m */,
 				ABA684441A44192C003A71D9 /* NSData+Base64.h */,
 				ABA684451A44192C003A71D9 /* NSData+Base64.m */,
 				ABA684461A44192C003A71D9 /* UIDevice+Extensions.h */,
@@ -195,8 +225,13 @@
 				ABA684541A44192C003A71D9 /* CDVPluginResult.h in Headers */,
 				ABA6844E1A44192C003A71D9 /* CDVInvokedUrlCommand.h in Headers */,
 				ABA684371A4417F7003A71D9 /* Cordova-Bridging-Header.h in Headers */,
+				ABAB769C1A47D80400E392B6 /* NSMutableArray+QueueAdditions.h in Headers */,
+				ABAB769A1A47D80400E392B6 /* NSDictionary+Extensions.h in Headers */,
+				ABAB76961A47D80400E392B6 /* CDVTimer.h in Headers */,
+				ABAB76981A47D80400E392B6 /* NSArray+Comparisons.h in Headers */,
 				ABA684501A44192C003A71D9 /* CDVJSON.h in Headers */,
 				ABA6844D1A44192C003A71D9 /* CDVCommandDelegate.h in Headers */,
+				ABAB76A01A47DB0F00E392B6 /* CDVViewController.h in Headers */,
 				ABA684581A44192C003A71D9 /* UIDevice+Extensions.h in Headers */,
 				ABA684561A44192C003A71D9 /* NSData+Base64.h in Headers */,
 			);
@@ -304,8 +339,13 @@
 				ABA6844F1A44192C003A71D9 /* CDVInvokedUrlCommand.m in Sources */,
 				ABA684531A44192C003A71D9 /* CDVPlugin.m in Sources */,
 				ABA684571A44192C003A71D9 /* NSData+Base64.m in Sources */,
+				ABAB76991A47D80400E392B6 /* NSArray+Comparisons.m in Sources */,
 				ABA684591A44192C003A71D9 /* UIDevice+Extensions.m in Sources */,
+				ABAB769D1A47D80400E392B6 /* NSMutableArray+QueueAdditions.m in Sources */,
 				ABA684511A44192C003A71D9 /* CDVJSON.m in Sources */,
+				ABAB769B1A47D80400E392B6 /* NSDictionary+Extensions.m in Sources */,
+				ABAB76971A47D80400E392B6 /* CDVTimer.m in Sources */,
+				ABAB76A11A47DB0F00E392B6 /* CDVViewController.m in Sources */,
 				ABA684551A44192C003A71D9 /* CDVPluginResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
