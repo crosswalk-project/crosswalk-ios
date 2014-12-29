@@ -2,11 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-/*
- Be sure to import this file in your project's bridging header file.
- #import "Invocation.h"
- */
-
 @import Foundation;
 
 @interface ReturnValue : NSObject
@@ -72,5 +67,9 @@
 - (id)construct;
 
 + (ReturnValue *)call:(id)target selector:(SEL)selector arguments:(NSArray *)arg;
++ (ReturnValue *)call:(id)target selector:(SEL)selector arguments:(NSArray *)arg thread:(NSThread *)thread;
+
++ (ReturnValue *)call:(id)target selector:(SEL)selector valist:(va_list)valist;
++ (ReturnValue *)call:(id)target selector:(SEL)selector valist:(va_list)valist thread:(NSThread *)thread;
 
 @end

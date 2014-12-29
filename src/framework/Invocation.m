@@ -2,8 +2,9 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+#import <objc/runtime.h>
+
 #import "Invocation.h"
-#import "objc/runtime.h"
 
 @interface NSNumber (Invocation)
 + (NSNumber *)numberWithBytes:(const void *)value objCType:(const char *)type;
@@ -71,6 +72,9 @@
 }
 
 + (ReturnValue *)call:(id)target selector:(SEL)selector arguments:(NSArray *)args {
+    return [Invocation call:target selector:selector arguments:args thread:nil];
+}
++ (ReturnValue *)call:(id)target selector:(SEL)selector arguments:(NSArray *)args thread:(NSThread *)thread {
     NSMethodSignature *sig = [target methodSignatureForSelector:selector];
     if (sig == nil) {
         [target doesNotRecognizeSelector:selector];
@@ -81,22 +85,87 @@
     [inv setSelector:selector];
 
     // Assemble input parameters
-    for(int i = 0; i < args.count; ++i) {
-        NSObject *val = [args objectAtIndex:i];
-        const char *type = [sig getArgumentTypeAtIndex:i + 2];
-        void *buf = &val;
-        if ([val isKindOfClass:[NSNumber class]] && strcmp(type, @encode(id))) {
-            // Convert NSNumber to native type if necessary
-            NSNumber* num = (NSNumber*)val;
-            unsigned long long data;
-            buf = &data;
-            [num getValue:buf objCType:type];
+    if (args != nil) {
+        for(int i = 0; i < args.count; ++i) {
+            NSObject *val = [args objectAtIndex:i];
+            const char *type = [sig getArgumentTypeAtIndex:i + 2];
+            void *buf = &val;
+            if ([val isKindOfClass:[NSNumber class]] && strcmp(type, @encode(id))) {
+                // Convert NSNumber to native type if necessary
+                NSNumber* num = (NSNumber*)val;
+                unsigned long long data;
+                buf = &data;
+                [num getValue:buf objCType:type];
+            } else if (val == NSNull.null) {
+                // Convert NSNull to nil
+                val = nil;
+            }
+            [inv setArgument:buf atIndex:(i + 2)];
         }
-        [inv setArgument:buf atIndex:(i + 2)];
     }
 
-    [inv invokeWithTarget:target];
-    return [[ReturnValue alloc] initWithInvocation:inv];
+    if (thread == nil) {
+        // synchronized call on current thread
+        [inv invokeWithTarget:target];
+        return [[ReturnValue alloc] initWithInvocation:inv];
+    }
+
+    [inv retainArguments];
+    [inv performSelector:@selector(invokeWithTarget:) onThread:thread withObject:target waitUntilDone:false];
+    return nil;
+}
+
++ (ReturnValue *)call:(id)target selector:(SEL)selector valist:(va_list)valist {
+    return [Invocation call:target selector:selector valist:valist thread:nil];
+}
++ (ReturnValue *)call:(id)target selector:(SEL)selector valist:(va_list)valist thread:(NSThread *)thread {
+    NSMethodSignature *sig = [target methodSignatureForSelector:selector];
+    if (sig == nil) {
+        [target doesNotRecognizeSelector:selector];
+        return nil;
+    }
+
+    NSInvocation* inv = [NSInvocation invocationWithMethodSignature:sig];
+    [inv setSelector:selector];
+
+    NSUInteger cnt = [sig numberOfArguments];
+    for (NSUInteger i = 2; i < cnt; ++i) {
+        const char *type = [sig getArgumentTypeAtIndex: i];
+        void *buf = NULL;
+        NSUInteger size;
+        NSGetSizeAndAlignment(type, NULL, &size);
+        if (!strcmp(type, @encode(float))) {
+            // The float value is promoted to double
+            float data = (float)va_arg(valist, double);
+            buf = &data;
+        } else if (size < sizeof(int)) {
+            // Types narrower than an int are promoted to int.
+            if (size == sizeof(short)) {
+                short data = (short)va_arg(valist, int);
+                buf = &data;
+            } else {
+                char data = (char)va_arg(valist, int);
+                buf = &data;
+            }
+        } else if (size <= sizeof(long long)) {
+            // Any type that size is less or equal than long long.
+            long long data = va_arg(valist, long long);
+            buf = &data;
+        } else {
+            NSAssert(false, @"structure type is unsupported.");
+        }
+        [inv setArgument:buf atIndex: i];
+    }
+
+    if (thread == nil) {
+        // synchronized call on current thread
+        [inv invokeWithTarget:target];
+        return [[ReturnValue alloc] initWithInvocation:inv];
+    }
+
+    [inv retainArguments];
+    [inv performSelector:@selector(invokeWithTarget:) onThread:thread withObject:target waitUntilDone:false];
+    return nil;
 }
 
 @end
@@ -215,7 +284,7 @@ ISTYPE(Object, id)
     else if ISTYPE(unsigned long long) VALUE(unsigned long long, unsignedLongLong)
     else if ISTYPE(float)              VALUE(float, float)
     else if ISTYPE(double)             VALUE(double, double)
-    else [NSException raise:@"WrongType" format:@"'%s' is not a number type", type];
+    else [NSException raise:@"TypeError" format:@"'%s' is not a number type", type];
 #undef VALUE
 }
 
