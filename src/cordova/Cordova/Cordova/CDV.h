@@ -21,6 +21,7 @@
 #import "CDVCommandDelegate.h"
 #import "CDVInvokedUrlCommand.h"
 #import "CDVJSON.h"
+#import "CDVScreenOrientationDelegate.h"
 #import "CDVPlugin.h"
 #import "CDVPluginResult.h"
 #import "CDVTimer.h"

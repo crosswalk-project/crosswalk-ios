@@ -17,16 +17,27 @@
  under the License.
  */
 
-#import <UIKit/UIKit.h>
-#import "CDVAvailability.h"
-#import "CDVScreenOrientationDelegate.h"
+#import <Foundation/Foundation.h>
+#import <Cordova/CDVPlugin.h>
 
-@interface CDVViewController : UIViewController <CDVScreenOrientationDelegate>
+typedef struct {
+    BOOL iPhone;
+    BOOL iPad;
+    BOOL iPhone5;
+    BOOL iPhone6;
+    BOOL iPhone6Plus;
+    BOOL retina;
+    
+} CDV_iOSDevice;
 
-@property (nonatomic, readonly, strong) NSMutableDictionary* settings;
+@interface CDVSplashScreen : CDVPlugin {
+    UIActivityIndicatorView* _activityView;
+    UIImageView* _imageView;
+    NSString* _curImageName;
+    BOOL _visible;
+}
 
-- (NSUInteger)supportedInterfaceOrientations;
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
-- (BOOL)shouldAutorotate;
+- (void)show:(CDVInvokedUrlCommand*)command;
+- (void)hide:(CDVInvokedUrlCommand*)command;
 
 @end

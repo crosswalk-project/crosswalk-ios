@@ -40,6 +40,7 @@
 		ABAB769D1A47D80400E392B6 /* NSMutableArray+QueueAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAB76951A47D80400E392B6 /* NSMutableArray+QueueAdditions.m */; };
 		ABAB76A01A47DB0F00E392B6 /* CDVViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = ABAB769E1A47DB0F00E392B6 /* CDVViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ABAB76A11A47DB0F00E392B6 /* CDVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAB769F1A47DB0F00E392B6 /* CDVViewController.m */; };
+		ABC88AA11A514B100051257C /* CDVScreenOrientationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = ABC88AA01A514B100051257C /* CDVScreenOrientationDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		ABAB76951A47D80400E392B6 /* NSMutableArray+QueueAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+QueueAdditions.m"; sourceTree = "<group>"; };
 		ABAB769E1A47DB0F00E392B6 /* CDVViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVViewController.h; sourceTree = "<group>"; };
 		ABAB769F1A47DB0F00E392B6 /* CDVViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVViewController.m; sourceTree = "<group>"; };
+		ABC88AA01A514B100051257C /* CDVScreenOrientationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVScreenOrientationDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 				ABA684391A44192C003A71D9 /* CDVAvailability.h */,
 				ABA6843A1A44192C003A71D9 /* CDVAvailabilityDeprecated.h */,
 				ABA6843B1A44192C003A71D9 /* CDVCommandDelegate.h */,
+				ABC88AA01A514B100051257C /* CDVScreenOrientationDelegate.h */,
 				ABA6843C1A44192C003A71D9 /* CDVInvokedUrlCommand.h */,
 				ABA6843D1A44192C003A71D9 /* CDVInvokedUrlCommand.m */,
 				ABA6843E1A44192C003A71D9 /* CDVJSON.h */,
@@ -224,6 +227,7 @@
 				ABA684521A44192C003A71D9 /* CDVPlugin.h in Headers */,
 				ABA684541A44192C003A71D9 /* CDVPluginResult.h in Headers */,
 				ABA6844E1A44192C003A71D9 /* CDVInvokedUrlCommand.h in Headers */,
+				ABC88AA11A514B100051257C /* CDVScreenOrientationDelegate.h in Headers */,
 				ABA684371A4417F7003A71D9 /* Cordova-Bridging-Header.h in Headers */,
 				ABAB769C1A47D80400E392B6 /* NSMutableArray+QueueAdditions.h in Headers */,
 				ABAB769A1A47D80400E392B6 /* NSDictionary+Extensions.h in Headers */,

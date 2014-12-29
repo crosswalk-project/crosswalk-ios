@@ -20,6 +20,21 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>CordovaPlugins</key>
+	<array>
+		<dict>
+			<key>className</key>
+			<string>CDVSplashScreen</string>
+			<key>name</key>
+			<string>SplashScreen</string>
+		</dict>
+		<dict>
+			<key>className</key>
+			<string>CDVFile</string>
+			<key>name</key>
+			<string>File</string>
+		</dict>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -35,15 +50,6 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>CordovaPlugins</key>
-	<array>
-		<dict>
-			<key>className</key>
-			<string>CDVFile</string>
-			<key>name</key>
-			<string>File</string>
-		</dict>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

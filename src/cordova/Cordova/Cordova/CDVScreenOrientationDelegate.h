@@ -17,13 +17,9 @@
  under the License.
  */
 
-#import <UIKit/UIKit.h>
-#import "CDVAvailability.h"
-#import "CDVScreenOrientationDelegate.h"
+#import <Foundation/Foundation.h>
 
-@interface CDVViewController : UIViewController <CDVScreenOrientationDelegate>
-
-@property (nonatomic, readonly, strong) NSMutableDictionary* settings;
+@protocol CDVScreenOrientationDelegate <NSObject>
 
 - (NSUInteger)supportedInterfaceOrientations;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;

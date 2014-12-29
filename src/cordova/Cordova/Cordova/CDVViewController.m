@@ -23,4 +23,22 @@
 
 @synthesize settings;
 
+- (NSUInteger)supportedInterfaceOrientations
+{
+    // TODO: (jondong) To be implemented when needed
+    return 0;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // TODO: (jondong) To be implemented when needed
+    return NO;
+}
+
+- (BOOL)shouldAutorotate
+{
+    // TODO: (jondong) To be implemented when needed
+    return NO;
+}
+
 @end

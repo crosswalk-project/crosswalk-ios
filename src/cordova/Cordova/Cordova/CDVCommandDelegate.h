@@ -17,12 +17,14 @@
  under the License.
  */
 
-#import "CDVInvokedUrlCommand.h"
+#import <Foundation/Foundation.h>
 
 @class CDVPlugin;
 @class CDVPluginResult;
 
 @protocol CDVCommandDelegate <NSObject>
+
+@property (nonatomic, readonly) NSDictionary* settings;
 
 - (NSString*)pathForResource:(NSString*)resourcepath;
 - (id)getCommandInstance:(NSString*)pluginName;

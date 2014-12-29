@@ -5,26 +5,26 @@
 import CrosswalkLite
 
 class XWalkCordovaExtension: XWalkExtension, CommandQueueDelegate, CDVCommandDelegate {
+    var settings: [NSObject:AnyObject] = [:]
     var plugins: Dictionary<String, CDVPlugin> = [:]
     var commandQueue: CommandQueue = CommandQueue()
     lazy var callbackIdPattern: NSRegularExpression = NSRegularExpression(pattern: "[^A-Za-z0-9._-]", options: NSRegularExpressionOptions.allZeros, error: nil)!
 
-    override init() {
-        super.init()
+    override func didBindExtension(namespace: String) {
+        super.didBindExtension(namespace)
         commandQueue.delegate = self
         scanForPlugins()
-    }
-
-    convenience init(param: AnyObject) {
-        self.init()
     }
 
     func scanForPlugins() {
         if let pluginInfoArray = NSBundle.mainBundle().objectForInfoDictionaryKey("CordovaPlugins") as? NSArray {
             for obj in pluginInfoArray {
                 var pluginInfo: Dictionary<String, AnyObject> = obj as Dictionary
-                var pluginType = NSClassFromString(pluginInfo["className"] as? String) as CDVPlugin.Type
-                registerPlugin(pluginType(), className: pluginInfo["name"] as String)
+                let inv = Invocation(name: pluginInfo["className"] as? String)
+                inv.appendArgument("webView", value: self.channel.webView)
+                if let plugin = inv.construct() as? CDVPlugin {
+                    registerPlugin(plugin, className: pluginInfo["name"] as String)
+                }
             }
         }
     }
@@ -87,7 +87,7 @@ class XWalkCordovaExtension: XWalkExtension, CommandQueueDelegate, CDVCommandDel
         }
         var js = "cordova.require('cordova/exec').nativeCallback('\(callbackId)', \(result.status.intValue), \(result.argumentsAsJSON()), \(result.keepCallback.boolValue))"
 
-        self.evaluate(js)
+        self.channel.evaluateJavaScript(js, completionHandler:nil)
     }
 
     func evalJs(js: String!) {
@@ -96,11 +96,11 @@ class XWalkCordovaExtension: XWalkExtension, CommandQueueDelegate, CDVCommandDel
 
     func evalJs(js: String!, scheduledOnRunLoop: Bool) {
         var message = "cordova.require('cordova/exec').nativeEvalAndFetch(function(){\(js)})"
-        self.evaluate(message)
+        self.channel.evaluateJavaScript(message, completionHandler:nil)
     }
 
-    func runInBackground(block: (() -> Void)!) {
-        // TODO: (jondong) To be implemented when needed
+    func runInBackground(block: dispatch_block_t!) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
     }
 
     func userAgent() -> String! {

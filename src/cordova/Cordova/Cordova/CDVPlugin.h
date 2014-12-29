@@ -20,6 +20,14 @@
 #import <Foundation/Foundation.h>
 #import <WebKit/WebKit.h>
 #import "CDVCommandDelegate.h"
+#import "CDVInvokedUrlCommand.h"
+
+extern NSString* const CDVPageDidLoadNotification;
+extern NSString* const CDVPluginHandleOpenURLNotification;
+extern NSString* const CDVPluginResetNotification;
+extern NSString* const CDVLocalNotification;
+extern NSString* const CDVRemoteNotification;
+extern NSString* const CDVRemoteNotificationError;
 
 @interface CDVPlugin : NSObject
 
