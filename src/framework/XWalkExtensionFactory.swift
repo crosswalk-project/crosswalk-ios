@@ -4,31 +4,30 @@
 
 import Foundation
 
-public class XWalkExtensionFactory: NSObject {
-    struct XWalkExtensionProvider {
+public class XWalkExtensionFactory {
+    private struct XWalkExtensionProvider {
         let bundle: NSBundle
         let className: String
     }
-    var extensions: Dictionary<String, XWalkExtensionProvider> = [:]
-    public class var singleton : XWalkExtensionFactory {
+    private var extensions: Dictionary<String, XWalkExtensionProvider> = [:]
+    private class var singleton : XWalkExtensionFactory {
         struct single {
             static let instance : XWalkExtensionFactory = XWalkExtensionFactory(path: nil)
         }
         return single.instance
     }
 
-    internal override init() {
-        super.init()
+    private init() {
         register("Extension.loader",  cls: XWalkExtensionLoader.self)
     }
-    internal convenience init(path: String?) {
+    private convenience init(path: String?) {
         self.init()
         if let dir = path ?? NSBundle.mainBundle().privateFrameworksPath {
             self.scan(dir)
         }
     }
 
-    public func scan(path: String) -> Bool {
+    private func scan(path: String) -> Bool {
         let fm = NSFileManager.defaultManager()
         if fm.fileExistsAtPath(path) == true {
             for i in fm.contentsOfDirectoryAtPath(path, error: nil)! {
@@ -45,7 +44,7 @@ public class XWalkExtensionFactory: NSObject {
         return false
     }
 
-    public func scanBundle(bundle: NSBundle) -> Bool {
+    private func scanBundle(bundle: NSBundle) -> Bool {
         if let info = bundle.objectForInfoDictionaryKey("XWalkExtensions") as? NSDictionary {
             let e = info.keyEnumerator()
             while let name = e.nextObject() as? String {
@@ -65,7 +64,7 @@ public class XWalkExtensionFactory: NSObject {
         return true
     }
 
-    public func register(name: String, cls: AnyClass) -> Bool {
+    private func register(name: String, cls: AnyClass) -> Bool {
         if extensions[name] == nil {
             let bundle = NSBundle(forClass: cls)
             var className = NSStringFromClass(cls)
@@ -76,7 +75,7 @@ public class XWalkExtensionFactory: NSObject {
         return false
     }
 
-    public func createExtension(name: String, parameter: AnyObject? = nil) -> XWalkExtension? {
+    private func createExtension(name: String, parameter: AnyObject? = nil) -> AnyObject? {
         if let src = extensions[name] {
             // Load bundle
             if !src.bundle.loaded {
@@ -102,7 +101,7 @@ public class XWalkExtensionFactory: NSObject {
             if parameter != nil {
                 inv.appendArgument("param", value: parameter!)
             }
-            if let ext = inv.construct() as? XWalkExtension {
+            if let ext: AnyObject = inv.construct() {
                 return ext
             }
             println("ERROR: Can't create extension '\(name)'")
@@ -112,13 +111,10 @@ public class XWalkExtensionFactory: NSObject {
         return nil
     }
 
-    internal func getNameByClass(cls: AnyClass) -> String? {
-        for (name, provider) in extensions {
-            let className = (provider.bundle.executablePath?.lastPathComponent)! + "." + provider.className
-            if cls === NSClassFromString(className) {
-                return name
-            }
-        }
-        return nil
+    public class func register(name: String, cls: AnyClass) -> Bool {
+        return XWalkExtensionFactory.singleton.register(name, cls: cls)
+    }
+    public class func createExtension(name: String, parameter: AnyObject? = nil) -> AnyObject? {
+        return XWalkExtensionFactory.singleton.createExtension(name, parameter: parameter)
     }
 }
