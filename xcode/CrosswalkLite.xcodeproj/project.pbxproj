@@ -11,6 +11,8 @@
 		ABD475E31A4129FC00F3BDEB /* Invocation.h in Headers */ = {isa = PBXBuildFile; fileRef = EE62691D19FA52FC00EFC3F8 /* Invocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE0A1DD31A52775400C9E6D3 /* XWalkChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DD21A52775400C9E6D3 /* XWalkChannel.swift */; };
 		EE0A1DD51A52778B00C9E6D3 /* XWalkDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DD41A52778B00C9E6D3 /* XWalkDelegate.swift */; };
+		EE0A1DDF1A52A5A300C9E6D3 /* XWalkReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DDD1A52A5A300C9E6D3 /* XWalkReflection.swift */; };
+		EE0A1DE01A52A5A300C9E6D3 /* XWalkStubGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DDE1A52A5A300C9E6D3 /* XWalkStubGenerator.swift */; };
 		EE174E451A01FDDE00168D96 /* XWalkExtensionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE174E441A01FDDE00168D96 /* XWalkExtensionFactory.swift */; };
 		EE174E781A0361CB00168D96 /* extension_api.js in Resources */ = {isa = PBXBuildFile; fileRef = EE174E771A0361CB00168D96 /* extension_api.js */; };
 		EE62692419FA52FC00EFC3F8 /* Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = EE62691E19FA52FC00EFC3F8 /* Invocation.m */; };
@@ -23,6 +25,8 @@
 		ABA6840D1A42C751003A71D9 /* json.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = json.swift; path = "src/third-party/swifty-json/json/json.swift"; sourceTree = "<group>"; };
 		EE0A1DD21A52775400C9E6D3 /* XWalkChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkChannel.swift; path = src/framework/XWalkChannel.swift; sourceTree = "<group>"; };
 		EE0A1DD41A52778B00C9E6D3 /* XWalkDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkDelegate.swift; path = src/framework/XWalkDelegate.swift; sourceTree = "<group>"; };
+		EE0A1DDD1A52A5A300C9E6D3 /* XWalkReflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkReflection.swift; path = src/framework/XWalkReflection.swift; sourceTree = "<group>"; };
+		EE0A1DDE1A52A5A300C9E6D3 /* XWalkStubGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkStubGenerator.swift; path = src/framework/XWalkStubGenerator.swift; sourceTree = "<group>"; };
 		EE174E441A01FDDE00168D96 /* XWalkExtensionFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkExtensionFactory.swift; path = src/framework/XWalkExtensionFactory.swift; sourceTree = "<group>"; };
 		EE174E771A0361CB00168D96 /* extension_api.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = extension_api.js; path = src/framework/extension_api.js; sourceTree = "<group>"; };
 		EE62683519FA323900EFC3F8 /* CrosswalkLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CrosswalkLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +80,8 @@
 		EE62683719FA323900EFC3F8 /* CrosswalkLite */ = {
 			isa = PBXGroup;
 			children = (
+				EE0A1DDD1A52A5A300C9E6D3 /* XWalkReflection.swift */,
+				EE0A1DDE1A52A5A300C9E6D3 /* XWalkStubGenerator.swift */,
 				EE174E771A0361CB00168D96 /* extension_api.js */,
 				EE62691B19FA52FC00EFC3F8 /* Bridging-Header.h */,
 				EE62691C19FA52FC00EFC3F8 /* CrosswalkLite.h */,
@@ -180,8 +186,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE0A1DDF1A52A5A300C9E6D3 /* XWalkReflection.swift in Sources */,
 				EE0A1DD51A52778B00C9E6D3 /* XWalkDelegate.swift in Sources */,
 				EE7886761A0D0CE30013A855 /* XWalkExtensionLoader.swift in Sources */,
+				EE0A1DE01A52A5A300C9E6D3 /* XWalkStubGenerator.swift in Sources */,
 				EE174E451A01FDDE00168D96 /* XWalkExtensionFactory.swift in Sources */,
 				EE62692419FA52FC00EFC3F8 /* Invocation.m in Sources */,
 				EE0A1DD31A52775400C9E6D3 /* XWalkChannel.swift in Sources */,
