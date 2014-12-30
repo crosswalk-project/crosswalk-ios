@@ -4,3 +4,6 @@
 [submodule "src/third-party/swifty-json"]
 	path = src/third-party/swifty-json
 	url = git@github.com:dankogai/swift-json.git
+[submodule "src/cordova-plugin-demos/CordovaPluginFileDemo/CordovaPluginFileDemo/www/sample-file"]
+	path = src/cordova-plugin-demos/CordovaPluginFileDemo/CordovaPluginFileDemo/www/sample-file
+	url = git@github.com:Icenium/sample-file.git

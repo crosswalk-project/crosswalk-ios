@@ -828,8 +828,7 @@ var cordova = require('cordova'),
         // Bundling the payload turns out to be slower. Probably since it has to be URI encoded / decoded.
         IFRAME_HASH_WITH_PAYLOAD: 5
     },
-    commandQueue = [], // Contains pending JS->Native messages.
-    isInContextOfEvalJs = 0;
+    commandQueue = []; // Contains pending JS->Native messages.
 
 function massageArgsJsToNative(args) {
     if (!args || utils.typeName(args) != 'Array') {
@@ -930,14 +929,7 @@ function iOSExec() {
     // effectively clone the command arguments in case they are mutated before
     // the command is executed.
     commandQueue.push(JSON.stringify(command));
-
-    // If we're in the context of a stringByEvaluatingJavaScriptFromString call,
-    // then the queue will be flushed when it returns; no need for a poke.
-    // Also, if there is already a command in the queue, then we've already
-    // poked the native side, so there is no reason to do so again.
-    if (!isInContextOfEvalJs && commandQueue.length == 1) {
-        xwalk.cordova.postToNative(iOSExec.nativeFetchMessages());
-    }
+    xwalk.cordova.postToNative(iOSExec.nativeFetchMessages());
 }
 
 iOSExec.jsToNativeModes = jsToNativeModes;
@@ -965,13 +957,11 @@ iOSExec.nativeCallback = function(callbackId, status, message, keepCallback) {
 };
 
 iOSExec.nativeEvalAndFetch = function(func) {
-    // This shouldn't be nested, but better to be safe.
-    isInContextOfEvalJs++;
     try {
         func();
         return iOSExec.nativeFetchMessages();
-    } finally {
-        isInContextOfEvalJs--;
+    } catch(e) {
+        console.log("Error in executing func(): " + e);
     }
 };
 
