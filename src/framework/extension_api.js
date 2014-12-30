@@ -87,15 +87,10 @@ Extension.prototype = {
 
         // Retain objects which had to pass by reference
         var call = [];
-        args.forEach(function(pair, vid, a) {
-            var key = Object.getOwnPropertyNames(pair);
-            if (key.length != 1)  return;
-            key = key[0];
-            if (pair[key] == undefined) {
-                pair[key] = null
-            } else if (!isSerializable(pair[key])) {
-                call[vid] = pair[key];
-                pair[key] = objectRef(cid, vid);
+        args.forEach(function(val, vid, a) {
+            if (!isSerializable(val)) {
+                call[vid] = val;
+                a[vid] = objectRef(cid, vid);
             }
         })
         if (call.length)

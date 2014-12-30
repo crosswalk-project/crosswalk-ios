@@ -53,11 +53,11 @@ class XWalkStubGenerator {
         var isPromise = false
         for a in params {
             if a != "_Promise" {
-                body += "\n        {'\(a)': \(a)},"
+                body += "\n        \(a),"
             } else {
                 assert(!isPromise)
                 isPromise = true
-                body += "\n        {'\(a)': [resolve, reject]},"
+                body += "\n        [resolve, reject],"
             }
         }
         if params.count > 0 {

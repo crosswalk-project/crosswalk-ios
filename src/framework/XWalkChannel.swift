@@ -51,23 +51,13 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
         let body = didReceiveScriptMessage.body as [String: AnyObject]
         if let method = body["method"] as? String {
             // Method call
-            if let args = body["arguments"] as? [[String: AnyObject]] {
+            if let callid = body["callid"] as? NSNumber {
                 if let selector = mirror.getMethod(method) {
-                    if args.filter({$0 == [:]}).count > 0 {
-                        // WKWebKit can't handle undefined type well
-                        println("ERROR: parameters contain undefined value")
-                        return
-                    }
-                    var array = [body["callid"]!]
-                    for a in args {
-                        for (_, v) in a {
-                            array.append(v)
-                        }
-                    }
-                    var result = Invocation.call(object, selector: selector, arguments: array)
+                    let args = body["arguments"] as? [AnyObject] ?? []
+                    let result = Invocation.call(object, selector: selector, arguments: [callid] + args)
                     if result.isBool {
                         if result.boolValue && object is XWalkExtension {
-                            (object as XWalkExtension).invokeJavaScript(".releaseArguments", arguments: [body["callid"]!])
+                            (object as XWalkExtension).invokeJavaScript(".releaseArguments", arguments: [callid])
                         }
                     } else {
                         NSException(name: "TypeError", reason: "The return value of native method must be BOOL type.", userInfo: nil).raise()
