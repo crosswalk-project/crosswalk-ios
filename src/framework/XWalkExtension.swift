@@ -3,170 +3,55 @@
 // found in the LICENSE file.
 
 import Foundation
-import WebKit
 
-public class XWalkExtension: NSObject, WKScriptMessageHandler {
-    public final var namespace: String = ""
-    public final var id: Int = 0
-    internal weak var webView: WKWebView?
+public class XWalkExtension : NSObject, XWalkDelegate {
+    private weak var _channel: XWalkChannel!
+    private var _namespace: String = ""
 
-    private var seqenceNumber : Int {
-        struct seq{
-            static var num: Int = 0
-        }
-        return ++seq.num
+    public final weak var channel: XWalkChannel! { return _channel }
+    public final var namespace: String { return _namespace }
+
+    public func didEstablishChannel(channel: XWalkChannel) {
+        _channel = channel
     }
-
-    public var jsAPIStub: String {
-        var jsapi: String = ""
-
-        // Generate JavaScript through introspection
-        for var mlist = class_copyMethodList(self.dynamicType, nil); mlist.memory != nil; mlist = mlist.successor() {
-            let method:String = NSStringFromSelector(method_getName(mlist.memory))
-            if method.hasPrefix("jsfunc_") && method.hasSuffix(":") {
-                var args = method.componentsSeparatedByString(":")
-                let name = args.first!.substringFromIndex(advance(method.startIndex, 7))
-                args.removeAtIndex(0)
-                args.removeLast()
-
-                // deal with parameters without external name
-                for i in 0...args.count-1 {
-                    if args[i].isEmpty {
-                        args[i] = "__\(i)"
-                    }
-                }
-
-                var stub = "this.invokeNative(\"\(name)\", ["
-                var isPromise = false
-                for a in args {
-                    if a != "_Promise" {
-                        stub += "\n        {'\(a)': \(a)},"
-                    } else {
-                        assert(!isPromise)
-                        isPromise = true
-                        stub += "\n        {'\(a)': [resolve, reject]},"
-                    }
-                }
-                if args.count > 0 {
-                    stub.removeAtIndex(stub.endIndex.predecessor())
-                }
-                stub += "\n    ]);"
-                if isPromise {
-                    stub = "\n    ".join(stub.componentsSeparatedByString("\n"))
-                    stub = "var _this = this;\n    return new Promise(function(resolve, reject) {\n        _" + stub + "\n    });"
-                }
-                stub = "exports.\(name) = function(" + ", ".join(args) + ") {\n    \(stub)\n}"
-                jsapi += "\(stub)\n"
-            } else if method.hasPrefix("jsprop_") && !method.hasSuffix(":") {
-                let name = method.substringFromIndex(advance(method.startIndex, 7))
-                let writable = self.dynamicType.instancesRespondToSelector(NSSelectorFromString("setJsprop_\(name):"))
-                var val: AnyObject = self[name]!
-                if val.isKindOfClass(NSString.classForCoder()) {
-                    val = NSString(format: "'\(val as String)'")
-                }
-                jsapi += "exports.defineProperty('\(name)', \(JSON(val).toString()), \(writable));\n"
-            }
-        }
-
-        // Append the content of stub file if exist.
+    public func didGenerateStub(stub: String) -> String {
         let bundle : NSBundle = NSBundle(forClass: self.dynamicType)
-        var fileName = NSStringFromClass(self.dynamicType)
-        fileName = fileName.pathExtension.isEmpty ? fileName : fileName.pathExtension
-        if let path = bundle.pathForResource(fileName, ofType: "js") {
-            if let file = NSFileHandle(forReadingAtPath: path) {
-                if let txt = NSString(data: file.readDataToEndOfFile(), encoding: NSUTF8StringEncoding) {
-                    jsapi += txt
-                } else {
-                    NSException(name: "EncodingError", reason: "The encoding of .js file must be UTF-8.", userInfo: nil).raise()
-                }
+        var name = NSStringFromClass(self.dynamicType)
+        name = name.pathExtension.isEmpty ? name : name.pathExtension
+        if let path = bundle.pathForResource(name, ofType: "js") {
+            var error: NSError?
+            if let content = NSString(contentsOfFile: path, encoding: UInt(NSUTF8StringEncoding), error: &error) {
+                return "\(stub)\n\(content)"
+            } else {
+                NSException.raise("EncodingError", format: "'%@.js' should be UTF-8 encoding.", arguments: getVaList([name]))
             }
         }
-
-        return jsapi
+        return stub
+    }
+    public func didBindExtension(namespace: String) {
+        _namespace = namespace
     }
 
-    public func attach(webView: WKWebView, namespace: String? = nil) {
-        if namespace != nil && !namespace!.isEmpty {
-            self.namespace = namespace!
-        } else if let defaultNamespace = XWalkExtensionFactory.singleton.getNameByClass(self.dynamicType) {
-            self.namespace = defaultNamespace
-        } else {
-            NSException(name: "NoNamespace", reason: "JavaScript namespace is undetermined.", userInfo: nil).raise()
+    internal func setProperty(name: String, value: AnyObject?) {
+        // TODO: check type
+        var val: AnyObject = value ?? NSNull()
+        if val.isKindOfClass(NSString.classForCoder()) {
+            val = NSString(format: "'\(val as String)'")
         }
-        self.webView = webView
-
-        // Establish the message channel
-        id = seqenceNumber
-        webView.MakeExtensible()
-        webView.configuration.userContentController.addScriptMessageHandler(self, name: "\(id)")
-
-        // Inject JavaScript API
-        let code = "(function(exports) {\n\n" +
-            "'use strict';\n" +
-            "\(jsAPIStub)\n\n" +
-            "})(Extension.create(\(id), '\(self.namespace)'));"
-        webView.injectScript(code)
+        let json = JSON(val).toString()
+        let cmd = "\(namespace).properties['\(name)'] = \(json);"
+        evaluateJavaScript(cmd)
     }
-
-    public func detach() {
-        let controller = webView!.configuration.userContentController
-        controller.removeScriptMessageHandlerForName("\(id)")
-        // TODO: How to remove user script?
-        //controller.userScripts.removeAtIndex(id)
-        if webView!.URL != nil {
-            // Cleanup extension code in current context
-            evaluate("delete \(namespace);")
-        }
-        webView = nil
-        id = 0
-    }
-
-    public func userContentController(userContentController: WKUserContentController,
-        didReceiveScriptMessage message: WKScriptMessage) {
-        let body = message.body as [String: AnyObject]
-        if let method = body["method"] as? String {
-            // Method call
-            if let args = body["arguments"] as? [[String: AnyObject]] {
-                if args.filter({$0 == [:]}).count > 0 {
-                    // WKWebKit can't handle undefined type well
-                    println("ERROR: parameters contain undefined value")
-                    return
-                }
-                let inv = Invocation(name: "jsfunc_" + method)
-                inv.appendArgument("", value: body["callid"])
-                for a in args {
-                    for (k, v) in a {
-                        inv.appendArgument(k.hasPrefix("__") ? "" : k, value: v is NSNull ? nil : v)
-                    }
-                }
-                if let result = inv.call(self) {
-                    if result.isBool {
-                        if result.boolValue {
-                            invokeJavaScript(".releaseArguments", arguments: [body["callid"]!])
-                        }
-                    } else {
-                        NSException(name: "TypeError", reason: "The return value of native method must be BOOL type.", userInfo: nil).raise()
-                    }
-                }
-            }
-        } else if let prop = body["property"] as? String {
-            // Property setting
-            let inv = Invocation(name: "setJsprop_\(prop)")
-            inv.appendArgument("", value: body["value"])
-            inv.call(self)
-        } else {
-            // TODO: support user defined message?
-            println("ERROR: Unknown message: \(body)")
-        }
-    }
-
     public func invokeCallback(id: UInt32, key: String? = nil, arguments: [AnyObject] = []) {
-        let args = NSArray(array: [NSNumber(unsignedInt: id), key ?? NSNull(), arguments])
+        let args = [NSNumber(unsignedInt: id), key ?? NSNull(), arguments]
         invokeJavaScript(".invokeCallback", arguments: args)
     }
     public func invokeCallback(id: UInt32, index: UInt32, arguments: [AnyObject] = []) {
-        let args = NSArray(array: [NSNumber(unsignedInt: id), NSNumber(unsignedInt: index), arguments])
+        let args = [NSNumber(unsignedInt: id), NSNumber(unsignedInt: index), arguments]
         invokeJavaScript(".invokeCallback", arguments: args)
+    }
+    public func releaseArguments(callid: UInt32) {
+        invokeJavaScript(".releaseArguments", arguments: [NSNumber(unsignedInt: callid)])
     }
     public func invokeJavaScript(function: String, arguments: [AnyObject] = []) {
         var f = function
@@ -176,32 +61,49 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
             f = namespace + function
             this = namespace
         }
-        evaluate("\(f).apply(\(this), \(JSON(arguments).toString()));")
+        evaluateJavaScript("\(f).apply(\(this), \(JSON(arguments).toString()));")
+    }
+    public func evaluateJavaScript(string: String) {
+        _channel.evaluateJavaScript(string, completionHandler: { (obj, err)->Void in
+            if err != nil {
+                println("ERROR: Failed to execute script, \(err)\n------------\n\(string)\n------------")
+            }
+        })
+    }
+    public func evaluateJavaScript(string: String, onSuccess: ((AnyObject!)->Void)?, onError: ((NSError!)->Void)?) {
+        _channel.evaluateJavaScript(string, completionHandler: { (obj, err)->Void in
+            err == nil ? onSuccess?(obj) : onError?(err)
+            return    // To make compiler happy
+        })
     }
 
     public subscript(name: String) -> AnyObject? {
         get {
-            let inv = Invocation(name: "jsprop_\(name)")
-            if let result = inv.call(self) {
-                if let obj: AnyObject = result.object ?? result.number {
-                    return obj
-                } else {
-                    NSException(name: "TypeError", reason: "Unknown return type of property's getter.", userInfo: nil).raise()
-                }
-            } else {
-                NSException(name: "NoSuchPropery", reason: "Property is not defined on native side.", userInfo: nil).raise()
+            let selector = Selector("jsprop_\(name)")
+            if !self.respondsToSelector(selector) {
+                NSException.raise("PropertyError", format: "Property '%@' is not defined.", arguments: getVaList([name]))
+            }
+
+            let result = Invocation.call(self, selector: selector, arguments: nil)
+            if let obj: AnyObject = result.object ?? result.number {
+                return obj
+            } else if !(result.object is NSNull) {
+                NSException.raise("PropertyError", format: "Type of property '%@' is unknown.", arguments: getVaList([name]))
             }
             return nil
         }
         set(value) {
-            var val: AnyObject = value ?? NSNull()
-            if val.isKindOfClass(NSString.classForCoder()) {
-                val = NSString(format: "'\(val as String)'")
+            let selector = Selector("setJsprop_\(name):")
+            if !self.respondsToSelector(selector) {
+                if self.respondsToSelector(Selector("jsprop_\(name)")) {
+                    NSException.raise("PropertyError", format: "Property '%@' is readonly.", arguments: getVaList([name]))
+                } else {
+                    NSException.raise("PropertyError", format: "Property '%@' is not defined.", arguments: getVaList([name]))
+                }
             }
-            let json = JSON(val).toString()
-            let cmd = "\(namespace).\(name) = \(json);"
-            evaluate(cmd)
-            // Native property updating will be triggered by JavaScrpt property setter.
+
+            setProperty(name, value: value)
+            Invocation.call(self, selector: selector, arguments: [value ?? NSNull()])
         }
     }
 
@@ -209,33 +111,5 @@ public class XWalkExtension: NSObject, WKScriptMessageHandler {
         // TODO: throw an exception to JavaScript context
         let method = NSStringFromSelector(aSelector)
         println("ERROR: Native method '\(method)' not found in extension '\(namespace)'")
-    }
-}
-
-extension XWalkExtension {
-    // Helper functions to evaluate JavaScript
-    public func evaluate(string: String) {
-        evaluate(string, success: nil)
-    }
-    public func evaluate(string: String, error: ((NSError)->Void)?) {
-        evaluate(string, completionHandler: { (obj, err)->Void in
-            if err != nil { error?(err) }
-        })
-    }
-    public func evaluate(string: String, success: ((AnyObject!)->Void)?) {
-        evaluate(string, completionHandler: { (obj, err) -> Void in
-            err == nil ? success?(obj) : println("ERROR: Failed to execute script, \(err)\n------------\n\(string)\n------------")
-            return    // To make compiler happy
-        })
-    }
-    public func evaluate(string: String, success: ((AnyObject!)->Void)?, error: ((NSError!)->Void)?) {
-        evaluate(string, completionHandler: { (obj, err)->Void in
-            err == nil ? success?(obj) : error?(err)
-            return    // To make compiler happy
-        })
-    }
-    public func evaluate(string: String, completionHandler: ((AnyObject!, NSError!)->Void)?) {
-        // TODO: Should call completionHandler with an NSError object when webView is nil
-        webView?.evaluateJavaScript(string, completionHandler: completionHandler)
     }
 }
