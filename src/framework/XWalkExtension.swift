@@ -79,37 +79,27 @@ public class XWalkExtension : NSObject, XWalkDelegate {
 
     public subscript(name: String) -> AnyObject? {
         get {
-            let selector = Selector("jsprop_\(name)")
-            if !self.respondsToSelector(selector) {
+            if let selector = channel.mirror.getGetter(name) {
+                let result = Invocation.call(self, selector: selector, arguments: nil)
+                if let obj: AnyObject = result.object ?? result.number {
+                    return obj
+                } else if !(result.object is NSNull) {
+                    NSException.raise("PropertyError", format: "Type of property '%@' is unknown.", arguments: getVaList([name]))
+                }
+            } else {
                 NSException.raise("PropertyError", format: "Property '%@' is not defined.", arguments: getVaList([name]))
-            }
-
-            let result = Invocation.call(self, selector: selector, arguments: nil)
-            if let obj: AnyObject = result.object ?? result.number {
-                return obj
-            } else if !(result.object is NSNull) {
-                NSException.raise("PropertyError", format: "Type of property '%@' is unknown.", arguments: getVaList([name]))
             }
             return nil
         }
         set(value) {
-            let selector = Selector("setJsprop_\(name):")
-            if !self.respondsToSelector(selector) {
-                if self.respondsToSelector(Selector("jsprop_\(name)")) {
-                    NSException.raise("PropertyError", format: "Property '%@' is readonly.", arguments: getVaList([name]))
-                } else {
-                    NSException.raise("PropertyError", format: "Property '%@' is not defined.", arguments: getVaList([name]))
-                }
+            if let selector = channel.mirror.getSetter(name) {
+                setProperty(name, value: value)
+                Invocation.call(self, selector: selector, arguments: [value ?? NSNull()])
+            } else if channel.mirror.hasProperty(name) {
+                NSException.raise("PropertyError", format: "Property '%@' is readonly.", arguments: getVaList([name]))
+            } else {
+                NSException.raise("PropertyError", format: "Property '%@' is not defined.", arguments: getVaList([name]))
             }
-
-            setProperty(name, value: value)
-            Invocation.call(self, selector: selector, arguments: [value ?? NSNull()])
         }
-    }
-
-    public override func doesNotRecognizeSelector(aSelector: Selector) {
-        // TODO: throw an exception to JavaScript context
-        let method = NSStringFromSelector(aSelector)
-        println("ERROR: Native method '\(method)' not found in extension '\(namespace)'")
     }
 }

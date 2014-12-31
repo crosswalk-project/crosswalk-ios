@@ -9,6 +9,7 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
     private let _name: String
     private weak var _webView: WKWebView!
     private var object: AnyObject!
+    internal var mirror: XWalkReflection!
 
     public var name: String { return _name }
     public weak var webView: WKWebView! { return _webView }
@@ -31,110 +32,50 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
         }
     }
 
-    public var jsAPIStub: String {
-        var jsapi: String = ""
-
-        // Generate JavaScript through introspection
-        for var mlist = class_copyMethodList(object!.dynamicType, nil); mlist.memory != nil; mlist = mlist.successor() {
-            let method:String = NSStringFromSelector(method_getName(mlist.memory))
-            if method.hasPrefix("jsfunc_") && method.hasSuffix(":") {
-                var args = method.componentsSeparatedByString(":")
-                let name = args.first!.substringFromIndex(advance(method.startIndex, 7))
-                args.removeAtIndex(0)
-                args.removeLast()
-
-                // deal with parameters without external name
-                for i in 0...args.count-1 {
-                    if args[i].isEmpty {
-                        args[i] = "__\(i)"
-                    }
-                }
-
-                var stub = "this.invokeNative(\"\(name)\", ["
-                var isPromise = false
-                for a in args {
-                    if a != "_Promise" {
-                        stub += "\n        {'\(a)': \(a)},"
-                    } else {
-                        assert(!isPromise)
-                        isPromise = true
-                        stub += "\n        {'\(a)': [resolve, reject]},"
-                    }
-                }
-                if args.count > 0 {
-                    stub.removeAtIndex(stub.endIndex.predecessor())
-                }
-                stub += "\n    ]);"
-                if isPromise {
-                    stub = "\n    ".join(stub.componentsSeparatedByString("\n"))
-                    stub = "var _this = this;\n    return new Promise(function(resolve, reject) {\n        _" + stub + "\n    });"
-                }
-                stub = "exports.\(name) = function(" + ", ".join(args) + ") {\n    \(stub)\n}"
-                jsapi += "\(stub)\n"
-            } else if method.hasPrefix("jsprop_") && !method.hasSuffix(":") {
-                let name = method.substringFromIndex(advance(method.startIndex, 7))
-                let writable = object!.dynamicType.instancesRespondToSelector(Selector("setJsprop_\(name):"))
-                let result = Invocation.call(object, selector: Selector("jsprop_\(name)"), arguments: nil)
-                var val: AnyObject = result.object ?? result.number ?? NSNull()
-                if val as? String != nil {
-                    val = "'\(val)'"
-                }
-                jsapi += "exports.defineProperty('\(name)', \(JSON(val).toString()), \(writable));\n"
-            }
-        }
-        return jsapi
-    }
-
     public func bind(object: AnyObject, namespace: String) {
-        self.object = object
         let delegate = object as? XWalkDelegate
         delegate?.didEstablishChannel?(self)
 
-        // Inject JavaScript API
-        var script = "(function(exports) {\n\n" +
-            "'use strict';\n" +
-            "\(jsAPIStub)\n\n" +
-        "})(Extension.create('\(name)', '\(namespace)'));"
+        mirror = XWalkReflection(cls: object.dynamicType)
+        var script = XWalkStubGenerator(reflection: mirror).generate(_name, namespace: namespace, object: object)
         if delegate?.didGenerateStub != nil {
             script = delegate!.didGenerateStub!(script)
         }
 
         _webView.injectScript(script)
         delegate?.didBindExtension?(namespace)
+        self.object = object
     }
 
     public func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage: WKScriptMessage) {
         let body = didReceiveScriptMessage.body as [String: AnyObject]
         if let method = body["method"] as? String {
             // Method call
-            if let args = body["arguments"] as? [[String: AnyObject]] {
-                if args.filter({$0 == [:]}).count > 0 {
-                    // WKWebKit can't handle undefined type well
-                    println("ERROR: parameters contain undefined value")
-                    return
-                }
-                let inv = Invocation(name: "jsfunc_" + method)
-                inv.appendArgument("", value: body["callid"])
-                for a in args {
-                    for (k, v) in a {
-                        inv.appendArgument(k.hasPrefix("__") ? "" : k, value: v is NSNull ? nil : v)
-                    }
-                }
-                if let result = inv.call(object) {
+            if let callid = body["callid"] as? NSNumber {
+                if let selector = mirror.getMethod(method) {
+                    let args = body["arguments"] as? [AnyObject] ?? []
+                    let result = Invocation.call(object, selector: selector, arguments: [callid] + args)
                     if result.isBool {
-                        if result.boolValue {
-//                          invokeJavaScript(".releaseArguments", arguments: [body["callid"]!])
+                        if result.boolValue && object is XWalkExtension {
+                            (object as XWalkExtension).invokeJavaScript(".releaseArguments", arguments: [callid])
                         }
                     } else {
                         NSException(name: "TypeError", reason: "The return value of native method must be BOOL type.", userInfo: nil).raise()
                     }
+                } else {
+                    println("ERROR: Method '\(method)' is not defined in class '\(NSStringFromClass(object!.dynamicType))'.")
                 }
             }
         } else if let prop = body["property"] as? String {
             // Property setting
-            let inv = Invocation(name: "setJsprop_\(prop)")
-            inv.appendArgument("", value: body["value"])
-            inv.call(object)
+            if let selector = mirror.getSetter(prop) {
+                let value: AnyObject = body["value"] ?? NSNull()
+                Invocation.call(object, selector: selector, arguments: [value])
+            } else if mirror.hasProperty(prop) {
+                println("ERROR: Property '\(prop)' is readonly.")
+            } else {
+                println("ERROR: Property '\(prop)' is not defined in class '\(NSStringFromClass(object!.dynamicType))'.")
+            }
         } else {
             // TODO: support user defined message?
             println("ERROR: Unknown message: \(body)")
