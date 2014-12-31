@@ -48,7 +48,7 @@ public extension WKWebView {
 
     private func prepareForExtension() {
         let bundle = NSBundle(forClass: XWalkChannel.self)
-        if let path = bundle.pathForResource("extension_api", ofType: "js") {
+        if let path = bundle.pathForResource("crosswalk", ofType: "js") {
             if let code = NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding, error: nil) {
                 injectScript(code)
             } else {

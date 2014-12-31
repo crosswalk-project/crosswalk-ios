@@ -17,7 +17,7 @@
 		EE0A1DE41A53CBCC00C9E6D3 /* XWalkExtensionWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DE21A53CBCC00C9E6D3 /* XWalkExtensionWrapper.m */; };
 		EE0A1DED1A53DCFB00C9E6D3 /* XWalkThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DEC1A53DCFB00C9E6D3 /* XWalkThread.swift */; };
 		EE174E451A01FDDE00168D96 /* XWalkExtensionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE174E441A01FDDE00168D96 /* XWalkExtensionFactory.swift */; };
-		EE174E781A0361CB00168D96 /* extension_api.js in Resources */ = {isa = PBXBuildFile; fileRef = EE174E771A0361CB00168D96 /* extension_api.js */; };
+		EE174E781A0361CB00168D96 /* crosswalk.js in Resources */ = {isa = PBXBuildFile; fileRef = EE174E771A0361CB00168D96 /* crosswalk.js */; };
 		EE62692419FA52FC00EFC3F8 /* Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = EE62691E19FA52FC00EFC3F8 /* Invocation.m */; };
 		EE62692519FA52FC00EFC3F8 /* XWalkExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE62691F19FA52FC00EFC3F8 /* XWalkExtension.swift */; };
 		EE62692619FA52FC00EFC3F8 /* XWalkWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE62692019FA52FC00EFC3F8 /* XWalkWebView.swift */; };
@@ -34,7 +34,7 @@
 		EE0A1DE21A53CBCC00C9E6D3 /* XWalkExtensionWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XWalkExtensionWrapper.m; path = src/framework/XWalkExtensionWrapper.m; sourceTree = "<group>"; };
 		EE0A1DEC1A53DCFB00C9E6D3 /* XWalkThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkThread.swift; path = src/framework/XWalkThread.swift; sourceTree = "<group>"; };
 		EE174E441A01FDDE00168D96 /* XWalkExtensionFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkExtensionFactory.swift; path = src/framework/XWalkExtensionFactory.swift; sourceTree = "<group>"; };
-		EE174E771A0361CB00168D96 /* extension_api.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = extension_api.js; path = src/framework/extension_api.js; sourceTree = "<group>"; };
+		EE174E771A0361CB00168D96 /* crosswalk.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = crosswalk.js; path = src/framework/crosswalk.js; sourceTree = "<group>"; };
 		EE62683519FA323900EFC3F8 /* CrosswalkLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CrosswalkLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE62691319FA52D100EFC3F8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = src/framework/Info.plist; sourceTree = "<group>"; };
 		EE62691B19FA52FC00EFC3F8 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "src/framework/Bridging-Header.h"; sourceTree = "<group>"; };
@@ -91,7 +91,7 @@
 				EE0A1DE21A53CBCC00C9E6D3 /* XWalkExtensionWrapper.m */,
 				EE0A1DDD1A52A5A300C9E6D3 /* XWalkReflection.swift */,
 				EE0A1DDE1A52A5A300C9E6D3 /* XWalkStubGenerator.swift */,
-				EE174E771A0361CB00168D96 /* extension_api.js */,
+				EE174E771A0361CB00168D96 /* crosswalk.js */,
 				EE62691B19FA52FC00EFC3F8 /* Bridging-Header.h */,
 				EE62691C19FA52FC00EFC3F8 /* CrosswalkLite.h */,
 				EE62691D19FA52FC00EFC3F8 /* Invocation.h */,
@@ -185,7 +185,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE174E781A0361CB00168D96 /* extension_api.js in Resources */,
+				EE174E781A0361CB00168D96 /* crosswalk.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
