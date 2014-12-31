@@ -5,17 +5,30 @@
 import WebKit
 
 public extension WKWebView {
-    public func loadExtension(object: AnyObject, namespace: String) {
-        struct key {
-            static let ptr:[CChar] = [0x43, 0x72, 0x6f, 0x73, 0x73, 0x77, 0x61, 0x6c, 0x6b, 0]
+    private struct key {
+        static let thread = UnsafePointer<Void>(bitPattern: Selector("extensionThread").hashValue)
+    }
+    public var extensionThread: NSThread {
+        get {
+            if objc_getAssociatedObject(self, key.thread) == nil {
+                prepareForExtension()
+                let thread = XWalkThread()
+                objc_setAssociatedObject(self, key.thread, thread, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
+                return thread
+            }
+            return objc_getAssociatedObject(self, key.thread) as NSThread
         }
-        if objc_getAssociatedObject(self, key.ptr) == nil {
-            prepareForExtension()
-            objc_setAssociatedObject(self, key.ptr, NSNull(), objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
+        set(thread) {
+            if objc_getAssociatedObject(self, key.thread) == nil {
+                prepareForExtension()
+            }
+            objc_setAssociatedObject(self, key.thread, thread, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
         }
+    }
 
+    public func loadExtension(object: AnyObject, namespace: String, thread: NSThread? = nil) {
         let channel = XWalkChannel(webView: self)
-        channel.bind(object, namespace: namespace)
+        channel.bind(object, namespace: namespace, thread: thread)
     }
 
     internal func injectScript(code: String) {
