@@ -2,10 +2,10 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef Bridging_Header_h
-#define Bridging_Header_h
+#ifndef CrosswalkLite_XWalkExtensionWrapper_h
+#define CrosswalkLite_XWalkExtensionWrapper_h
 
-#import "Invocation.h"
-#import "XWalkExtensionWrapper.h"
+IMP xwalkExtensionSetter;
+IMP xwalkExtensionMethod;
 
 #endif

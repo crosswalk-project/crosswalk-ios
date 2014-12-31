@@ -13,6 +13,9 @@
 		EE0A1DD51A52778B00C9E6D3 /* XWalkDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DD41A52778B00C9E6D3 /* XWalkDelegate.swift */; };
 		EE0A1DDF1A52A5A300C9E6D3 /* XWalkReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DDD1A52A5A300C9E6D3 /* XWalkReflection.swift */; };
 		EE0A1DE01A52A5A300C9E6D3 /* XWalkStubGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DDE1A52A5A300C9E6D3 /* XWalkStubGenerator.swift */; };
+		EE0A1DE31A53CBCC00C9E6D3 /* XWalkExtensionWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = EE0A1DE11A53CBCC00C9E6D3 /* XWalkExtensionWrapper.h */; };
+		EE0A1DE41A53CBCC00C9E6D3 /* XWalkExtensionWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DE21A53CBCC00C9E6D3 /* XWalkExtensionWrapper.m */; };
+		EE0A1DED1A53DCFB00C9E6D3 /* XWalkThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DEC1A53DCFB00C9E6D3 /* XWalkThread.swift */; };
 		EE174E451A01FDDE00168D96 /* XWalkExtensionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE174E441A01FDDE00168D96 /* XWalkExtensionFactory.swift */; };
 		EE174E781A0361CB00168D96 /* extension_api.js in Resources */ = {isa = PBXBuildFile; fileRef = EE174E771A0361CB00168D96 /* extension_api.js */; };
 		EE62692419FA52FC00EFC3F8 /* Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = EE62691E19FA52FC00EFC3F8 /* Invocation.m */; };
@@ -27,6 +30,9 @@
 		EE0A1DD41A52778B00C9E6D3 /* XWalkDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkDelegate.swift; path = src/framework/XWalkDelegate.swift; sourceTree = "<group>"; };
 		EE0A1DDD1A52A5A300C9E6D3 /* XWalkReflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkReflection.swift; path = src/framework/XWalkReflection.swift; sourceTree = "<group>"; };
 		EE0A1DDE1A52A5A300C9E6D3 /* XWalkStubGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkStubGenerator.swift; path = src/framework/XWalkStubGenerator.swift; sourceTree = "<group>"; };
+		EE0A1DE11A53CBCC00C9E6D3 /* XWalkExtensionWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XWalkExtensionWrapper.h; path = src/framework/XWalkExtensionWrapper.h; sourceTree = "<group>"; };
+		EE0A1DE21A53CBCC00C9E6D3 /* XWalkExtensionWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XWalkExtensionWrapper.m; path = src/framework/XWalkExtensionWrapper.m; sourceTree = "<group>"; };
+		EE0A1DEC1A53DCFB00C9E6D3 /* XWalkThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkThread.swift; path = src/framework/XWalkThread.swift; sourceTree = "<group>"; };
 		EE174E441A01FDDE00168D96 /* XWalkExtensionFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkExtensionFactory.swift; path = src/framework/XWalkExtensionFactory.swift; sourceTree = "<group>"; };
 		EE174E771A0361CB00168D96 /* extension_api.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = extension_api.js; path = src/framework/extension_api.js; sourceTree = "<group>"; };
 		EE62683519FA323900EFC3F8 /* CrosswalkLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CrosswalkLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +86,9 @@
 		EE62683719FA323900EFC3F8 /* CrosswalkLite */ = {
 			isa = PBXGroup;
 			children = (
+				EE0A1DEC1A53DCFB00C9E6D3 /* XWalkThread.swift */,
+				EE0A1DE11A53CBCC00C9E6D3 /* XWalkExtensionWrapper.h */,
+				EE0A1DE21A53CBCC00C9E6D3 /* XWalkExtensionWrapper.m */,
 				EE0A1DDD1A52A5A300C9E6D3 /* XWalkReflection.swift */,
 				EE0A1DDE1A52A5A300C9E6D3 /* XWalkStubGenerator.swift */,
 				EE174E771A0361CB00168D96 /* extension_api.js */,
@@ -114,6 +123,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE0A1DE31A53CBCC00C9E6D3 /* XWalkExtensionWrapper.h in Headers */,
 				ABD475E31A4129FC00F3BDEB /* Invocation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -193,7 +203,9 @@
 				EE174E451A01FDDE00168D96 /* XWalkExtensionFactory.swift in Sources */,
 				EE62692419FA52FC00EFC3F8 /* Invocation.m in Sources */,
 				EE0A1DD31A52775400C9E6D3 /* XWalkChannel.swift in Sources */,
+				EE0A1DED1A53DCFB00C9E6D3 /* XWalkThread.swift in Sources */,
 				EE62692519FA52FC00EFC3F8 /* XWalkExtension.swift in Sources */,
+				EE0A1DE41A53CBCC00C9E6D3 /* XWalkExtensionWrapper.m in Sources */,
 				EE62692619FA52FC00EFC3F8 /* XWalkWebView.swift in Sources */,
 				ABA6840E1A42C751003A71D9 /* json.swift in Sources */,
 			);
