@@ -21,7 +21,10 @@ class ViewController: UIViewController, WKNavigationDelegate {
         webview.navigationDelegate = self
         view.addSubview(webview)
 
-        webview.loadExtension("xwalk.experimental.system")
+        let extensionName = "xwalk.experimental.system"
+        if let ext: AnyObject = XWalkExtensionFactory.createExtension(extensionName) {
+            webview.loadExtension(ext, namespace: extensionName)
+        }
 
         if let path = NSBundle.mainBundle().pathForResource("index", ofType: "html", inDirectory:"www") {
             webview.loadRequest(NSURLRequest(URL: NSURL.fileURLWithPath(path)!));

@@ -5,7 +5,7 @@
 import WebKit
 
 public extension WKWebView {
-    public func loadExtension(name: String, namespace: String? = nil, parameter: AnyObject? = nil) -> Bool {
+    public func loadExtension(object: AnyObject, namespace: String) {
         struct key {
             static let ptr:[CChar] = [0x43, 0x72, 0x6f, 0x73, 0x73, 0x77, 0x61, 0x6c, 0x6b, 0]
         }
@@ -14,12 +14,8 @@ public extension WKWebView {
             objc_setAssociatedObject(self, key.ptr, NSNull(), objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
         }
 
-        if let ext: AnyObject = XWalkExtensionFactory.createExtension(name, parameter: parameter) {
-            let channel = XWalkChannel(webView: self)
-            channel.bind(ext, namespace: namespace ?? name)
-            return true
-        }
-        return false
+        let channel = XWalkChannel(webView: self)
+        channel.bind(object, namespace: namespace)
     }
 
     internal func injectScript(code: String) {
