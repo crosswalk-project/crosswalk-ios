@@ -37,6 +37,15 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
         delegate?.didEstablishChannel?(self)
 
         mirror = XWalkReflection(cls: object.dynamicType)
+        if object is XWalkExtension {
+            // Do method swizzling
+            for name in mirror.allMembers {
+                if !mirror.wrapMethod(name, impl: xwalkExtensionMethod) {
+                    mirror.wrapSetter(name, impl: xwalkExtensionSetter)
+                }
+            }
+        }
+
         var script = XWalkStubGenerator(reflection: mirror).generate(_name, namespace: namespace, object: object)
         if delegate?.didGenerateStub != nil {
             script = delegate!.didGenerateStub!(script)
@@ -54,22 +63,18 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
             if let callid = body["callid"] as? NSNumber {
                 if let selector = mirror.getMethod(method) {
                     let args = body["arguments"] as? [AnyObject] ?? []
-                    let result = Invocation.call(object, selector: selector, arguments: [callid] + args)
-                    if result.isBool {
-                        if result.boolValue && object is XWalkExtension {
-                            (object as XWalkExtension).invokeJavaScript(".releaseArguments", arguments: [callid])
-                        }
-                    } else {
-                        NSException(name: "TypeError", reason: "The return value of native method must be BOOL type.", userInfo: nil).raise()
-                    }
+                    Invocation.call(object, selector: selector, arguments: [callid] + args)
                 } else {
                     println("ERROR: Method '\(method)' is not defined in class '\(NSStringFromClass(object!.dynamicType))'.")
                 }
             }
         } else if let prop = body["property"] as? String {
             // Property setting
-            if let selector = mirror.getSetter(prop) {
+            if var selector = mirror.getSetter(prop) {
                 let value: AnyObject = body["value"] ?? NSNull()
+                if let original = mirror.getOriginalSetter(name) {
+                    selector = original
+                }
                 Invocation.call(object, selector: selector, arguments: [value])
             } else if mirror.hasProperty(prop) {
                 println("ERROR: Property '\(prop)' is readonly.")

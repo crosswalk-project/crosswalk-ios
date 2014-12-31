@@ -93,7 +93,9 @@ public class XWalkExtension : NSObject, XWalkDelegate {
         }
         set(value) {
             if let selector = channel.mirror.getSetter(name) {
-                setProperty(name, value: value)
+                if channel.mirror.getOriginalSetter(name) == nil {
+                    setProperty(name, value: value)
+                }
                 Invocation.call(self, selector: selector, arguments: [value ?? NSNull()])
             } else if channel.mirror.hasProperty(name) {
                 NSException.raise("PropertyError", format: "Property '%@' is readonly.", arguments: getVaList([name]))

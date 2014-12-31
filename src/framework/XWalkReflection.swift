@@ -100,6 +100,63 @@ class XWalkReflection {
         return nil
     }
 
+    // Method swizzling
+    func wrapMethod(name: String, impl: IMP) -> Bool {
+        if let method = members[name]?.method {
+            return self.dynamicType.swizzle(members[name]!.cls, method: method, impl: impl)
+        }
+        return false
+    }
+    func wrapGetter(name: String, impl: IMP) -> Bool {
+        if let method = members[name]?.getter {
+            return self.dynamicType.swizzle(members[name]!.cls, method: method, impl: impl)
+        }
+        return false
+    }
+    func wrapSetter(name: String, impl: IMP) -> Bool {
+        if let method = members[name]?.setter {
+            return self.dynamicType.swizzle(members[name]!.cls, method: method, impl: impl)
+        }
+        return false
+    }
+    func getOriginalMethod(name: String) -> Selector? {
+        if let method = members[name]?.method {
+            return self.dynamicType.getOriginal(members[name]!.cls, method: method)
+        }
+        return nil
+    }
+    func getOriginalGetter(name: String) -> Selector? {
+        if let method = members[name]?.getter {
+            return self.dynamicType.getOriginal(members[name]!.cls, method: method)
+        }
+        return nil
+    }
+    func getOriginalSetter(name: String) -> Selector? {
+        if let method = members[name]?.setter {
+            return self.dynamicType.getOriginal(members[name]!.cls, method: method)
+        }
+        return nil
+    }
+
+    private class func getOriginal(cls: AnyClass, method: Method) -> Selector? {
+        let selector = Selector("_\(method_getName(method))")
+        let original = class_getInstanceMethod(cls, selector)
+        if original != COpaquePointer.null() {
+            return method_getName(original)
+        }
+        return nil
+    }
+    private class func swizzle(cls: AnyClass, method: Method, impl: IMP) -> Bool {
+        let sel = Selector("_\(method_getName(method))")
+        if class_addMethod(cls, sel, impl, method_getTypeEncoding(method)) {
+            let original = class_getInstanceMethod(cls, method_getName(method))
+            let wrapper = class_getInstanceMethod(cls, sel)
+            method_exchangeImplementations(original, wrapper)
+            return true
+        }
+        return false
+    }
+
     // TODO: enumerate instance methods of super class
     private func enumerate(callback: ((String, MemberType, Method, AnyClass)->Bool)) -> Bool {
         for var mlist = class_copyMethodList(cls, nil); mlist.memory != nil; mlist = mlist.successor() {
