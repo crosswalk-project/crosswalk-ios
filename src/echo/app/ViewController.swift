@@ -6,19 +6,12 @@ import UIKit
 import WebKit
 import CrosswalkLite
 
-class ViewController: UIViewController, WKNavigationDelegate {
-
+class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var userContentController = WKUserContentController()
-
-        var config : WKWebViewConfiguration = WKWebViewConfiguration()
-        config.userContentController = userContentController
-        var webview = WKWebView(frame: view.frame, configuration: config)
-        webview.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
-        webview.frame = view.frame
-        webview.navigationDelegate = self
+        let webview = WKWebView(frame: view.frame, configuration: WKWebViewConfiguration())
+        webview.scrollView.scrollEnabled = false
         view.addSubview(webview)
 
         /*if let ext = XWalkExtensionFactory.createExtension("xwalk.sample.echo", parameter: "prefix: ") {
@@ -33,7 +26,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
 }
