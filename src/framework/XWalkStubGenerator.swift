@@ -15,11 +15,10 @@ class XWalkStubGenerator {
     }
 
     func generate(channelName: String, namespace: String, object: AnyObject? = nil) -> String {
-        var stub = "Extension.create(\(channelName), '\(namespace)');\n"
-
+        var stub = "(function(exports) {\n"
         for name in mirror.allMembers {
             if mirror.hasMethod(name) {
-                stub += "\(namespace).\(name) = \(generateMethodStub(name))\n"
+                stub += "exports.\(name) = \(generateMethodStub(name))\n"
             } else {
                 var value = "undefined"
                 if object != nil {
@@ -31,43 +30,40 @@ class XWalkStubGenerator {
                     }
                     value = JSON(val!).toString()
                 }
-                stub += "\(namespace).defineProperty('\(name)', \(value), \(!mirror.isReadonly(name)!));\n"
+                stub += "Extension.defineProperty(exports, '\(name)', \(value), \(!mirror.isReadonly(name)!));\n"
             }
         }
+        stub += "\n})(Extension.create(\(channelName), '\(namespace)'"
+        if mirror.hasMethod("function") {
+            stub += ", function(){return arguments.callee.function.apply(arguments.callee, arguments);}"
+        }
+        stub += "));\n"
         return stub
     }
 
-    private func generateMethodStub(name: String) -> String {
+    private func generateMethodStub(name: String, this: String = "this") -> String {
         var params = mirror.getMethod(name)!.description.componentsSeparatedByString(":")
         params.removeAtIndex(0)
         params.removeLast()
 
         // deal with parameters without external name
-        for i in 0...params.count-1 {
+        for i in 0..<params.count {
             if params[i].isEmpty {
                 params[i] = "__\(i)"
             }
         }
 
-        var body = "this.invokeNative(\"\(name)\", ["
-        var isPromise = false
-        for a in params {
-            if a != "_Promise" {
-                body += "\n        \(a),"
-            } else {
-                assert(!isPromise)
-                isPromise = true
-                body += "\n        [resolve, reject],"
-            }
-        }
-        if params.count > 0 {
-            body.removeAtIndex(body.endIndex.predecessor())
-        }
-        body += "\n    ]);"
+        let isPromise = params.last == "_Promise"
+        if isPromise { params.removeLast() }
+
+        let list = ", ".join(params)
+        var body = "invokeNative('\(name)', [\(list)"
         if isPromise {
-            body = "\n    ".join(body.componentsSeparatedByString("\n"))
-            body = "var _this = this;\n    return new Promise(function(resolve, reject) {\n        _" + body + "\n    });"
+            body = "var _this = \(this);\n    return new Promise(function(resolve, reject) {\n        _this.\(body)"
+            body += (list.isEmpty ? "" : ", ") + "[resolve, reject]]);\n    });"
+        } else {
+            body = "\(this).\(body)]);"
         }
-        return "function(" + ", ".join(params) + ") {\n    \(body)\n}"
+        return "function(\(list)) {\n    \(body)\n}"
     }
 }

@@ -18,7 +18,7 @@ public class XWalkExtensionFactory {
     }
 
     private init() {
-        register("Extension.loader",  cls: XWalkExtensionLoader.self)
+        register("Extension.load",  cls: XWalkExtensionLoader.self)
     }
     private convenience init(path: String?) {
         self.init()

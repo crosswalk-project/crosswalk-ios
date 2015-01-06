@@ -2,15 +2,14 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-Extension = function(id) {
-    this.id = id;
+Extension = function(channel) {
+    this.channel = channel;
     this.lastCallID = 1;
     this.calls = [];
-    this.properties = [];
 }
 
-Extension.create = function(id, namespace) {
-    if (!webkit.messageHandlers[id])
+Extension.create = function(channel, namespace, base) {
+    if (!webkit.messageHandlers[channel])
         return null;  // channel has not established
 
     var obj = window;
@@ -22,20 +21,48 @@ Extension.create = function(id, namespace) {
     });
     if (obj[last] instanceof this)
         return null;  // channel is occupied
-    return obj[last] = new this(id);
+
+    if (base instanceof Object)
+        this.aggregate(base, this, [channel]);
+    else
+        base = new this(channel);
+    return obj[last] = base;
 }
 
-Extension.destroy = function(namespace) {
-    var ns = namespace.split('.');
-    for (var i = 0; ns.length; ++i) {
-        var o = window;
-        var p = ns.pop();
-        ns.forEach(function(v){o = o[v];});
-        if ((i || !(o[p] instanceof this)) &&
-            Object.getOwnPropertyNames(o[p]).length)
-            break;
-        delete o[p];
+Extension.defineProperty = function(obj, prop, value, writable) {
+    var desc = {
+        'configurable': false,
+        'enumerable': true,
+        'get': function() { return this.properties[prop]; }
     }
+    if (writable) {
+        desc.set = function(v) {
+            this.invokeNative('.' + prop, v);
+            this.properties[prop] = v;
+        }
+    }
+    if (!obj.properties)  obj.properties = {};
+    obj.properties[prop] = value;
+    Object.defineProperty(obj, prop, desc);
+}
+
+Extension.aggregate = function(obj, constructor, args) {
+    var ctor = constructor;
+    if (typeof(ctor) === 'string' || ctor instanceof String)
+        ctor = this[ctor];
+    if (!(ctor instanceof Function) || !(ctor.prototype instanceof Object))
+        return;
+    function clone(obj) {
+        var copy = {};
+        var keys = Object.getOwnPropertyNames(obj);
+        for (var i in keys)
+            copy[keys[i]] = obj[keys[i]];
+        return copy;
+    }
+    var p = clone(ctor.prototype);
+    p.__proto__ = Object.getPrototypeOf(obj);
+    obj.__proto__ = p;
+    ctor.apply(obj, args);
 }
 
 Extension.prototype = {
@@ -46,7 +73,7 @@ Extension.prototype = {
         }
 
         if (name[0] == '.') {
-            webkit.messageHandlers[this.id].postMessage({
+            webkit.messageHandlers[this.channel].postMessage({
                     'property': name.substring(1),
                     'value': args
             });
@@ -103,7 +130,7 @@ Extension.prototype = {
             'method': name,
             'arguments': args
         };
-        webkit.messageHandlers[this.id].postMessage(body);
+        webkit.messageHandlers[this.channel].postMessage(body);
     },
     invokeCallback: function(id, key, args) {
         var cid = id >>> 8;
@@ -122,40 +149,6 @@ Extension.prototype = {
             delete this.calls[cid];
             this.lastCallID = cid;
         }
-    },
-
-    defineProperty: function(prop, value, writable) {
-        var desc = {
-            'configurable': false,
-            'enumerable': true,
-            'get': function() { return this.properties[prop]; }
-        }
-        if (writable) {
-            desc.set = function(v) {
-                this.invokeNative('.' + prop, v);
-                this.properties[prop] = v;
-            }
-        }
-        this.properties[prop] = value;
-        Object.defineProperty(this, prop, desc);
-    },
-    aggregate: function(constructor, args) {
-        var ctor = constructor;
-        if (typeof(ctor) === 'string' || ctor instanceof String)
-            ctor = Extension[ctor];
-        if (!(ctor instanceof Function) || !(ctor.prototype instanceof Object))
-            return;
-        function clone(obj) {
-            var copy = {};
-            var keys = Object.getOwnPropertyNames(obj);
-            for (var i in keys)
-                copy[keys[i]] = obj[keys[i]];
-            return copy;
-        }
-        var p = clone(ctor.prototype);
-        p.__proto__ = Object.getPrototypeOf(this);
-        this.__proto__ = p;
-        ctor.apply(this, args);
     }
 }
 
