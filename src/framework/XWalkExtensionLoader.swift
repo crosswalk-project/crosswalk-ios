@@ -6,9 +6,11 @@ import Foundation
 import WebKit
 
 class XWalkExtensionLoader: XWalkExtension {
-    func jsfunc_function(cid: UInt32, name: String, namespace: String?, parameter: AnyObject?, _Promise: UInt32) -> Bool {
-        if let object: AnyObject = XWalkExtensionFactory.createExtension(name, parameter: parameter) {
-            channel.webView.loadExtension(object, namespace: namespace ?? name)
+    func jsfunc_function(cid: UInt32, name: String, namespace: String?, argument: AnyObject?, _Promise: UInt32) -> Bool {
+        let initializer: Selector = argument == nil ? "init" : "initWithJSValue:"
+        let arguments: [AnyObject] = argument == nil ? [] : [argument!]
+        if let ext: AnyObject = XWalkExtensionFactory.createExtension(name, initializer: initializer, arguments: arguments) {
+            channel.webView.loadExtension(ext, namespace: namespace ?? name)
             // TODO: Call success callback with the extension object
             invokeCallback(_Promise, index: 0)
         } else {

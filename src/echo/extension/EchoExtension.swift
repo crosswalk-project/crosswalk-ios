@@ -7,10 +7,16 @@ import CrosswalkLite
 class EchoExtension: XWalkExtension {
     dynamic var jsprop_prefix: String = ""
 
-    convenience init(param: AnyObject) {
+    convenience init(prefix: String) {
         self.init()
-        if let prefix = param as? NSString {
+        jsprop_prefix = prefix
+    }
+    convenience init(JSValue value: AnyObject) {
+        self.init()
+        if let prefix = value as? String {
             jsprop_prefix = prefix
+        } else if let num = value as? NSNumber {
+            jsprop_prefix = num.stringValue
         }
     }
 

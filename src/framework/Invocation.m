@@ -61,14 +61,17 @@
 
     NSRange range = { 0, name_.length };
     [selector_ replaceCharactersInRange:range withString:@"init"];
-    SEL sel = NSSelectorFromString(selector_);
-    ReturnValue *result = [Invocation call:[class alloc] selector:sel arguments:arguments_];
-    return [result object];
+    return [Invocation construct:class initializer:NSSelectorFromString(selector_) arguments:arguments_];
 }
 
 - (ReturnValue *)call:(id)target {
     SEL sel = NSSelectorFromString(selector_);
     return [Invocation call:target selector:sel arguments:arguments_];
+}
+
++ (id)construct:(Class)class initializer:(SEL)sel arguments:(NSArray *)args {
+    ReturnValue *result = [Invocation call:[class alloc] selector:sel arguments:args];
+    return [result object];
 }
 
 + (ReturnValue *)call:(id)target selector:(SEL)selector arguments:(NSArray *)args {
@@ -78,6 +81,9 @@
     NSMethodSignature *sig = [target methodSignatureForSelector:selector];
     if (sig == nil) {
         [target doesNotRecognizeSelector:selector];
+        return nil;
+    } else if ([sig numberOfArguments] > args.count + 2) {
+        // Too few arguments
         return nil;
     }
 
