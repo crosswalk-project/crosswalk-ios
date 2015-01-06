@@ -22,9 +22,9 @@
     if (typeof(echo) === 'object') {
         // EchoExtension has loaded
         resolve();
-    } else if (typeof(Extension) === 'function' && Extension["loader"]) {
+    } else if (typeof(Extension) === 'function' && Extension["load"]) {
         // Load now
-        Extension.loader.load('xwalk.sample.echo', 'echo', 'Native: ').then(resolve, reject);
+        Extension.load('xwalk.sample.echo', 'echo', 'Native: ').then(resolve, reject);
     } else {
         reject();
     }

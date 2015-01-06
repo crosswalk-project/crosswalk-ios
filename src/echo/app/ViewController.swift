@@ -17,8 +17,8 @@ class ViewController: UIViewController {
         /*if let ext = XWalkExtensionFactory.createExtension("xwalk.sample.echo", parameter: "prefix: ") {
             webview.loadExtension(ext, namespace: "echo")
         }*/
-        if let ext: AnyObject = XWalkExtensionFactory.createExtension("Extension.loader") {
-            webview.loadExtension(ext, namespace: "Extension.loader")
+        if let ext: AnyObject = XWalkExtensionFactory.createExtension("Extension.load") {
+            webview.loadExtension(ext, namespace: "Extension.load")
         }
 
         if let path = NSBundle.mainBundle().pathForResource("echo", ofType: "html") {
