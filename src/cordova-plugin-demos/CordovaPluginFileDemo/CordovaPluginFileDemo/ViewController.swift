@@ -23,8 +23,9 @@ class ViewController: CDVViewController, WKNavigationDelegate {
         webview.navigationDelegate = self
         view.addSubview(webview)
 
-        if NSBundle.mainBundle().objectForInfoDictionaryKey("CordovaPlugins") != nil {
-            webview.loadExtension("xwalk.cordova", namespace: nil, parameter: nil)
+        let extensionName = "xwalk.cordova"
+        if let ext: AnyObject = XWalkExtensionFactory.createExtension(extensionName) {
+            webview.loadExtension(ext, namespace: extensionName)
         }
 
         if let path = NSBundle.mainBundle().pathForResource("index", ofType: "html", inDirectory:"www") {
