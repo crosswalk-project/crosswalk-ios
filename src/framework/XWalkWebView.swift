@@ -31,7 +31,7 @@ public extension WKWebView {
         channel.bind(object, namespace: namespace, thread: thread)
     }
 
-    internal func injectScript(code: String) {
+    internal func injectScript(code: String) -> WKUserScript {
         let script = WKUserScript(
             source: code,
             injectionTime: WKUserScriptInjectionTime.AtDocumentStart,
@@ -44,6 +44,7 @@ public extension WKWebView {
                 }
             })
         }
+        return script
     }
 
     private func prepareForExtension() {
@@ -53,6 +54,18 @@ public extension WKWebView {
                 injectScript(code)
             } else {
                 NSException.raise("EncodingError", format: "'%@.js' should be UTF-8 encoding.", arguments: getVaList([path]))
+            }
+        }
+    }
+}
+
+extension WKUserContentController {
+    func removeUserScript(script: WKUserScript) {
+        let scripts = userScripts
+        removeAllUserScripts()
+        for i in scripts {
+            if i !== script {
+                addUserScript(i as WKUserScript)
             }
         }
     }

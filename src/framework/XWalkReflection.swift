@@ -9,6 +9,7 @@ class XWalkReflection {
         case Method = 1
         case Getter
         case Setter
+        case Constructor
     }
     private struct MemberInfo {
         init(cls: AnyClass) {
@@ -31,10 +32,12 @@ class XWalkReflection {
 
     private let cls: AnyClass
     private var members: [String: MemberInfo] = [:]
+    private var ctor: Selector?
 
     private let methodPrefix = "jsfunc_"
     private let getterPrefix = "jsprop_"
     private let setterPrefix = "setJsprop_"
+    private let ctorPrefix = "initFromJavaScript:"
 
     init(cls: AnyClass) {
         self.cls = cls
@@ -42,6 +45,8 @@ class XWalkReflection {
             if type == XWalkReflection.MemberType.Method {
                 assert(self.members[name] == nil, "ambiguous method: \(name)")
                 self.members[name] = MemberInfo(cls: cls, method: method)
+            } else if type == XWalkReflection.MemberType.Constructor {
+                self.ctor = method_getName(method)
             } else {
                 assert(self.members[name]?.method == nil, "name conflict: \(name)")
                 if self.members.indexForKey(name) == nil {
@@ -81,6 +86,9 @@ class XWalkReflection {
     }
 
     // Fetching selectors
+    var constructor: Selector? {
+        return ctor
+    }
     func getMethod(name: String) -> Selector? {
         if let method = members[name]?.method {
             return method_getName(method)
@@ -180,6 +188,10 @@ class XWalkReflection {
                 type = MemberType.Setter
                 start = advance(name.startIndex, 10)
                 end = name.endIndex.predecessor()
+            } else if name.hasPrefix(ctorPrefix) {
+                type = MemberType.Constructor
+                start = name.startIndex
+                end = advance(start, 4)
             } else {
                 continue
             }
