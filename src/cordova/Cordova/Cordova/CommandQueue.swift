@@ -20,7 +20,8 @@ class CommandQueue : NSObject {
         if let commands: NSArray = batchJSON.JSONObject() as? NSArray {
             for obj in commands {
                 if let command: NSArray = obj as? NSArray {
-                    queue.append(CDVInvokedUrlCommand(json: command))
+
+                    queue.append(CDVInvokedUrlCommand(fromJson: command))
                 }
             }
             return true

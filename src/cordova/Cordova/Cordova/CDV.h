@@ -19,6 +19,7 @@
 
 #import "CDVAvailability.h"
 #import "CDVCommandDelegate.h"
+#import "CDVDebug.h"
 #import "CDVInvokedUrlCommand.h"
 #import "CDVJSON.h"
 #import "CDVScreenOrientationDelegate.h"

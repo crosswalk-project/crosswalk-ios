@@ -7,3 +7,6 @@
 [submodule "src/cordova-plugin-demos/CordovaPluginFileDemo/CordovaPluginFileDemo/www/sample-file"]
 	path = src/cordova-plugin-demos/CordovaPluginFileDemo/CordovaPluginFileDemo/www/sample-file
 	url = git@github.com:Icenium/sample-file.git
+[submodule "src/third-party/cordova-ios"]
+	path = src/third-party/cordova-ios
+	url = git@github.com:apache/cordova-ios.git
