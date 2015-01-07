@@ -72,4 +72,6 @@
 + (ReturnValue *)call:(id)target selector:(SEL)selector valist:(va_list)valist;
 + (ReturnValue *)call:(id)target selector:(SEL)selector valist:(va_list)valist thread:(NSThread *)thread;
 
++ (id)construct:(Class)class initializer:(SEL)sel arguments:(NSArray *)args;
+
 @end

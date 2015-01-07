@@ -4,7 +4,7 @@
 
 import Foundation
 
-public class XWalkExtensionFactory {
+@objc public class XWalkExtensionFactory {
     private struct XWalkExtensionProvider {
         let bundle: NSBundle
         let className: String
@@ -67,7 +67,7 @@ public class XWalkExtensionFactory {
     private func register(name: String, cls: AnyClass) -> Bool {
         if extensions[name] == nil {
             let bundle = NSBundle(forClass: cls)
-            var className = NSStringFromClass(cls)
+            var className = cls.description()
             className = className.pathExtension.isEmpty ? className : className.pathExtension
             extensions[name] = XWalkExtensionProvider(bundle: bundle, className: className)
             return true
@@ -75,7 +75,7 @@ public class XWalkExtensionFactory {
         return false
     }
 
-    private func createExtension(name: String, parameter: AnyObject? = nil) -> AnyObject? {
+    private func getClass(name: String) -> AnyClass? {
         if let src = extensions[name] {
             // Load bundle
             if !src.bundle.loaded {
@@ -86,25 +86,28 @@ public class XWalkExtensionFactory {
                 }
             }
 
-            var className = ""
             if let type: AnyClass = src.bundle.classNamed(src.className) {
                 // FIXME: Never reach here because the bundle in build directory was loaded in simulator.
-                className = NSStringFromClass(type)
+                return type
             } else {
                 // FIXME: workaround the problem
-                className = (src.bundle.executablePath?.lastPathComponent)! + "." + src.className
-                //println("ERROR: Class '\(src.className)' not found in bundle '\(src.bundle.bundlePath)")
-                //return nil
+                let className = (src.bundle.executablePath?.lastPathComponent)! + "." + src.className
+                return NSClassFromString(className)
             }
+        }
+        return nil
+    }
 
-            let inv = Invocation(name: className)
-            if parameter != nil {
-                inv.appendArgument("param", value: parameter!)
+    private func createExtension(name: String, initializer: Selector, arguments: [AnyObject]) -> AnyObject? {
+        if let cls: AnyClass = getClass(name) {
+            if class_respondsToSelector(cls, initializer) {
+                if method_getNumberOfArguments(class_getInstanceMethod(cls, initializer)) <= UInt32(arguments.count) + 2 {
+                    return Invocation.construct(cls, initializer: initializer, arguments: arguments)
+                }
+                println("ERROR: Too few arguments to initializer '\(initializer.description)'.")
+            } else {
+                println("ERROR: Initializer '\(initializer.description)' not found in class '\(cls.description())'.")
             }
-            if let ext: AnyObject = inv.construct() {
-                return ext
-            }
-            println("ERROR: Can't create extension '\(name)'")
         } else {
             println("ERROR: Extension '\(name)' not found")
         }
@@ -114,7 +117,13 @@ public class XWalkExtensionFactory {
     public class func register(name: String, cls: AnyClass) -> Bool {
         return XWalkExtensionFactory.singleton.register(name, cls: cls)
     }
-    public class func createExtension(name: String, parameter: AnyObject? = nil) -> AnyObject? {
-        return XWalkExtensionFactory.singleton.createExtension(name, parameter: parameter)
+    public class func createExtension(name: String) -> AnyObject? {
+        return XWalkExtensionFactory.singleton.createExtension(name, initializer: "init", arguments: [])
+    }
+    public class func createExtension(name: String, initializer: Selector, arguments: [AnyObject]) -> AnyObject? {
+        return XWalkExtensionFactory.singleton.createExtension(name, initializer: initializer, arguments: arguments)
+    }
+    public class func createExtension(name: String, initializer: Selector, varargs: AnyObject...) -> AnyObject? {
+        return XWalkExtensionFactory.singleton.createExtension(name, initializer: initializer, arguments: varargs)
     }
 }

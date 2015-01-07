@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         webview.scrollView.scrollEnabled = false
         view.addSubview(webview)
 
-        /*if let ext = XWalkExtensionFactory.createExtension("xwalk.sample.echo", parameter: "prefix: ") {
+/*      if let ext: AnyObject = XWalkExtensionFactory.createExtension("xwalk.sample.echo", initializer: "initWithPrefix:", varargs: "prefix: ") {
             webview.loadExtension(ext, namespace: "echo")
         }*/
         if let ext: AnyObject = XWalkExtensionFactory.createExtension("Extension.load") {
