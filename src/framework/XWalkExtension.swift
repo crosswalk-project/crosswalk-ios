@@ -6,17 +6,15 @@ import Foundation
 
 public class XWalkExtension : NSObject, XWalkDelegate {
     private weak var _channel: XWalkChannel!
-    private var _namespace: String = ""
+    private var _instance: Int = 0
 
     public final weak var channel: XWalkChannel! { return _channel }
-    public final var namespace: String { return _namespace }
+    public final var instance: Int { return _instance }
+    public final var namespace: String { return _channel.namespace }
 
-    public func didEstablishChannel(channel: XWalkChannel) {
-        _channel = channel
-    }
     public func didGenerateStub(stub: String) -> String {
         let bundle : NSBundle = NSBundle(forClass: self.dynamicType)
-        var name = NSStringFromClass(self.dynamicType)
+        var name = self.dynamicType.description()
         name = name.pathExtension.isEmpty ? name : name.pathExtension
         if let path = bundle.pathForResource(name, ofType: "js") {
             var error: NSError?
@@ -28,8 +26,17 @@ public class XWalkExtension : NSObject, XWalkDelegate {
         }
         return stub
     }
-    public func didBindExtension(namespace: String) {
-        _namespace = namespace
+    public func didBindExtension(channel: XWalkChannel, instance: Int) {
+        _channel = channel
+        _instance = instance
+
+        if instance != 0 {
+            for name in _channel.mirror.allMembers {
+                if _channel.mirror.hasProperty(name) {
+                    setProperty(name, value: self[name])
+                }
+            }
+        }
     }
 
     internal func setProperty(name: String, value: AnyObject?) {
@@ -39,8 +46,8 @@ public class XWalkExtension : NSObject, XWalkDelegate {
             val = NSString(format: "'\(val as String)'")
         }
         let json = JSON(val).toString()
-        let cmd = "\(namespace).properties['\(name)'] = \(json);"
-        evaluateJavaScript(cmd)
+        let script = "\(_channel.namespace)" + (_instance != 0 ? "[\(instance)]" : "") + ".properties['\(name)'] = \(json);"
+        evaluateJavaScript(script)
     }
     public func invokeCallback(id: UInt32, key: String? = nil, arguments: [AnyObject] = []) {
         let args = [NSNumber(unsignedInt: id), key ?? NSNull(), arguments]
@@ -54,14 +61,15 @@ public class XWalkExtension : NSObject, XWalkDelegate {
         invokeJavaScript(".releaseArguments", arguments: [NSNumber(unsignedInt: callid)])
     }
     public func invokeJavaScript(function: String, arguments: [AnyObject] = []) {
-        var f = function
+        var script = function
         var this = "null"
-        if f[f.startIndex] == "." {
+        if script[script.startIndex] == "." {
             // Invoke a method of this object
-            f = namespace + function
-            this = namespace
+            this = _channel.namespace + (_instance != 0 ? "[\(instance)]" : "")
+            script = this + function
         }
-        evaluateJavaScript("\(f).apply(\(this), \(JSON(arguments).toString()));")
+        script += ".apply(\(this), \(JSON(arguments).toString()));"
+        evaluateJavaScript(script)
     }
     public func evaluateJavaScript(string: String) {
         _channel.evaluateJavaScript(string, completionHandler: { (obj, err)->Void in
@@ -79,7 +87,7 @@ public class XWalkExtension : NSObject, XWalkDelegate {
 
     public subscript(name: String) -> AnyObject? {
         get {
-            if let selector = channel.mirror.getGetter(name) {
+            if let selector = _channel.mirror.getGetter(name) {
                 let result = Invocation.call(self, selector: selector, arguments: nil)
                 if let obj: AnyObject = result.object ?? result.number {
                     return obj
@@ -92,12 +100,12 @@ public class XWalkExtension : NSObject, XWalkDelegate {
             return nil
         }
         set(value) {
-            if let selector = channel.mirror.getSetter(name) {
+            if let selector = _channel.mirror.getSetter(name) {
                 if channel.mirror.getOriginalSetter(name) == nil {
                     setProperty(name, value: value)
                 }
                 Invocation.call(self, selector: selector, arguments: [value ?? NSNull()])
-            } else if channel.mirror.hasProperty(name) {
+            } else if _channel.mirror.hasProperty(name) {
                 NSException.raise("PropertyError", format: "Property '%@' is readonly.", arguments: getVaList([name]))
             } else {
                 NSException.raise("PropertyError", format: "Property '%@' is not defined.", arguments: getVaList([name]))

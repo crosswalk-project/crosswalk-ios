@@ -4,11 +4,9 @@
 
 Extension = function(channel) {
     this.channel = channel;
-    this.lastCallID = 1;
-    this.calls = [];
 }
 
-Extension.create = function(channel, namespace, base) {
+Extension.create = function(channel, namespace, base, isctor) {
     if (!webkit.messageHandlers[channel])
         return null;  // channel has not established
 
@@ -22,11 +20,26 @@ Extension.create = function(channel, namespace, base) {
     if (obj[last] instanceof this)
         return null;  // channel is occupied
 
-    if (base instanceof Object)
-        this.aggregate(base, this, [channel]);
-    else
-        base = new this(channel);
-    return obj[last] = base;
+    if (!isctor) {
+        if (base instanceof Object)
+            this.aggregate(base, this, [channel]);
+        else
+            base = new this(channel);
+        return obj[last] = base;
+    } else if (base instanceof Function) {
+        obj[last] = base;
+        base.lastInstID = 1;
+        base.prototype = new this(channel);
+        base.prototype.constructor = base;
+        base.destroy = function() {
+            for (var i in this) {
+                if (!isNaN(Number(i)))
+                    this[i].destroy();
+            }
+            this.prototype.destroy();
+        }
+        return base.prototype;
+    }
 }
 
 Extension.defineProperty = function(obj, prop, value, writable) {
@@ -72,11 +85,35 @@ Extension.prototype = {
             return;
         }
 
+        var msg = {};
+        if (this.instanceID)
+            msg.instance = this.instanceID;
         if (name[0] == '.') {
-            webkit.messageHandlers[this.channel].postMessage({
-                    'property': name.substring(1),
-                    'value': args
-            });
+            // Update property
+            msg.property = name.substring(1);
+            msg.value = args;
+            webkit.messageHandlers[this.channel].postMessage(msg);
+            return;
+        } else if (name == '-') {
+            if (!this.instanceID) {
+                // Destroy extension
+                webkit.messageHandlers[this.channel].postMessage({'destroy': true});
+                this.__proto__ = Object.getPrototypeOf(this.__proto__);
+            } else {
+                // Destroy instance
+                var ctor = this.constructor;
+                ctor.lastInstID = this.instanceID;
+                delete ctor[this.instanceID];
+                msg.instance = -this.instanceID;
+                webkit.messageHandlers[this.channel].postMessage(msg);
+                this.__proto__ = Object.prototype;
+            }
+            // Cleanup object
+            delete this.channel;
+            delete this.properties;
+            delete this.calls;
+            delete this.instanceID;
+            delete this.lastCallID;
             return;
         }
 
@@ -108,6 +145,10 @@ Extension.prototype = {
             return (cid << 8) + vid;
         }
 
+        if (!this.lastCallID) {
+            this.lastCallID = 1;
+            this.calls = [];
+        }
         while (this.calls[this.lastCallID] != undefined)
             ++this.lastCallID;
         var cid = this.lastCallID;
@@ -125,12 +166,24 @@ Extension.prototype = {
         else
             cid = 0;
 
-        var body = {
-            'callid': cid,
-            'method': name,
-            'arguments': args
-        };
-        webkit.messageHandlers[this.channel].postMessage(body);
+        msg.arguments = args;
+        if (name == '+') {
+            // Create instance
+            var ctor = this.constructor;
+            while (ctor[ctor.lastInstID] != undefined)
+                ++ctor.lastInstID;
+            this.instanceID = ctor.lastInstID;
+            this.properties = {};
+            for (var i in this.__proto__.properties)
+                this.properties[i] = this.__proto__.properties[i];
+            ctor[this.instanceID] = this;
+            msg.instance = this.instanceID;
+        } else {
+            // Call method
+            msg.method = name;
+            msg.callid = cid;
+        }
+        webkit.messageHandlers[this.channel].postMessage(msg);
     },
     invokeCallback: function(id, key, args) {
         var cid = id >>> 8;
@@ -149,6 +202,9 @@ Extension.prototype = {
             delete this.calls[cid];
             this.lastCallID = cid;
         }
+    },
+    destroy: function() {
+        this.invokeNative('-');
     }
 }
 

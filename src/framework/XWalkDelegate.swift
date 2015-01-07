@@ -5,7 +5,6 @@
 import Foundation
 
 @objc public protocol XWalkDelegate {
-    optional func didEstablishChannel(channel: XWalkChannel)
     optional func didGenerateStub(stub: String) -> String
-    optional func didBindExtension(namespace: String)
+    optional func didBindExtension(channel: XWalkChannel, instance: Int)
 }

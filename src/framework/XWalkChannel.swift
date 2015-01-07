@@ -9,13 +9,16 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
     private let _name: String
     private weak var _webView: WKWebView!
     private var _thread: NSThread = NSThread.mainThread()
+    private var _namespace: String = ""
 
-    private var object: AnyObject!
+    private var instances: [Int: AnyObject] = [:]
     internal var mirror: XWalkReflection!
+    private var userScript: WKUserScript?
 
     public var name: String { return _name }
     public weak var webView: WKWebView! { return _webView }
     public var thread: NSThread { return _thread }
+    public var namespace: String { return _namespace }
 
     public init(webView: WKWebView, name: String? = nil) {
         struct seq{
@@ -28,17 +31,8 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
         webView.configuration.userContentController.addScriptMessageHandler(self, name: "\(_name)")
     }
 
-    deinit {
-        _webView.configuration.userContentController.removeScriptMessageHandlerForName("\(_name)")
-        if _webView.URL != nil && object is XWalkExtension {
-            evaluateJavaScript("delete \((object as XWalkExtension).namespace);", completionHandler:nil)
-        }
-    }
-
     public func bind(object: AnyObject, namespace: String, thread: NSThread? = nil) {
-        let delegate = object as? XWalkDelegate
-        delegate?.didEstablishChannel?(self)
-
+        _namespace = namespace
         _thread = thread ?? _webView.extensionThread
         if _thread is XWalkThread && !_thread.executing {
             _thread.start()
@@ -55,39 +49,68 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
         }
 
         var script = XWalkStubGenerator(reflection: mirror).generate(_name, namespace: namespace, object: object)
+        let delegate = object as? XWalkDelegate
         if delegate?.didGenerateStub != nil {
             script = delegate!.didGenerateStub!(script)
         }
 
-        _webView.injectScript(script)
-        delegate?.didBindExtension?(namespace)
-        self.object = object
+        userScript = _webView.injectScript(script)
+        delegate?.didBindExtension?(self, instance: 0)
+        instances[0] = object
     }
 
     public func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage: WKScriptMessage) {
         let body = didReceiveScriptMessage.body as [String: AnyObject]
+        let instid = (body["instance"] as? NSNumber)?.integerValue ?? 0
+        let callid = body["callid"] as? NSNumber ?? NSNumber(integer: 0)
+        let args = [callid] + (body["arguments"] as? [AnyObject] ?? [])
+
         if let method = body["method"] as? String {
-            // Method call
-            if let callid = body["callid"] as? NSNumber {
+            // Invoke method
+            if let object: AnyObject = instances[instid] {
                 if let selector = mirror.getMethod(method) {
-                    let args = body["arguments"] as? [AnyObject] ?? []
-                    Invocation.call(object, selector: selector, arguments: [callid] + args, thread: _thread)
+                    Invocation.call(object, selector: selector, arguments: args, thread: _thread)
                 } else {
-                    println("ERROR: Method '\(method)' is not defined in class '\(NSStringFromClass(object!.dynamicType))'.")
+                    println("ERROR: Method '\(method)' is not defined in class '\(object.dynamicType.description())'.")
                 }
+            } else {
+                println("ERROR: Instance \(instid) does not exist.")
             }
         } else if let prop = body["property"] as? String {
-            // Property setting
-            if var selector = mirror.getSetter(prop) {
-                let value: AnyObject = body["value"] ?? NSNull()
-                if let original = mirror.getOriginalSetter(name) {
-                    selector = original
+            // Update property
+            if let object: AnyObject = instances[instid] {
+                if var selector = mirror.getSetter(prop) {
+                    let value: AnyObject = body["value"] ?? NSNull()
+                    if let original = mirror.getOriginalSetter(name) {
+                        selector = original
+                    }
+                    Invocation.call(object, selector: selector, arguments: [value], thread: _thread)
+                } else if mirror.hasProperty(prop) {
+                    println("ERROR: Property '\(prop)' is readonly.")
+                } else {
+                    println("ERROR: Property '\(prop)' is not defined in class '\(object.dynamicType.description())'.")
                 }
-                Invocation.call(object, selector: selector, arguments: [value], thread: _thread)
-            } else if mirror.hasProperty(prop) {
-                println("ERROR: Property '\(prop)' is readonly.")
             } else {
-                println("ERROR: Property '\(prop)' is not defined in class '\(NSStringFromClass(object!.dynamicType))'.")
+                println("ERROR: Instance \(instid) does not exist.")
+            }
+        } else if instid > 0 && instances[instid] == nil {
+            // Create instance
+            let ctor: AnyObject = instances[0]!
+            let object: AnyObject = Invocation.construct(ctor.dynamicType, initializer: mirror.constructor!, arguments: args)
+            instances[instid] = object
+            (object as? XWalkDelegate)?.didBindExtension?(self, instance: instid)
+            // TODO: shoud call releaseArguments
+        } else if instid < 0 && instances[-instid] != nil {
+            // Destroy instance
+            instances.removeValueForKey(-instid)
+        } else if body["destroy"] != nil {
+            // Destroy extension
+            if _webView.URL != nil {
+                evaluateJavaScript("delete \(_namespace);", completionHandler:nil)
+            }
+            _webView.configuration.userContentController.removeScriptMessageHandlerForName("\(_name)")
+            if userScript != nil {
+                _webView.configuration.userContentController.removeUserScript(userScript!)
             }
         } else {
             // TODO: support user defined message?

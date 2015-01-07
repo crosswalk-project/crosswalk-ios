@@ -24,25 +24,27 @@ class XWalkStubGenerator {
                 if object != nil {
                     // Fetch initial value
                     let result = Invocation.call(object, selector: mirror.getGetter(name)!, arguments: nil)
-                    var val: AnyObject? = result.object ?? result.number ?? NSNull()
+                    var val: AnyObject = result.object ?? result.number ?? NSNull()
                     if val as? String != nil {
                         val = "'\(val)'"
                     }
-                    value = JSON(val!).toString()
+                    value = JSON(val).toString()
                 }
                 stub += "Extension.defineProperty(exports, '\(name)', \(value), \(!mirror.isReadonly(name)!));\n"
             }
         }
         stub += "\n})(Extension.create(\(channelName), '\(namespace)'"
-        if mirror.hasMethod("function") {
+        if mirror.constructor != nil {
+            stub += ", " + generateMethodStub("+", selector: mirror.constructor) + ", true"
+        } else if mirror.hasMethod("function") {
             stub += ", function(){return arguments.callee.function.apply(arguments.callee, arguments);}"
         }
         stub += "));\n"
         return stub
     }
 
-    private func generateMethodStub(name: String, this: String = "this") -> String {
-        var params = mirror.getMethod(name)!.description.componentsSeparatedByString(":")
+    private func generateMethodStub(name: String, selector: Selector? = nil, this: String = "this") -> String {
+        var params = (selector ?? mirror.getMethod(name)!).description.componentsSeparatedByString(":")
         params.removeAtIndex(0)
         params.removeLast()
 
