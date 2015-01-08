@@ -10,8 +10,8 @@ class XWalkCordovaExtension: XWalkExtension, CommandQueueDelegate, CDVCommandDel
     var commandQueue: CommandQueue = CommandQueue()
     lazy var callbackIdPattern: NSRegularExpression = NSRegularExpression(pattern: "[^A-Za-z0-9._-]", options: NSRegularExpressionOptions.allZeros, error: nil)!
 
-    override func didBindExtension(namespace: String) {
-        super.didBindExtension(namespace)
+    override func didBindExtension(channel: XWalkChannel, instance: Int) {
+        super.didBindExtension(channel, instance:instance)
         commandQueue.delegate = self
         scanForPlugins()
     }

@@ -12,5 +12,6 @@
 #import "CDVJSON.h"
 #import "CDVPlugin.h"
 #import "CDVPluginResult.h"
+#import "CommandQueue.h"
 
 #endif

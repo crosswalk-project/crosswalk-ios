@@ -30,6 +30,8 @@
 		AB262E7E1A5D0FF300763A05 /* CDVCommandDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = AB262E7D1A5D0FF300763A05 /* CDVCommandDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AB262E811A5D10A300763A05 /* CDVPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = AB262E7F1A5D10A300763A05 /* CDVPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AB262E821A5D10A300763A05 /* CDVPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = AB262E801A5D10A300763A05 /* CDVPlugin.m */; };
+		AB262E971A5E23D400763A05 /* CommandQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = AB262E951A5E23D400763A05 /* CommandQueue.h */; };
+		AB262E981A5E23D400763A05 /* CommandQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = AB262E961A5E23D400763A05 /* CommandQueue.m */; };
 		ABA684261A44172C003A71D9 /* Cordova.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABA6841A1A44172C003A71D9 /* Cordova.framework */; };
 		ABA6842D1A44172C003A71D9 /* CordovaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA6842C1A44172C003A71D9 /* CordovaTests.m */; };
 		ABA684371A4417F7003A71D9 /* Cordova-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = ABA684361A4417F7003A71D9 /* Cordova-Bridging-Header.h */; };
@@ -39,7 +41,6 @@
 		ABA6845A1A44192C003A71D9 /* XWalkCordovaExtension.js in Resources */ = {isa = PBXBuildFile; fileRef = ABA684481A44192C003A71D9 /* XWalkCordovaExtension.js */; };
 		ABA6845B1A44192C003A71D9 /* XWalkCordovaExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA684491A44192C003A71D9 /* XWalkCordovaExtension.swift */; };
 		ABA6845F1A441A13003A71D9 /* CrosswalkLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABA6845E1A441A13003A71D9 /* CrosswalkLite.framework */; };
-		ABA684611A441C65003A71D9 /* CommandQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA684601A441C65003A71D9 /* CommandQueue.swift */; };
 		ABAB76A01A47DB0F00E392B6 /* CDVViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = ABAB769E1A47DB0F00E392B6 /* CDVViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ABAB76A11A47DB0F00E392B6 /* CDVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAB769F1A47DB0F00E392B6 /* CDVViewController.m */; };
 /* End PBXBuildFile section */
@@ -78,6 +79,8 @@
 		AB262E7D1A5D0FF300763A05 /* CDVCommandDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVCommandDelegate.h; path = "../../../third-party/cordova-ios/CordovaLib/Classes/CDVCommandDelegate.h"; sourceTree = "<group>"; };
 		AB262E7F1A5D10A300763A05 /* CDVPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVPlugin.h; path = "../../../third-party/cordova-ios/CordovaLib/Classes/CDVPlugin.h"; sourceTree = "<group>"; };
 		AB262E801A5D10A300763A05 /* CDVPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVPlugin.m; path = "../../../third-party/cordova-ios/CordovaLib/Classes/CDVPlugin.m"; sourceTree = "<group>"; };
+		AB262E951A5E23D400763A05 /* CommandQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandQueue.h; sourceTree = "<group>"; };
+		AB262E961A5E23D400763A05 /* CommandQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandQueue.m; sourceTree = "<group>"; };
 		ABA6841A1A44172C003A71D9 /* Cordova.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cordova.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABA6841E1A44172C003A71D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABA6841F1A44172C003A71D9 /* Cordova.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cordova.h; sourceTree = "<group>"; };
@@ -91,7 +94,6 @@
 		ABA684481A44192C003A71D9 /* XWalkCordovaExtension.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = XWalkCordovaExtension.js; sourceTree = "<group>"; };
 		ABA684491A44192C003A71D9 /* XWalkCordovaExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWalkCordovaExtension.swift; sourceTree = "<group>"; };
 		ABA6845E1A441A13003A71D9 /* CrosswalkLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrosswalkLite.framework; path = "../../cordova-plugin-demos/Build/Products/Debug-iphonesimulator/CrosswalkLite.framework"; sourceTree = "<group>"; };
-		ABA684601A441C65003A71D9 /* CommandQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandQueue.swift; sourceTree = "<group>"; };
 		ABAB769E1A47DB0F00E392B6 /* CDVViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVViewController.h; sourceTree = "<group>"; };
 		ABAB769F1A47DB0F00E392B6 /* CDVViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -169,7 +171,8 @@
 				ABA6845C1A441938003A71D9 /* CordovaPlugin */,
 				ABA684481A44192C003A71D9 /* XWalkCordovaExtension.js */,
 				ABA684491A44192C003A71D9 /* XWalkCordovaExtension.swift */,
-				ABA684601A441C65003A71D9 /* CommandQueue.swift */,
+				AB262E951A5E23D400763A05 /* CommandQueue.h */,
+				AB262E961A5E23D400763A05 /* CommandQueue.m */,
 				ABA6841D1A44172C003A71D9 /* Supporting Files */,
 			);
 			path = Cordova;
@@ -252,6 +255,7 @@
 				AB262E451A5CCF5200763A05 /* UIDevice+Extensions.h in Headers */,
 				AB262E411A5BCEE600763A05 /* CDVInvokedUrlCommand.h in Headers */,
 				AB262E3E1A5BCDF500763A05 /* CDVAvailability.h in Headers */,
+				AB262E971A5E23D400763A05 /* CommandQueue.h in Headers */,
 				AB262E811A5D10A300763A05 /* CDVPlugin.h in Headers */,
 				AB262E3C1A5BC98F00763A05 /* CDVScreenOrientationDelegate.h in Headers */,
 				AB262E7C1A5D0EB900763A05 /* CDVAvailabilityDeprecated.h in Headers */,
@@ -362,7 +366,7 @@
 				AB262E581A5CCFD400763A05 /* NSArray+Comparisons.m in Sources */,
 				AB262E4E1A5CCF9F00763A05 /* NSMutableArray+QueueAdditions.m in Sources */,
 				ABA6845B1A44192C003A71D9 /* XWalkCordovaExtension.swift in Sources */,
-				ABA684611A441C65003A71D9 /* CommandQueue.swift in Sources */,
+				AB262E981A5E23D400763A05 /* CommandQueue.m in Sources */,
 				AB262E5A1A5CCFD400763A05 /* NSDictionary+Extensions.m in Sources */,
 				ABA684511A44192C003A71D9 /* CDVJSON.m in Sources */,
 				AB262E7A1A5D0E3D00763A05 /* CDVPluginResult.m in Sources */,
