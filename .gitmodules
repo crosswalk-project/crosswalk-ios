@@ -1,12 +1,9 @@
-[submodule "src/hexgl/HexGL"]
-	path = src/hexgl/HexGL
-	url = git@github.com:hmin/HexGL.git
-[submodule "src/third-party/swifty-json"]
-	path = src/third-party/swifty-json
+[submodule "third-party/swift-json"]
+	path = third-party/swift-json
 	url = git@github.com:dankogai/swift-json.git
-[submodule "src/cordova-plugin-demos/CordovaPluginFileDemo/CordovaPluginFileDemo/www/sample-file"]
-	path = src/cordova-plugin-demos/CordovaPluginFileDemo/CordovaPluginFileDemo/www/sample-file
-	url = git@github.com:Icenium/sample-file.git
-[submodule "src/third-party/cordova-ios"]
-	path = src/third-party/cordova-ios
+[submodule "third-party/cordova-ios"]
+	path = third-party/cordova-ios
 	url = git@github.com:apache/cordova-ios.git
+[submodule "third-party/Icenium/sample-file"]
+	path = third-party/Icenium/sample-file
+	url = git@github.com:Icenium/sample-file.git
