@@ -1,0 +1,357 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ABA6840E1A42C751003A71D9 /* json.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA6840D1A42C751003A71D9 /* json.swift */; };
+		ABD475E31A4129FC00F3BDEB /* Invocation.h in Headers */ = {isa = PBXBuildFile; fileRef = EE62691D19FA52FC00EFC3F8 /* Invocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EE0A1DD31A52775400C9E6D3 /* XWalkChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DD21A52775400C9E6D3 /* XWalkChannel.swift */; };
+		EE0A1DD51A52778B00C9E6D3 /* XWalkDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DD41A52778B00C9E6D3 /* XWalkDelegate.swift */; };
+		EE0A1DDF1A52A5A300C9E6D3 /* XWalkReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DDD1A52A5A300C9E6D3 /* XWalkReflection.swift */; };
+		EE0A1DE01A52A5A300C9E6D3 /* XWalkStubGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DDE1A52A5A300C9E6D3 /* XWalkStubGenerator.swift */; };
+		EE0A1DE31A53CBCC00C9E6D3 /* XWalkExtensionWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = EE0A1DE11A53CBCC00C9E6D3 /* XWalkExtensionWrapper.h */; };
+		EE0A1DE41A53CBCC00C9E6D3 /* XWalkExtensionWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DE21A53CBCC00C9E6D3 /* XWalkExtensionWrapper.m */; };
+		EE0A1DED1A53DCFB00C9E6D3 /* XWalkThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DEC1A53DCFB00C9E6D3 /* XWalkThread.swift */; };
+		EE174E451A01FDDE00168D96 /* XWalkExtensionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE174E441A01FDDE00168D96 /* XWalkExtensionFactory.swift */; };
+		EE174E781A0361CB00168D96 /* crosswalk.js in Resources */ = {isa = PBXBuildFile; fileRef = EE174E771A0361CB00168D96 /* crosswalk.js */; };
+		EE62692419FA52FC00EFC3F8 /* Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = EE62691E19FA52FC00EFC3F8 /* Invocation.m */; };
+		EE62692519FA52FC00EFC3F8 /* XWalkExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE62691F19FA52FC00EFC3F8 /* XWalkExtension.swift */; };
+		EE62692619FA52FC00EFC3F8 /* XWalkWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE62692019FA52FC00EFC3F8 /* XWalkWebView.swift */; };
+		EE7886761A0D0CE30013A855 /* XWalkExtensionLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7886751A0D0CE30013A855 /* XWalkExtensionLoader.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		ABA6840D1A42C751003A71D9 /* json.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = json.swift; path = "third-party/swift-json/json/json.swift"; sourceTree = "<group>"; };
+		EE0A1DD21A52775400C9E6D3 /* XWalkChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkChannel.swift; path = XWalkView/XWalkChannel.swift; sourceTree = "<group>"; };
+		EE0A1DD41A52778B00C9E6D3 /* XWalkDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkDelegate.swift; path = XWalkView/XWalkDelegate.swift; sourceTree = "<group>"; };
+		EE0A1DDD1A52A5A300C9E6D3 /* XWalkReflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkReflection.swift; path = XWalkView/XWalkReflection.swift; sourceTree = "<group>"; };
+		EE0A1DDE1A52A5A300C9E6D3 /* XWalkStubGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkStubGenerator.swift; path = XWalkView/XWalkStubGenerator.swift; sourceTree = "<group>"; };
+		EE0A1DE11A53CBCC00C9E6D3 /* XWalkExtensionWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XWalkExtensionWrapper.h; path = XWalkView/XWalkExtensionWrapper.h; sourceTree = "<group>"; };
+		EE0A1DE21A53CBCC00C9E6D3 /* XWalkExtensionWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XWalkExtensionWrapper.m; path = XWalkView/XWalkExtensionWrapper.m; sourceTree = "<group>"; };
+		EE0A1DEC1A53DCFB00C9E6D3 /* XWalkThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkThread.swift; path = XWalkView/XWalkThread.swift; sourceTree = "<group>"; };
+		EE174E441A01FDDE00168D96 /* XWalkExtensionFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkExtensionFactory.swift; path = XWalkView/XWalkExtensionFactory.swift; sourceTree = "<group>"; };
+		EE174E771A0361CB00168D96 /* crosswalk.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = crosswalk.js; path = XWalkView/crosswalk.js; sourceTree = "<group>"; };
+		EE62683519FA323900EFC3F8 /* XWalkView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XWalkView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE62691319FA52D100EFC3F8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = XWalkView/Info.plist; sourceTree = "<group>"; };
+		EE62691B19FA52FC00EFC3F8 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "XWalkView/Bridging-Header.h"; sourceTree = "<group>"; };
+		EE62691C19FA52FC00EFC3F8 /* CrosswalkLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CrosswalkLite.h; path = XWalkView/CrosswalkLite.h; sourceTree = "<group>"; };
+		EE62691D19FA52FC00EFC3F8 /* Invocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Invocation.h; path = XWalkView/Invocation.h; sourceTree = "<group>"; };
+		EE62691E19FA52FC00EFC3F8 /* Invocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Invocation.m; path = XWalkView/Invocation.m; sourceTree = "<group>"; };
+		EE62691F19FA52FC00EFC3F8 /* XWalkExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkExtension.swift; path = XWalkView/XWalkExtension.swift; sourceTree = "<group>"; };
+		EE62692019FA52FC00EFC3F8 /* XWalkWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkWebView.swift; path = XWalkView/XWalkWebView.swift; sourceTree = "<group>"; };
+		EE7886751A0D0CE30013A855 /* XWalkExtensionLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkExtensionLoader.swift; path = XWalkView/XWalkExtensionLoader.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EE62683119FA323900EFC3F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ABA6840F1A42C759003A71D9 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				ABA6840D1A42C751003A71D9 /* json.swift */,
+			);
+			name = Utils;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		EE62682B19FA323900EFC3F8 = {
+			isa = PBXGroup;
+			children = (
+				EE62683719FA323900EFC3F8 /* XWalkView */,
+				ABA6840F1A42C759003A71D9 /* Utils */,
+				EE62683619FA323900EFC3F8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EE62683619FA323900EFC3F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EE62683519FA323900EFC3F8 /* XWalkView.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EE62683719FA323900EFC3F8 /* XWalkView */ = {
+			isa = PBXGroup;
+			children = (
+				EE0A1DEC1A53DCFB00C9E6D3 /* XWalkThread.swift */,
+				EE0A1DE11A53CBCC00C9E6D3 /* XWalkExtensionWrapper.h */,
+				EE0A1DE21A53CBCC00C9E6D3 /* XWalkExtensionWrapper.m */,
+				EE0A1DDD1A52A5A300C9E6D3 /* XWalkReflection.swift */,
+				EE0A1DDE1A52A5A300C9E6D3 /* XWalkStubGenerator.swift */,
+				EE174E771A0361CB00168D96 /* crosswalk.js */,
+				EE62691B19FA52FC00EFC3F8 /* Bridging-Header.h */,
+				EE62691C19FA52FC00EFC3F8 /* CrosswalkLite.h */,
+				EE62691D19FA52FC00EFC3F8 /* Invocation.h */,
+				EE62691E19FA52FC00EFC3F8 /* Invocation.m */,
+				EE62691F19FA52FC00EFC3F8 /* XWalkExtension.swift */,
+				EE62692019FA52FC00EFC3F8 /* XWalkWebView.swift */,
+				EE174E441A01FDDE00168D96 /* XWalkExtensionFactory.swift */,
+				EE7886751A0D0CE30013A855 /* XWalkExtensionLoader.swift */,
+				EE62683819FA323900EFC3F8 /* Supporting Files */,
+				EE0A1DD21A52775400C9E6D3 /* XWalkChannel.swift */,
+				EE0A1DD41A52778B00C9E6D3 /* XWalkDelegate.swift */,
+			);
+			name = XWalkView;
+			sourceTree = SOURCE_ROOT;
+		};
+		EE62683819FA323900EFC3F8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EE62691319FA52D100EFC3F8 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		EE62683219FA323900EFC3F8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE0A1DE31A53CBCC00C9E6D3 /* XWalkExtensionWrapper.h in Headers */,
+				ABD475E31A4129FC00F3BDEB /* Invocation.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		EE62683419FA323900EFC3F8 /* XWalkView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EE62684B19FA323900EFC3F8 /* Build configuration list for PBXNativeTarget "XWalkView" */;
+			buildPhases = (
+				EE62683019FA323900EFC3F8 /* Sources */,
+				EE62683119FA323900EFC3F8 /* Frameworks */,
+				EE62683219FA323900EFC3F8 /* Headers */,
+				EE62683319FA323900EFC3F8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XWalkView;
+			productName = XWalkView;
+			productReference = EE62683519FA323900EFC3F8 /* XWalkView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EE62682C19FA323900EFC3F8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = Crosswalk;
+				TargetAttributes = {
+					EE62683419FA323900EFC3F8 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+				};
+			};
+			buildConfigurationList = EE62682F19FA323900EFC3F8 /* Build configuration list for PBXProject "XWalkView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = EE62682B19FA323900EFC3F8;
+			productRefGroup = EE62683619FA323900EFC3F8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EE62683419FA323900EFC3F8 /* XWalkView */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EE62683319FA323900EFC3F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE174E781A0361CB00168D96 /* crosswalk.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EE62683019FA323900EFC3F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE0A1DDF1A52A5A300C9E6D3 /* XWalkReflection.swift in Sources */,
+				EE0A1DD51A52778B00C9E6D3 /* XWalkDelegate.swift in Sources */,
+				EE7886761A0D0CE30013A855 /* XWalkExtensionLoader.swift in Sources */,
+				EE0A1DE01A52A5A300C9E6D3 /* XWalkStubGenerator.swift in Sources */,
+				EE174E451A01FDDE00168D96 /* XWalkExtensionFactory.swift in Sources */,
+				EE62692419FA52FC00EFC3F8 /* Invocation.m in Sources */,
+				EE0A1DD31A52775400C9E6D3 /* XWalkChannel.swift in Sources */,
+				EE0A1DED1A53DCFB00C9E6D3 /* XWalkThread.swift in Sources */,
+				EE62692519FA52FC00EFC3F8 /* XWalkExtension.swift in Sources */,
+				EE0A1DE41A53CBCC00C9E6D3 /* XWalkExtensionWrapper.m in Sources */,
+				EE62692619FA52FC00EFC3F8 /* XWalkWebView.swift in Sources */,
+				ABA6840E1A42C751003A71D9 /* json.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		EE62684919FA323900EFC3F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		EE62684A19FA323900EFC3F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		EE62684C19FA323900EFC3F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = XWalkView/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "XWalkView/Bridging-Header.h";
+			};
+			name = Debug;
+		};
+		EE62684D19FA323900EFC3F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = XWalkView/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "XWalkView/Bridging-Header.h";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EE62682F19FA323900EFC3F8 /* Build configuration list for PBXProject "XWalkView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE62684919FA323900EFC3F8 /* Debug */,
+				EE62684A19FA323900EFC3F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EE62684B19FA323900EFC3F8 /* Build configuration list for PBXNativeTarget "XWalkView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE62684C19FA323900EFC3F8 /* Debug */,
+				EE62684D19FA323900EFC3F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EE62682C19FA323900EFC3F8 /* Project object */;
+}
