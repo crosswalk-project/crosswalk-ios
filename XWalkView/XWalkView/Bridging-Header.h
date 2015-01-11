@@ -7,5 +7,6 @@
 
 #import "Invocation.h"
 #import "XWalkExtensionWrapper.h"
+#import "XWalkExtension.h"
 
 #endif

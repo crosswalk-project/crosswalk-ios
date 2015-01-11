@@ -21,7 +21,7 @@ class EchoExtension: XWalkExtension {
     }
 
     func jsfunc_echo(cid: UInt32, message: String, callback: UInt32) -> Bool {
-        invokeCallback(callback, arguments: [jsprop_prefix + message])
+        invokeCallback(callback, key: nil, arguments: [jsprop_prefix + message])
         return true
     }
 }

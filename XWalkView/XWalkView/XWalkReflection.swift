@@ -4,7 +4,7 @@
 
 import Foundation
 
-class XWalkReflection {
+@objc class XWalkReflection {
     private enum MemberType: UInt {
         case Method = 1
         case Getter
