@@ -15,3 +15,4 @@ FOUNDATION_EXPORT const unsigned char XWalkViewVersionString[];
 #import <XWalkView/Invocation.h>
 #import <XWalkView/XWalkExtension.h>
 #import <XWalkView/XWalkExtensionWrapper.h>
+#import <XWalkView/XWalkHttpServer.h>

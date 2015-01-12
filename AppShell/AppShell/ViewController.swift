@@ -29,11 +29,14 @@ class ViewController: UIViewController {
             }
         }
 
-        if let path = NSBundle.mainBundle().pathForResource(
-                start_url.lastPathComponent.stringByDeletingPathExtension,
-                ofType: start_url.pathExtension,
-                inDirectory: "www/" + start_url.stringByDeletingLastPathComponent) {
-            webview.loadRequest(NSURLRequest(URL: NSURL.fileURLWithPath(path)!));
+        if let root = NSBundle.mainBundle().resourceURL?.URLByAppendingPathComponent("www") {
+            var error: NSError?
+            let url = root.URLByAppendingPathComponent(start_url)
+            if url.checkResourceIsReachableAndReturnError(&error) {
+                webview.loadFileURL(url, allowingReadAccessToURL: root)
+            } else {
+                webview.loadHTMLString(error!.description, baseURL: nil)
+            }
         }
     }
 

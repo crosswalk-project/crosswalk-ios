@@ -23,6 +23,10 @@
 		EE174E781A0361CB00168D96 /* crosswalk.js in Resources */ = {isa = PBXBuildFile; fileRef = EE174E771A0361CB00168D96 /* crosswalk.js */; };
 		EE62692419FA52FC00EFC3F8 /* Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = EE62691E19FA52FC00EFC3F8 /* Invocation.m */; };
 		EE62692619FA52FC00EFC3F8 /* XWalkWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE62692019FA52FC00EFC3F8 /* XWalkWebView.swift */; };
+		EE71648F1A716C9F00078FF9 /* XWalkHttpConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = EE71648B1A716C9F00078FF9 /* XWalkHttpConnection.h */; };
+		EE7164901A716C9F00078FF9 /* XWalkHttpConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = EE71648C1A716C9F00078FF9 /* XWalkHttpConnection.m */; };
+		EE7164911A716C9F00078FF9 /* XWalkHttpServer.h in Headers */ = {isa = PBXBuildFile; fileRef = EE71648D1A716C9F00078FF9 /* XWalkHttpServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EE7164921A716C9F00078FF9 /* XWalkHttpServer.m in Sources */ = {isa = PBXBuildFile; fileRef = EE71648E1A716C9F00078FF9 /* XWalkHttpServer.m */; };
 		EE7886761A0D0CE30013A855 /* XWalkExtensionLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7886751A0D0CE30013A855 /* XWalkExtensionLoader.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +49,10 @@
 		EE62691D19FA52FC00EFC3F8 /* Invocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Invocation.h; path = XWalkView/Invocation.h; sourceTree = "<group>"; };
 		EE62691E19FA52FC00EFC3F8 /* Invocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Invocation.m; path = XWalkView/Invocation.m; sourceTree = "<group>"; };
 		EE62692019FA52FC00EFC3F8 /* XWalkWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkWebView.swift; path = XWalkView/XWalkWebView.swift; sourceTree = "<group>"; };
+		EE71648B1A716C9F00078FF9 /* XWalkHttpConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XWalkHttpConnection.h; path = XWalkView/XWalkHttpConnection.h; sourceTree = "<group>"; };
+		EE71648C1A716C9F00078FF9 /* XWalkHttpConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XWalkHttpConnection.m; path = XWalkView/XWalkHttpConnection.m; sourceTree = "<group>"; };
+		EE71648D1A716C9F00078FF9 /* XWalkHttpServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XWalkHttpServer.h; path = XWalkView/XWalkHttpServer.h; sourceTree = "<group>"; };
+		EE71648E1A716C9F00078FF9 /* XWalkHttpServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XWalkHttpServer.m; path = XWalkView/XWalkHttpServer.m; sourceTree = "<group>"; };
 		EE7886751A0D0CE30013A855 /* XWalkExtensionLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkExtensionLoader.swift; path = XWalkView/XWalkExtensionLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,6 +96,10 @@
 		EE62683719FA323900EFC3F8 /* XWalkView */ = {
 			isa = PBXGroup;
 			children = (
+				EE71648B1A716C9F00078FF9 /* XWalkHttpConnection.h */,
+				EE71648C1A716C9F00078FF9 /* XWalkHttpConnection.m */,
+				EE71648D1A716C9F00078FF9 /* XWalkHttpServer.h */,
+				EE71648E1A716C9F00078FF9 /* XWalkHttpServer.m */,
 				EE62691C19FA52FC00EFC3F8 /* XWalkView.h */,
 				EE0A1DEC1A53DCFB00C9E6D3 /* XWalkThread.swift */,
 				EE0A1DDD1A52A5A300C9E6D3 /* XWalkReflection.swift */,
@@ -129,6 +141,8 @@
 				AB3ECCC01A6243B3001925A3 /* XWalkExtension.h in Headers */,
 				ABD475E31A4129FC00F3BDEB /* Invocation.h in Headers */,
 				ABF4635F1A67519D0049D942 /* XWalkDelegate.h in Headers */,
+				EE7164911A716C9F00078FF9 /* XWalkHttpServer.h in Headers */,
+				EE71648F1A716C9F00078FF9 /* XWalkHttpConnection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,12 +219,14 @@
 				AB3ECCC11A6243B3001925A3 /* XWalkExtension.m in Sources */,
 				EE0A1DE01A52A5A300C9E6D3 /* XWalkStubGenerator.swift in Sources */,
 				EE174E451A01FDDE00168D96 /* XWalkExtensionFactory.swift in Sources */,
+				EE7164921A716C9F00078FF9 /* XWalkHttpServer.m in Sources */,
 				EE62692419FA52FC00EFC3F8 /* Invocation.m in Sources */,
 				EE0A1DD31A52775400C9E6D3 /* XWalkChannel.swift in Sources */,
 				EE0A1DED1A53DCFB00C9E6D3 /* XWalkThread.swift in Sources */,
 				EE0A1DE41A53CBCC00C9E6D3 /* XWalkExtensionWrapper.m in Sources */,
 				EE62692619FA52FC00EFC3F8 /* XWalkWebView.swift in Sources */,
 				ABA6840E1A42C751003A71D9 /* json.swift in Sources */,
+				EE7164901A716C9F00078FF9 /* XWalkHttpConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
