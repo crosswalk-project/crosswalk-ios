@@ -89,23 +89,23 @@ class XWalkReflection {
     var constructor: Selector? {
         return ctor
     }
-    func getMethod(name: String) -> Selector? {
+    func getMethod(name: String) -> Selector {
         if let method = members[name]?.method {
             return method_getName(method)
         }
-        return nil
+        return Selector()
     }
-    func getGetter(name: String) -> Selector? {
+    func getGetter(name: String) -> Selector {
         if let method = members[name]?.getter {
             return method_getName(method)
         }
-        return nil
+        return Selector()
     }
-    func getSetter(name: String) -> Selector? {
+    func getSetter(name: String) -> Selector {
         if let method = members[name]?.setter {
             return method_getName(method)
         }
-        return nil
+        return Selector()
     }
 
     // Method swizzling
@@ -127,32 +127,32 @@ class XWalkReflection {
         }
         return false
     }
-    func getOriginalMethod(name: String) -> Selector? {
+    func getOriginalMethod(name: String) -> Selector {
         if let method = members[name]?.method {
             return self.dynamicType.getOriginal(members[name]!.cls, method: method)
         }
-        return nil
+        return Selector()
     }
-    func getOriginalGetter(name: String) -> Selector? {
+    func getOriginalGetter(name: String) -> Selector {
         if let method = members[name]?.getter {
             return self.dynamicType.getOriginal(members[name]!.cls, method: method)
         }
-        return nil
+        return Selector()
     }
-    func getOriginalSetter(name: String) -> Selector? {
+    func getOriginalSetter(name: String) -> Selector {
         if let method = members[name]?.setter {
             return self.dynamicType.getOriginal(members[name]!.cls, method: method)
         }
-        return nil
+        return Selector()
     }
 
-    private class func getOriginal(cls: AnyClass, method: Method) -> Selector? {
+    private class func getOriginal(cls: AnyClass, method: Method) -> Selector {
         let selector = Selector("_\(method_getName(method))")
         let original = class_getInstanceMethod(cls, selector)
         if original != COpaquePointer.null() {
             return method_getName(original)
         }
-        return nil
+        return Selector()
     }
     private class func swizzle(cls: AnyClass, method: Method, impl: IMP) -> Bool {
         let sel = Selector("_\(method_getName(method))")

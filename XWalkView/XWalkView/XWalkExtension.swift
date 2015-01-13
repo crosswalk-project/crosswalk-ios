@@ -87,7 +87,8 @@ public class XWalkExtension : NSObject, XWalkDelegate {
 
     public subscript(name: String) -> AnyObject? {
         get {
-            if let selector = _channel.mirror.getGetter(name) {
+            let selector = _channel.mirror.getGetter(name)
+            if selector != nil {
                 let result = Invocation.call(self, selector: selector, arguments: nil)
                 if let obj: AnyObject = result.object ?? result.number {
                     return obj
@@ -100,7 +101,8 @@ public class XWalkExtension : NSObject, XWalkDelegate {
             return nil
         }
         set(value) {
-            if let selector = _channel.mirror.getSetter(name) {
+            let selector = _channel.mirror.getSetter(name)
+            if selector != nil {
                 if channel.mirror.getOriginalSetter(name) == nil {
                     setProperty(name, value: value)
                 }

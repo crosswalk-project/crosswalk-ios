@@ -68,7 +68,8 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
         if let method = body["method"] as? String {
             // Invoke method
             if let object: AnyObject = instances[instid] {
-                if let selector = mirror.getMethod(method) {
+                let selector = mirror.getMethod(method)
+                if selector != nil {
                     Invocation.call(object, selector: selector, arguments: args, thread: _thread)
                 } else {
                     println("ERROR: Method '\(method)' is not defined in class '\(object.dynamicType.description())'.")
@@ -79,9 +80,11 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
         } else if let prop = body["property"] as? String {
             // Update property
             if let object: AnyObject = instances[instid] {
-                if var selector = mirror.getSetter(prop) {
+                var selector = mirror.getSetter(prop)
+                if selector != nil {
                     let value: AnyObject = body["value"] ?? NSNull()
-                    if let original = mirror.getOriginalSetter(name) {
+                    let original = mirror.getOriginalSetter(name)
+                    if original != nil {
                         selector = original
                     }
                     Invocation.call(object, selector: selector, arguments: [value], thread: _thread)
