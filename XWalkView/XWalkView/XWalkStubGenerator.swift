@@ -23,7 +23,7 @@ class XWalkStubGenerator {
                 var value = "undefined"
                 if object != nil {
                     // Fetch initial value
-                    let result = Invocation.call(object, selector: mirror.getGetter(name)!, arguments: nil)
+                    let result = Invocation.call(object, selector: mirror.getGetter(name), arguments: nil)
                     var val: AnyObject = result.object ?? result.number ?? NSNull()
                     if val as? String != nil {
                         val = "'\(val)'"
@@ -44,7 +44,7 @@ class XWalkStubGenerator {
     }
 
     private func generateMethodStub(name: String, selector: Selector? = nil, this: String = "this") -> String {
-        var params = (selector ?? mirror.getMethod(name)!).description.componentsSeparatedByString(":")
+        var params = (selector ?? mirror.getMethod(name)).description.componentsSeparatedByString(":")
         params.removeAtIndex(0)
         params.removeLast()
 
