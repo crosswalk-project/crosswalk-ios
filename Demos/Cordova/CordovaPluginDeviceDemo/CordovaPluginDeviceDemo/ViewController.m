@@ -27,8 +27,9 @@
     [self.view addSubview:webview];
 
     if ([[NSBundle mainBundle] objectForInfoDictionaryKey:@"CordovaPlugins"]) {
-        id ext = [XWalkExtensionFactory createExtension:@"xwalk.cordova"];
-        [webview loadExtension:ext namespace:@"" thread:[NSThread mainThread]];
+        NSString* namespace = @"xwalk.cordova";
+        id ext = [XWalkExtensionFactory createExtension:namespace];
+        [webview loadExtension:ext namespace:namespace thread:nil];
     }
     NSString* path = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"www"];
     if (path.length) {
