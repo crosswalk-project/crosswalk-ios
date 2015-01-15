@@ -4,7 +4,7 @@
 
 import Foundation
 
-@objc class XWalkReflection {
+@objc public class XWalkReflection {
     private enum MemberType: UInt {
         case Method = 1
         case Getter
@@ -63,19 +63,19 @@ import Foundation
     }
 
     // Basic information
-    var allMembers: [String] {
+    public var allMembers: [String] {
         return members.keys.array
     }
-    func hasMember(name: String) -> Bool {
+    public func hasMember(name: String) -> Bool {
         return members[name] != nil
     }
-    func hasMethod(name: String) -> Bool {
+    public func hasMethod(name: String) -> Bool {
         return members[name]?.method != nil
     }
-    func hasProperty(name: String) -> Bool {
+    public func hasProperty(name: String) -> Bool {
         return members[name]?.getter != nil
     }
-    func isReadonly(name: String) -> Bool? {
+    public func isReadonly(name: String) -> Bool? {
         if members[name]?.setter != nil {
             return false
         } else if members[name]?.getter != nil {
@@ -89,19 +89,19 @@ import Foundation
     var constructor: Selector? {
         return ctor
     }
-    func getMethod(name: String) -> Selector {
+    public func getMethod(name: String) -> Selector {
         if let method = members[name]?.method {
             return method_getName(method)
         }
         return Selector()
     }
-    func getGetter(name: String) -> Selector {
+    public func getGetter(name: String) -> Selector {
         if let method = members[name]?.getter {
             return method_getName(method)
         }
         return Selector()
     }
-    func getSetter(name: String) -> Selector {
+    public func getSetter(name: String) -> Selector {
         if let method = members[name]?.setter {
             return method_getName(method)
         }
@@ -127,19 +127,19 @@ import Foundation
         }
         return false
     }
-    func getOriginalMethod(name: String) -> Selector {
+    public func getOriginalMethod(name: String) -> Selector {
         if let method = members[name]?.method {
             return self.dynamicType.getOriginal(members[name]!.cls, method: method)
         }
         return Selector()
     }
-    func getOriginalGetter(name: String) -> Selector {
+    public func getOriginalGetter(name: String) -> Selector {
         if let method = members[name]?.getter {
             return self.dynamicType.getOriginal(members[name]!.cls, method: method)
         }
         return Selector()
     }
-    func getOriginalSetter(name: String) -> Selector {
+    public func getOriginalSetter(name: String) -> Selector {
         if let method = members[name]?.setter {
             return self.dynamicType.getOriginal(members[name]!.cls, method: method)
         }

@@ -58,10 +58,9 @@ import Foundation
                     println("WARNING: bad class name '\(info[name])'")
                 }
             }
-        } else {
-            return false
+            return true
         }
-        return true
+        return false
     }
 
     private func register(name: String, cls: AnyClass) -> Bool {
@@ -86,15 +85,26 @@ import Foundation
                 }
             }
 
-            if let type: AnyClass = src.bundle.classNamed(src.className) {
+            var classType: AnyClass? = src.bundle.classNamed(src.className)
+            if classType != nil {
                 // FIXME: Never reach here because the bundle in build directory was loaded in simulator.
-                return type
-            } else {
-                // FIXME: workaround the problem
-                let className = (src.bundle.executablePath?.lastPathComponent)! + "." + src.className
-                return NSClassFromString(className)
+                return classType
             }
+            // FIXME: workaround the problem
+            // Try to get the class with the barely class name (for objective-c written class)
+            classType = NSClassFromString(src.className)
+            if classType == nil {
+                // Try to get the class with its framework name as prefix (for swift written class)
+                let classNameWithBundlePrefix = (src.bundle.executablePath?.lastPathComponent)! + "." + src.className
+                classType = NSClassFromString(classNameWithBundlePrefix)
+            }
+            if classType == nil {
+                println("ERROR: Failed to get class:'\(src.className)' from bundle:'\(src.bundle.bundlePath)'")
+                return nil;
+            }
+            return classType
         }
+        println("ERROR: There's no class named:'\(name)' registered as extension")
         return nil
     }
 

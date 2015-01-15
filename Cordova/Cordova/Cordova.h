@@ -1,10 +1,6 @@
-//
-//  Cordova.h
-//  Cordova
-//
-//  Created by Jonathan Dong on 12/19/14.
-//  Copyright (c) 2014 Crosswalk. All rights reserved.
-//
+// Copyright (c) 2015 Intel Corporation. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
 
 #import <UIKit/UIKit.h>
 
@@ -16,4 +12,5 @@ FOUNDATION_EXPORT const unsigned char CordovaVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <Cordova/PublicHeader.h>
 
-
+#import <Cordova/CDV.h>
+#import <Cordova/CommandQueue.h>

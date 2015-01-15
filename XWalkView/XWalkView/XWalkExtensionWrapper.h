@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef CrosswalkLite_XWalkExtensionWrapper_h
-#define CrosswalkLite_XWalkExtensionWrapper_h
+#ifndef XWalkView_XWalkExtensionWrapper_h
+#define XWalkView_XWalkExtensionWrapper_h
 
 IMP xwalkExtensionSetter;
 IMP xwalkExtensionMethod;

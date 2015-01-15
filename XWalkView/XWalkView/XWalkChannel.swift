@@ -12,7 +12,7 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
     private var _namespace: String = ""
 
     private var instances: [Int: AnyObject] = [:]
-    internal var mirror: XWalkReflection!
+    public var mirror: XWalkReflection!
     private var userScript: WKUserScript?
 
     public var name: String { return _name }
