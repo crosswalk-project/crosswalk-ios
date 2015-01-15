@@ -11,8 +11,8 @@
 		AB3ECCC11A6243B3001925A3 /* XWalkExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3ECCBF1A6243B3001925A3 /* XWalkExtension.m */; };
 		ABA6840E1A42C751003A71D9 /* json.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA6840D1A42C751003A71D9 /* json.swift */; };
 		ABD475E31A4129FC00F3BDEB /* Invocation.h in Headers */ = {isa = PBXBuildFile; fileRef = EE62691D19FA52FC00EFC3F8 /* Invocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ABF4635F1A67519D0049D942 /* XWalkDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = ABF4635E1A6751970049D942 /* XWalkDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE0A1DD31A52775400C9E6D3 /* XWalkChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DD21A52775400C9E6D3 /* XWalkChannel.swift */; };
-		EE0A1DD51A52778B00C9E6D3 /* XWalkDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DD41A52778B00C9E6D3 /* XWalkDelegate.swift */; };
 		EE0A1DDF1A52A5A300C9E6D3 /* XWalkReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DDD1A52A5A300C9E6D3 /* XWalkReflection.swift */; };
 		EE0A1DE01A52A5A300C9E6D3 /* XWalkStubGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DDE1A52A5A300C9E6D3 /* XWalkStubGenerator.swift */; };
 		EE0A1DE31A53CBCC00C9E6D3 /* XWalkExtensionWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = EE0A1DE11A53CBCC00C9E6D3 /* XWalkExtensionWrapper.h */; };
@@ -29,8 +29,8 @@
 		AB3ECCBE1A6243B3001925A3 /* XWalkExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XWalkExtension.h; path = XWalkView/XWalkExtension.h; sourceTree = "<group>"; };
 		AB3ECCBF1A6243B3001925A3 /* XWalkExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XWalkExtension.m; path = XWalkView/XWalkExtension.m; sourceTree = "<group>"; };
 		ABA6840D1A42C751003A71D9 /* json.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = json.swift; path = "third-party/swift-json/json/json.swift"; sourceTree = "<group>"; };
+		ABF4635E1A6751970049D942 /* XWalkDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XWalkDelegate.h; path = XWalkView/XWalkDelegate.h; sourceTree = "<group>"; };
 		EE0A1DD21A52775400C9E6D3 /* XWalkChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkChannel.swift; path = XWalkView/XWalkChannel.swift; sourceTree = "<group>"; };
-		EE0A1DD41A52778B00C9E6D3 /* XWalkDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkDelegate.swift; path = XWalkView/XWalkDelegate.swift; sourceTree = "<group>"; };
 		EE0A1DDD1A52A5A300C9E6D3 /* XWalkReflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkReflection.swift; path = XWalkView/XWalkReflection.swift; sourceTree = "<group>"; };
 		EE0A1DDE1A52A5A300C9E6D3 /* XWalkStubGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkStubGenerator.swift; path = XWalkView/XWalkStubGenerator.swift; sourceTree = "<group>"; };
 		EE0A1DE11A53CBCC00C9E6D3 /* XWalkExtensionWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XWalkExtensionWrapper.h; path = XWalkView/XWalkExtensionWrapper.h; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 				EE7886751A0D0CE30013A855 /* XWalkExtensionLoader.swift */,
 				EE62683819FA323900EFC3F8 /* Supporting Files */,
 				EE0A1DD21A52775400C9E6D3 /* XWalkChannel.swift */,
-				EE0A1DD41A52778B00C9E6D3 /* XWalkDelegate.swift */,
+				ABF4635E1A6751970049D942 /* XWalkDelegate.h */,
 			);
 			name = XWalkView;
 			sourceTree = SOURCE_ROOT;
@@ -128,6 +128,7 @@
 				EE0A1DE31A53CBCC00C9E6D3 /* XWalkExtensionWrapper.h in Headers */,
 				AB3ECCC01A6243B3001925A3 /* XWalkExtension.h in Headers */,
 				ABD475E31A4129FC00F3BDEB /* Invocation.h in Headers */,
+				ABF4635F1A67519D0049D942 /* XWalkDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,7 +201,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE0A1DDF1A52A5A300C9E6D3 /* XWalkReflection.swift in Sources */,
-				EE0A1DD51A52778B00C9E6D3 /* XWalkDelegate.swift in Sources */,
 				EE7886761A0D0CE30013A855 /* XWalkExtensionLoader.swift in Sources */,
 				AB3ECCC11A6243B3001925A3 /* XWalkExtension.m in Sources */,
 				EE0A1DE01A52A5A300C9E6D3 /* XWalkStubGenerator.swift in Sources */,

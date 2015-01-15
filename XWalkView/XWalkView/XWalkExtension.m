@@ -5,10 +5,7 @@
 #import "XWalkExtension.h"
 #import "XWalkView/XWalkView-Swift.h"
 
-@interface XWalkExtension() <XWalkDelegate>
-
-- (NSString*)didGenerateStub:(NSString*)stub;
-- (void)didBindExtension:(XWalkChannel*)channel instance:(NSInteger)instance;
+@interface XWalkExtension()
 
 - (id)objectForKeyedSubscript:(NSString *)key;
 - (void)setObject:(id)obj forKeyedSubscript:(id <NSCopying>)key;

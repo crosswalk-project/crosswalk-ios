@@ -3,10 +3,11 @@
 // found in the LICENSE file.
 
 #import <Foundation/Foundation.h>
+#import "XWalkDelegate.h"
 
 @class XWalkChannel;
 
-@interface XWalkExtension : NSObject
+@interface XWalkExtension : NSObject <XWalkDelegate>
 
 @property(nonatomic, weak) XWalkChannel* channel;
 @property(nonatomic, assign) NSInteger instance;
@@ -24,5 +25,9 @@
 - (void)invokeJavaScript:(NSString*)function arguments:(NSArray*)arguments;
 - (void)evaluateJavaScript:(NSString*)string;
 - (void)evaluateJavaScript:(NSString*)string onSuccess:(void(^)(id))onSuccess onError:(void(^)(NSError*))onError;
+
+// XWalkDelegate implementation
+- (NSString*)didGenerateStub:(NSString*)stub;
+- (void)didBindExtension:(XWalkChannel*)channel instance:(NSInteger)instance;
 
 @end
