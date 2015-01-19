@@ -12,10 +12,11 @@
 		ABA6840E1A42C751003A71D9 /* json.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA6840D1A42C751003A71D9 /* json.swift */; };
 		ABD475E31A4129FC00F3BDEB /* Invocation.h in Headers */ = {isa = PBXBuildFile; fileRef = EE62691D19FA52FC00EFC3F8 /* Invocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ABF4635F1A67519D0049D942 /* XWalkDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = ABF4635E1A6751970049D942 /* XWalkDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ABF68ECD1A6B45FC0058267B /* XWalkView.h in Headers */ = {isa = PBXBuildFile; fileRef = EE62691C19FA52FC00EFC3F8 /* XWalkView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE0A1DD31A52775400C9E6D3 /* XWalkChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DD21A52775400C9E6D3 /* XWalkChannel.swift */; };
 		EE0A1DDF1A52A5A300C9E6D3 /* XWalkReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DDD1A52A5A300C9E6D3 /* XWalkReflection.swift */; };
 		EE0A1DE01A52A5A300C9E6D3 /* XWalkStubGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DDE1A52A5A300C9E6D3 /* XWalkStubGenerator.swift */; };
-		EE0A1DE31A53CBCC00C9E6D3 /* XWalkExtensionWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = EE0A1DE11A53CBCC00C9E6D3 /* XWalkExtensionWrapper.h */; };
+		EE0A1DE31A53CBCC00C9E6D3 /* XWalkExtensionWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = EE0A1DE11A53CBCC00C9E6D3 /* XWalkExtensionWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE0A1DE41A53CBCC00C9E6D3 /* XWalkExtensionWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DE21A53CBCC00C9E6D3 /* XWalkExtensionWrapper.m */; };
 		EE0A1DED1A53DCFB00C9E6D3 /* XWalkThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DEC1A53DCFB00C9E6D3 /* XWalkThread.swift */; };
 		EE174E451A01FDDE00168D96 /* XWalkExtensionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE174E441A01FDDE00168D96 /* XWalkExtensionFactory.swift */; };
@@ -40,8 +41,7 @@
 		EE174E771A0361CB00168D96 /* crosswalk.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = crosswalk.js; path = XWalkView/crosswalk.js; sourceTree = "<group>"; };
 		EE62683519FA323900EFC3F8 /* XWalkView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XWalkView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE62691319FA52D100EFC3F8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = XWalkView/Info.plist; sourceTree = "<group>"; };
-		EE62691B19FA52FC00EFC3F8 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "XWalkView/Bridging-Header.h"; sourceTree = "<group>"; };
-		EE62691C19FA52FC00EFC3F8 /* CrosswalkLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CrosswalkLite.h; path = XWalkView/CrosswalkLite.h; sourceTree = "<group>"; };
+		EE62691C19FA52FC00EFC3F8 /* XWalkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XWalkView.h; path = XWalkView/XWalkView.h; sourceTree = "<group>"; };
 		EE62691D19FA52FC00EFC3F8 /* Invocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Invocation.h; path = XWalkView/Invocation.h; sourceTree = "<group>"; };
 		EE62691E19FA52FC00EFC3F8 /* Invocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Invocation.m; path = XWalkView/Invocation.m; sourceTree = "<group>"; };
 		EE62692019FA52FC00EFC3F8 /* XWalkWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkWebView.swift; path = XWalkView/XWalkWebView.swift; sourceTree = "<group>"; };
@@ -88,24 +88,23 @@
 		EE62683719FA323900EFC3F8 /* XWalkView */ = {
 			isa = PBXGroup;
 			children = (
+				EE62691C19FA52FC00EFC3F8 /* XWalkView.h */,
 				EE0A1DEC1A53DCFB00C9E6D3 /* XWalkThread.swift */,
-				EE0A1DE11A53CBCC00C9E6D3 /* XWalkExtensionWrapper.h */,
-				EE0A1DE21A53CBCC00C9E6D3 /* XWalkExtensionWrapper.m */,
 				EE0A1DDD1A52A5A300C9E6D3 /* XWalkReflection.swift */,
 				EE0A1DDE1A52A5A300C9E6D3 /* XWalkStubGenerator.swift */,
-				EE174E771A0361CB00168D96 /* crosswalk.js */,
-				EE62691B19FA52FC00EFC3F8 /* Bridging-Header.h */,
-				EE62691C19FA52FC00EFC3F8 /* CrosswalkLite.h */,
-				EE62691D19FA52FC00EFC3F8 /* Invocation.h */,
-				EE62691E19FA52FC00EFC3F8 /* Invocation.m */,
+				EE0A1DD21A52775400C9E6D3 /* XWalkChannel.swift */,
 				EE62692019FA52FC00EFC3F8 /* XWalkWebView.swift */,
-				AB3ECCBE1A6243B3001925A3 /* XWalkExtension.h */,
-				AB3ECCBF1A6243B3001925A3 /* XWalkExtension.m */,
 				EE174E441A01FDDE00168D96 /* XWalkExtensionFactory.swift */,
 				EE7886751A0D0CE30013A855 /* XWalkExtensionLoader.swift */,
-				EE62683819FA323900EFC3F8 /* Supporting Files */,
-				EE0A1DD21A52775400C9E6D3 /* XWalkChannel.swift */,
+				EE174E771A0361CB00168D96 /* crosswalk.js */,
+				EE0A1DE11A53CBCC00C9E6D3 /* XWalkExtensionWrapper.h */,
+				EE0A1DE21A53CBCC00C9E6D3 /* XWalkExtensionWrapper.m */,
+				EE62691D19FA52FC00EFC3F8 /* Invocation.h */,
+				EE62691E19FA52FC00EFC3F8 /* Invocation.m */,
 				ABF4635E1A6751970049D942 /* XWalkDelegate.h */,
+				AB3ECCBE1A6243B3001925A3 /* XWalkExtension.h */,
+				AB3ECCBF1A6243B3001925A3 /* XWalkExtension.m */,
+				EE62683819FA323900EFC3F8 /* Supporting Files */,
 			);
 			name = XWalkView;
 			sourceTree = SOURCE_ROOT;
@@ -125,6 +124,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABF68ECD1A6B45FC0058267B /* XWalkView.h in Headers */,
 				EE0A1DE31A53CBCC00C9E6D3 /* XWalkExtensionWrapper.h in Headers */,
 				AB3ECCC01A6243B3001925A3 /* XWalkExtension.h in Headers */,
 				ABD475E31A4129FC00F3BDEB /* Invocation.h in Headers */,
@@ -314,7 +314,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "XWalkView/Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -330,7 +329,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "XWalkView/Bridging-Header.h";
 			};
 			name = Release;
 		};

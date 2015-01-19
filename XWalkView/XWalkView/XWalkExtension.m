@@ -3,6 +3,8 @@
 // found in the LICENSE file.
 
 #import "XWalkExtension.h"
+
+#import "Invocation.h"
 #import "XWalkView/XWalkView-Swift.h"
 
 @interface XWalkExtension()

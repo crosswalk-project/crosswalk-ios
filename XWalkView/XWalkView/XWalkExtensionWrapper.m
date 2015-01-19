@@ -5,8 +5,9 @@
 #import <objc/objc-runtime.h>
 #import <Foundation/Foundation.h>
 
-#import "XWalkView/XWalkView-Swift.h"
 #import "Invocation.h"
+#import "XWalkExtension.h"
+#import "XWalkView/XWalkView-Swift.h"
 
 static id wrapper_method(id self, SEL _cmd, ...) {
     NSString *sel = [NSString stringWithFormat:@"_%@", NSStringFromSelector(_cmd)];
