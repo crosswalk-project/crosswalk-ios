@@ -8,5 +8,14 @@
 	</array>
 	<key>start_url</key>
 	<string>index.html</string>
+	<key>cordova_plugins</key>
+	<array>
+		<dict>
+			<key>class</key>
+			<string>CDVDevice</string>
+			<key>name</key>
+			<string>Device</string>
+		</dict>
+	</array>
 </dict>
 </plist>

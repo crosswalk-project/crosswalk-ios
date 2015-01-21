@@ -65,13 +65,19 @@
 
 - (void)scanForPlugins
 {
-    NSArray* pluginInfoArray = [NSBundle.mainBundle objectForInfoDictionaryKey:@"CordovaPlugins"];
+    NSString* plistPath = [NSBundle.mainBundle pathForResource:@"manifest" ofType:@"plist"];
+    if (!plistPath) {
+        NSLog(@"Failed to find manifest.plist in main bundle.");
+        return;
+    }
+    NSDictionary* manifest = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    NSArray* pluginInfoArray = manifest[@"cordova_plugins"];
     if (!pluginInfoArray) {
         NSLog(@"Failed to parse cordova plugin info.");
         return;
     }
     for (NSDictionary* pluginInfo in pluginInfoArray) {
-        NSString* className = pluginInfo[@"className"];
+        NSString* className = pluginInfo[@"class"];
         Invocation* inv = [[Invocation alloc] initWithName:className];
         [inv appendArgument:@"webView" value:self.channel.webView];
         CDVPlugin* plugin = [inv construct];

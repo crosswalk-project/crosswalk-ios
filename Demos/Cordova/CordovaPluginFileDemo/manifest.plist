@@ -8,5 +8,20 @@
 	</array>
 	<key>start_url</key>
 	<string>index.html</string>
+	<key>cordova_plugins</key>
+	<array>
+		<dict>
+			<key>class</key>
+			<string>CDVSplashScreen</string>
+			<key>name</key>
+			<string>SplashScreen</string>
+		</dict>
+		<dict>
+			<key>class</key>
+			<string>CDVFile</string>
+			<key>name</key>
+			<string>File</string>
+		</dict>
+	</array>
 </dict>
 </plist>
