@@ -8,11 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		ABE516AA1A00ADDE0025A92E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE516A21A00ADDE0025A92E /* AppDelegate.swift */; };
-		ABE516AB1A00ADDE0025A92E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABE516A41A00ADDE0025A92E /* LaunchScreen.xib */; };
 		ABE516AC1A00ADDE0025A92E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABE516A61A00ADDE0025A92E /* Main.storyboard */; };
 		ABE516AD1A00ADDE0025A92E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABE516A81A00ADDE0025A92E /* Images.xcassets */; };
 		ABE516AE1A00ADDE0025A92E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE516A91A00ADDE0025A92E /* ViewController.swift */; };
-		ABE516B01A00AE090025A92E /* www in Resources */ = {isa = PBXBuildFile; fileRef = ABE516AF1A00AE090025A92E /* www */; };
 		ABE516B41A00AEE60025A92E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABE516B31A00AEE60025A92E /* Info.plist */; };
 		EE0E490B1A5C72DB002D95B8 /* XWalkView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0E49091A5C72DB002D95B8 /* XWalkView.framework */; };
 		EE0E490C1A5C72DB002D95B8 /* XWalkView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EE0E49091A5C72DB002D95B8 /* XWalkView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -34,9 +32,7 @@
 
 /* Begin PBXFileReference section */
 		AB603B9819EA58CB00DECF78 /* AppShell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppShell.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		ABD577831A1B0DE700E47402 /* XWalkView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = XWalkView.framework; path = "Build/Products/Debug-iphoneos/XWalkView.framework"; sourceTree = "<group>"; };
 		ABE516A21A00ADDE0025A92E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = AppShell/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
-		ABE516A51A00ADDE0025A92E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		ABE516A71A00ADDE0025A92E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		ABE516A81A00ADDE0025A92E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = AppShell/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		ABE516A91A00ADDE0025A92E /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = AppShell/ViewController.swift; sourceTree = "<group>"; };
@@ -61,11 +57,9 @@
 			children = (
 				EE0E49091A5C72DB002D95B8 /* XWalkView.framework */,
 				ABE516A21A00ADDE0025A92E /* AppDelegate.swift */,
-				ABE516A41A00ADDE0025A92E /* LaunchScreen.xib */,
 				ABE516A61A00ADDE0025A92E /* Main.storyboard */,
 				ABE516A81A00ADDE0025A92E /* Images.xcassets */,
 				ABE516A91A00ADDE0025A92E /* ViewController.swift */,
-				AB603BC519EA5CD700DECF78 /* Frameworks */,
 				AB603B9B19EA58CB00DECF78 /* Supporting Files */,
 				AB603B9919EA58CB00DECF78 /* Products */,
 			);
@@ -85,14 +79,6 @@
 				ABE516B31A00AEE60025A92E /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		AB603BC519EA5CD700DECF78 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				ABD577831A1B0DE700E47402 /* XWalkView.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,7 +141,6 @@
 			files = (
 				ABE516AC1A00ADDE0025A92E /* Main.storyboard in Resources */,
 				ABE516AD1A00ADDE0025A92E /* Images.xcassets in Resources */,
-				ABE516AB1A00ADDE0025A92E /* LaunchScreen.xib in Resources */,
 				ABE516B41A00AEE60025A92E /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -175,15 +160,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		ABE516A41A00ADDE0025A92E /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ABE516A51A00ADDE0025A92E /* Base */,
-			);
-			name = LaunchScreen.xib;
-			path = AppShell/Base.lproj;
-			sourceTree = "<group>";
-		};
 		ABE516A61A00ADDE0025A92E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -284,7 +260,7 @@
 					"$(PROJECT_DIR)/Build/Products/Debug-iphoneos",
 					"$(PROJECT_DIR)/Build/Products/Debug-iphonesimulator",
 				);
-				INFOPLIST_FILE = "AppShell/Info.plist";
+				INFOPLIST_FILE = AppShell/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -299,7 +275,7 @@
 					"$(PROJECT_DIR)/Build/Products/Debug-iphoneos",
 					"$(PROJECT_DIR)/Build/Products/Debug-iphonesimulator",
 				);
-				INFOPLIST_FILE = "AppShell/Info.plist";
+				INFOPLIST_FILE = AppShell/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
