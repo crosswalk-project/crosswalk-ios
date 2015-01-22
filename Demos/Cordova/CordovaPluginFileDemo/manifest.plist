@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>xwalk_extensions</key>
+	<array>
+		<string>xwalk.cordova</string>
+	</array>
+	<key>start_url</key>
+	<string>index.html</string>
+	<key>cordova_plugins</key>
+	<array>
+		<dict>
+			<key>class</key>
+			<string>CDVSplashScreen</string>
+			<key>name</key>
+			<string>SplashScreen</string>
+		</dict>
+		<dict>
+			<key>class</key>
+			<string>CDVFile</string>
+			<key>name</key>
+			<string>File</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -20,25 +20,10 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>CordovaPlugins</key>
-	<array>
-		<dict>
-			<key>className</key>
-			<string>CDVSplashScreen</string>
-			<key>name</key>
-			<string>SplashScreen</string>
-		</dict>
-		<dict>
-			<key>className</key>
-			<string>CDVFile</string>
-			<key>name</key>
-			<string>File</string>
-		</dict>
-	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string>Main</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

@@ -7,11 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		ABAB765C1A47BEF500E392B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB765B1A47BEF500E392B6 /* AppDelegate.swift */; };
-		ABAB765E1A47BEF500E392B6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB765D1A47BEF500E392B6 /* ViewController.swift */; };
-		ABAB76611A47BEF500E392B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABAB765F1A47BEF500E392B6 /* Main.storyboard */; };
 		ABAB76631A47BEF500E392B6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABAB76621A47BEF500E392B6 /* Images.xcassets */; };
-		ABAB76661A47BEF500E392B6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABAB76641A47BEF500E392B6 /* LaunchScreen.xib */; };
 		ABAB76721A47BEF500E392B6 /* CordovaPluginFileDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB76711A47BEF500E392B6 /* CordovaPluginFileDemoTests.swift */; };
 		ABAB767D1A47C15500E392B6 /* Cordova.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABAB767B1A47C15500E392B6 /* Cordova.framework */; };
 		ABAB767E1A47C15500E392B6 /* Cordova.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ABAB767B1A47C15500E392B6 /* Cordova.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -22,6 +18,10 @@
 		ABAB768A1A47C6E700E392B6 /* CDVLocalFilesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAB76871A47C6E700E392B6 /* CDVLocalFilesystem.m */; };
 		ABAB76A41A47EA5A00E392B6 /* www in Resources */ = {isa = PBXBuildFile; fileRef = ABAB76A31A47EA5A00E392B6 /* www */; };
 		ABC88A9E1A51498C0051257C /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC88A9D1A51498C0051257C /* CDVSplashScreen.m */; };
+		ABF122141A6E708200B15F5B /* manifest.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABF122131A6E708200B15F5B /* manifest.plist */; };
+		ABF122171A6E709A00B15F5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF122151A6E709A00B15F5B /* AppDelegate.swift */; };
+		ABF122181A6E709A00B15F5B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF122161A6E709A00B15F5B /* ViewController.swift */; };
+		ABF1221B1A6E70AA00B15F5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF122191A6E70AA00B15F5B /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,26 +52,25 @@
 /* Begin PBXFileReference section */
 		ABAB76561A47BEF500E392B6 /* CordovaPluginFileDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CordovaPluginFileDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABAB765A1A47BEF500E392B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ABAB765B1A47BEF500E392B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		ABAB765D1A47BEF500E392B6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		ABAB76601A47BEF500E392B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ABAB76621A47BEF500E392B6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		ABAB76651A47BEF500E392B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		ABAB766B1A47BEF500E392B6 /* CordovaPluginFileDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CordovaPluginFileDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABAB76701A47BEF500E392B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABAB76711A47BEF500E392B6 /* CordovaPluginFileDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CordovaPluginFileDemoTests.swift; sourceTree = "<group>"; };
 		ABAB767B1A47C15500E392B6 /* Cordova.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cordova.framework; path = "../Build/Products/Debug-iphonesimulator/Cordova.framework"; sourceTree = "<group>"; };
 		ABAB767C1A47C15500E392B6 /* XWalkView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XWalkView.framework; path = "../Build/Products/Debug-iphonesimulator/XWalkView.framework"; sourceTree = "<group>"; };
-		ABAB76821A47C6E700E392B6 /* CDVAssetLibraryFilesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVAssetLibraryFilesystem.h; path = CDVAssetLibraryFilesystem.h; sourceTree = "<group>"; };
-		ABAB76831A47C6E700E392B6 /* CDVAssetLibraryFilesystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVAssetLibraryFilesystem.m; path = CDVAssetLibraryFilesystem.m; sourceTree = "<group>"; };
-		ABAB76841A47C6E700E392B6 /* CDVFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVFile.h; path = CDVFile.h; sourceTree = "<group>"; };
-		ABAB76851A47C6E700E392B6 /* CDVFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVFile.m; path = CDVFile.m; sourceTree = "<group>"; };
-		ABAB76861A47C6E700E392B6 /* CDVLocalFilesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVLocalFilesystem.h; path = CDVLocalFilesystem.h; sourceTree = "<group>"; };
-		ABAB76871A47C6E700E392B6 /* CDVLocalFilesystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVLocalFilesystem.m; path = CDVLocalFilesystem.m; sourceTree = "<group>"; };
-		ABAB76A21A47E39600E392B6 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		ABAB76821A47C6E700E392B6 /* CDVAssetLibraryFilesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVAssetLibraryFilesystem.h; sourceTree = "<group>"; };
+		ABAB76831A47C6E700E392B6 /* CDVAssetLibraryFilesystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVAssetLibraryFilesystem.m; sourceTree = "<group>"; };
+		ABAB76841A47C6E700E392B6 /* CDVFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVFile.h; sourceTree = "<group>"; };
+		ABAB76851A47C6E700E392B6 /* CDVFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVFile.m; sourceTree = "<group>"; };
+		ABAB76861A47C6E700E392B6 /* CDVLocalFilesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVLocalFilesystem.h; sourceTree = "<group>"; };
+		ABAB76871A47C6E700E392B6 /* CDVLocalFilesystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVLocalFilesystem.m; sourceTree = "<group>"; };
 		ABAB76A31A47EA5A00E392B6 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = CordovaPluginFileDemo/www; sourceTree = "<group>"; };
-		ABC88A9C1A51498C0051257C /* CDVSplashScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVSplashScreen.h; path = CDVSplashScreen.h; sourceTree = "<group>"; };
-		ABC88A9D1A51498C0051257C /* CDVSplashScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVSplashScreen.m; path = CDVSplashScreen.m; sourceTree = "<group>"; };
+		ABC88A9C1A51498C0051257C /* CDVSplashScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVSplashScreen.h; sourceTree = "<group>"; };
+		ABC88A9D1A51498C0051257C /* CDVSplashScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVSplashScreen.m; sourceTree = "<group>"; };
+		ABF122131A6E708200B15F5B /* manifest.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = manifest.plist; path = ../manifest.plist; sourceTree = "<group>"; };
+		ABF122151A6E709A00B15F5B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../../../../AppShell/AppShell/AppDelegate.swift; sourceTree = "<group>"; };
+		ABF122161A6E709A00B15F5B /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../../../AppShell/AppShell/ViewController.swift; sourceTree = "<group>"; };
+		ABF1221A1A6E70AA00B15F5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ../../../AppShell/AppShell/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,14 +117,12 @@
 		ABAB76581A47BEF500E392B6 /* CordovaPluginFileDemo */ = {
 			isa = PBXGroup;
 			children = (
+				ABF122191A6E70AA00B15F5B /* Main.storyboard */,
+				ABF122151A6E709A00B15F5B /* AppDelegate.swift */,
+				ABF122161A6E709A00B15F5B /* ViewController.swift */,
 				ABAB768B1A47C6EE00E392B6 /* Plugins */,
-				ABAB765B1A47BEF500E392B6 /* AppDelegate.swift */,
-				ABAB765D1A47BEF500E392B6 /* ViewController.swift */,
-				ABAB765F1A47BEF500E392B6 /* Main.storyboard */,
 				ABAB76621A47BEF500E392B6 /* Images.xcassets */,
-				ABAB76641A47BEF500E392B6 /* LaunchScreen.xib */,
 				ABAB76591A47BEF500E392B6 /* Supporting Files */,
-				ABAB76A21A47E39600E392B6 /* Bridging-Header.h */,
 			);
 			path = CordovaPluginFileDemo;
 			sourceTree = "<group>";
@@ -133,6 +130,7 @@
 		ABAB76591A47BEF500E392B6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ABF122131A6E708200B15F5B /* manifest.plist */,
 				ABAB765A1A47BEF500E392B6 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -161,7 +159,6 @@
 				ABC88A9F1A5149920051257C /* org.apache.cordova.splashscreen */,
 				ABAB768C1A47C6FA00E392B6 /* org.apache.cordova.file */,
 			);
-			name = Plugins;
 			path = Plugins;
 			sourceTree = "<group>";
 		};
@@ -175,8 +172,7 @@
 				ABAB76861A47C6E700E392B6 /* CDVLocalFilesystem.h */,
 				ABAB76871A47C6E700E392B6 /* CDVLocalFilesystem.m */,
 			);
-			name = org.apache.cordova.file;
- 			path = org.apache.cordova.file;
+			path = org.apache.cordova.file;
 			sourceTree = "<group>";
 		};
 		ABC88A9F1A5149920051257C /* org.apache.cordova.splashscreen */ = {
@@ -185,8 +181,7 @@
 				ABC88A9C1A51498C0051257C /* CDVSplashScreen.h */,
 				ABC88A9D1A51498C0051257C /* CDVSplashScreen.m */,
 			);
-			name = org.apache.cordova.splashscreen;
- 			path = org.apache.cordova.splashscreen;
+			path = org.apache.cordova.splashscreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,8 +266,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABAB76A41A47EA5A00E392B6 /* www in Resources */,
-				ABAB76611A47BEF500E392B6 /* Main.storyboard in Resources */,
-				ABAB76661A47BEF500E392B6 /* LaunchScreen.xib in Resources */,
+				ABF122141A6E708200B15F5B /* manifest.plist in Resources */,
+				ABF1221B1A6E70AA00B15F5B /* Main.storyboard in Resources */,
 				ABAB76631A47BEF500E392B6 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,10 +287,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABC88A9E1A51498C0051257C /* CDVSplashScreen.m in Sources */,
-				ABAB765E1A47BEF500E392B6 /* ViewController.swift in Sources */,
 				ABAB76891A47C6E700E392B6 /* CDVFile.m in Sources */,
 				ABAB768A1A47C6E700E392B6 /* CDVLocalFilesystem.m in Sources */,
-				ABAB765C1A47BEF500E392B6 /* AppDelegate.swift in Sources */,
+				ABF122171A6E709A00B15F5B /* AppDelegate.swift in Sources */,
+				ABF122181A6E709A00B15F5B /* ViewController.swift in Sources */,
 				ABAB76881A47C6E700E392B6 /* CDVAssetLibraryFilesystem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,20 +314,13 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		ABAB765F1A47BEF500E392B6 /* Main.storyboard */ = {
+		ABF122191A6E70AA00B15F5B /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				ABAB76601A47BEF500E392B6 /* Base */,
+				ABF1221A1A6E70AA00B15F5B /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		ABAB76641A47BEF500E392B6 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ABAB76651A47BEF500E392B6 /* Base */,
-			);
-			name = LaunchScreen.xib;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -434,7 +422,6 @@
 				INFOPLIST_FILE = CordovaPluginFileDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "CordovaPluginFileDemo/Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -455,7 +442,6 @@
 				INFOPLIST_FILE = CordovaPluginFileDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "CordovaPluginFileDemo/Bridging-Header.h";
 			};
 			name = Release;
 		};

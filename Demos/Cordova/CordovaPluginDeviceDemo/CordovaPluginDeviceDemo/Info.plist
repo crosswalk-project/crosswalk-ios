@@ -20,17 +20,8 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>CordovaPlugins</key>
-	<array>
-		<dict>
-			<key>className</key>
-			<string>CDVDevice</string>
-			<key>name</key>
-			<string>Device</string>
-		</dict>
-	</array>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string>Main</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 </dict>
