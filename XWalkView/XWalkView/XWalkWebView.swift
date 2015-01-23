@@ -7,6 +7,7 @@ import WebKit
 public extension WKWebView {
     private struct key {
         static let thread = UnsafePointer<Void>(bitPattern: Selector("extensionThread").hashValue)
+        static let httpd = UnsafePointer<Void>(bitPattern: Selector("extensionHTTPD").hashValue)
     }
     public var extensionThread: NSThread {
         get {
@@ -56,6 +57,34 @@ public extension WKWebView {
                 NSException.raise("EncodingError", format: "'%@.js' should be UTF-8 encoding.", arguments: getVaList([path]))
             }
         }
+    }
+
+    // WKWebView can't load file URL on device. We have to start an embedded http server for proxy.
+    // Upstream WebKit has solved this issue. This function should be removed once WKWebKit adopts the fix.
+    // See: https://bugs.webkit.org/show_bug.cgi?id=137153
+    public func loadFileURL(URL: NSURL, allowingReadAccessToURL readAccessURL: NSURL) -> WKNavigation? {
+        if (!URL.fileURL || !readAccessURL.fileURL) {
+            let url = URL.fileURL ? readAccessURL : URL
+            NSException.raise(NSInvalidArgumentException, format: "%@ is not a file URL", arguments: getVaList([url]))
+        }
+
+        let fileManager = NSFileManager.defaultManager()
+        var relationship: NSURLRelationship = NSURLRelationship.Other
+        var isDirectory: ObjCBool = false
+        if (!fileManager.fileExistsAtPath(readAccessURL.path!, isDirectory: &isDirectory) || !isDirectory || !fileManager.getRelationship(&relationship, ofDirectoryAtURL: readAccessURL, toItemAtURL: URL, error: nil) || relationship == NSURLRelationship.Other) {
+            return nil
+        }
+
+        var httpd = objc_getAssociatedObject(self, key.httpd) as? XWalkHttpServer
+        if httpd == nil {
+            httpd = XWalkHttpServer(documentRoot: readAccessURL.path)
+            httpd!.start(extensionThread)
+            objc_setAssociatedObject(self, key.httpd, httpd!, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
+        }
+
+        let target = URL.path!.substringFromIndex(advance(URL.path!.startIndex, countElements(readAccessURL.path!)))
+        let url = NSURL(scheme: "http", host: "127.0.0.1:\(httpd!.port)", path: target)
+        return loadRequest(NSURLRequest(URL: url!));
     }
 }
 
