@@ -15,13 +15,10 @@
 - (NSString*)namespace;
 - (void)setProperty:(NSString*)name value:(id)value;
 
-- (void)invokeCallback:(UInt32)callId;
-- (void)invokeCallback:(UInt32)callId key:(NSString*)key;
-- (void)invokeCallback:(UInt32)callId key:(NSString*)key arguments:(NSArray*)arguments;
-- (void)invokeCallback:(UInt32)callId index:(UInt32)index;
-- (void)invokeCallback:(UInt32)callId index:(UInt32)index arguments:(NSArray*)arguments;
+- (void)invokeCallback:(UInt32)callbackId key:(NSString*)key, ... NS_REQUIRES_NIL_TERMINATION;
+- (void)invokeCallback:(UInt32)callbackId key:(NSString*)key arguments:(NSArray*)arguments;
 - (void)releaseArguments:(UInt32)callId;
-- (void)invokeJavaScript:(NSString*)function;
+- (void)invokeJavaScript:(NSString*)function, ... NS_REQUIRES_NIL_TERMINATION;
 - (void)invokeJavaScript:(NSString*)function arguments:(NSArray*)arguments;
 - (void)evaluateJavaScript:(NSString*)string;
 - (void)evaluateJavaScript:(NSString*)string onSuccess:(void(^)(id))onSuccess onError:(void(^)(NSError*))onError;

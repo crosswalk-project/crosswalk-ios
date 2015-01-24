@@ -62,7 +62,7 @@ class XWalkStubGenerator {
         var body = "invokeNative('\(name)', [\(list)"
         if isPromise {
             body = "var _this = \(this);\n    return new Promise(function(resolve, reject) {\n        _this.\(body)"
-            body += (list.isEmpty ? "" : ", ") + "[resolve, reject]]);\n    });"
+            body += (list.isEmpty ? "" : ", ") + "{'resolve': resolve, 'reject': reject}]);\n    });"
         } else {
             body = "\(this).\(body)]);"
         }

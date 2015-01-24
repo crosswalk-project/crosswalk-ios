@@ -12,9 +12,9 @@ class XWalkExtensionLoader: XWalkExtension {
         if let ext: AnyObject = XWalkExtensionFactory.createExtension(name, initializer: initializer, arguments: arguments) {
             channel.webView.loadExtension(ext, namespace: namespace ?? name)
             // TODO: Call success callback with the extension object
-            invokeCallback(_Promise, index: 0)
+            invokeCallback(_Promise, key:"resolve", arguments: nil)
         } else {
-            invokeCallback(_Promise, index: 1)
+            invokeCallback(_Promise, key:"reject", arguments: nil)
         }
         return true
     }

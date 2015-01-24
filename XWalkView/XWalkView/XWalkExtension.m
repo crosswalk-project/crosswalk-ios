@@ -56,16 +56,18 @@
 
 - (void)setProperty:(NSString*)name value:(id)value
 {
-    // TODO: check type
-    id var = value ? value : nil;
     NSString* json = nil;
-    if ([var isKindOfClass:NSString.class]) {
-        json = [NSString stringWithFormat:@"'%@'", (NSString*)var];
+    if (value == nil || value == NSNull.null) {
+        json = @"null";
+    } else if ([value isKindOfClass:NSString.class]) {
+        json = [NSString stringWithFormat:@"'%@'", (NSString*)value];
+    } else if ([value isKindOfClass:NSNumber.class]) {
+        json = [NSString stringWithFormat:@"%@", value];
     } else {
         NSError* error = nil;
-        NSData* data = [NSJSONSerialization dataWithJSONObject:var options:NSJSONWritingPrettyPrinted error:&error];
+        NSData* data = [NSJSONSerialization dataWithJSONObject:value options:NSJSONWritingPrettyPrinted error:&error];
         if (error) {
-            NSLog(@"ERROR: Failed to generate json string from var object.");
+            NSLog(@"ERROR: Failed to generate json string from value object.");
             return;
         }
         json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -79,41 +81,40 @@
     [self evaluateJavaScript:script];
 }
 
-- (void)invokeCallback:(UInt32)callId
+- (void)invokeCallback:(UInt32)callbackId key:(NSString*)key, ...
 {
-    [self invokeCallback:callId key:nil];
+    NSMutableArray *args = [NSMutableArray new];
+    va_list ap;
+    id arg;
+    va_start(ap, key);
+    while ((arg = va_arg(ap, id)) != nil) {
+        [args addObject:arg];
+    }
+    va_end(ap);
+    [self invokeJavaScript:@".invokeCallback", [NSNumber numberWithInteger:callbackId], key ?: NSNull.null, args, nil];
 }
 
-- (void)invokeCallback:(UInt32)callId key:(NSString*)key
+- (void)invokeCallback:(UInt32)callbackId key:(NSString*)key arguments:(NSArray*)arguments
 {
-    [self invokeCallback:callId key:key arguments:nil];
-}
-
-- (void)invokeCallback:(UInt32)callId key:(NSString*)key arguments:(NSArray*)arguments
-{
-    NSArray* args = [NSArray arrayWithObjects:[NSNumber numberWithInteger:callId], key ? key : [NSNull null], arguments, nil];
-    [self invokeJavaScript:@".invokeCallback" arguments:args];
-}
-
-- (void)invokeCallback:(UInt32)callId index:(UInt32)index
-{
-    [self invokeCallback:callId index:index arguments:nil];
-}
-
-- (void)invokeCallback:(UInt32)callId index:(UInt32)index arguments:(NSArray*)arguments
-{
-    NSArray* args = [NSArray arrayWithObjects:[NSNumber numberWithInteger:callId], [NSNumber numberWithInteger:index], arguments, nil];
-    [self invokeJavaScript:@".invokeCallback" arguments:args];
+    [self invokeJavaScript:@".invokeCallback", [NSNumber numberWithInteger:callbackId], key ?: NSNull.null, arguments, nil];
 }
 
 - (void)releaseArguments:(UInt32)callId
 {
-    [self invokeJavaScript:@".releaseArguments" arguments:@[[NSNumber numberWithUnsignedInteger:callId]]];
+    [self invokeJavaScript:@".releaseArguments", [NSNumber numberWithUnsignedInteger:callId], nil];
 }
 
-- (void)invokeJavaScript:(NSString*)function
+- (void)invokeJavaScript:(NSString*)function, ...
 {
-    [self invokeJavaScript:function arguments:nil];
+    NSMutableArray *args = [NSMutableArray new];
+    va_list ap;
+    id arg;
+    va_start(ap, function);
+    while ((arg = va_arg(ap, id)) != nil) {
+        [args addObject:arg];
+    }
+    [self invokeJavaScript:function arguments:args];
+    va_end(ap);
 }
 
 - (void)invokeJavaScript:(NSString*)function arguments:(NSArray*)arguments
@@ -123,19 +124,21 @@
     if ([script characterAtIndex:0] == '.') {
         // Invoke a method of this object
         [this setString:self.channel.namespace];
-        if (self.instance) {
-            [this appendString:[NSString stringWithFormat:@"[%@]", [NSNumber numberWithInteger:self.instance]]];
-        }
+        if (self.instance)
+            [this appendFormat:@"[%zd]", self.instance];
         [script insertString:this atIndex:0];
     }
 
-    NSError* error;
-    NSData* data = [NSJSONSerialization dataWithJSONObject:arguments options:NSJSONWritingPrettyPrinted error:&error];
-    if (error) {
-        NSLog(@"ERROR: Failed to generate json string from arguments object.");
-        return;
+    NSString* json = @"[]";
+    if (arguments != nil) {
+        NSError* error;
+        NSData* data = [NSJSONSerialization dataWithJSONObject:arguments options:NSJSONWritingPrettyPrinted error:&error];
+        if (error) {
+            NSLog(@"ERROR: Failed to generate json string from arguments object.");
+            return;
+        }
+        json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     }
-    NSString* json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     [script appendString:[NSString stringWithFormat:@".apply(%@, %@);", this, json]];
     [self evaluateJavaScript:script];
 }
@@ -160,15 +163,13 @@
 {
     SEL selector = [self.channel.mirror getGetter:key];
     if (selector) {
-        ReturnValue* result = [Invocation call:self selector:[self.channel.mirror getGetter:key] arguments:nil];
-        id obj = result.object ? result.object : result.number;
-        if (obj) {
-            return obj;
-        } else if (![result.object isKindOfClass:NSNull.class]) {
+        ReturnValue* result = [Invocation call:self selector:selector arguments:nil];
+        if (result.isObject || result.isNumber)
+            return result.object ?: result.number;
+        else
             [NSException raise:@"PropertyError" format:@"Type of property '%@' is unknown.", key];
-        }
     } else {
-        [NSException raise:@"PropertyError" format:@"Property '%@' is not defined.", key];
+        [NSException raise:@"PropertyError" format:@"Property '%@' is undefined.", key];
     }
     return nil;
 }
@@ -181,7 +182,7 @@
         if (![self.channel.mirror getOriginalSetter:name]) {
             [self setProperty:name value:obj];
         }
-        [Invocation call:self selector:selector arguments:obj ? obj : [NSNull null]];
+        [Invocation call:self selector:selector arguments:obj ?: NSNull.null];
     } else if ([self.channel.mirror hasProperty:name]) {
         [NSException raise:@"PropertyError" format:@"Property '%@' is readonly.", name];
     } else {
