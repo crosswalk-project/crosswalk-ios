@@ -2,6 +2,10 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "This file requires ARC support."
+#endif
+
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <unistd.h>
@@ -36,11 +40,13 @@ static char *serializeResponse(const NSHTTPURLResponse *response, size_t *size);
 
 - (id)initWithNativeHandle:(CFSocketNativeHandle)handle {
     _socket = handle;
-    _requestQueue = [NSMutableArray new];
+    _requestQueue = [[NSMutableArray alloc] init];
     return self;
 }
 
 - (BOOL)open {
+    assert(_lineBuf == NULL);  // reopen is forbidden
+
     CFReadStreamRef input = NULL;
     CFWriteStreamRef output = NULL;
     CFStreamCreatePairWithSocket(kCFAllocatorDefault, _socket, &input, &output);
@@ -69,6 +75,10 @@ static char *serializeResponse(const NSHTTPURLResponse *response, size_t *size);
     [_output close];
     _input = NULL;
     _output = NULL;
+
+    _file = nil;
+    free(_lineBuf);
+    free(_headerBuf);
 
     if (_delegate && [_delegate respondsToSelector:@selector(didCloseConnection:)])
         [_delegate didCloseConnection:self];
@@ -187,9 +197,6 @@ static char *serializeResponse(const NSHTTPURLResponse *response, size_t *size);
         }
         case NSStreamEventEndEncountered:
         case NSStreamEventErrorOccurred:
-            free(_lineBuf);
-            if (_headerBuf)  free(_headerBuf);
-            _file = nil;
             [self close];
         case NSStreamEventNone:
             break;

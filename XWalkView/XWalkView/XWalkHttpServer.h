@@ -9,7 +9,7 @@
 
 @interface XWalkHttpServer : NSObject
 
-@property (readonly, nonatomic) in_port_t port;
+@property(nonatomic, readonly) in_port_t port;
 
 - (id)initWithDocumentRoot:(NSString *)root;
 - (BOOL)start:(NSThread *)thread;
