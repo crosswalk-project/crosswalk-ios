@@ -9,12 +9,12 @@
 
 @interface XWalkExtension : NSObject <XWalkDelegate>
 
-@property(nonatomic, weak) XWalkChannel* channel;
-@property(nonatomic, assign) NSInteger instance;
+@property(nonatomic, weak, readonly) XWalkChannel* channel;
+@property(nonatomic, assign, readonly) NSInteger instance;
 
 - (NSString*)namespace;
-- (void)setProperty:(NSString*)name value:(id)value;
 
+- (void)setJavaScriptProperty:(NSString*)name value:(id)value;
 - (void)invokeCallback:(UInt32)callbackId key:(NSString*)key, ... NS_REQUIRES_NIL_TERMINATION;
 - (void)invokeCallback:(UInt32)callbackId key:(NSString*)key arguments:(NSArray*)arguments;
 - (void)releaseArguments:(UInt32)callId;
@@ -24,7 +24,10 @@
 - (void)evaluateJavaScript:(NSString*)string onSuccess:(void(^)(id))onSuccess onError:(void(^)(NSError*))onError;
 
 // XWalkDelegate implementation
+- (void)invokeNativeMethod:(NSString *)name arguments:(NSArray *)args;
+- (void)setNativeProperty:(NSString *)name value:(id)value;
 - (NSString*)didGenerateStub:(NSString*)stub;
 - (void)didBindExtension:(XWalkChannel*)channel instance:(NSInteger)instance;
+- (void)didUnbindExtension;
 
 @end

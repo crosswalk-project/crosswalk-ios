@@ -25,14 +25,14 @@ import Foundation
             self.setter = setter
         }
         var cls: AnyClass
-        var method: Method? = nil
-        var getter: Method? = nil
-        var setter: Method? = nil
+        var method: Method = nil
+        var getter: Method = nil
+        var setter: Method = nil
     }
 
     private let cls: AnyClass
     private var members: [String: MemberInfo] = [:]
-    private var ctor: Selector?
+    private var ctor: Method = nil
 
     private let methodPrefix = "jsfunc_"
     private let getterPrefix = "jsprop_"
@@ -42,19 +42,22 @@ import Foundation
     init(cls: AnyClass) {
         self.cls = cls
         enumerate({(name, type, method, cls) -> Bool in
-            if type == XWalkReflection.MemberType.Method {
+            if type == MemberType.Method {
                 assert(self.members[name] == nil, "ambiguous method: \(name)")
                 self.members[name] = MemberInfo(cls: cls, method: method)
-            } else if type == XWalkReflection.MemberType.Constructor {
-                self.ctor = method_getName(method)
+            } else if type == MemberType.Constructor {
+                assert(self.ctor == Method(), "ambiguous initializer")
+                self.ctor = method
             } else {
-                assert(self.members[name]?.method == nil, "name conflict: \(name)")
-                if self.members.indexForKey(name) == nil {
+                if self.members[name] == nil {
                     self.members[name] = MemberInfo(cls: cls)
+                } else {
+                    assert(self.members[name]!.method == Method(), "name conflict: \(name)")
                 }
-                if type == XWalkReflection.MemberType.Getter {
+                if type == MemberType.Getter {
                     self.members[name]!.getter = method
                 } else {
+                    assert(type == MemberType.Setter)
                     self.members[name]!.setter = method
                 }
             }
@@ -66,108 +69,44 @@ import Foundation
     public var allMembers: [String] {
         return members.keys.array
     }
+    public var allMethods: [String] {
+        return filter(members.keys.array, {(e)->Bool in return self.hasMethod(e)})
+    }
+    public var allProperties: [String] {
+        return filter(members.keys.array, {(e)->Bool in return self.hasProperty(e)})
+    }
     public func hasMember(name: String) -> Bool {
         return members[name] != nil
     }
     public func hasMethod(name: String) -> Bool {
-        return members[name]?.method != nil
+        return (members[name]?.method ?? Method()) != Method()
     }
     public func hasProperty(name: String) -> Bool {
-        return members[name]?.getter != nil
+        return (members[name]?.getter ?? Method()) != Method()
     }
-    public func isReadonly(name: String) -> Bool? {
-        if members[name]?.setter != nil {
-            return false
-        } else if members[name]?.getter != nil {
-            return true
-        } else {
-            return nil
-        }
+    public func isReadonly(name: String) -> Bool {
+        assert(hasProperty(name))
+        return (members[name]?.setter ?? Method()) == Method()
     }
 
     // Fetching selectors
-    var constructor: Selector? {
-        return ctor
+    public var constructor: Selector {
+        return method_getName(ctor)
     }
     public func getMethod(name: String) -> Selector {
-        if let method = members[name]?.method {
-            return method_getName(method)
-        }
-        return Selector()
+        return method_getName(members[name]?.method ?? Method())
     }
     public func getGetter(name: String) -> Selector {
-        if let method = members[name]?.getter {
-            return method_getName(method)
-        }
-        return Selector()
+        return method_getName(members[name]?.getter ?? Method())
     }
     public func getSetter(name: String) -> Selector {
-        if let method = members[name]?.setter {
-            return method_getName(method)
-        }
-        return Selector()
-    }
-
-    // Method swizzling
-    func wrapMethod(name: String, impl: IMP) -> Bool {
-        if let method = members[name]?.method {
-            return self.dynamicType.swizzle(members[name]!.cls, method: method, impl: impl)
-        }
-        return false
-    }
-    func wrapGetter(name: String, impl: IMP) -> Bool {
-        if let method = members[name]?.getter {
-            return self.dynamicType.swizzle(members[name]!.cls, method: method, impl: impl)
-        }
-        return false
-    }
-    func wrapSetter(name: String, impl: IMP) -> Bool {
-        if let method = members[name]?.setter {
-            return self.dynamicType.swizzle(members[name]!.cls, method: method, impl: impl)
-        }
-        return false
-    }
-    public func getOriginalMethod(name: String) -> Selector {
-        if let method = members[name]?.method {
-            return self.dynamicType.getOriginal(members[name]!.cls, method: method)
-        }
-        return Selector()
-    }
-    public func getOriginalGetter(name: String) -> Selector {
-        if let method = members[name]?.getter {
-            return self.dynamicType.getOriginal(members[name]!.cls, method: method)
-        }
-        return Selector()
-    }
-    public func getOriginalSetter(name: String) -> Selector {
-        if let method = members[name]?.setter {
-            return self.dynamicType.getOriginal(members[name]!.cls, method: method)
-        }
-        return Selector()
-    }
-
-    private class func getOriginal(cls: AnyClass, method: Method) -> Selector {
-        let selector = Selector("_\(method_getName(method))")
-        let original = class_getInstanceMethod(cls, selector)
-        if original != COpaquePointer.null() {
-            return method_getName(original)
-        }
-        return Selector()
-    }
-    private class func swizzle(cls: AnyClass, method: Method, impl: IMP) -> Bool {
-        let sel = Selector("_\(method_getName(method))")
-        if class_addMethod(cls, sel, impl, method_getTypeEncoding(method)) {
-            let original = class_getInstanceMethod(cls, method_getName(method))
-            let wrapper = class_getInstanceMethod(cls, sel)
-            method_exchangeImplementations(original, wrapper)
-            return true
-        }
-        return false
+        return method_getName(members[name]?.setter ?? Method())
     }
 
     // TODO: enumerate instance methods of super class
     private func enumerate(callback: ((String, MemberType, Method, AnyClass)->Bool)) -> Bool {
-        for var mlist = class_copyMethodList(cls, nil); mlist.memory != nil; mlist = mlist.successor() {
+        let methodList = class_copyMethodList(cls, nil);
+        for var mlist = methodList; mlist.memory != nil; mlist = mlist.successor() {
             let name = method_getName(mlist.memory).description
             let num = method_getNumberOfArguments(mlist.memory)
             var type: MemberType
@@ -196,9 +135,11 @@ import Foundation
                 continue
             }
             if !callback(name[start..<end], type, mlist.memory, cls) {
+                free(methodList)
                 return false
             }
         }
+        free(methodList)
         return true
     }
 }

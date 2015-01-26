@@ -16,8 +16,6 @@
 		EE0A1DD31A52775400C9E6D3 /* XWalkChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DD21A52775400C9E6D3 /* XWalkChannel.swift */; };
 		EE0A1DDF1A52A5A300C9E6D3 /* XWalkReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DDD1A52A5A300C9E6D3 /* XWalkReflection.swift */; };
 		EE0A1DE01A52A5A300C9E6D3 /* XWalkStubGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DDE1A52A5A300C9E6D3 /* XWalkStubGenerator.swift */; };
-		EE0A1DE31A53CBCC00C9E6D3 /* XWalkExtensionWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = EE0A1DE11A53CBCC00C9E6D3 /* XWalkExtensionWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EE0A1DE41A53CBCC00C9E6D3 /* XWalkExtensionWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DE21A53CBCC00C9E6D3 /* XWalkExtensionWrapper.m */; };
 		EE0A1DED1A53DCFB00C9E6D3 /* XWalkThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DEC1A53DCFB00C9E6D3 /* XWalkThread.swift */; };
 		EE174E451A01FDDE00168D96 /* XWalkExtensionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE174E441A01FDDE00168D96 /* XWalkExtensionFactory.swift */; };
 		EE174E781A0361CB00168D96 /* crosswalk.js in Resources */ = {isa = PBXBuildFile; fileRef = EE174E771A0361CB00168D96 /* crosswalk.js */; };
@@ -38,8 +36,6 @@
 		EE0A1DD21A52775400C9E6D3 /* XWalkChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkChannel.swift; path = XWalkView/XWalkChannel.swift; sourceTree = "<group>"; };
 		EE0A1DDD1A52A5A300C9E6D3 /* XWalkReflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkReflection.swift; path = XWalkView/XWalkReflection.swift; sourceTree = "<group>"; };
 		EE0A1DDE1A52A5A300C9E6D3 /* XWalkStubGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkStubGenerator.swift; path = XWalkView/XWalkStubGenerator.swift; sourceTree = "<group>"; };
-		EE0A1DE11A53CBCC00C9E6D3 /* XWalkExtensionWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XWalkExtensionWrapper.h; path = XWalkView/XWalkExtensionWrapper.h; sourceTree = "<group>"; };
-		EE0A1DE21A53CBCC00C9E6D3 /* XWalkExtensionWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XWalkExtensionWrapper.m; path = XWalkView/XWalkExtensionWrapper.m; sourceTree = "<group>"; };
 		EE0A1DEC1A53DCFB00C9E6D3 /* XWalkThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkThread.swift; path = XWalkView/XWalkThread.swift; sourceTree = "<group>"; };
 		EE174E441A01FDDE00168D96 /* XWalkExtensionFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkExtensionFactory.swift; path = XWalkView/XWalkExtensionFactory.swift; sourceTree = "<group>"; };
 		EE174E771A0361CB00168D96 /* crosswalk.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = crosswalk.js; path = XWalkView/crosswalk.js; sourceTree = "<group>"; };
@@ -109,8 +105,6 @@
 				EE174E441A01FDDE00168D96 /* XWalkExtensionFactory.swift */,
 				EE7886751A0D0CE30013A855 /* XWalkExtensionLoader.swift */,
 				EE174E771A0361CB00168D96 /* crosswalk.js */,
-				EE0A1DE11A53CBCC00C9E6D3 /* XWalkExtensionWrapper.h */,
-				EE0A1DE21A53CBCC00C9E6D3 /* XWalkExtensionWrapper.m */,
 				EE62691D19FA52FC00EFC3F8 /* Invocation.h */,
 				EE62691E19FA52FC00EFC3F8 /* Invocation.m */,
 				ABF4635E1A6751970049D942 /* XWalkDelegate.h */,
@@ -137,7 +131,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABF68ECD1A6B45FC0058267B /* XWalkView.h in Headers */,
-				EE0A1DE31A53CBCC00C9E6D3 /* XWalkExtensionWrapper.h in Headers */,
 				AB3ECCC01A6243B3001925A3 /* XWalkExtension.h in Headers */,
 				ABD475E31A4129FC00F3BDEB /* Invocation.h in Headers */,
 				ABF4635F1A67519D0049D942 /* XWalkDelegate.h in Headers */,
@@ -223,7 +216,6 @@
 				EE62692419FA52FC00EFC3F8 /* Invocation.m in Sources */,
 				EE0A1DD31A52775400C9E6D3 /* XWalkChannel.swift in Sources */,
 				EE0A1DED1A53DCFB00C9E6D3 /* XWalkThread.swift in Sources */,
-				EE0A1DE41A53CBCC00C9E6D3 /* XWalkExtensionWrapper.m in Sources */,
 				EE62692619FA52FC00EFC3F8 /* XWalkWebView.swift in Sources */,
 				ABA6840E1A42C751003A71D9 /* json.swift in Sources */,
 				EE7164901A716C9F00078FF9 /* XWalkHttpConnection.m in Sources */,

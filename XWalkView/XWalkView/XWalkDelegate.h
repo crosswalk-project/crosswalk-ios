@@ -7,7 +7,12 @@
 @class XWalkChannel;
 
 @protocol XWalkDelegate <NSObject>
+
 @optional
-    - (NSString*)didGenerateStub:(NSString*)stub;
-    - (void)didBindExtension:(XWalkChannel*)channel instance:(NSInteger)instance;
+- (void)invokeNativeMethod:(NSString *)name arguments:(NSArray *)args;
+- (void)setNativeProperty:(NSString *)name value:(id)value;
+- (NSString*)didGenerateStub:(NSString*)stub;
+- (void)didBindExtension:(XWalkChannel*)channel instance:(NSInteger)instance;
+- (void)didUnbindExtension;
+
 @end
