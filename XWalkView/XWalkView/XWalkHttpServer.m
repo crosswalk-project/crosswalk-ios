@@ -2,6 +2,10 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "This file requires ARC support."
+#endif
+
 #include <sys/socket.h>
 #include <netinet/in.h>
 
@@ -35,7 +39,7 @@
     if (![[NSFileManager defaultManager] fileExistsAtPath:root isDirectory:&isDirectory] || !isDirectory) {
         return nil;
     }
-    _connections = [NSMutableSet new];
+    _connections = [[NSMutableSet alloc] init];
     _documentRoot = [root copy];
     return self;
 }

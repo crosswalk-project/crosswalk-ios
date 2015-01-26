@@ -2,6 +2,10 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "This file requires ARC support."
+#endif
+
 #import "XWalkExtension.h"
 
 #import "Invocation.h"
@@ -68,6 +72,7 @@
 }
 
 - (void)didBindExtension:(XWalkChannel*)channel instance:(NSInteger)instance {
+    assert(!self.channel);
     self.channel = channel;
     self.instance = instance;
 
@@ -105,19 +110,17 @@
     } else {
         NSError* error = nil;
         NSData* data = [NSJSONSerialization dataWithJSONObject:value options:NSJSONWritingPrettyPrinted error:&error];
-        if (error) {
-            NSLog(@"ERROR: Failed to generate json string from value object.");
-            return;
-        }
+        if (!data)
+            [NSException exceptionWithName:@"InternalError" reason:@"InternalError" userInfo:error.userInfo];
         json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     }
-    NSString *script = [NSString stringWithFormat:@"%@.properties['%@'] = %@;",
-            self.instance ? [self.namespace stringByAppendingFormat:@"[%zd]", self.instance] : self.namespace, name, json];
+    NSString *script = [NSString stringWithFormat:@"%@%@.properties['%@'] = %@;", self.namespace,
+            self.instance ? [NSString stringWithFormat:@"[%zd]", self.instance] : @"", name, json];
     [self evaluateJavaScript:script];
 }
 
 - (void)invokeCallback:(UInt32)callbackId key:(NSString*)key, ... {
-    NSMutableArray *args = [NSMutableArray new];
+    NSMutableArray *args = [[NSMutableArray alloc] init];
     va_list ap;
     id arg;
     va_start(ap, key);
@@ -125,19 +128,19 @@
         [args addObject:arg];
     }
     va_end(ap);
-    [self invokeJavaScript:@".invokeCallback", [NSNumber numberWithInteger:callbackId], key ?: NSNull.null, args, nil];
+    [self invokeJavaScript:@".invokeCallback", @(callbackId), key ?: NSNull.null, args, nil];
 }
 
 - (void)invokeCallback:(UInt32)callbackId key:(NSString*)key arguments:(NSArray*)arguments {
-    [self invokeJavaScript:@".invokeCallback", [NSNumber numberWithInteger:callbackId], key ?: NSNull.null, arguments, nil];
+    [self invokeJavaScript:@".invokeCallback", @(callbackId), key ?: NSNull.null, arguments, nil];
 }
 
 - (void)releaseArguments:(UInt32)callId {
-    [self invokeJavaScript:@".releaseArguments", [NSNumber numberWithUnsignedInteger:callId], nil];
+    [self invokeJavaScript:@".releaseArguments", @(callId), nil];
 }
 
 - (void)invokeJavaScript:(NSString*)function, ... {
-    NSMutableArray *args = [NSMutableArray new];
+    NSMutableArray *args = [[NSMutableArray alloc] init];
     va_list ap;
     id arg;
     va_start(ap, function);
@@ -149,27 +152,22 @@
 }
 
 - (void)invokeJavaScript:(NSString*)function arguments:(NSArray*)arguments {
-    NSMutableString* script = [NSMutableString stringWithString:function];
-    NSMutableString* this = [NSMutableString stringWithString:@"null"];
-    if ([script characterAtIndex:0] == '.') {
+    NSString *this = nil;
+    if ([function characterAtIndex:0] == '.') {
         // Invoke a method of this object
-        [this setString:self.namespace];
-        if (self.instance)
-            [this appendFormat:@"[%zd]", self.instance];
-        [script insertString:this atIndex:0];
+        this = self.instance ? [self.namespace stringByAppendingFormat:@"[%zd]", self.instance] : self.namespace;
     }
 
-    NSString* json = @"[]";
-    if (arguments != nil) {
-        NSError* error;
-        NSData* data = [NSJSONSerialization dataWithJSONObject:arguments options:NSJSONWritingPrettyPrinted error:&error];
-        if (error) {
-            NSLog(@"ERROR: Failed to generate json string from arguments object.");
-            return;
-        }
-        json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSString* args = @"[]";
+    if (arguments) {
+        NSError *error;
+        NSData* data = [NSJSONSerialization dataWithJSONObject:arguments options:0 error:&error];
+        if (!data)
+            [NSException exceptionWithName:@"InternalError" reason:@"InternalError" userInfo:error.userInfo];
+        args = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     }
-    [script appendString:[NSString stringWithFormat:@".apply(%@, %@);", this, json]];
+
+    NSString *script = [NSString stringWithFormat:@"%@%@.apply(%@, %@);", this ?: @"", function, this ?: @"null", args];
     [self evaluateJavaScript:script];
 }
 

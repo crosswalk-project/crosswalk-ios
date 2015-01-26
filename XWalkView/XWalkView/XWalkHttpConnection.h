@@ -9,10 +9,10 @@
 
 @class XWalkHttpConnection;
 
-@protocol XWalkHttpConnectionDelegate <NSObject>
+@protocol XWalkHttpConnectionDelegate<NSObject>
 
 @optional
-@property (readonly, nonatomic) NSString* documentRoot;
+@property(nonatomic, readonly) NSString* documentRoot;
 - (void)didOpenConnection:(XWalkHttpConnection *)connection;
 - (void)didCloseConnection:(XWalkHttpConnection *)connection;
 
@@ -20,7 +20,7 @@
 
 @interface XWalkHttpConnection : NSObject<NSStreamDelegate>
 
-@property (weak, nonatomic) id<XWalkHttpConnectionDelegate> delegate;
+@property(nonatomic, weak) id<XWalkHttpConnectionDelegate> delegate;
 
 - (id)initWithNativeHandle:(CFSocketNativeHandle)handle;
 - (BOOL)open;

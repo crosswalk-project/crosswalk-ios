@@ -7,9 +7,9 @@
 
 @class XWalkChannel;
 
-@interface XWalkExtension : NSObject <XWalkDelegate>
+@interface XWalkExtension : NSObject<XWalkDelegate>
 
-@property(nonatomic, weak, readonly) XWalkChannel* channel;
+@property(nonatomic, readonly, weak) XWalkChannel* channel;
 @property(nonatomic, assign, readonly) NSInteger instance;
 
 - (NSString*)namespace;

@@ -6,7 +6,7 @@
 
 @class XWalkChannel;
 
-@protocol XWalkDelegate <NSObject>
+@protocol XWalkDelegate<NSObject>
 
 @optional
 - (void)invokeNativeMethod:(NSString *)name arguments:(NSArray *)args;
