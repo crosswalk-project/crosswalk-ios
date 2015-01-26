@@ -39,20 +39,9 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
         }
 
         mirror = XWalkReflection(cls: object.dynamicType)
-        if object is XWalkExtension {
-            // Do method swizzling
-            for name in mirror.allMembers {
-                if !mirror.wrapMethod(name, impl: xwalkExtensionMethod) {
-                    mirror.wrapSetter(name, impl: xwalkExtensionSetter)
-                }
-            }
-        }
-
         var script = XWalkStubGenerator(reflection: mirror).generate(_name, namespace: namespace, object: object)
         let delegate = object as? XWalkDelegate
-        if delegate?.didGenerateStub != nil {
-            script = delegate!.didGenerateStub!(script)
-        }
+        script = delegate?.didGenerateStub?(script) ?? script
 
         userScript = _webView.injectScript(script)
         delegate?.didBindExtension?(self, instance: 0)
@@ -68,9 +57,12 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
         if let method = body["method"] as? String {
             // Invoke method
             if let object: AnyObject = instances[instid] {
-                let selector = mirror.getMethod(method)
-                if selector != nil {
-                    Invocation.call(object, selector: selector, arguments: args, thread: _thread)
+                let delegate = object as? XWalkDelegate
+                if delegate?.invokeNativeMethod != nil {
+                    let selector = Selector("invokeNativeMethod:arguments:")
+                    Invocation.call(object, selector: selector, arguments: [method, args], thread: _thread)
+                } else if mirror.hasMethod(method) {
+                    Invocation.call(object, selector: mirror.getMethod(method), arguments: args, thread: _thread)
                 } else {
                     println("ERROR: Method '\(method)' is not defined in class '\(object.dynamicType.description())'.")
                 }
@@ -80,16 +72,18 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
         } else if let prop = body["property"] as? String {
             // Update property
             if let object: AnyObject = instances[instid] {
-                var selector = mirror.getSetter(prop)
-                if selector != nil {
-                    let value: AnyObject = body["value"] ?? NSNull()
-                    let original = mirror.getOriginalSetter(name)
-                    if original != nil {
-                        selector = original
-                    }
-                    Invocation.call(object, selector: selector, arguments: [value], thread: _thread)
+                let value: AnyObject = body["value"] ?? NSNull()
+                let delegate = object as? XWalkDelegate
+                if delegate?.setNativeProperty != nil {
+                    let selector = Selector("setNativeProperty:value:")
+                    Invocation.call(object, selector: selector, arguments: [prop, value], thread: _thread)
                 } else if mirror.hasProperty(prop) {
-                    println("ERROR: Property '\(prop)' is readonly.")
+                    let selector = mirror.getSetter(prop)
+                    if selector != Selector() {
+                        Invocation.call(object, selector: selector, arguments: [value], thread: _thread)
+                    } else {
+                        println("ERROR: Property '\(prop)' is readonly.")
+                    }
                 } else {
                     println("ERROR: Property '\(prop)' is not defined in class '\(object.dynamicType.description())'.")
                 }
@@ -99,13 +93,14 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
         } else if instid > 0 && instances[instid] == nil {
             // Create instance
             let ctor: AnyObject = instances[0]!
-            let object: AnyObject = Invocation.construct(ctor.dynamicType, initializer: mirror.constructor!, arguments: args)
+            let object: AnyObject = Invocation.construct(ctor.dynamicType, initializer: mirror.constructor, arguments: args)
             instances[instid] = object
             (object as? XWalkDelegate)?.didBindExtension?(self, instance: instid)
             // TODO: shoud call releaseArguments
-        } else if instid < 0 && instances[-instid] != nil {
+        } else if let object: AnyObject = instances[-instid] {
             // Destroy instance
             instances.removeValueForKey(-instid)
+            (object as? XWalkDelegate)?.didUnbindExtension?()
         } else if body["destroy"] != nil {
             // Destroy extension
             if _webView.URL != nil {
@@ -115,6 +110,10 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
             if userScript != nil {
                 _webView.configuration.userContentController.removeUserScript(userScript!)
             }
+            for (_, object) in instances {
+                (object as? XWalkDelegate)?.didUnbindExtension?()
+            }
+            instances.removeAll(keepCapacity: false)
         } else {
             // TODO: support user defined message?
             println("ERROR: Unknown message: \(body)")

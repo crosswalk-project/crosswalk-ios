@@ -30,7 +30,7 @@ class XWalkStubGenerator {
                     }
                     value = JSON(val).toString()
                 }
-                stub += "Extension.defineProperty(exports, '\(name)', \(value), \(!mirror.isReadonly(name)!));\n"
+                stub += "Extension.defineProperty(exports, '\(name)', \(value), \(!mirror.isReadonly(name)));\n"
             }
         }
         stub += "\n})(Extension.create(\(channelName), '\(namespace)'"
