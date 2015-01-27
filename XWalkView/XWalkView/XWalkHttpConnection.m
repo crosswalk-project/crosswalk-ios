@@ -10,7 +10,12 @@
 #include <netinet/in.h>
 #include <unistd.h>
 
+#import <Foundation/Foundation.h>
+#if TARGET_OS_IPHONE
 #import <MobileCoreServices/MobileCoreServices.h>
+#else
+#import <CoreServices/CoreServices.h>
+#endif
 
 #import "XWalkHttpConnection.h"
 
@@ -163,6 +168,17 @@ static char *serializeResponse(const NSHTTPURLResponse *response, size_t *size);
             }
 
             off_t len = 0;
+#if TARGET_OS_IPHONE
+            if (_bytesSent < _headerSize) {
+                // Send response header
+                len = [_output write:(uint8_t*)(_headerBuf + _bytesSent) maxLength:(_headerSize - _bytesSent)];
+            } else if (_file != nil) {
+                // Send file content
+                [_file seekToFileOffset:_bytesSent - _headerSize];
+                NSData *data = [_file readDataToEndOfFile];
+                len = [_output write:data.bytes maxLength:data.length];
+            }
+#else
             if (_file != nil) {
                 // Send message body with sendfile(2) syscall rather than copy file content in user space.
                 off_t offset = 0;
@@ -183,6 +199,7 @@ static char *serializeResponse(const NSHTTPURLResponse *response, size_t *size);
                 // Response has no message body.
                 len = [_output write:(uint8_t*)(_headerBuf + _bytesSent) maxLength:(_headerSize - _bytesSent)];
             }
+#endif
             if (len > 0) {
                 _bytesSent += len;
                 if (_bytesSent == _headerSize + _fileSize) {
