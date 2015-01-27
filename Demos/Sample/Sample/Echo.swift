@@ -4,24 +4,22 @@
 
 import XWalkView
 
-class EchoExtension: XWalkExtension {
+class Echo: XWalkExtension {
     dynamic var jsprop_prefix: String = ""
-
-    convenience init(prefix: String) {
-        self.init()
-        jsprop_prefix = prefix
-    }
-    convenience init(JSValue value: AnyObject) {
-        self.init()
-        if let prefix = value as? String {
-            jsprop_prefix = prefix
-        } else if let num = value as? NSNumber {
-            jsprop_prefix = num.stringValue
-        }
-    }
 
     func jsfunc_echo(cid: UInt32, message: String, callback: UInt32) -> Bool {
         invokeCallback(callback, key: nil, arguments: [jsprop_prefix + message])
         return true
+    }
+
+    convenience init(fromJavaScript: AnyObject?, value: AnyObject?) {
+        self.init()
+        if let prefix: AnyObject = value {
+            if let prefix = value as? String {
+                jsprop_prefix = prefix
+            } else if let num = value as? NSNumber {
+                jsprop_prefix = num.stringValue
+            }
+        }
     }
 }
