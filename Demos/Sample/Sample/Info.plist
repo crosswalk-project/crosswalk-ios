@@ -24,8 +24,12 @@
 	<string></string>
 	<key>XWalkExtensions</key>
 	<dict>
-		<key>xwalk.sample.echo</key>
-		<string>EchoExtension</string>
+		<key>xwalk.sample.hello</key>
+		<string>HelloWorld</string>
+		<key>xwalk.sample.vibrate</key>
+		<string>Vibrate</string>
+		<key>xwalk.sample.Echo</key>
+		<string>Echo</string>
 	</dict>
 </dict>
 </plist>

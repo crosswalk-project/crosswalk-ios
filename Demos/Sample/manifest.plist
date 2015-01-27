@@ -3,6 +3,12 @@
 <plist version="1.0">
 <dict>
 	<key>start_url</key>
-	<string>echo.html</string>
+	<string>index.html</string>
+	<key>xwalk_extensions</key>
+	<array>
+		<string>xwalk.sample.hello</string>
+		<string>xwalk.sample.vibrate</string>
+		<string>xwalk.sample.Echo</string>
+	</array>
 </dict>
 </plist>

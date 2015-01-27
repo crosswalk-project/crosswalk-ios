@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width'>
+    <title>Samples of Crosswalk for iOS</title>
+    <script type='text/javascript'>
+        function onload() {
+            var prefix = 'Echo from native: ';
+            echo = new xwalk.sample.Echo(prefix);
+            document.getElementById('prefix').value = prefix;
+        }
+        function echocb(msg) {
+            var body = document.getElementsByTagName('body').item(0);
+            body.insertAdjacentHTML('beforeend', msg + '<br />');
+        }
+    </script>
+</head>
+
+<body onload='onload();'>
+
+<h2>Samples for Crosswalk for iOS </h2>
+
+<input type='button' value='Hello' onclick='xwalk.sample.hello.show();' />
+<input type='button' value='Vibrate' onclick='xwalk.sample.vibrate();' />
+<br />
+
+<br />
+<table>
+  <tr>
+    <td>Prefix: </td>
+    <td><input id='prefix' type='text' /></td>
+    <td><input type='button' value='Set' onclick='echo.prefix=document.getElementById("prefix").value;' /></td>
+  </tr><tr>
+    <td>Message: </td>
+    <td><input id='text' type='text' value='Crosswalk is cool!' /></td>
+    <td><input type='button' value='Echo' onclick='echo.echo(document.getElementById("text").value, echocb);' /></td>
+  </tr>
+</table>
+<br />
+
+</body>
+
+</html>

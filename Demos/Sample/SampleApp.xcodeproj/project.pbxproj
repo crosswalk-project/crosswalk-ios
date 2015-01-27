@@ -11,6 +11,8 @@
 		EE62693519FA548E00EFC3F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE62693119FA548E00EFC3F8 /* AppDelegate.swift */; };
 		EE62693719FA548E00EFC3F8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE62693319FA548E00EFC3F8 /* Images.xcassets */; };
 		EE62693819FA548E00EFC3F8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE62693419FA548E00EFC3F8 /* ViewController.swift */; };
+		EE853F241A773EA9006E5BB0 /* HelloWorld.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE853F231A773EA9006E5BB0 /* HelloWorld.swift */; };
+		EE853F261A77600B006E5BB0 /* Vibrate.m in Sources */ = {isa = PBXBuildFile; fileRef = EE853F251A77600B006E5BB0 /* Vibrate.m */; };
 		EEB10F9C1A614074000709AE /* Sample.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EEB10F841A614074000709AE /* Sample.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EEB10FA51A6140E7000709AE /* Echo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB10FA31A6140E7000709AE /* Echo.swift */; };
 		EEB10FAA1A6155B2000709AE /* manifest.plist in Resources */ = {isa = PBXBuildFile; fileRef = EEB10FA91A6155B2000709AE /* manifest.plist */; };
@@ -51,6 +53,8 @@
 		EE62693319FA548E00EFC3F8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = AppShell/Images.xcassets; sourceTree = "<group>"; };
 		EE62693419FA548E00EFC3F8 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = AppShell/ViewController.swift; sourceTree = "<group>"; };
 		EE62693C19FA54AC00EFC3F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		EE853F231A773EA9006E5BB0 /* HelloWorld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloWorld.swift; sourceTree = "<group>"; };
+		EE853F251A77600B006E5BB0 /* Vibrate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vibrate.m; sourceTree = "<group>"; };
 		EEB10F841A614074000709AE /* Sample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEB10FA31A6140E7000709AE /* Echo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Echo.swift; sourceTree = "<group>"; };
 		EEB10FA41A6140E7000709AE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -115,8 +119,10 @@
 		EEB10F851A614074000709AE /* Sample */ = {
 			isa = PBXGroup;
 			children = (
-				EEB10FA31A6140E7000709AE /* Echo.swift */,
 				EEB10FA41A6140E7000709AE /* Info.plist */,
+				EEB10FA31A6140E7000709AE /* Echo.swift */,
+				EE853F231A773EA9006E5BB0 /* HelloWorld.swift */,
+				EE853F251A77600B006E5BB0 /* Vibrate.m */,
 			);
 			path = Sample;
 			sourceTree = "<group>";
@@ -243,6 +249,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEB10FA51A6140E7000709AE /* Echo.swift in Sources */,
+				EE853F241A773EA9006E5BB0 /* HelloWorld.swift in Sources */,
+				EE853F261A77600B006E5BB0 /* Vibrate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +389,7 @@
 		EEB10F9E1A614074000709AE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -396,6 +405,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -404,6 +414,7 @@
 		EEB10F9F1A614074000709AE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
