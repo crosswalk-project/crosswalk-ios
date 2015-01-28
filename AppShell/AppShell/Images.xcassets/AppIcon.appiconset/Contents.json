@@ -3,61 +3,73 @@
     {
       "idiom" : "iphone",
       "size" : "29x29",
+      "filename" : "crosswalk_58x58.png",
       "scale" : "2x"
     },
     {
       "idiom" : "iphone",
       "size" : "29x29",
+      "filename" : "crosswalk_87x87.png",
       "scale" : "3x"
     },
     {
       "idiom" : "iphone",
       "size" : "40x40",
+      "filename" : "crosswalk_80x80.png",
       "scale" : "2x"
     },
     {
       "idiom" : "iphone",
       "size" : "40x40",
+      "filename" : "crosswalk_120x120.png",
       "scale" : "3x"
     },
     {
       "idiom" : "iphone",
       "size" : "60x60",
+      "filename" : "crosswalk_120x120.png",
       "scale" : "2x"
     },
     {
       "idiom" : "iphone",
       "size" : "60x60",
+      "filename" : "crosswalk_180x180.png",
       "scale" : "3x"
     },
     {
       "idiom" : "ipad",
       "size" : "29x29",
+      "filename" : "crosswalk_29x29.png",
       "scale" : "1x"
     },
     {
       "idiom" : "ipad",
       "size" : "29x29",
+      "filename" : "crosswalk_58x58.png",
       "scale" : "2x"
     },
     {
       "idiom" : "ipad",
       "size" : "40x40",
+      "filename" : "crosswalk_40x40.png",
       "scale" : "1x"
     },
     {
       "idiom" : "ipad",
       "size" : "40x40",
+      "filename" : "crosswalk_80x80.png",
       "scale" : "2x"
     },
     {
       "idiom" : "ipad",
       "size" : "76x76",
+      "filename" : "crosswalk_76x76.png",
       "scale" : "1x"
     },
     {
       "idiom" : "ipad",
       "size" : "76x76",
+      "filename" : "crosswalk_152x152.png",
       "scale" : "2x"
     }
   ],

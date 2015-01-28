@@ -11,7 +11,6 @@
 		ABE516AC1A00ADDE0025A92E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABE516A61A00ADDE0025A92E /* Main.storyboard */; };
 		ABE516AD1A00ADDE0025A92E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABE516A81A00ADDE0025A92E /* Images.xcassets */; };
 		ABE516AE1A00ADDE0025A92E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE516A91A00ADDE0025A92E /* ViewController.swift */; };
-		ABE516B41A00AEE60025A92E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABE516B31A00AEE60025A92E /* Info.plist */; };
 		EE0E490B1A5C72DB002D95B8 /* XWalkView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0E49091A5C72DB002D95B8 /* XWalkView.framework */; };
 		EE0E490C1A5C72DB002D95B8 /* XWalkView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EE0E49091A5C72DB002D95B8 /* XWalkView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -108,7 +107,7 @@
 		AB603B9019EA58CB00DECF78 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Crosswalk;
 				TargetAttributes = {
 					AB603B9719EA58CB00DECF78 = {
@@ -141,7 +140,6 @@
 			files = (
 				ABE516AC1A00ADDE0025A92E /* Main.storyboard in Resources */,
 				ABE516AD1A00ADDE0025A92E /* Images.xcassets in Resources */,
-				ABE516B41A00AEE60025A92E /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
