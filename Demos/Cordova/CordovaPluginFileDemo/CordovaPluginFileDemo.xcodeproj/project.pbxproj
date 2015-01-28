@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB3D6B341A790D5C00FFA82A /* sample-file in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB3D6B331A790D5C00FFA82A /* sample-file */; };
 		ABAB76631A47BEF500E392B6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABAB76621A47BEF500E392B6 /* Images.xcassets */; };
 		ABAB76721A47BEF500E392B6 /* CordovaPluginFileDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB76711A47BEF500E392B6 /* CordovaPluginFileDemoTests.swift */; };
 		ABAB767D1A47C15500E392B6 /* Cordova.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABAB767B1A47C15500E392B6 /* Cordova.framework */; };
@@ -35,6 +36,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		AB3D6AFC1A790CE700FFA82A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = www;
+			dstSubfolderSpec = 7;
+			files = (
+				AB3D6B341A790D5C00FFA82A /* sample-file in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ABAB76811A47C15500E392B6 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -50,6 +61,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AB3D6B331A790D5C00FFA82A /* sample-file */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "sample-file"; path = "../../../third-party/Icenium/sample-file"; sourceTree = "<group>"; };
 		ABAB76561A47BEF500E392B6 /* CordovaPluginFileDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CordovaPluginFileDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABAB765A1A47BEF500E392B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABAB76621A47BEF500E392B6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -96,6 +108,7 @@
 		ABAB764D1A47BEF500E392B6 = {
 			isa = PBXGroup;
 			children = (
+				AB3D6B331A790D5C00FFA82A /* sample-file */,
 				ABAB76A31A47EA5A00E392B6 /* www */,
 				ABAB767B1A47C15500E392B6 /* Cordova.framework */,
 				ABAB767C1A47C15500E392B6 /* XWalkView.framework */,
@@ -195,6 +208,7 @@
 				ABAB76531A47BEF500E392B6 /* Frameworks */,
 				ABAB76541A47BEF500E392B6 /* Resources */,
 				ABAB76811A47C15500E392B6 /* Embed Frameworks */,
+				AB3D6AFC1A790CE700FFA82A /* CopyFiles */,
 			);
 			buildRules = (
 			);
