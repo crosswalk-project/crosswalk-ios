@@ -22,6 +22,8 @@
 static NSMutableURLRequest *parseRequest(NSMutableURLRequest *request, const char *line);
 static NSHTTPURLResponse *buildResponse(NSURLRequest *request, NSURL *rootURL);
 static char *serializeResponse(const NSHTTPURLResponse *response, size_t *size);
+static NSString *getMIMETypeByExtension(NSString *extension);
+
 
 @implementation XWalkHttpConnection {
     CFSocketNativeHandle _socket;
@@ -326,16 +328,8 @@ NSHTTPURLResponse *buildResponse(NSURLRequest *request, NSURL *documentRoot) {
         }
         if ([fileManager isReadableFileAtPath:fileURL.path]) {
             statusCode = 200;
-            // Add 'Content-Type' header
-            NSString *UTTtype = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)(request.URL.pathExtension), NULL);
-            NSString *mimeType = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass((__bridge CFStringRef)(UTTtype), kUTTagClassMIMEType);
-            if (mimeType == nil)
-                mimeType = @"application/octet-stream";
-            else if ([mimeType compare:@"text/" options:NSCaseInsensitiveSearch range:NSMakeRange(0,5)] == NSOrderedSame)
-                mimeType = [mimeType stringByAppendingString:@"; charset=utf-8"];
-            headers[@"Content-Type"] = mimeType;
-            // Add 'Content-Length' and 'Last-Modified' header
             NSDictionary *attrs = [fileManager attributesOfItemAtPath:fileURL.path error:nil];
+            headers[@"Content-Type"] = getMIMETypeByExtension(fileURL.pathExtension);
             headers[@"Content-Length"] = [NSString stringWithFormat:@"%llu", attrs.fileSize];
             headers[@"Last-Modified"] = [dateFormatter stringFromDate:attrs.fileModificationDate];
         } else {
@@ -348,7 +342,7 @@ NSHTTPURLResponse *buildResponse(NSURLRequest *request, NSURL *documentRoot) {
     return [[NSHTTPURLResponse alloc] initWithURL:fileURL statusCode:statusCode HTTPVersion:@"HTTP/1.1" headerFields:headers];
 }
 
-static char *serializeResponse(const NSHTTPURLResponse *response, size_t *size) {
+char *serializeResponse(const NSHTTPURLResponse *response, size_t *size) {
     NSDictionary *headers = response.allHeaderFields;
     NSString *name, *value;
     NSEnumerator *enumerator;
@@ -381,4 +375,28 @@ static char *serializeResponse(const NSHTTPURLResponse *response, size_t *size) 
     }
     sprintf(buffer + pos, "\r\n");
     return buffer;
+}
+
+NSString *getMIMETypeByExtension(NSString *extension) {
+    static NSMutableDictionary *mimeTypeCache = nil;
+    if (mimeTypeCache == nil) {
+        // Add all MIME types which are unknown to system here.
+        mimeTypeCache = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                         @"text/css", @"css",
+                         nil];
+    }
+
+    NSString *type = mimeTypeCache[extension];
+    if (type == nil) {
+        // Get MIME type through system-declared uniform type identifier.
+        NSString *uti = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)(extension), NULL);
+        type = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass((__bridge CFStringRef)(uti), kUTTagClassMIMEType);
+        if (type == nil)
+            type = @"application/octet-stream";  // Fall back to binary stream.
+    }
+    mimeTypeCache[extension] = type;
+
+    if ([type compare:@"text/" options:NSCaseInsensitiveSearch range:NSMakeRange(0,5)] == NSOrderedSame)
+        return [type stringByAppendingString:@"; charset=utf-8"];  // Assume text resource is UTF-8 encoding
+    return type;
 }
