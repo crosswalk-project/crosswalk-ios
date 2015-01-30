@@ -32,7 +32,7 @@ Here we'd like to show you the quick demo to setup a native application with Cro
   * Create an iOS application project called `Echo`.
     * In File -> "Save As Workspace..." to create a workspace for the project.
     * Add `XWalkView` project into your workspace, and link the `XWalkView.framework` into your app target.
-    * For quick test, replace `ViewController.swift`, `AppDelegate.swift` and `Main.storyboard` with the corresponding files in crosswalk-ios/AppShell/AppShell, which have setup a WKWebView instance for you.
+    * For quick test, replace `ViewController.swift`, `AppDelegate.swift` and `Main.storyboard` with the corresponding files in crosswalk-ios/AppShell/AppShell, which has setup a WKWebView instance for you.
     * Create a directory called `www` to place your HTML5 files and resources, and create `index.html` in it as your entry page:
   ```html
   <html>
@@ -53,8 +53,8 @@ Here we'd like to show you the quick demo to setup a native application with Cro
   ```
 
 3. Create the extension
-  * Create a target called `EchoExtension` inside the `Echo` project.
-  * Create the echo extension class called `EchoExtension` which derive from `XWalkExtension`, and add it into the target.
+  * Create a framework target called `EchoExtension` inside the `Echo` project.
+  * Create the echo extension class called `EchoExtension` which derives from `XWalkExtension`, and add it into the target.
   ```swift
   class EchoExtension : XWalkExtension {
     func jsfunc_echo(cid: UInt32, message: String, callback: UInt32) -> Bool {
@@ -66,11 +66,11 @@ Here we'd like to show you the quick demo to setup a native application with Cro
   * Create `XWalkExtensions` section in the project's `Info.plist` in Dictionary type, then add an entry with `xwalk.example.echo` as key and `EchoExtension` as value in String type.
 
 4. Bundle the extension with the application
-  * In `Build Phase` of `Echo` project settings, add `XWalkView.framework` into the `Embed Frameworks`, to embed those frameworks into the  app bundle.
-    * Create a `manifest.plist` and add into `Echo` project,
-      * add `start_url` section in String type with value `index.html`;
-      * add `xwalk_extensions` section in Array type, and add `xwalk.example.echo` as a entry in String type.
-    * Then you can build and run the application to test.
+  * In `Build Phase` of `Echo` project settings, link `XWalkView.framework` and `EchoExtension.framework` with the `Echo` target, and add them into the `Embed Frameworks`, to embed those frameworks into the app bundle.
+  * Create a `manifest.plist` and add into `Echo` target,
+    * add `start_url` section in String type with value `index.html`;
+    * add `xwalk_extensions` section in Array type, and add `xwalk.example.echo` as an entry in String type.
+  * Then you can build and run the application to test.
 
 For further information please read the [Getting Started Guide](https://github.com/otcshare/crosswalk-ios/wiki/Getting-Started-With-Crosswalk-for-iOS), and other articles on the [Wiki](https://github.com/otcshare/crosswalk-ios/wiki).
 
