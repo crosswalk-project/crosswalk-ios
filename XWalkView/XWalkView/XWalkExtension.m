@@ -8,7 +8,7 @@
 
 #import "XWalkExtension.h"
 
-#import "Invocation.h"
+#import "XWalkInvocation.h"
 #import "XWalkView/XWalkView-Swift.h"
 
 @interface XWalkExtension()
@@ -36,8 +36,8 @@
         return;
     }
 
-    ReturnValue *result = [Invocation call:self selector:selector arguments:args];
-    if (result.isBool && result.boolValue == YES)
+    NSValue *result = [XWalkInvocation call:self selector:selector arguments:args];
+    if (result.isNumber && ((NSNumber *)result).boolValue == YES)
         [self releaseArguments:((NSNumber *)args[0]).unsignedIntValue];
 }
 
@@ -52,7 +52,7 @@
     }
 
     _sync = NO;
-    [Invocation call:self selector:selector arguments:@[value]];
+    [XWalkInvocation call:self selector:selector, value];
     _sync = YES;
 }
 
@@ -188,9 +188,11 @@
 - (id)objectForKeyedSubscript:(NSString *)key {
     SEL selector = [self.channel.mirror getGetter:key];
     if (selector) {
-        ReturnValue* result = [Invocation call:self selector:selector arguments:nil];
-        if (result.isObject || result.isNumber)
-            return result.object ?: result.number;
+        NSValue* result = [XWalkInvocation call:self selector:selector];
+        if (result.isObject)
+            return result.nonretainedObjectValue;
+        else if (result.isNumber)
+            return result;
         else
             [NSException raise:@"PropertyError" format:@"Type of property '%@' is unknown.", key];
     } else {
@@ -205,7 +207,7 @@
     if (selector) {
         if (!_sync)
             [self setJavaScriptProperty:name value:obj];
-        [Invocation call:self selector:selector arguments:obj ?: NSNull.null];
+        [XWalkInvocation call:self selector:selector, obj];
     } else if ([self.channel.mirror hasProperty:name]) {
         [NSException raise:@"PropertyError" format:@"Property '%@' is readonly.", name];
     } else {

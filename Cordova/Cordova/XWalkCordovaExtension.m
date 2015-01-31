@@ -77,12 +77,11 @@
         return;
     }
     for (NSDictionary* pluginInfo in pluginInfoArray) {
-        NSString* className = pluginInfo[@"class"];
-        Invocation* inv = [[Invocation alloc] initWithName:className];
-        [inv appendArgument:@"webView" value:self.channel.webView];
-        CDVPlugin* plugin = [inv construct];
+        Class class = NSClassFromString(pluginInfo[@"class"]);
+        SEL init = @selector(initWithWebView:);
+        CDVPlugin* plugin = [XWalkInvocation construct:class initializer:init, self.channel.webView];
         if (!plugin) {
-            NSLog(@"Failed to create plugin with class name:%@", className);
+            NSLog(@"Failed to create plugin with class name:%@", pluginInfo[@"class"]);
             return;
         }
         [self registerPlugin:plugin className:pluginInfo[@"name"]];

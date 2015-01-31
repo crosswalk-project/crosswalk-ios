@@ -112,7 +112,7 @@ import Foundation
         if let cls: AnyClass = getClass(name) {
             if class_respondsToSelector(cls, initializer) {
                 if method_getNumberOfArguments(class_getInstanceMethod(cls, initializer)) <= UInt32(arguments.count) + 2 {
-                    return Invocation.construct(cls, initializer: initializer, arguments: arguments)
+                    return XWalkInvocation.construct(cls, initializer: initializer, arguments: arguments)
                 }
                 println("ERROR: Too few arguments to initializer '\(initializer.description)'.")
             } else {
