@@ -23,8 +23,8 @@ class XWalkStubGenerator {
                 var value = "undefined"
                 if object != nil {
                     // Fetch initial value
-                    let result = Invocation.call(object, selector: mirror.getGetter(name), arguments: nil)
-                    var val: AnyObject = result.object ?? result.number ?? NSNull()
+                    let result = XWalkInvocation.call(object, selector: mirror.getGetter(name), arguments: nil)
+                    var val: AnyObject = (result.isObject ? result.nonretainedObjectValue : result as? NSNumber) ?? NSNull()
                     if val as? String != nil {
                         val = "'\(val)'"
                     }

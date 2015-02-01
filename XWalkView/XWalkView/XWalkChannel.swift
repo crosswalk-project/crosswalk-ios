@@ -55,9 +55,9 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
                 let delegate = object as? XWalkDelegate
                 if delegate?.invokeNativeMethod != nil {
                     let selector = Selector("invokeNativeMethod:arguments:")
-                    Invocation.call(object, selector: selector, arguments: [method, args], thread: thread)
+                    XWalkInvocation.asyncCallOnThread(thread, target: object, selector: selector, arguments: [method, args])
                 } else if mirror.hasMethod(method) {
-                    Invocation.call(object, selector: mirror.getMethod(method), arguments: args, thread: thread)
+                    XWalkInvocation.asyncCallOnThread(thread, target: object, selector: mirror.getMethod(method), arguments: args)
                 } else {
                     println("ERROR: Method '\(method)' is not defined in class '\(object.dynamicType.description())'.")
                 }
@@ -71,11 +71,11 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
                 let delegate = object as? XWalkDelegate
                 if delegate?.setNativeProperty != nil {
                     let selector = Selector("setNativeProperty:value:")
-                    Invocation.call(object, selector: selector, arguments: [prop, value], thread: thread)
+                    XWalkInvocation.asyncCallOnThread(thread, target: object, selector: selector, arguments: [prop, value])
                 } else if mirror.hasProperty(prop) {
                     let selector = mirror.getSetter(prop)
                     if selector != Selector() {
-                        Invocation.call(object, selector: selector, arguments: [value], thread: thread)
+                        XWalkInvocation.asyncCallOnThread(thread, target: object, selector: selector, arguments: [value])
                     } else {
                         println("ERROR: Property '\(prop)' is readonly.")
                     }
@@ -88,7 +88,7 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
         } else if instid > 0 && instances[instid] == nil {
             // Create instance
             let ctor: AnyObject = instances[0]!
-            let object: AnyObject = Invocation.construct(ctor.dynamicType, initializer: mirror.constructor, arguments: args)
+            let object: AnyObject = XWalkInvocation.constructOnThread(thread, `class`: ctor.dynamicType, initializer: mirror.constructor, arguments: args)
             instances[instid] = object
             (object as? XWalkDelegate)?.didBindExtension?(self, instance: instid)
             // TODO: shoud call releaseArguments

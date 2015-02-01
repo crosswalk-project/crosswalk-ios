@@ -7,7 +7,7 @@
 #import "CDVInvokedUrlCommand.h"
 #import "CDVJSON.h"
 #import "CDVPlugin.h"
-#import "XWalkView/Invocation.h"
+#import "XWalkView/XWalkInvocation.h"
 #import "NSMutableArray+QueueAdditions.h"
 
 @interface CommandQueue()
@@ -55,7 +55,7 @@
 
     SEL sel = NSSelectorFromString([command.methodName stringByAppendingString:@":"]);
     if ([plugin respondsToSelector:sel]) {
-        [Invocation call:plugin selector:sel arguments:[NSArray arrayWithObject:command]];
+        [XWalkInvocation call:plugin selector:sel, command];
     } else {
         NSLog(@"ERROR: Method %@ not defined in plugin: %@", command.methodName, command.className);
         return NO;
