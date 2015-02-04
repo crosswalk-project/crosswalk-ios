@@ -5,15 +5,15 @@ Crosswalk for iOS is a sub-project of [Crosswalk](https://crosswalk-project.org/
 
 * Extended WKWebView
 
-  Crosswalk for iOS build on top of `WKWebView`, the mordern WebKit framework debuted in iOS 8.0. We extend the WKWebView to build Crosswalk extension framework within, and we are intended to bring the least intrusion to the interface to make developers use it as natural as WKWebView itself. For the detailed information you may refer to [Embedding Mode & WKWebView](https://github.com/otcshare/crosswalk-ios/wiki/Embedding-Mode-&-Native-APIs).
+  Crosswalk for iOS is built on top of `WKWebView`, the mordern WebKit framework debuted in iOS 8.0. We extend the WKWebView to build Crosswalk extension framework within, and we are intended to bring the least intrusion to the interface to make developers use it as natural as WKWebView itself. For the detailed information you may refer to [Embedding Mode & WKWebView](https://github.com/crosswalk-project/crosswalk-ios/wiki/Embedding-Mode-&-Native-APIs).
 
 * Crosswalk Extension Framework
 
-  Extension is a way to extend the ability of Crosswalk runtime. You can write your functionalities in both Swift and Objective-C codes and expose it as a JavaScript function or object. All JavaScript stub codes can be generated automatically under the hood based on the native interface. For more information please refer to [Crosswalk Extension](https://github.com/otcshare/crosswalk-ios/wiki/Extensions).
+  Extension is a way to extend the ability of Crosswalk runtime. You can write your functionalities in both Swift and Objective-C codes and expose it as a JavaScript function or object. All JavaScript stub codes can be generated automatically under the hood based on the native interface. For more information please refer to [Crosswalk Extension](https://github.com/crosswalk-project/crosswalk-ios/wiki/Extensions).
 
 * Cordova Plugins Support
 
-  To leverage existing Cordova plugins, a Cordova extension is provided to simulate Cordova environment. You only need to place source files of Cordova plugins into your project and register the classes of plugins in the manifest. For more information please refer to [Cordova Plugins Support](https://github.com/otcshare/crosswalk-ios/wiki/Cordova-Plugin-Support).
+  To leverage existing Cordova plugins, a Cordova extension is provided to simulate Cordova environment. You only need to place source files of Cordova plugins into your project and register the classes of plugins in the manifest. For more information please refer to [Cordova Plugins Support](https://github.com/crosswalk-project/crosswalk-ios/wiki/Cordova-Plugin-Support).
 
 ## System Requirement
 Development:
@@ -72,12 +72,15 @@ Here we'd like to show you the quick demo to setup a native application with Cro
     * add `xwalk_extensions` section in Array type, and add `xwalk.example.echo` as an entry in String type.
   * Then you can build and run the application to test.
 
-For further information please read the [Getting Started Guide](https://github.com/otcshare/crosswalk-ios/wiki/Getting-Started-With-Crosswalk-for-iOS), and other articles on the [Wiki](https://github.com/otcshare/crosswalk-ios/wiki).
+For further information please read the [Getting Started Guide](https://github.com/crosswalk-project/crosswalk-ios/wiki/Getting-Started-With-Crosswalk-for-iOS), and other articles on the [Wiki](https://github.com/crosswalk-project/crosswalk-ios/wiki).
 
 ## Community
 * Follow the [crosswalk-help](https://lists.crosswalk-project.org/mailman/listinfo/crosswalk-help) mailing list to ask questions
 * Follow the [crosswalk-dev](https://lists.crosswalk-project.org/mailman/listinfo/crosswalk-dev) mailing list for development updates
 * Find us on IRC: #crosswalk on freenode.net
 
+## Demos
+You can try out [HexGL-iOS Demo](https://github.com/jondong/HexGL-iOS) written in HTML5 with the Crosswalk Extension support to evaluate the performance and extensibility of the Crosswalk framework.
+
 ## Licence
-Crosswalk for iOS is available under the BSD license. See the [LICENSE](https://github.com/otcshare/crosswalk-ios/blob/master/LICENSE) file for more info.
+Crosswalk for iOS is available under the BSD license. See the [LICENSE](https://github.com/crosswalk-project/crosswalk-ios/blob/master/LICENSE) file for more info.
