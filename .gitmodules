@@ -1,6 +1,3 @@
-[submodule "third-party/swift-json"]
-	path = third-party/swift-json
-	url = git@github.com:dankogai/swift-json.git
 [submodule "third-party/cordova-ios"]
 	path = third-party/cordova-ios
 	url = git@github.com:apache/cordova-ios.git
