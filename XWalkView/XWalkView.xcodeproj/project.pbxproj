@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		AB3ECCC01A6243B3001925A3 /* XWalkExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = AB3ECCBE1A6243B3001925A3 /* XWalkExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AB3ECCC11A6243B3001925A3 /* XWalkExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3ECCBF1A6243B3001925A3 /* XWalkExtension.m */; };
-		ABA6840E1A42C751003A71D9 /* json.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA6840D1A42C751003A71D9 /* json.swift */; };
 		ABD475E31A4129FC00F3BDEB /* XWalkInvocation.h in Headers */ = {isa = PBXBuildFile; fileRef = EE62691D19FA52FC00EFC3F8 /* XWalkInvocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ABF4635F1A67519D0049D942 /* XWalkDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = ABF4635E1A6751970049D942 /* XWalkDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ABF68ECD1A6B45FC0058267B /* XWalkView.h in Headers */ = {isa = PBXBuildFile; fileRef = EE62691C19FA52FC00EFC3F8 /* XWalkView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -31,7 +30,6 @@
 /* Begin PBXFileReference section */
 		AB3ECCBE1A6243B3001925A3 /* XWalkExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XWalkExtension.h; path = XWalkView/XWalkExtension.h; sourceTree = "<group>"; };
 		AB3ECCBF1A6243B3001925A3 /* XWalkExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XWalkExtension.m; path = XWalkView/XWalkExtension.m; sourceTree = "<group>"; };
-		ABA6840D1A42C751003A71D9 /* json.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = json.swift; path = "third-party/swift-json/json/json.swift"; sourceTree = "<group>"; };
 		ABF4635E1A6751970049D942 /* XWalkDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XWalkDelegate.h; path = XWalkView/XWalkDelegate.h; sourceTree = "<group>"; };
 		EE0A1DD21A52775400C9E6D3 /* XWalkChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkChannel.swift; path = XWalkView/XWalkChannel.swift; sourceTree = "<group>"; };
 		EE0A1DDD1A52A5A300C9E6D3 /* XWalkReflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkReflection.swift; path = XWalkView/XWalkReflection.swift; sourceTree = "<group>"; };
@@ -63,20 +61,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		ABA6840F1A42C759003A71D9 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				ABA6840D1A42C751003A71D9 /* json.swift */,
-			);
-			name = Utils;
-			path = ..;
-			sourceTree = "<group>";
-		};
 		EE62682B19FA323900EFC3F8 = {
 			isa = PBXGroup;
 			children = (
 				EE62683719FA323900EFC3F8 /* XWalkView */,
-				ABA6840F1A42C759003A71D9 /* Utils */,
 				EE62683619FA323900EFC3F8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -217,7 +205,6 @@
 				EE0A1DD31A52775400C9E6D3 /* XWalkChannel.swift in Sources */,
 				EE0A1DED1A53DCFB00C9E6D3 /* XWalkThread.swift in Sources */,
 				EE62692619FA52FC00EFC3F8 /* XWalkWebView.swift in Sources */,
-				ABA6840E1A42C751003A71D9 /* json.swift in Sources */,
 				EE7164901A716C9F00078FF9 /* XWalkHttpConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

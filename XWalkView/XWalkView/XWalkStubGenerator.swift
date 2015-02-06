@@ -25,10 +25,7 @@ class XWalkStubGenerator {
                     // Fetch initial value
                     let result = XWalkInvocation.call(object, selector: mirror.getGetter(name), arguments: nil)
                     var val: AnyObject = (result.isObject ? result.nonretainedObjectValue : result as? NSNumber) ?? NSNull()
-                    if val as? String != nil {
-                        val = "'\(val)'"
-                    }
-                    value = JSON(val).toString()
+                    value = toJSONString(val)
                 }
                 stub += "Extension.defineProperty(exports, '\(name)', \(value), \(!mirror.isReadonly(name)));\n"
             }
@@ -67,5 +64,40 @@ class XWalkStubGenerator {
             body = "\(this).\(body)]);"
         }
         return "function(\(list)) {\n    \(body)\n}"
+    }
+}
+
+private extension NSNumber {
+    var isBool: Bool {
+        get {
+            return CFGetTypeID(self) == CFBooleanGetTypeID()
+        }
+    }
+}
+
+private func toJSONString(object: AnyObject, isPretty: Bool=false) -> String {
+    switch object {
+    case is NSNull:
+        return "null"
+    case is NSError:
+        return "\(object)"
+    case let number as NSNumber:
+        if number.isBool {
+            return (number as Bool).description
+        } else {
+            return (number as NSNumber).stringValue
+        }
+    case is NSString:
+        return "'\(object as String)'"
+    default:
+        if let data = NSJSONSerialization.dataWithJSONObject(object,
+            options: isPretty ? NSJSONWritingOptions.PrettyPrinted : nil,
+            error: nil) as NSData? {
+                if let string = NSString(data: data, encoding: NSUTF8StringEncoding) {
+                    return string
+                }
+        }
+        println("ERROR: Failed to convert object \(object) to JSON string")
+        return ""
     }
 }
