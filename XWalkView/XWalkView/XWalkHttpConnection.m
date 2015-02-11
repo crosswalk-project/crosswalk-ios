@@ -46,8 +46,10 @@ static NSString *getMIMETypeByExtension(NSString *extension);
 }
 
 - (id)initWithNativeHandle:(CFSocketNativeHandle)handle {
-    _socket = handle;
-    _requestQueue = [[NSMutableArray alloc] init];
+    if (self = [super init]) {
+        _socket = handle;
+        _requestQueue = [[NSMutableArray alloc] init];
+    }
     return self;
 }
 

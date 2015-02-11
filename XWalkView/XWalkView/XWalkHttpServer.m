@@ -35,12 +35,14 @@
 }
 
 - (id)initWithDocumentRoot:(NSString *)root {
-    BOOL isDirectory;
-    if (![[NSFileManager defaultManager] fileExistsAtPath:root isDirectory:&isDirectory] || !isDirectory) {
-        return nil;
+    if (self = [super init]) {
+        BOOL isDirectory;
+        if (![[NSFileManager defaultManager] fileExistsAtPath:root isDirectory:&isDirectory] || !isDirectory) {
+            return nil;
+        }
+        _connections = [[NSMutableSet alloc] init];
+        _documentRoot = [root copy];
     }
-    _connections = [[NSMutableSet alloc] init];
-    _documentRoot = [root copy];
     return self;
 }
 
