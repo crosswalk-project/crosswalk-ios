@@ -7,8 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB023EA51A8C506600580A2A /* XWalkWebViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB023EA41A8C506600580A2A /* XWalkWebViewTests.swift */; };
+		AB023EA61A8C506600580A2A /* XWalkView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE62683519FA323900EFC3F8 /* XWalkView.framework */; };
+		AB023EBB1A8C87A500580A2A /* XWalkExtensionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AB023EBA1A8C87A500580A2A /* XWalkExtensionTest.m */; };
+		AB023EBE1A8C8BC700580A2A /* XWalkView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = EE62683519FA323900EFC3F8 /* XWalkView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AB3ECCC01A6243B3001925A3 /* XWalkExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = AB3ECCBE1A6243B3001925A3 /* XWalkExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AB3ECCC11A6243B3001925A3 /* XWalkExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3ECCBF1A6243B3001925A3 /* XWalkExtension.m */; };
+		ABD3E8541A8CD08300F2BAB9 /* XWalkExtensionFactoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3E8531A8CD08300F2BAB9 /* XWalkExtensionFactoryTest.swift */; };
+		ABD3E8561A8CD3F900F2BAB9 /* XWalkReflectionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3E8551A8CD3F900F2BAB9 /* XWalkReflectionTest.swift */; };
+		ABD3E8581A8CD43000F2BAB9 /* XWalkStubGeneratorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3E8571A8CD43000F2BAB9 /* XWalkStubGeneratorTest.swift */; };
+		ABD3E85A1A8CD44D00F2BAB9 /* XWalkChannelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3E8591A8CD44D00F2BAB9 /* XWalkChannelTest.swift */; };
+		ABD3E85C1A8CD48C00F2BAB9 /* XWalkExtensionLoaderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3E85B1A8CD48C00F2BAB9 /* XWalkExtensionLoaderTest.swift */; };
+		ABD3E85E1A8CD49F00F2BAB9 /* XWalkInvocationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD3E85D1A8CD49F00F2BAB9 /* XWalkInvocationTest.m */; };
+		ABD3E8601A8CD4C700F2BAB9 /* XWalkHttpTest.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD3E85F1A8CD4C700F2BAB9 /* XWalkHttpTest.m */; };
 		ABD475E31A4129FC00F3BDEB /* XWalkInvocation.h in Headers */ = {isa = PBXBuildFile; fileRef = EE62691D19FA52FC00EFC3F8 /* XWalkInvocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ABF4635F1A67519D0049D942 /* XWalkDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = ABF4635E1A6751970049D942 /* XWalkDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ABF68ECD1A6B45FC0058267B /* XWalkView.h in Headers */ = {isa = PBXBuildFile; fileRef = EE62691C19FA52FC00EFC3F8 /* XWalkView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -27,9 +38,43 @@
 		EE7886761A0D0CE30013A855 /* XWalkExtensionLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7886751A0D0CE30013A855 /* XWalkExtensionLoader.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		AB023EA71A8C506600580A2A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE62682C19FA323900EFC3F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EE62683419FA323900EFC3F8;
+			remoteInfo = XWalkView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AB023EBD1A8C8BBE00580A2A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AB023EBE1A8C8BC700580A2A /* XWalkView.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		AB023EA01A8C506600580A2A /* XWalkViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XWalkViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB023EA31A8C506600580A2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB023EA41A8C506600580A2A /* XWalkWebViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XWalkWebViewTests.swift; sourceTree = "<group>"; };
+		AB023EBA1A8C87A500580A2A /* XWalkExtensionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWalkExtensionTest.m; sourceTree = "<group>"; };
 		AB3ECCBE1A6243B3001925A3 /* XWalkExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XWalkExtension.h; path = XWalkView/XWalkExtension.h; sourceTree = "<group>"; };
 		AB3ECCBF1A6243B3001925A3 /* XWalkExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XWalkExtension.m; path = XWalkView/XWalkExtension.m; sourceTree = "<group>"; };
+		ABD3E8531A8CD08300F2BAB9 /* XWalkExtensionFactoryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWalkExtensionFactoryTest.swift; sourceTree = "<group>"; };
+		ABD3E8551A8CD3F900F2BAB9 /* XWalkReflectionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWalkReflectionTest.swift; sourceTree = "<group>"; };
+		ABD3E8571A8CD43000F2BAB9 /* XWalkStubGeneratorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWalkStubGeneratorTest.swift; sourceTree = "<group>"; };
+		ABD3E8591A8CD44D00F2BAB9 /* XWalkChannelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWalkChannelTest.swift; sourceTree = "<group>"; };
+		ABD3E85B1A8CD48C00F2BAB9 /* XWalkExtensionLoaderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWalkExtensionLoaderTest.swift; sourceTree = "<group>"; };
+		ABD3E85D1A8CD49F00F2BAB9 /* XWalkInvocationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWalkInvocationTest.m; sourceTree = "<group>"; };
+		ABD3E85F1A8CD4C700F2BAB9 /* XWalkHttpTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWalkHttpTest.m; sourceTree = "<group>"; };
 		ABF4635E1A6751970049D942 /* XWalkDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XWalkDelegate.h; path = XWalkView/XWalkDelegate.h; sourceTree = "<group>"; };
 		EE0A1DD21A52775400C9E6D3 /* XWalkChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkChannel.swift; path = XWalkView/XWalkChannel.swift; sourceTree = "<group>"; };
 		EE0A1DDD1A52A5A300C9E6D3 /* XWalkReflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkReflection.swift; path = XWalkView/XWalkReflection.swift; sourceTree = "<group>"; };
@@ -51,6 +96,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AB023E9D1A8C506600580A2A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB023EA61A8C506600580A2A /* XWalkView.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EE62683119FA323900EFC3F8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -61,10 +114,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB023EA11A8C506600580A2A /* XWalkViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				ABD3E85F1A8CD4C700F2BAB9 /* XWalkHttpTest.m */,
+				ABD3E8551A8CD3F900F2BAB9 /* XWalkReflectionTest.swift */,
+				ABD3E8571A8CD43000F2BAB9 /* XWalkStubGeneratorTest.swift */,
+				ABD3E8591A8CD44D00F2BAB9 /* XWalkChannelTest.swift */,
+				AB023EA41A8C506600580A2A /* XWalkWebViewTests.swift */,
+				ABD3E8531A8CD08300F2BAB9 /* XWalkExtensionFactoryTest.swift */,
+				ABD3E85B1A8CD48C00F2BAB9 /* XWalkExtensionLoaderTest.swift */,
+				ABD3E85D1A8CD49F00F2BAB9 /* XWalkInvocationTest.m */,
+				AB023EBA1A8C87A500580A2A /* XWalkExtensionTest.m */,
+				AB023EA21A8C506600580A2A /* Supporting Files */,
+			);
+			path = XWalkViewTests;
+			sourceTree = "<group>";
+		};
+		AB023EA21A8C506600580A2A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AB023EA31A8C506600580A2A /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		EE62682B19FA323900EFC3F8 = {
 			isa = PBXGroup;
 			children = (
 				EE62683719FA323900EFC3F8 /* XWalkView */,
+				AB023EA11A8C506600580A2A /* XWalkViewTests */,
 				EE62683619FA323900EFC3F8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				EE62683519FA323900EFC3F8 /* XWalkView.framework */,
+				AB023EA01A8C506600580A2A /* XWalkViewTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,6 +210,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		AB023E9F1A8C506600580A2A /* XWalkViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB023EAB1A8C506600580A2A /* Build configuration list for PBXNativeTarget "XWalkViewTests" */;
+			buildPhases = (
+				AB023E9C1A8C506600580A2A /* Sources */,
+				AB023E9D1A8C506600580A2A /* Frameworks */,
+				AB023E9E1A8C506600580A2A /* Resources */,
+				AB023EBD1A8C8BBE00580A2A /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AB023EA81A8C506600580A2A /* PBXTargetDependency */,
+			);
+			name = XWalkViewTests;
+			productName = XWalkViewTests;
+			productReference = AB023EA01A8C506600580A2A /* XWalkViewTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		EE62683419FA323900EFC3F8 /* XWalkView */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EE62684B19FA323900EFC3F8 /* Build configuration list for PBXNativeTarget "XWalkView" */;
@@ -157,6 +256,9 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Crosswalk;
 				TargetAttributes = {
+					AB023E9F1A8C506600580A2A = {
+						CreatedOnToolsVersion = 6.1;
+					};
 					EE62683419FA323900EFC3F8 = {
 						CreatedOnToolsVersion = 6.1;
 					};
@@ -175,11 +277,19 @@
 			projectRoot = "";
 			targets = (
 				EE62683419FA323900EFC3F8 /* XWalkView */,
+				AB023E9F1A8C506600580A2A /* XWalkViewTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AB023E9E1A8C506600580A2A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EE62683319FA323900EFC3F8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -191,6 +301,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AB023E9C1A8C506600580A2A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABD3E85C1A8CD48C00F2BAB9 /* XWalkExtensionLoaderTest.swift in Sources */,
+				ABD3E85E1A8CD49F00F2BAB9 /* XWalkInvocationTest.m in Sources */,
+				ABD3E8541A8CD08300F2BAB9 /* XWalkExtensionFactoryTest.swift in Sources */,
+				ABD3E85A1A8CD44D00F2BAB9 /* XWalkChannelTest.swift in Sources */,
+				AB023EA51A8C506600580A2A /* XWalkWebViewTests.swift in Sources */,
+				ABD3E8601A8CD4C700F2BAB9 /* XWalkHttpTest.m in Sources */,
+				ABD3E8561A8CD3F900F2BAB9 /* XWalkReflectionTest.swift in Sources */,
+				ABD3E8581A8CD43000F2BAB9 /* XWalkStubGeneratorTest.swift in Sources */,
+				AB023EBB1A8C87A500580A2A /* XWalkExtensionTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EE62683019FA323900EFC3F8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -211,7 +337,48 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		AB023EA81A8C506600580A2A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EE62683419FA323900EFC3F8 /* XWalkView */;
+			targetProxy = AB023EA71A8C506600580A2A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		AB023EA91A8C506600580A2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = XWalkViewTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AB023EAA1A8C506600580A2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = XWalkViewTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		EE62684919FA323900EFC3F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -330,6 +497,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AB023EAB1A8C506600580A2A /* Build configuration list for PBXNativeTarget "XWalkViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB023EA91A8C506600580A2A /* Debug */,
+				AB023EAA1A8C506600580A2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EE62682F19FA323900EFC3F8 /* Build configuration list for PBXProject "XWalkView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
