@@ -39,7 +39,7 @@ import Foundation
     private let setterPrefix = "setJsprop_"
     private let ctorPrefix = "initFromJavaScript:"
 
-    init(cls: AnyClass) {
+    public init(cls: AnyClass) {
         self.cls = cls
         enumerate({(name, type, method, cls) -> Bool in
             if type == MemberType.Method {
