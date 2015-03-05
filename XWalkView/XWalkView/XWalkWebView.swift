@@ -78,6 +78,9 @@ public extension WKWebView {
         var httpd = objc_getAssociatedObject(self, key.httpd) as? XWalkHttpServer
         if httpd == nil {
             httpd = XWalkHttpServer(documentRoot: readAccessURL.path)
+            if !extensionThread.executing {
+                extensionThread.start()
+            }
             httpd!.start(extensionThread)
             objc_setAssociatedObject(self, key.httpd, httpd!, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
         }

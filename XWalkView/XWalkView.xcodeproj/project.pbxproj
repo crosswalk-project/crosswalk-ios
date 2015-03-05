@@ -11,6 +11,7 @@
 		AB023EA61A8C506600580A2A /* XWalkView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE62683519FA323900EFC3F8 /* XWalkView.framework */; };
 		AB023EBB1A8C87A500580A2A /* XWalkExtensionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AB023EBA1A8C87A500580A2A /* XWalkExtensionTest.m */; };
 		AB023EBE1A8C8BC700580A2A /* XWalkView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = EE62683519FA323900EFC3F8 /* XWalkView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AB2273E51AA6FDA700F9207A /* www in Resources */ = {isa = PBXBuildFile; fileRef = AB2273E41AA6FDA700F9207A /* www */; };
 		AB3ECCC01A6243B3001925A3 /* XWalkExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = AB3ECCBE1A6243B3001925A3 /* XWalkExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AB3ECCC11A6243B3001925A3 /* XWalkExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3ECCBF1A6243B3001925A3 /* XWalkExtension.m */; };
 		ABD3E8541A8CD08300F2BAB9 /* XWalkExtensionFactoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3E8531A8CD08300F2BAB9 /* XWalkExtensionFactoryTest.swift */; };
@@ -66,6 +67,7 @@
 		AB023EA31A8C506600580A2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB023EA41A8C506600580A2A /* XWalkWebViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XWalkWebViewTests.swift; sourceTree = "<group>"; };
 		AB023EBA1A8C87A500580A2A /* XWalkExtensionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWalkExtensionTest.m; sourceTree = "<group>"; };
+		AB2273E41AA6FDA700F9207A /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		AB3ECCBE1A6243B3001925A3 /* XWalkExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XWalkExtension.h; path = XWalkView/XWalkExtension.h; sourceTree = "<group>"; };
 		AB3ECCBF1A6243B3001925A3 /* XWalkExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XWalkExtension.m; path = XWalkView/XWalkExtension.m; sourceTree = "<group>"; };
 		ABD3E8531A8CD08300F2BAB9 /* XWalkExtensionFactoryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWalkExtensionFactoryTest.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 		AB023EA11A8C506600580A2A /* XWalkViewTests */ = {
 			isa = PBXGroup;
 			children = (
+				AB2273E41AA6FDA700F9207A /* www */,
 				ABD3E85F1A8CD4C700F2BAB9 /* XWalkHttpTest.m */,
 				ABD3E8551A8CD3F900F2BAB9 /* XWalkReflectionTest.swift */,
 				ABD3E8571A8CD43000F2BAB9 /* XWalkStubGeneratorTest.swift */,
@@ -287,6 +290,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB2273E51AA6FDA700F9207A /* www in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
