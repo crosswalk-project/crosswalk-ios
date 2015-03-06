@@ -28,8 +28,11 @@ public extension WKWebView {
     }
 
     public func loadExtension(object: AnyObject, namespace: String, thread: NSThread? = nil) {
+        if !extensionThread.executing && thread == nil {
+            extensionThread.start()
+        }
         let channel = XWalkChannel(webView: self)
-        channel.bind(object, namespace: namespace, thread: thread)
+        channel.bind(object, namespace: namespace, thread: thread ?? extensionThread)
     }
 
     internal func injectScript(code: String) -> WKUserScript {
