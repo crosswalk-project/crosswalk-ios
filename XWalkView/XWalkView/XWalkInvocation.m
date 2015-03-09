@@ -252,7 +252,8 @@
 
 - (void)setArguments:(NSArray *)args {
     NSMethodSignature *sig = self.methodSignature;
-    for(int i = 0; i < args.count; ++i) {
+    NSUInteger cnt = MIN(sig.numberOfArguments - 2, args.count);
+    for(NSUInteger i = 0; i < cnt; ++i) {
         const char *type = [sig getArgumentTypeAtIndex:i + 2];
         NSObject *val = [args objectAtIndex:i];
         void *buf = &val;
