@@ -44,7 +44,7 @@ Here we'd like to show you the quick demo to setup a native application with Cro
       <h2>Echo demo of Crosswalk<h2/>
       <p id="content" style="font-size: 20px;"/>
       <script>
-        xwalk.sample.echo.echo('Hello World!', function(msg) {
+        xwalk.example.echo.echo('Hello World!', function(msg) {
           document.getElementById('content').innerHTML = msg;
         });
       </script>
@@ -56,6 +56,9 @@ Here we'd like to show you the quick demo to setup a native application with Cro
   * Create a framework target called `EchoExtension` inside the `Echo` project.
   * Create the echo extension class called `EchoExtension` which derives from `XWalkExtension`, and add it into the target.
   ```swift
+  import Foundation
+  import XWalkView
+
   class EchoExtension : XWalkExtension {
     func jsfunc_echo(cid: UInt32, message: String, callback: UInt32) -> Bool {
           invokeCallback(callback, key: nil, arguments: ["Echo from native: " + message])
@@ -64,6 +67,7 @@ Here we'd like to show you the quick demo to setup a native application with Cro
   }
   ```
   * Create `XWalkExtensions` section in the project's `Info.plist` in Dictionary type, then add an entry with `xwalk.example.echo` as key and `EchoExtension` as value in String type.
+  * In `Build Phase` of `EchoExtension` project settings, link `XWalkView.framework` with the `EchoExtension` target, and add them into the `Embed Frameworks`, to embed those frameworks into the app bundle.
 
 4. Bundle the extension with the application
   * In `Build Phase` of `Echo` project settings, link `XWalkView.framework` and `EchoExtension.framework` with the `Echo` target, and add them into the `Embed Frameworks`, to embed those frameworks into the app bundle.
