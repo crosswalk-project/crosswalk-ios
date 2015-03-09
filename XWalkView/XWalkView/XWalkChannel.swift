@@ -26,12 +26,9 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
         webView.configuration.userContentController.addScriptMessageHandler(self, name: "\(self.name)")
     }
 
-    public func bind(object: AnyObject, namespace: String, thread: NSThread? = nil) {
+    public func bind(object: AnyObject, namespace: String, thread: NSThread) {
         self.namespace = namespace
-        self.thread = thread ?? webView.extensionThread
-        if self.thread is XWalkThread && !self.thread.executing {
-            self.thread.start()
-        }
+        self.thread = thread
 
         mirror = XWalkReflection(cls: object.dynamicType)
         var script = XWalkStubGenerator(reflection: mirror).generate(name, namespace: namespace, object: object)
