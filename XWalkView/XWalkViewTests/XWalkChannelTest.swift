@@ -42,7 +42,7 @@ class XWalkChannelTest: XCTestCase, WKNavigationDelegate {
         channel = XWalkChannel(webView: webview!)
 
         var ext = XWalkExtensionFactory.createExtension(extensionName) as ChannelTestExtension
-        channel?.bind(ext, namespace: extensionName)
+        channel?.bind(ext, namespace: extensionName, thread: webview!.extensionThread)
     }
 
     override func tearDown() {
@@ -64,7 +64,7 @@ class XWalkChannelTest: XCTestCase, WKNavigationDelegate {
     func testBind() {
         var ext = XWalkExtensionFactory.createExtension(extensionName) as ChannelTestExtension
         ext.expectation = self.expectationWithDescription("testBindExpectation")
-        channel?.bind(ext, namespace: extensionName)
+        channel?.bind(ext, namespace: extensionName, thread: webview!.extensionThread)
 
         self.waitForExpectationsWithTimeout(0.1, handler:{ (error) in
             if let e = error {
