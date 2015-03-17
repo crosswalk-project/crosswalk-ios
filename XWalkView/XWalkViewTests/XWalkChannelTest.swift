@@ -7,15 +7,6 @@ import WebKit
 import XCTest
 import XWalkView
 
-class ExecutionContext {
-    var scriptToEvaluate: String
-    let completionHandler: ((AnyObject!, NSError!) -> Void)?
-
-    init(script: String, completionHandler:((AnyObject!, NSError!) -> Void)?) {
-        self.scriptToEvaluate = script
-        self.completionHandler = completionHandler
-    }
-}
 
 class ChannelTestExtension: XWalkExtension {
     var expectation: XCTestExpectation? = nil
@@ -87,7 +78,7 @@ class XWalkChannelTest: XCTestCase, WKNavigationDelegate {
 
         webview?.loadHTMLString("<html></html>", baseURL: nil)
 
-        self.waitForExpectationsWithTimeout(1, handler: { (error) in
+        self.waitForExpectationsWithTimeout(2, handler: { (error) in
             if let e = error {
                 XCTFail("testEvaluateJavaScript failed, with error:\(e)")
             }
