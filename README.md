@@ -3,6 +3,9 @@
 ## Introduction
 Crosswalk for iOS is a sub-project of [Crosswalk](https://crosswalk-project.org/), it aims to provide a web runtime to develop sophisticated iOS native or hybrid applications.
 
+[![Build Status](https://travis-ci.org/crosswalk-project/crosswalk-ios.svg?branch=master)](https://travis-ci.org/crosswalk-project/crosswalk-ios)
+
+
 * Extended WKWebView
 
   Crosswalk for iOS is built on top of `WKWebView`, the mordern WebKit framework debuted in iOS 8.0. We extend the WKWebView to build Crosswalk extension framework within, and we are intended to bring the least intrusion to the interface to make developers use it as natural as WKWebView itself. For the detailed information you may refer to [Embedding Mode & WKWebView](https://github.com/crosswalk-project/crosswalk-ios/wiki/Embedding-Mode-&-Native-APIs).
