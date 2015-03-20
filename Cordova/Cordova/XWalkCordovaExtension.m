@@ -4,9 +4,11 @@
 
 #import "XWalkCordovaExtension.h"
 
+#import <WebKit/WebKit.h>
 #import "CDVCommandDelegate.h"
 #import "CDVPlugin.h"
 #import "CommandQueue.h"
+#import "XWalkWebViewEngine.h"
 
 @interface XWalkCordovaExtension () <CommandQueueDelegate, CDVCommandDelegate>
 
@@ -14,6 +16,8 @@
 @property(nonatomic) NSMutableDictionary* plugins;
 @property(nonatomic) CommandQueue* commandQueue;
 @property(nonatomic) NSRegularExpression* callbackIdPattern;
+@property(nonatomic) XWalkWebViewEngine* engine;
+
 
 - (id)init;
 - (void)didBindExtension:(XWalkChannel*)channel instance:(NSInteger)instance;
@@ -39,6 +43,8 @@
 
 @implementation XWalkCordovaExtension
 
+@synthesize urlTransformer;
+
 - (id)init
 {
     if (self = [super init]) {
@@ -60,6 +66,7 @@
 {
     [super didBindExtension:channel instance:instance];
     self.commandQueue.delegate = self;
+    self.engine = [[XWalkWebViewEngine alloc] initWithWebView:channel.webView];
     [self scanForPlugins];
 }
 
@@ -78,8 +85,8 @@
     }
     for (NSDictionary* pluginInfo in pluginInfoArray) {
         Class class = NSClassFromString(pluginInfo[@"class"]);
-        SEL init = @selector(initWithWebView:);
-        CDVPlugin* plugin = [XWalkInvocation construct:class initializer:init, self.channel.webView];
+        SEL init = @selector(initWithWebViewEngine:);
+        CDVPlugin* plugin = [XWalkInvocation construct:class initializer:init, self.engine];
         if (!plugin) {
             NSLog(@"Failed to create plugin with class name:%@", pluginInfo[@"class"]);
             return;
