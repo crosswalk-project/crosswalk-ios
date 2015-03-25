@@ -157,8 +157,8 @@ module.exports = [
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "org.apache.cordova.file": "1.3.2",
-    "org.apache.cordova.splashscreen": "0.3.5"
+    "org.apache.cordova.file": "1.3.3",
+    "org.apache.cordova.splashscreen": "1.0.0"
 }
 // BOTTOM OF METADATA
 });

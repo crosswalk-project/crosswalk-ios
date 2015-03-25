@@ -19,6 +19,12 @@ cordova.define("org.apache.cordova.file.resolveLocalFileSystemURI", function(req
  *
 */
 
+//For browser platform: not all browsers use overrided `resolveLocalFileSystemURL`.
+if (cordova.platformId == "browser" && navigator.userAgent.search(/Chrome/) > 0) {
+    module.exports.resolveLocalFileSystemURL = window.resolveLocalFileSystemURL || window.webkitResolveLocalFileSystemURL;
+    return;
+}
+
 var argscheck = require('cordova/argscheck'),
     DirectoryEntry = require('./DirectoryEntry'),
     FileEntry = require('./FileEntry'),
@@ -53,6 +59,7 @@ module.exports.resolveLocalFileSystemURL = function(uri, successCallback, errorC
                 // create appropriate Entry object
                 var fsName = entry.filesystemName || (entry.filesystem && entry.filesystem.name) || (entry.filesystem == window.PERSISTENT ? 'persistent' : 'temporary');
                 fileSystems.getFs(fsName, function(fs) {
+                    // This should happen only on platforms that haven't implemented requestAllFileSystems (windows)
                     if (!fs) {
                         fs = new FileSystem(fsName, {name:"", fullPath:"/"});
                     }
@@ -69,6 +76,7 @@ module.exports.resolveLocalFileSystemURL = function(uri, successCallback, errorC
 
     exec(success, fail, "File", "resolveLocalFileSystemURI", [uri]);
 };
+
 module.exports.resolveLocalFileSystemURI = function() {
     console.log("resolveLocalFileSystemURI is deprecated. Please call resolveLocalFileSystemURL instead.");
     module.exports.resolveLocalFileSystemURL.apply(this, arguments);
