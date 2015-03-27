@@ -21,8 +21,6 @@
 
 @implementation CDVViewController
 
-@synthesize settings;
-
 - (NSUInteger)supportedInterfaceOrientations
 {
     // TODO: (jondong) To be implemented when needed

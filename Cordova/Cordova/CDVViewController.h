@@ -21,9 +21,11 @@
 #import "CDVAvailability.h"
 #import "CDVScreenOrientationDelegate.h"
 
+@protocol CDVCommandDelegate;
+
 @interface CDVViewController : UIViewController <CDVScreenOrientationDelegate>
 
-@property (nonatomic, readonly, strong) NSMutableDictionary* settings;
+@property (nonatomic, strong) id<CDVCommandDelegate> commandDelegate;
 
 - (NSUInteger)supportedInterfaceOrientations;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;

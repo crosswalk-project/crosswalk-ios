@@ -6,28 +6,24 @@
 
 #import <WebKit/WebKit.h>
 #import "CDVCommandDelegate.h"
+#import "CDVCommandQueue.h"
 #import "CDVPlugin.h"
-#import "CommandQueue.h"
+#import "CDVViewController.h"
 #import "XWalkWebViewEngine.h"
 
-@interface XWalkCordovaExtension () <CommandQueueDelegate, CDVCommandDelegate>
+@interface XWalkCordovaExtension () <CDVCommandDelegate>
 
 @property(nonatomic) NSMutableDictionary* settings;
 @property(nonatomic) NSMutableDictionary* plugins;
-@property(nonatomic) CommandQueue* commandQueue;
+@property(nonatomic) CDVCommandQueue* commandQueue;
 @property(nonatomic) NSRegularExpression* callbackIdPattern;
 @property(nonatomic) XWalkWebViewEngine* engine;
 
-
-- (id)init;
 - (void)didBindExtension:(XWalkChannel*)channel instance:(NSInteger)instance;
 - (void)scanForPlugins;
 - (void)registerPlugin:(CDVPlugin*)plugin className:(NSString*)className;
 - (BOOL)jsfunc_postToNative:(UInt32)cid message:(NSString*)message;
 - (BOOL)isValidCallbackId:(NSString*)callbackId;
-
-/// CommandQueueDelegate
-- (CDVPlugin*)getPluginInstance:(NSString*)className;
 
  /// CDVCommandDelegate
 - (NSString*)pathForResource:(NSString*)resourcepath;
@@ -45,12 +41,10 @@
 
 @synthesize urlTransformer;
 
-- (id)init
-{
+- (id)initWithViewController:(CDVViewController*)controller {
     if (self = [super init]) {
         self.settings = [[NSMutableDictionary alloc] init];
         self.plugins = [[NSMutableDictionary alloc] init];
-        self.commandQueue = [[CommandQueue alloc] init];
         NSError* err = nil;
         self.callbackIdPattern = [NSRegularExpression regularExpressionWithPattern:@"[^A-Za-z0-9._-]" options:0 error:&err];
         if (err != nil) {
@@ -58,20 +52,19 @@
             NSLog(@"Error: Couldn't initialize regex");
             self.callbackIdPattern = nil;
         }
+        self.commandQueue = [[CDVCommandQueue alloc] initWithViewController:controller];
+        controller.commandDelegate = self;
     }
     return self;
 }
 
-- (void)didBindExtension:(XWalkChannel*)channel instance:(NSInteger)instance
-{
+- (void)didBindExtension:(XWalkChannel*)channel instance:(NSInteger)instance {
     [super didBindExtension:channel instance:instance];
-    self.commandQueue.delegate = self;
     self.engine = [[XWalkWebViewEngine alloc] initWithWebView:channel.webView];
     [self scanForPlugins];
 }
 
-- (void)scanForPlugins
-{
+- (void)scanForPlugins {
     NSString* plistPath = [NSBundle.mainBundle pathForResource:@"manifest" ofType:@"plist"];
     if (!plistPath) {
         NSLog(@"Failed to find manifest.plist in main bundle.");
@@ -95,15 +88,13 @@
     }
 }
 
-- (void)registerPlugin:(CDVPlugin*)plugin className:(NSString*)className
-{
+- (void)registerPlugin:(CDVPlugin*)plugin className:(NSString*)className {
     plugin.commandDelegate = self;
     self.plugins[[className lowercaseString]] = plugin;
     [plugin pluginInitialize];
 }
 
-- (BOOL)jsfunc_postToNative:(UInt32)cid message:(NSString*)message
-{
+- (BOOL)jsfunc_postToNative:(UInt32)cid message:(NSString*)message {
     if (message.length == 0) {
         return NO;
     }
@@ -112,8 +103,7 @@
     return YES;
 }
 
-- (BOOL)isValidCallbackId:(NSString*)callbackId
-{
+- (BOOL)isValidCallbackId:(NSString*)callbackId {
     if (!callbackId || !self.callbackIdPattern) {
         return NO;
     }
@@ -126,32 +116,22 @@
     return YES;
 }
 
-/// CommandQueueDelegate Impl
-- (CDVPlugin*)getPluginInstance:(NSString*)className
-{
-    CDVPlugin* plugin = self.plugins[[className lowercaseString]];
+/// CDVCommandDelegate Impl
+- (NSString*)pathForResource:(NSString*)resourcepath {
+    // TODO: (jondong) To be implemented when needed
+    return @"";
+}
+
+- (id)getCommandInstance:(NSString*)pluginName {
+    CDVPlugin* plugin = self.plugins[[pluginName lowercaseString]];
     if (!plugin) {
-      NSLog(@"Failed to find registered plugin by class name:%@", className);
+      NSLog(@"Failed to find registered plugin by class name:%@", pluginName);
       return nil;
     }
     return plugin;
 }
 
- /// CDVCommandDelegate Impl
-- (NSString*)pathForResource:(NSString*)resourcepath
-{
-    // TODO: (jondong) To be implemented when needed
-    return @"";
-}
-
-- (id)getCommandInstance:(NSString*)pluginName
-{
-    // TODO: (jondong) To be implemented when needed
-    return nil;
-}
-
-- (void)sendPluginResult:(CDVPluginResult*)result callbackId:(NSString*)callbackId
-{
+- (void)sendPluginResult:(CDVPluginResult*)result callbackId:(NSString*)callbackId {
     // This occurs when there is are no win/fail callbacks for the call.
     if ([@"INVALID" isEqualToString : callbackId]) {
         return;
@@ -170,30 +150,25 @@
     [self.channel evaluateJavaScript:js completionHandler:nil];
 }
 
-- (void)evalJs:(NSString*)js
-{
+- (void)evalJs:(NSString*)js {
     [self evalJs:js scheduledOnRunLoop:YES];
 }
 
-- (void)evalJs:(NSString*)js scheduledOnRunLoop:(BOOL)scheduledOnRunLoop
-{
+- (void)evalJs:(NSString*)js scheduledOnRunLoop:(BOOL)scheduledOnRunLoop {
     NSString* message = [NSString stringWithFormat:@"cordova.require('cordova/exec').nativeEvalAndFetch(function(){%@})", js];
     [self.channel evaluateJavaScript:message completionHandler:nil];
 }
 
-- (void)runInBackground:(void (^)())block
-{
+- (void)runInBackground:(void (^)())block {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block);
 }
 
-- (NSString*)userAgent
-{
+- (NSString*)userAgent {
     // TODO: (jondong) To be implemented when needed
     return @"";
 }
 
-- (BOOL)URLIsWhitelisted:(NSURL*)url
-{
+- (BOOL)URLIsWhitelisted:(NSURL*)url {
     // TODO: (jondong) To be implemented when needed
     return YES;
 }
