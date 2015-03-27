@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB0010D71AC4F57700DA5038 /* CordovaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0010D61AC4F57700DA5038 /* CordovaViewController.swift */; };
+		AB0010DD1AC5378900DA5038 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB0010DB1AC5378900DA5038 /* Main.storyboard */; };
 		AB4CDD491A27001D000841F5 /* CordovaPluginDeviceDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4CDD481A27001D000841F5 /* CordovaPluginDeviceDemoTests.m */; };
 		AB4CDD551A2701D4000841F5 /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4CDD541A2701D4000841F5 /* CDVDevice.m */; };
 		ABB8B2751A78CDC900332E72 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABB8B2741A78CDC900332E72 /* Images.xcassets */; };
@@ -16,8 +18,6 @@
 		ABC7AAE91A7B457900865FE3 /* Cordova.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ABC7AAE41A7B456E00865FE3 /* Cordova.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ABCAC35E1A359C89008C4501 /* www in Resources */ = {isa = PBXBuildFile; fileRef = ABCAC35D1A359C89008C4501 /* www */; };
 		ABF1220C1A6E6ACA00B15F5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF1220A1A6E6ACA00B15F5B /* AppDelegate.swift */; };
-		ABF1220D1A6E6ACA00B15F5B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF1220B1A6E6ACA00B15F5B /* ViewController.swift */; };
-		ABF122101A6E6AE500B15F5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF1220E1A6E6AE500B15F5B /* Main.storyboard */; };
 		ABF122121A6E6D9800B15F5B /* manifest.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABF122111A6E6D9800B15F5B /* manifest.plist */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +47,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AB0010D61AC4F57700DA5038 /* CordovaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CordovaViewController.swift; path = ../../../../AppShell/AppShell/CordovaViewController.swift; sourceTree = "<group>"; };
+		AB0010DC1AC5378900DA5038 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ../../../../AppShell/AppShell/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AB4CDD291A27001D000841F5 /* CordovaPluginDeviceDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CordovaPluginDeviceDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB4CDD2D1A27001D000841F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB4CDD421A27001D000841F5 /* CordovaPluginDeviceDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CordovaPluginDeviceDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,8 +61,6 @@
 		ABC7AAE61A7B457100865FE3 /* XWalkView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XWalkView.framework; path = "../Build/Products/Debug-iphoneos/XWalkView.framework"; sourceTree = "<group>"; };
 		ABCAC35D1A359C89008C4501 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = CordovaPluginDeviceDemo/www; sourceTree = "<group>"; };
 		ABF1220A1A6E6ACA00B15F5B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../../../../AppShell/AppShell/AppDelegate.swift; sourceTree = "<group>"; };
-		ABF1220B1A6E6ACA00B15F5B /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../../../AppShell/AppShell/ViewController.swift; sourceTree = "<group>"; };
-		ABF1220F1A6E6AE500B15F5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ../../../../AppShell/AppShell/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ABF122111A6E6D9800B15F5B /* manifest.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = manifest.plist; path = ../manifest.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,10 +107,10 @@
 		AB4CDD2B1A27001D000841F5 /* CordovaPluginDeviceDemo */ = {
 			isa = PBXGroup;
 			children = (
+				AB0010DB1AC5378900DA5038 /* Main.storyboard */,
 				ABB8B2741A78CDC900332E72 /* Images.xcassets */,
-				ABF1220E1A6E6AE500B15F5B /* Main.storyboard */,
 				ABF1220A1A6E6ACA00B15F5B /* AppDelegate.swift */,
-				ABF1220B1A6E6ACA00B15F5B /* ViewController.swift */,
+				AB0010D61AC4F57700DA5038 /* CordovaViewController.swift */,
 				AB4CDD531A2701D4000841F5 /* CDVDevice.h */,
 				AB4CDD541A2701D4000841F5 /* CDVDevice.m */,
 				AB4CDD2C1A27001D000841F5 /* Supporting Files */,
@@ -234,10 +234,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABF122101A6E6AE500B15F5B /* Main.storyboard in Resources */,
 				ABB8B2751A78CDC900332E72 /* Images.xcassets in Resources */,
 				ABCAC35E1A359C89008C4501 /* www in Resources */,
 				ABF122121A6E6D9800B15F5B /* manifest.plist in Resources */,
+				AB0010DD1AC5378900DA5038 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,8 +255,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABF1220D1A6E6ACA00B15F5B /* ViewController.swift in Sources */,
 				ABF1220C1A6E6ACA00B15F5B /* AppDelegate.swift in Sources */,
+				AB0010D71AC4F57700DA5038 /* CordovaViewController.swift in Sources */,
 				AB4CDD551A2701D4000841F5 /* CDVDevice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,10 +280,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		ABF1220E1A6E6AE500B15F5B /* Main.storyboard */ = {
+		AB0010DB1AC5378900DA5038 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				ABF1220F1A6E6AE500B15F5B /* Base */,
+				AB0010DC1AC5378900DA5038 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

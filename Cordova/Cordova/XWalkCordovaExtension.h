@@ -6,6 +6,10 @@
 
 @import XWalkView;
 
+@class CDVViewController;
+
 @interface XWalkCordovaExtension : XWalkExtension
+
+- (id)initWithViewController:(CDVViewController*)controller;
 
 @end
