@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AB3D6B341A790D5C00FFA82A /* sample-file in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB3D6B331A790D5C00FFA82A /* sample-file */; };
+		AB887EF61AC69D8600ADC77B /* CordovaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB887EF51AC69D8600ADC77B /* CordovaViewController.swift */; };
 		ABAB76721A47BEF500E392B6 /* CordovaPluginFileDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB76711A47BEF500E392B6 /* CordovaPluginFileDemoTests.swift */; };
 		ABAB76881A47C6E700E392B6 /* CDVAssetLibraryFilesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAB76831A47C6E700E392B6 /* CDVAssetLibraryFilesystem.m */; };
 		ABAB76891A47C6E700E392B6 /* CDVFile.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAB76851A47C6E700E392B6 /* CDVFile.m */; };
@@ -21,7 +22,6 @@
 		ABC88A9E1A51498C0051257C /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC88A9D1A51498C0051257C /* CDVSplashScreen.m */; };
 		ABF122141A6E708200B15F5B /* manifest.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABF122131A6E708200B15F5B /* manifest.plist */; };
 		ABF122171A6E709A00B15F5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF122151A6E709A00B15F5B /* AppDelegate.swift */; };
-		ABF122181A6E709A00B15F5B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF122161A6E709A00B15F5B /* ViewController.swift */; };
 		ABF1221B1A6E70AA00B15F5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF122191A6E70AA00B15F5B /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +62,7 @@
 
 /* Begin PBXFileReference section */
 		AB3D6B331A790D5C00FFA82A /* sample-file */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "sample-file"; path = "../../../third-party/Icenium/sample-file"; sourceTree = "<group>"; };
+		AB887EF51AC69D8600ADC77B /* CordovaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CordovaViewController.swift; path = ../../../../AppShell/AppShell/CordovaViewController.swift; sourceTree = "<group>"; };
 		ABAB76561A47BEF500E392B6 /* CordovaPluginFileDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CordovaPluginFileDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABAB765A1A47BEF500E392B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABAB766B1A47BEF500E392B6 /* CordovaPluginFileDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CordovaPluginFileDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,7 +82,6 @@
 		ABC88A9D1A51498C0051257C /* CDVSplashScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVSplashScreen.m; sourceTree = "<group>"; };
 		ABF122131A6E708200B15F5B /* manifest.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = manifest.plist; path = ../manifest.plist; sourceTree = "<group>"; };
 		ABF122151A6E709A00B15F5B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../../../../AppShell/AppShell/AppDelegate.swift; sourceTree = "<group>"; };
-		ABF122161A6E709A00B15F5B /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../../../AppShell/AppShell/ViewController.swift; sourceTree = "<group>"; };
 		ABF1221A1A6E70AA00B15F5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ../../../AppShell/AppShell/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,7 +132,7 @@
 				ABB8B2761A78D1AE00332E72 /* Images.xcassets */,
 				ABF122191A6E70AA00B15F5B /* Main.storyboard */,
 				ABF122151A6E709A00B15F5B /* AppDelegate.swift */,
-				ABF122161A6E709A00B15F5B /* ViewController.swift */,
+				AB887EF51AC69D8600ADC77B /* CordovaViewController.swift */,
 				ABAB768B1A47C6EE00E392B6 /* Plugins */,
 				ABAB76591A47BEF500E392B6 /* Supporting Files */,
 			);
@@ -311,8 +311,8 @@
 				ABC88A9E1A51498C0051257C /* CDVSplashScreen.m in Sources */,
 				ABAB76891A47C6E700E392B6 /* CDVFile.m in Sources */,
 				ABAB768A1A47C6E700E392B6 /* CDVLocalFilesystem.m in Sources */,
+				AB887EF61AC69D8600ADC77B /* CordovaViewController.swift in Sources */,
 				ABF122171A6E709A00B15F5B /* AppDelegate.swift in Sources */,
-				ABF122181A6E709A00B15F5B /* ViewController.swift in Sources */,
 				ABAB76881A47C6E700E392B6 /* CDVAssetLibraryFilesystem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
