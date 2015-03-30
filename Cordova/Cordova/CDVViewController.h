@@ -20,12 +20,14 @@
 #import <UIKit/UIKit.h>
 #import "CDVAvailability.h"
 #import "CDVScreenOrientationDelegate.h"
+#import "CDVWhitelist.h"
 
 @protocol CDVCommandDelegate;
 
 @interface CDVViewController : UIViewController <CDVScreenOrientationDelegate>
 
 @property (nonatomic, readonly, strong) NSMutableDictionary* settings;
+@property (nonatomic, readonly, strong) CDVWhitelist* whitelist; // readonly for public
 @property (nonatomic, strong) id<CDVCommandDelegate> commandDelegate;
 
 - (NSUInteger)supportedInterfaceOrientations;

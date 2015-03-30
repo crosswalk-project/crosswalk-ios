@@ -25,5 +25,7 @@
 #import "CDVPluginResult.h"
 #import "CDVTimer.h"
 #import "CDVViewController.h"
+#import "CDVWebViewEngineProtocol.h"
+#import "CDVWhitelist.h"
 #import "NSMutableArray+QueueAdditions.h"
 #import "NSDictionary+CordovaPreferences.h"
