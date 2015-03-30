@@ -82,7 +82,7 @@
         CDVPlugin* plugin = [XWalkInvocation construct:class initializer:init, self.engine];
         if (!plugin) {
             NSLog(@"Failed to create plugin with class name:%@", pluginInfo[@"class"]);
-            return;
+            continue;
         }
         [self registerPlugin:plugin className:pluginInfo[@"name"]];
     }
