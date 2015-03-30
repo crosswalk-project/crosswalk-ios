@@ -25,6 +25,7 @@
 
 @interface CDVViewController : UIViewController <CDVScreenOrientationDelegate>
 
+@property (nonatomic, readonly, strong) NSMutableDictionary* settings;
 @property (nonatomic, strong) id<CDVCommandDelegate> commandDelegate;
 
 - (NSUInteger)supportedInterfaceOrientations;
