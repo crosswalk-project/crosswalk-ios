@@ -51,6 +51,8 @@
                                       [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UISupportedInterfaceOrientations"]];
 
         self.initialized = YES;
+
+        [self loadSettings];
     }
 }
 
@@ -91,9 +93,18 @@
     [super viewWillDisappear:animated];
 }
 
+- (void)loadSettings {
+    NSString* plistPath = [NSBundle.mainBundle pathForResource:@"manifest" ofType:@"plist"];
+    if (!plistPath) {
+        NSLog(@"Failed to find manifest.plist in main bundle.");
+        return;
+    }
+    _settings = [[NSMutableDictionary alloc] initWithDictionary:[NSDictionary dictionaryWithContentsOfFile:plistPath]];
+}
+
 - (CDVWhitelist*)whitelist {
     if (_whitelist == nil) {
-        id object = _commandDelegate.settings[@"cordova_access"];
+        id object = self.settings[@"cordova_access"];
         NSArray* accessArray = nil;
         if (object && [object isKindOfClass:[NSArray class]]) {
             accessArray = (NSArray*)object;
