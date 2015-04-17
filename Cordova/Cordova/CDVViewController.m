@@ -22,12 +22,16 @@
 #import "CDVCommandDelegate.h"
 #import "CDVPlugin.h"
 #import "CDVURLProtocol.h"
+#import "CDVUserAgentUtil.h"
 
-@interface CDVViewController ()
+@interface CDVViewController () {
+    NSString* _userAgent;
+}
 @property (nonatomic, readwrite, strong) CDVWhitelist* whitelist;
 @property (nonatomic, readwrite, strong) NSArray* supportedOrientations;
 
 @property (assign) BOOL initialized;
+@property (atomic, assign) NSInteger userAgentLockToken;
 @end
 
 @implementation CDVViewController
@@ -79,6 +83,7 @@
 
 - (void)dealloc
 {
+    [CDVUserAgentUtil releaseLock:&_userAgentLockToken];
     [CDVURLProtocol unregisterViewController:self];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -124,6 +129,11 @@
     [super viewDidLoad];
 
     [CDVURLProtocol registerViewController:self];
+
+    [CDVUserAgentUtil acquireLock:^(NSInteger lockToken) {
+        self.userAgentLockToken = lockToken;
+        [CDVUserAgentUtil setUserAgent:self.userAgent lockToken:lockToken];
+    }];
 }
 
 - (NSArray*)parseInterfaceOrientations:(NSArray*)orientations
@@ -199,7 +209,16 @@
 }
 
 - (NSString*)userAgent {
-    return [self.commandDelegate userAgent];
+    if (_userAgent == nil) {
+        NSString* localBaseUserAgent;
+        if (self.baseUserAgent) {
+            localBaseUserAgent = self.baseUserAgent;
+        } else {
+            localBaseUserAgent = [CDVUserAgentUtil originalUserAgent];
+        }
+        _userAgent = [NSString stringWithFormat:@"%@ (%lld)", localBaseUserAgent, (long long)self];
+    }
+    return _userAgent;
 }
 
 #pragma mark WKWebViewDelegate
@@ -211,6 +230,7 @@
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     NSLog(@"Finished load of: %@", webView.URL);
+    [CDVUserAgentUtil releaseLock:&_userAgentLockToken];
 
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 
@@ -223,10 +243,12 @@
 }
 
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+    [CDVUserAgentUtil releaseLock:&_userAgentLockToken];
     [self printErrorMessage:error];
 }
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+    [CDVUserAgentUtil releaseLock:&_userAgentLockToken];
     [self printErrorMessage:error];
 }
 
