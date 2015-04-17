@@ -55,6 +55,8 @@
 		AB98D6291AC949E1009E40C7 /* CDVWhitelist.h in Headers */ = {isa = PBXBuildFile; fileRef = AB98D6271AC949E1009E40C7 /* CDVWhitelist.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AB98D62A1AC949E1009E40C7 /* CDVWhitelist.m in Sources */ = {isa = PBXBuildFile; fileRef = AB98D6281AC949E1009E40C7 /* CDVWhitelist.m */; };
 		ABC7AAE31A7B456000865FE3 /* XWalkView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC7AAE21A7B456000865FE3 /* XWalkView.framework */; };
+		ABE8CD631ADB608E00C698D1 /* CDVURLProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = ABE8CD611ADB608E00C698D1 /* CDVURLProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ABE8CD641ADB608E00C698D1 /* CDVURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE8CD621ADB608E00C698D1 /* CDVURLProtocol.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +121,8 @@
 		AB98D6271AC949E1009E40C7 /* CDVWhitelist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVWhitelist.h; path = "../../third-party/cordova-ios/CordovaLib/Classes/Public/CDVWhitelist.h"; sourceTree = "<group>"; };
 		AB98D6281AC949E1009E40C7 /* CDVWhitelist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVWhitelist.m; path = "../../third-party/cordova-ios/CordovaLib/Classes/Public/CDVWhitelist.m"; sourceTree = "<group>"; };
 		ABC7AAE21A7B456000865FE3 /* XWalkView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XWalkView.framework; path = "../Demos/Cordova/Build/Products/Debug-iphoneos/XWalkView.framework"; sourceTree = "<group>"; };
+		ABE8CD611ADB608E00C698D1 /* CDVURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVURLProtocol.h; path = "../../third-party/cordova-ios/CordovaLib/Classes/Public/CDVURLProtocol.h"; sourceTree = "<group>"; };
+		ABE8CD621ADB608E00C698D1 /* CDVURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVURLProtocol.m; path = "../../third-party/cordova-ios/CordovaLib/Classes/Public/CDVURLProtocol.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +183,8 @@
 				AB4C8E281ABC11F400DF4D8E /* CDVScreenOrientationDelegate.h */,
 				AB4C8E291ABC11F400DF4D8E /* CDVTimer.h */,
 				AB4C8E2A1ABC11F400DF4D8E /* CDVTimer.m */,
+				ABE8CD611ADB608E00C698D1 /* CDVURLProtocol.h */,
+				ABE8CD621ADB608E00C698D1 /* CDVURLProtocol.m */,
 				AB98D6141AC946EA009E40C7 /* CDVUserAgentUtil.h */,
 				AB98D6151AC946EA009E40C7 /* CDVUserAgentUtil.m */,
 				AB4C8E471ABFB7EB00DF4D8E /* CDVWebViewEngineProtocol.h */,
@@ -318,6 +324,7 @@
 				AB98D6291AC949E1009E40C7 /* CDVWhitelist.h in Headers */,
 				AB98D6081AC9444F009E40C7 /* CDVUIWebViewEngine.h in Headers */,
 				AB98D6061AC9444F009E40C7 /* CDVUIWebViewDelegate.h in Headers */,
+				ABE8CD631ADB608E00C698D1 /* CDVURLProtocol.h in Headers */,
 				AB4C8E3D1ABC11F400DF4D8E /* NSMutableArray+QueueAdditions.h in Headers */,
 				AB0010D11AC4E94F00DA5038 /* CDVCommandQueue.h in Headers */,
 				AB4C8E391ABC11F400DF4D8E /* CDVTimer.h in Headers */,
@@ -445,6 +452,7 @@
 				AB81C9C71A67AB72008E5808 /* CDVViewController.m in Sources */,
 				AB98D6071AC9444F009E40C7 /* CDVUIWebViewDelegate.m in Sources */,
 				AB4C8E3E1ABC11F400DF4D8E /* NSMutableArray+QueueAdditions.m in Sources */,
+				ABE8CD641ADB608E00C698D1 /* CDVURLProtocol.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

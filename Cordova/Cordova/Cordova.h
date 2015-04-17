@@ -15,4 +15,5 @@ FOUNDATION_EXPORT const unsigned char CordovaVersionString[];
 #import <Cordova/CDV.h>
 #import <Cordova/XWalkCordovaExtension.h>
 #import <Cordova/CDVUIWebViewDelegate.h>
+#import <Cordova/CDVURLProtocol.h>
 #import <Cordova/CDVUserAgentUtil.h>
