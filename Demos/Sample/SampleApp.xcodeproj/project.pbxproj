@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		ABC7AACE1A7B30F500865FE3 /* XWalkView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC7AACD1A7B30F500865FE3 /* XWalkView.framework */; };
-		ABC7AACF1A7B30FA00865FE3 /* XWalkView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ABC7AACD1A7B30F500865FE3 /* XWalkView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		ABC7AAD01A7B318400865FE3 /* XWalkView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC7AACD1A7B30F500865FE3 /* XWalkView.framework */; };
+		AB0253881AE1F563007A803C /* XWalkView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB02537F1AE1F443007A803C /* XWalkView.framework */; };
 		ABC7AAD11A7B3FEC00865FE3 /* Sample.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EEB10F841A614074000709AE /* Sample.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EE174E431A00FBA900168D96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE62693B19FA54AC00EFC3F8 /* Main.storyboard */; };
 		EE62693519FA548E00EFC3F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE62693119FA548E00EFC3F8 /* AppDelegate.swift */; };
@@ -23,6 +21,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		AB02537E1AE1F443007A803C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB0253791AE1F443007A803C /* XWalkView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE62683519FA323900EFC3F8;
+			remoteInfo = XWalkView;
+		};
+		AB0253801AE1F443007A803C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB0253791AE1F443007A803C /* XWalkView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AB023EA01A8C506600580A2A;
+			remoteInfo = XWalkViewTests;
+		};
+		AB0253891AE1F56A007A803C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB0253791AE1F443007A803C /* XWalkView.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EE62683419FA323900EFC3F8;
+			remoteInfo = XWalkView;
+		};
+		AB8DD0421AE29E3900CC6A67 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB0253791AE1F443007A803C /* XWalkView.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EE62683419FA323900EFC3F8;
+			remoteInfo = XWalkView;
+		};
 		EEB10F991A614074000709AE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EE6268AB19FA494000EFC3F8 /* Project object */;
@@ -40,7 +66,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				ABC7AAD11A7B3FEC00865FE3 /* Sample.framework in Embed Frameworks */,
-				ABC7AACF1A7B30FA00865FE3 /* XWalkView.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -48,7 +73,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		ABC7AACD1A7B30F500865FE3 /* XWalkView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XWalkView.framework; path = "Build/Products/Debug-iphoneos/XWalkView.framework"; sourceTree = "<group>"; };
+		AB0253791AE1F443007A803C /* XWalkView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XWalkView.xcodeproj; path = ../../XWalkView/XWalkView.xcodeproj; sourceTree = "<group>"; };
 		EE6268B319FA494000EFC3F8 /* SampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE62693119FA548E00EFC3F8 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = AppShell/AppDelegate.swift; sourceTree = "<group>"; };
 		EE62693319FA548E00EFC3F8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = AppShell/Images.xcassets; sourceTree = "<group>"; };
@@ -68,7 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABC7AACE1A7B30F500865FE3 /* XWalkView.framework in Frameworks */,
+				AB0253881AE1F563007A803C /* XWalkView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,17 +101,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABC7AAD01A7B318400865FE3 /* XWalkView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB02537A1AE1F443007A803C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AB02537F1AE1F443007A803C /* XWalkView.framework */,
+				AB0253811AE1F443007A803C /* XWalkViewTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		EE6268AA19FA494000EFC3F8 = {
 			isa = PBXGroup;
 			children = (
-				ABC7AACD1A7B30F500865FE3 /* XWalkView.framework */,
+				AB0253791AE1F443007A803C /* XWalkView.xcodeproj */,
 				EEB10FC61A61D54A000709AE /* www */,
 				EEB10FA91A6155B2000709AE /* manifest.plist */,
 				EE6268B519FA494000EFC3F8 /* AppShell */,
@@ -153,6 +186,7 @@
 			);
 			dependencies = (
 				EEB10F9A1A614074000709AE /* PBXTargetDependency */,
+				AB02538A1AE1F56A007A803C /* PBXTargetDependency */,
 			);
 			name = SampleApp;
 			productName = SampleApp;
@@ -171,6 +205,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				AB8DD0431AE29E3900CC6A67 /* PBXTargetDependency */,
 			);
 			name = Sample;
 			productName = Sample;
@@ -205,6 +240,12 @@
 			mainGroup = EE6268AA19FA494000EFC3F8;
 			productRefGroup = EE6268B419FA494000EFC3F8 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = AB02537A1AE1F443007A803C /* Products */;
+					ProjectRef = AB0253791AE1F443007A803C /* XWalkView.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				EE6268B219FA494000EFC3F8 /* SampleApp */,
@@ -212,6 +253,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		AB02537F1AE1F443007A803C /* XWalkView.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = XWalkView.framework;
+			remoteRef = AB02537E1AE1F443007A803C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AB0253811AE1F443007A803C /* XWalkViewTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = XWalkViewTests.xctest;
+			remoteRef = AB0253801AE1F443007A803C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		EE6268B119FA494000EFC3F8 /* Resources */ = {
@@ -257,6 +315,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		AB02538A1AE1F56A007A803C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = XWalkView;
+			targetProxy = AB0253891AE1F56A007A803C /* PBXContainerItemProxy */;
+		};
+		AB8DD0431AE29E3900CC6A67 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = XWalkView;
+			targetProxy = AB8DD0421AE29E3900CC6A67 /* PBXContainerItemProxy */;
+		};
 		EEB10F9A1A614074000709AE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EEB10F831A614074000709AE /* Sample */;
@@ -360,7 +428,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = ../../AppShell/AppShell/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -371,7 +438,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = ../../AppShell/AppShell/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
