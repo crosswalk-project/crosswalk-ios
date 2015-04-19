@@ -14,11 +14,9 @@
 		ABAB76891A47C6E700E392B6 /* CDVFile.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAB76851A47C6E700E392B6 /* CDVFile.m */; };
 		ABAB768A1A47C6E700E392B6 /* CDVLocalFilesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAB76871A47C6E700E392B6 /* CDVLocalFilesystem.m */; };
 		ABAB76A41A47EA5A00E392B6 /* www in Resources */ = {isa = PBXBuildFile; fileRef = ABAB76A31A47EA5A00E392B6 /* www */; };
+		ABB3F4D91AE344C200CF5C9B /* Cordova.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABB3F4D01AE3449700CF5C9B /* Cordova.framework */; };
+		ABB3F4DA1AE344C200CF5C9B /* Cordova.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ABB3F4D01AE3449700CF5C9B /* Cordova.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ABB8B2771A78D1AE00332E72 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABB8B2761A78D1AE00332E72 /* Images.xcassets */; };
-		ABC7AAEB1A7B488100865FE3 /* Cordova.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC7AAEA1A7B488100865FE3 /* Cordova.framework */; };
-		ABC7AAED1A7B488400865FE3 /* XWalkView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC7AAEC1A7B488400865FE3 /* XWalkView.framework */; };
-		ABC7AAEF1A7B489A00865FE3 /* XWalkView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ABC7AAEC1A7B488400865FE3 /* XWalkView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		ABC7AAF01A7B489D00865FE3 /* Cordova.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ABC7AAEA1A7B488100865FE3 /* Cordova.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ABC88A9E1A51498C0051257C /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC88A9D1A51498C0051257C /* CDVSplashScreen.m */; };
 		ABF122141A6E708200B15F5B /* manifest.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABF122131A6E708200B15F5B /* manifest.plist */; };
 		ABF122171A6E709A00B15F5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF122151A6E709A00B15F5B /* AppDelegate.swift */; };
@@ -33,6 +31,48 @@
 			remoteGlobalIDString = ABAB76551A47BEF500E392B6;
 			remoteInfo = CordovaPluginFileDemo;
 		};
+		ABB3F4C61AE3448500CF5C9B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ABB3F4C11AE3448500CF5C9B /* XWalkView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE62683519FA323900EFC3F8;
+			remoteInfo = XWalkView;
+		};
+		ABB3F4C81AE3448500CF5C9B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ABB3F4C11AE3448500CF5C9B /* XWalkView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AB023EA01A8C506600580A2A;
+			remoteInfo = XWalkViewTests;
+		};
+		ABB3F4CF1AE3449700CF5C9B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ABB3F4CA1AE3449700CF5C9B /* Cordova.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AB81C99C1A67AB00008E5808;
+			remoteInfo = Cordova;
+		};
+		ABB3F4D11AE3449700CF5C9B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ABB3F4CA1AE3449700CF5C9B /* Cordova.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AB81C9A71A67AB00008E5808;
+			remoteInfo = CordovaTests;
+		};
+		ABB3F4DB1AE344C200CF5C9B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ABB3F4CA1AE3449700CF5C9B /* Cordova.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = AB81C99B1A67AB00008E5808;
+			remoteInfo = Cordova;
+		};
+		ABB3F4DE1AE344E900CF5C9B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ABB3F4C11AE3448500CF5C9B /* XWalkView.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EE62683419FA323900EFC3F8;
+			remoteInfo = XWalkView;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,14 +86,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ABAB76811A47C15500E392B6 /* Embed Frameworks */ = {
+		ABB3F4DD1AE344C200CF5C9B /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				ABC7AAF01A7B489D00865FE3 /* Cordova.framework in Embed Frameworks */,
-				ABC7AAEF1A7B489A00865FE3 /* XWalkView.framework in Embed Frameworks */,
+				ABB3F4DA1AE344C200CF5C9B /* Cordova.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -75,6 +114,8 @@
 		ABAB76861A47C6E700E392B6 /* CDVLocalFilesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVLocalFilesystem.h; sourceTree = "<group>"; };
 		ABAB76871A47C6E700E392B6 /* CDVLocalFilesystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVLocalFilesystem.m; sourceTree = "<group>"; };
 		ABAB76A31A47EA5A00E392B6 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = CordovaPluginFileDemo/www; sourceTree = "<group>"; };
+		ABB3F4C11AE3448500CF5C9B /* XWalkView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XWalkView.xcodeproj; path = ../../../XWalkView/XWalkView.xcodeproj; sourceTree = "<group>"; };
+		ABB3F4CA1AE3449700CF5C9B /* Cordova.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Cordova.xcodeproj; path = ../../../Cordova/Cordova.xcodeproj; sourceTree = "<group>"; };
 		ABB8B2761A78D1AE00332E72 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../../../../AppShell/AppShell/Images.xcassets; sourceTree = "<group>"; };
 		ABC7AAEA1A7B488100865FE3 /* Cordova.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cordova.framework; path = "../Build/Products/Debug-iphoneos/Cordova.framework"; sourceTree = "<group>"; };
 		ABC7AAEC1A7B488400865FE3 /* XWalkView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XWalkView.framework; path = "../Build/Products/Debug-iphoneos/XWalkView.framework"; sourceTree = "<group>"; };
@@ -90,8 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABC7AAED1A7B488400865FE3 /* XWalkView.framework in Frameworks */,
-				ABC7AAEB1A7B488100865FE3 /* Cordova.framework in Frameworks */,
+				ABB3F4D91AE344C200CF5C9B /* Cordova.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +148,8 @@
 		ABAB764D1A47BEF500E392B6 = {
 			isa = PBXGroup;
 			children = (
+				ABB3F4CA1AE3449700CF5C9B /* Cordova.xcodeproj */,
+				ABB3F4C11AE3448500CF5C9B /* XWalkView.xcodeproj */,
 				AB3D6B331A790D5C00FFA82A /* sample-file */,
 				ABAB76A31A47EA5A00E392B6 /* www */,
 				ABC7AAEE1A7B488800865FE3 /* Frameworks */,
@@ -187,6 +229,24 @@
 			path = org.apache.cordova.file;
 			sourceTree = "<group>";
 		};
+		ABB3F4C21AE3448500CF5C9B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ABB3F4C71AE3448500CF5C9B /* XWalkView.framework */,
+				ABB3F4C91AE3448500CF5C9B /* XWalkViewTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ABB3F4CB1AE3449700CF5C9B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ABB3F4D01AE3449700CF5C9B /* Cordova.framework */,
+				ABB3F4D21AE3449700CF5C9B /* CordovaTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		ABC7AAEE1A7B488800865FE3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,12 +275,14 @@
 				ABAB76521A47BEF500E392B6 /* Sources */,
 				ABAB76531A47BEF500E392B6 /* Frameworks */,
 				ABAB76541A47BEF500E392B6 /* Resources */,
-				ABAB76811A47C15500E392B6 /* Embed Frameworks */,
 				AB3D6AFC1A790CE700FFA82A /* CopyFiles */,
+				ABB3F4DD1AE344C200CF5C9B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				ABB3F4DF1AE344E900CF5C9B /* PBXTargetDependency */,
+				ABB3F4DC1AE344C200CF5C9B /* PBXTargetDependency */,
 			);
 			name = CordovaPluginFileDemo;
 			productName = CordovaPluginFileDemo;
@@ -274,6 +336,16 @@
 			mainGroup = ABAB764D1A47BEF500E392B6;
 			productRefGroup = ABAB76571A47BEF500E392B6 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = ABB3F4CB1AE3449700CF5C9B /* Products */;
+					ProjectRef = ABB3F4CA1AE3449700CF5C9B /* Cordova.xcodeproj */;
+				},
+				{
+					ProductGroup = ABB3F4C21AE3448500CF5C9B /* Products */;
+					ProjectRef = ABB3F4C11AE3448500CF5C9B /* XWalkView.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				ABAB76551A47BEF500E392B6 /* CordovaPluginFileDemo */,
@@ -281,6 +353,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		ABB3F4C71AE3448500CF5C9B /* XWalkView.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = XWalkView.framework;
+			remoteRef = ABB3F4C61AE3448500CF5C9B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		ABB3F4C91AE3448500CF5C9B /* XWalkViewTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = XWalkViewTests.xctest;
+			remoteRef = ABB3F4C81AE3448500CF5C9B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		ABB3F4D01AE3449700CF5C9B /* Cordova.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Cordova.framework;
+			remoteRef = ABB3F4CF1AE3449700CF5C9B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		ABB3F4D21AE3449700CF5C9B /* CordovaTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CordovaTests.xctest;
+			remoteRef = ABB3F4D11AE3449700CF5C9B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		ABAB76541A47BEF500E392B6 /* Resources */ = {
@@ -332,6 +435,16 @@
 			isa = PBXTargetDependency;
 			target = ABAB76551A47BEF500E392B6 /* CordovaPluginFileDemo */;
 			targetProxy = ABAB766C1A47BEF500E392B6 /* PBXContainerItemProxy */;
+		};
+		ABB3F4DC1AE344C200CF5C9B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Cordova;
+			targetProxy = ABB3F4DB1AE344C200CF5C9B /* PBXContainerItemProxy */;
+		};
+		ABB3F4DF1AE344E900CF5C9B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = XWalkView;
+			targetProxy = ABB3F4DE1AE344E900CF5C9B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
