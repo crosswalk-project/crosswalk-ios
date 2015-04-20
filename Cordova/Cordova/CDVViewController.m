@@ -22,12 +22,16 @@
 #import "CDVCommandDelegate.h"
 #import "CDVPlugin.h"
 #import "CDVURLProtocol.h"
+#import "CDVUserAgentUtil.h"
 
-@interface CDVViewController ()
+@interface CDVViewController () {
+    NSString* _userAgent;
+}
 @property (nonatomic, readwrite, strong) CDVWhitelist* whitelist;
 @property (nonatomic, readwrite, strong) NSArray* supportedOrientations;
 
 @property (assign) BOOL initialized;
+@property (atomic, assign) NSInteger userAgentLockToken;
 @end
 
 @implementation CDVViewController
@@ -51,6 +55,8 @@
                                       [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UISupportedInterfaceOrientations"]];
 
         self.initialized = YES;
+
+        [self loadSettings];
     }
 }
 
@@ -77,6 +83,7 @@
 
 - (void)dealloc
 {
+    [CDVUserAgentUtil releaseLock:&_userAgentLockToken];
     [CDVURLProtocol unregisterViewController:self];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -91,9 +98,18 @@
     [super viewWillDisappear:animated];
 }
 
+- (void)loadSettings {
+    NSString* plistPath = [NSBundle.mainBundle pathForResource:@"manifest" ofType:@"plist"];
+    if (!plistPath) {
+        NSLog(@"Failed to find manifest.plist in main bundle.");
+        return;
+    }
+    _settings = [[NSMutableDictionary alloc] initWithDictionary:[NSDictionary dictionaryWithContentsOfFile:plistPath]];
+}
+
 - (CDVWhitelist*)whitelist {
     if (_whitelist == nil) {
-        id object = _commandDelegate.settings[@"cordova_access"];
+        id object = self.settings[@"cordova_access"];
         NSArray* accessArray = nil;
         if (object && [object isKindOfClass:[NSArray class]]) {
             accessArray = (NSArray*)object;
@@ -113,6 +129,11 @@
     [super viewDidLoad];
 
     [CDVURLProtocol registerViewController:self];
+
+    [CDVUserAgentUtil acquireLock:^(NSInteger lockToken) {
+        self.userAgentLockToken = lockToken;
+        [CDVUserAgentUtil setUserAgent:self.userAgent lockToken:lockToken];
+    }];
 }
 
 - (NSArray*)parseInterfaceOrientations:(NSArray*)orientations
@@ -188,7 +209,16 @@
 }
 
 - (NSString*)userAgent {
-    return [self.commandDelegate userAgent];
+    if (_userAgent == nil) {
+        NSString* localBaseUserAgent;
+        if (self.baseUserAgent) {
+            localBaseUserAgent = self.baseUserAgent;
+        } else {
+            localBaseUserAgent = [CDVUserAgentUtil originalUserAgent];
+        }
+        _userAgent = [NSString stringWithFormat:@"%@ (%lld)", localBaseUserAgent, (long long)self];
+    }
+    return _userAgent;
 }
 
 #pragma mark WKWebViewDelegate
@@ -200,6 +230,7 @@
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     NSLog(@"Finished load of: %@", webView.URL);
+    [CDVUserAgentUtil releaseLock:&_userAgentLockToken];
 
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 
@@ -212,10 +243,12 @@
 }
 
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+    [CDVUserAgentUtil releaseLock:&_userAgentLockToken];
     [self printErrorMessage:error];
 }
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+    [CDVUserAgentUtil releaseLock:&_userAgentLockToken];
     [self printErrorMessage:error];
 }
 

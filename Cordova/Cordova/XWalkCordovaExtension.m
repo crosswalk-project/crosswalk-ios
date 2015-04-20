@@ -14,7 +14,6 @@
 
 @interface XWalkCordovaExtension () <CDVCommandDelegate>
 
-@property(nonatomic) NSMutableDictionary* settings;
 @property(nonatomic) NSMutableDictionary* plugins;
 @property(nonatomic) CDVCommandQueue* commandQueue;
 @property(nonatomic) NSRegularExpression* callbackIdPattern;
@@ -48,7 +47,6 @@
 - (id)initWithViewController:(CDVViewController*)controller {
     if (self = [super init]) {
         _controller = controller;
-        self.settings = [[NSMutableDictionary alloc] init];
         self.plugins = [[NSMutableDictionary alloc] init];
         NSError* err = nil;
         self.callbackIdPattern = [NSRegularExpression regularExpressionWithPattern:@"[^A-Za-z0-9._-]" options:0 error:&err];
@@ -73,14 +71,12 @@
     [self scanForPlugins];
 }
 
+- (NSDictionary*)settings {
+    return _controller ? _controller.settings : nil;
+}
+
 - (void)scanForPlugins {
-    NSString* plistPath = [NSBundle.mainBundle pathForResource:@"manifest" ofType:@"plist"];
-    if (!plistPath) {
-        NSLog(@"Failed to find manifest.plist in main bundle.");
-        return;
-    }
-    NSDictionary* manifest = [NSDictionary dictionaryWithContentsOfFile:plistPath];
-    NSArray* pluginInfoArray = manifest[@"cordova_plugins"];
+    NSArray* pluginInfoArray = self.settings[@"cordova_plugins"];
     if (!pluginInfoArray) {
         NSLog(@"Failed to parse cordova plugin info.");
         return;
@@ -95,8 +91,6 @@
         }
         [self registerPlugin:plugin className:pluginInfo[@"name"]];
     }
-
-    self.settings[@"cordova_access"] = manifest[@"cordova_access"];
 }
 
 - (void)registerPlugin:(CDVPlugin*)plugin className:(NSString*)className {
