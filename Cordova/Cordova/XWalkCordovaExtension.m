@@ -8,6 +8,7 @@
 #import "CDVCommandDelegate.h"
 #import "CDVCommandQueue.h"
 #import "CDVPlugin.h"
+#import "CDVUserAgentUtil.h"
 #import "CDVViewController.h"
 #import "XWalkWebViewEngine.h"
 
@@ -18,6 +19,9 @@
 @property(nonatomic) CDVCommandQueue* commandQueue;
 @property(nonatomic) NSRegularExpression* callbackIdPattern;
 @property(nonatomic) XWalkWebViewEngine* engine;
+@property(nonatomic) NSString* userAgent;
+
+@property(nonatomic, weak) CDVViewController* controller;
 
 - (void)didBindExtension:(XWalkChannel*)channel instance:(NSInteger)instance;
 - (void)scanForPlugins;
@@ -43,6 +47,7 @@
 
 - (id)initWithViewController:(CDVViewController*)controller {
     if (self = [super init]) {
+        _controller = controller;
         self.settings = [[NSMutableDictionary alloc] init];
         self.plugins = [[NSMutableDictionary alloc] init];
         NSError* err = nil;
@@ -56,6 +61,10 @@
         controller.commandDelegate = self;
     }
     return self;
+}
+
+- (void)dealloc {
+    [[self.plugins allValues] makeObjectsPerformSelector:@selector(dispose)];
 }
 
 - (void)didBindExtension:(XWalkChannel*)channel instance:(NSInteger)instance {
@@ -86,9 +95,12 @@
         }
         [self registerPlugin:plugin className:pluginInfo[@"name"]];
     }
+
+    self.settings[@"cordova_access"] = manifest[@"cordova_access"];
 }
 
 - (void)registerPlugin:(CDVPlugin*)plugin className:(NSString*)className {
+    plugin.viewController = _controller;
     plugin.commandDelegate = self;
     self.plugins[[className lowercaseString]] = plugin;
     [plugin pluginInitialize];
@@ -164,8 +176,12 @@
 }
 
 - (NSString*)userAgent {
-    // TODO: (jondong) To be implemented when needed
-    return @"";
+    if (_userAgent == nil) {
+        NSString* localBaseUserAgent = [CDVUserAgentUtil originalUserAgent];
+        // Use our address as a unique number to append to the User-Agent.
+        _userAgent = [NSString stringWithFormat:@"%@ (%lld)", localBaseUserAgent, (long long)self];
+    }
+    return _userAgent;
 }
 
 - (BOOL)URLIsWhitelisted:(NSURL*)url {

@@ -21,14 +21,18 @@
 #import "CDVAvailability.h"
 #import "CDVScreenOrientationDelegate.h"
 #import "CDVWhitelist.h"
+#import <WebKit/WebKit.h>
 
 @protocol CDVCommandDelegate;
 
-@interface CDVViewController : UIViewController <CDVScreenOrientationDelegate>
+@interface CDVViewController : UIViewController <WKNavigationDelegate, CDVScreenOrientationDelegate>
 
 @property (nonatomic, readonly, strong) NSMutableDictionary* settings;
 @property (nonatomic, readonly, strong) CDVWhitelist* whitelist; // readonly for public
+@property (nonatomic, readonly, strong) NSString* userAgent;
 @property (nonatomic, strong) id<CDVCommandDelegate> commandDelegate;
+
+- (BOOL)URLisAllowed:(NSURL*)url;
 
 - (NSUInteger)supportedInterfaceOrientations;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
