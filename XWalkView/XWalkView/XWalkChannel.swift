@@ -41,7 +41,7 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
     }
 
     public func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage: WKScriptMessage) {
-        let body = didReceiveScriptMessage.body as [String: AnyObject]
+        let body = didReceiveScriptMessage.body as! [String: AnyObject]
         let instid = (body["instance"] as? NSNumber)?.integerValue ?? 0
         let callid = body["callid"] as? NSNumber ?? NSNumber(integer: 0)
         let args = [callid] + (body["arguments"] as? [AnyObject] ?? [])

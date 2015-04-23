@@ -88,13 +88,13 @@ private func toJSONString(object: AnyObject, isPretty: Bool=false) -> String {
             return (number as NSNumber).stringValue
         }
     case is NSString:
-        return "'\(object as String)'"
+        return "'\(object as! String)'"
     default:
         if let data = NSJSONSerialization.dataWithJSONObject(object,
             options: isPretty ? NSJSONWritingOptions.PrettyPrinted : nil,
             error: nil) as NSData? {
                 if let string = NSString(data: data, encoding: NSUTF8StringEncoding) {
-                    return string
+                    return string as String
                 }
         }
         println("ERROR: Failed to convert object \(object) to JSON string")

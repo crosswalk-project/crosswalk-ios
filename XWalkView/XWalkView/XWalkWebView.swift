@@ -17,7 +17,7 @@ public extension WKWebView {
                 objc_setAssociatedObject(self, key.thread, thread, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
                 return thread
             }
-            return objc_getAssociatedObject(self, key.thread) as NSThread
+            return objc_getAssociatedObject(self, key.thread) as! NSThread
         }
         set(thread) {
             if objc_getAssociatedObject(self, key.thread) == nil {
@@ -55,7 +55,7 @@ public extension WKWebView {
         let bundle = NSBundle(forClass: XWalkChannel.self)
         if let path = bundle.pathForResource("crosswalk", ofType: "js") {
             if let code = NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding, error: nil) {
-                injectScript(code)
+                injectScript(code as String)
             } else {
                 NSException.raise("EncodingError", format: "'%@.js' should be UTF-8 encoding.", arguments: getVaList([path]))
             }
@@ -88,7 +88,7 @@ public extension WKWebView {
             objc_setAssociatedObject(self, key.httpd, httpd!, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
         }
 
-        let target = URL.path!.substringFromIndex(advance(URL.path!.startIndex, countElements(readAccessURL.path!)))
+        let target = URL.path!.substringFromIndex(advance(URL.path!.startIndex, count(readAccessURL.path!)))
         let url = NSURL(scheme: "http", host: "127.0.0.1:\(httpd!.port)", path: target)
         return loadRequest(NSURLRequest(URL: url!));
     }
@@ -100,7 +100,7 @@ extension WKUserContentController {
         removeAllUserScripts()
         for i in scripts {
             if i !== script {
-                addUserScript(i as WKUserScript)
+                addUserScript(i as! WKUserScript)
             }
         }
     }
