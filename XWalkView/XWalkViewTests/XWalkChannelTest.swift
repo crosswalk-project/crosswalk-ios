@@ -32,7 +32,7 @@ class XWalkChannelTest: XCTestCase, WKNavigationDelegate {
         XWalkExtensionFactory.register(extensionName, cls: ChannelTestExtension.self)
         channel = XWalkChannel(webView: webview!)
 
-        var ext = XWalkExtensionFactory.createExtension(extensionName) as ChannelTestExtension
+        var ext = XWalkExtensionFactory.createExtension(extensionName) as! ChannelTestExtension
         channel?.bind(ext, namespace: extensionName, thread: webview!.extensionThread)
     }
 
@@ -53,7 +53,7 @@ class XWalkChannelTest: XCTestCase, WKNavigationDelegate {
     }
 
     func testBind() {
-        var ext = XWalkExtensionFactory.createExtension(extensionName) as ChannelTestExtension
+        var ext = XWalkExtensionFactory.createExtension(extensionName) as! ChannelTestExtension
         ext.expectation = self.expectationWithDescription("testBindExpectation")
         channel?.bind(ext, namespace: extensionName, thread: webview!.extensionThread)
 
