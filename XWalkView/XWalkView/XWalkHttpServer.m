@@ -79,7 +79,7 @@ static void ServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType type, 
 
     CFSocketContext context = {0, (__bridge void *)self, NULL, NULL, NULL};
     _socket = CFSocketCreateWithSocketSignature(kCFAllocatorDefault, &signature, kCFSocketAcceptCallBack, &ServerAcceptCallBack, &context);
-    if (socket == NULL)  return NO;
+    if (_socket == NULL)  return NO;
 
     const int yes = 1;
     setsockopt(CFSocketGetNative(_socket), SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(yes));
