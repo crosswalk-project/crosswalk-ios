@@ -30,6 +30,9 @@ class XWalkStubGenerator {
                 stub += "Extension.defineProperty(exports, '\(name)', \(value), \(!mirror.isReadonly(name)));\n"
             }
         }
+        if let script = userDefinedJavaScript() {
+            stub += script
+        }
         stub += "\n})(Extension.create(\(channelName), '\(namespace)'"
         if mirror.constructor != nil {
             stub += ", " + generateMethodStub("+", selector: mirror.constructor) + ", true"
@@ -64,6 +67,24 @@ class XWalkStubGenerator {
             body = "\(this).\(body)]);"
         }
         return "function(\(list)) {\n    \(body)\n}"
+    }
+
+    private func userDefinedJavaScript() -> String? {
+        var className = NSStringFromClass(self.mirror.cls)
+        if (className == nil) {
+            return nil
+        }
+
+        if count(className.pathExtension) > 0 {
+            className = className.pathExtension
+        }
+        var bundle = NSBundle(forClass: self.mirror.cls)
+        if let path = bundle.pathForResource(className, ofType: "js") {
+            if let content = String(contentsOfFile: path, encoding: NSUTF8StringEncoding, error: nil) {
+                return content
+            }
+        }
+        return nil
     }
 }
 

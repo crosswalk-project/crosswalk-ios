@@ -30,7 +30,7 @@ import Foundation
         var setter: Method = nil
     }
 
-    private let cls: AnyClass
+    public let cls: AnyClass
     private var members: [String: MemberInfo] = [:]
     private var ctor: Method = nil
 
