@@ -58,16 +58,25 @@
 
 - (NSString*)didGenerateStub:(NSString*)stub {
     NSBundle* bundle = [NSBundle bundleForClass:self.class];
-    NSString* name = NSStringFromClass(self.class);
-    if (name.pathExtension.length) {
-        name = name.pathExtension;
+    NSString* className = NSStringFromClass(self.class);
+    if (className.pathExtension.length) {
+        className = className.pathExtension;
     }
-    NSString* path = [bundle pathForResource:name ofType:@"js"];
-    if (path) {
-        NSString* content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+
+    NSString* fileToReplace = [NSString stringWithFormat:@"%@-replace", className];
+    NSString* replacePath = [bundle pathForResource:fileToReplace ofType:@"js"];
+    NSString* fileToAppend = [NSString stringWithFormat:@"%@-append", className];
+    NSString* appendPath = [bundle pathForResource:fileToAppend ofType:@"js"];
+    if (replacePath) {
+        NSString* content = [NSString stringWithContentsOfFile:replacePath encoding:NSUTF8StringEncoding error:nil];
+        if (content)
+            return content;
+    } else if (appendPath) {
+        NSString* content = [NSString stringWithContentsOfFile:appendPath encoding:NSUTF8StringEncoding error:nil];
         if (content)
             return [stub stringByAppendingString:content];
     }
+
     return stub;
 }
 
