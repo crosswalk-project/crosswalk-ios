@@ -14,6 +14,13 @@
 		AB2273E51AA6FDA700F9207A /* www in Resources */ = {isa = PBXBuildFile; fileRef = AB2273E41AA6FDA700F9207A /* www */; };
 		AB3ECCC01A6243B3001925A3 /* XWalkExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = AB3ECCBE1A6243B3001925A3 /* XWalkExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AB3ECCC11A6243B3001925A3 /* XWalkExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3ECCBF1A6243B3001925A3 /* XWalkExtension.m */; };
+		AB7B469D1B240C4600B7C9DD /* DemoServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7B46961B240C4600B7C9DD /* DemoServer.swift */; };
+		AB7B469E1B240C4600B7C9DD /* HttpHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7B46971B240C4600B7C9DD /* HttpHandlers.swift */; };
+		AB7B469F1B240C4600B7C9DD /* HttpParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7B46981B240C4600B7C9DD /* HttpParser.swift */; };
+		AB7B46A01B240C4600B7C9DD /* HttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7B46991B240C4600B7C9DD /* HttpRequest.swift */; };
+		AB7B46A11B240C4600B7C9DD /* HttpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7B469A1B240C4600B7C9DD /* HttpResponse.swift */; };
+		AB7B46A21B240C4600B7C9DD /* HttpServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7B469B1B240C4600B7C9DD /* HttpServer.swift */; };
+		AB7B46A31B240C4600B7C9DD /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7B469C1B240C4600B7C9DD /* Socket.swift */; };
 		AB83D7411AAED8A200C2EDC7 /* ExecutionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB83D7401AAED8A200C2EDC7 /* ExecutionContext.swift */; };
 		ABD3E8541A8CD08300F2BAB9 /* XWalkExtensionFactoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3E8531A8CD08300F2BAB9 /* XWalkExtensionFactoryTest.swift */; };
 		ABD3E8561A8CD3F900F2BAB9 /* XWalkReflectionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3E8551A8CD3F900F2BAB9 /* XWalkReflectionTest.swift */; };
@@ -30,10 +37,6 @@
 		EE174E781A0361CB00168D96 /* crosswalk.js in Resources */ = {isa = PBXBuildFile; fileRef = EE174E771A0361CB00168D96 /* crosswalk.js */; };
 		EE62692419FA52FC00EFC3F8 /* XWalkInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = EE62691E19FA52FC00EFC3F8 /* XWalkInvocation.m */; };
 		EE62692619FA52FC00EFC3F8 /* XWalkWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE62692019FA52FC00EFC3F8 /* XWalkWebView.swift */; };
-		EE71648F1A716C9F00078FF9 /* XWalkHttpConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = EE71648B1A716C9F00078FF9 /* XWalkHttpConnection.h */; };
-		EE7164901A716C9F00078FF9 /* XWalkHttpConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = EE71648C1A716C9F00078FF9 /* XWalkHttpConnection.m */; };
-		EE7164911A716C9F00078FF9 /* XWalkHttpServer.h in Headers */ = {isa = PBXBuildFile; fileRef = EE71648D1A716C9F00078FF9 /* XWalkHttpServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EE7164921A716C9F00078FF9 /* XWalkHttpServer.m in Sources */ = {isa = PBXBuildFile; fileRef = EE71648E1A716C9F00078FF9 /* XWalkHttpServer.m */; };
 		EE7886761A0D0CE30013A855 /* XWalkExtensionLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7886751A0D0CE30013A855 /* XWalkExtensionLoader.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +71,13 @@
 		AB2273E41AA6FDA700F9207A /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		AB3ECCBE1A6243B3001925A3 /* XWalkExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XWalkExtension.h; path = XWalkView/XWalkExtension.h; sourceTree = "<group>"; };
 		AB3ECCBF1A6243B3001925A3 /* XWalkExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XWalkExtension.m; path = XWalkView/XWalkExtension.m; sourceTree = "<group>"; };
+		AB7B46961B240C4600B7C9DD /* DemoServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DemoServer.swift; path = "../third-party/swifter/Common/DemoServer.swift"; sourceTree = "<group>"; };
+		AB7B46971B240C4600B7C9DD /* HttpHandlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HttpHandlers.swift; path = "../third-party/swifter/Common/HttpHandlers.swift"; sourceTree = "<group>"; };
+		AB7B46981B240C4600B7C9DD /* HttpParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HttpParser.swift; path = "../third-party/swifter/Common/HttpParser.swift"; sourceTree = "<group>"; };
+		AB7B46991B240C4600B7C9DD /* HttpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HttpRequest.swift; path = "../third-party/swifter/Common/HttpRequest.swift"; sourceTree = "<group>"; };
+		AB7B469A1B240C4600B7C9DD /* HttpResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HttpResponse.swift; path = "../third-party/swifter/Common/HttpResponse.swift"; sourceTree = "<group>"; };
+		AB7B469B1B240C4600B7C9DD /* HttpServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HttpServer.swift; path = "../third-party/swifter/Common/HttpServer.swift"; sourceTree = "<group>"; };
+		AB7B469C1B240C4600B7C9DD /* Socket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Socket.swift; path = "../third-party/swifter/Common/Socket.swift"; sourceTree = "<group>"; };
 		AB83D7401AAED8A200C2EDC7 /* ExecutionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecutionContext.swift; sourceTree = "<group>"; };
 		ABD3E8531A8CD08300F2BAB9 /* XWalkExtensionFactoryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWalkExtensionFactoryTest.swift; sourceTree = "<group>"; };
 		ABD3E8551A8CD3F900F2BAB9 /* XWalkReflectionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWalkReflectionTest.swift; sourceTree = "<group>"; };
@@ -86,10 +96,6 @@
 		EE62691D19FA52FC00EFC3F8 /* XWalkInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XWalkInvocation.h; path = XWalkView/XWalkInvocation.h; sourceTree = "<group>"; };
 		EE62691E19FA52FC00EFC3F8 /* XWalkInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XWalkInvocation.m; path = XWalkView/XWalkInvocation.m; sourceTree = "<group>"; };
 		EE62692019FA52FC00EFC3F8 /* XWalkWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkWebView.swift; path = XWalkView/XWalkWebView.swift; sourceTree = "<group>"; };
-		EE71648B1A716C9F00078FF9 /* XWalkHttpConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XWalkHttpConnection.h; path = XWalkView/XWalkHttpConnection.h; sourceTree = "<group>"; };
-		EE71648C1A716C9F00078FF9 /* XWalkHttpConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XWalkHttpConnection.m; path = XWalkView/XWalkHttpConnection.m; sourceTree = "<group>"; };
-		EE71648D1A716C9F00078FF9 /* XWalkHttpServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XWalkHttpServer.h; path = XWalkView/XWalkHttpServer.h; sourceTree = "<group>"; };
-		EE71648E1A716C9F00078FF9 /* XWalkHttpServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XWalkHttpServer.m; path = XWalkView/XWalkHttpServer.m; sourceTree = "<group>"; };
 		EE7886751A0D0CE30013A855 /* XWalkExtensionLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkExtensionLoader.swift; path = XWalkView/XWalkExtensionLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -136,6 +142,20 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		AB7B46951B240C3200B7C9DD /* Swifter */ = {
+			isa = PBXGroup;
+			children = (
+				AB7B46961B240C4600B7C9DD /* DemoServer.swift */,
+				AB7B46971B240C4600B7C9DD /* HttpHandlers.swift */,
+				AB7B46981B240C4600B7C9DD /* HttpParser.swift */,
+				AB7B46991B240C4600B7C9DD /* HttpRequest.swift */,
+				AB7B469A1B240C4600B7C9DD /* HttpResponse.swift */,
+				AB7B469B1B240C4600B7C9DD /* HttpServer.swift */,
+				AB7B469C1B240C4600B7C9DD /* Socket.swift */,
+			);
+			name = Swifter;
+			sourceTree = "<group>";
+		};
 		EE62682B19FA323900EFC3F8 = {
 			isa = PBXGroup;
 			children = (
@@ -157,10 +177,7 @@
 		EE62683719FA323900EFC3F8 /* XWalkView */ = {
 			isa = PBXGroup;
 			children = (
-				EE71648B1A716C9F00078FF9 /* XWalkHttpConnection.h */,
-				EE71648C1A716C9F00078FF9 /* XWalkHttpConnection.m */,
-				EE71648D1A716C9F00078FF9 /* XWalkHttpServer.h */,
-				EE71648E1A716C9F00078FF9 /* XWalkHttpServer.m */,
+				AB7B46951B240C3200B7C9DD /* Swifter */,
 				EE62691C19FA52FC00EFC3F8 /* XWalkView.h */,
 				EE0A1DEC1A53DCFB00C9E6D3 /* XWalkThread.swift */,
 				EE0A1DDD1A52A5A300C9E6D3 /* XWalkReflection.swift */,
@@ -199,8 +216,6 @@
 				AB3ECCC01A6243B3001925A3 /* XWalkExtension.h in Headers */,
 				ABD475E31A4129FC00F3BDEB /* XWalkInvocation.h in Headers */,
 				ABF4635F1A67519D0049D942 /* XWalkDelegate.h in Headers */,
-				EE7164911A716C9F00078FF9 /* XWalkHttpServer.h in Headers */,
-				EE71648F1A716C9F00078FF9 /* XWalkHttpConnection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,13 +336,18 @@
 				EE7886761A0D0CE30013A855 /* XWalkExtensionLoader.swift in Sources */,
 				AB3ECCC11A6243B3001925A3 /* XWalkExtension.m in Sources */,
 				EE0A1DE01A52A5A300C9E6D3 /* XWalkStubGenerator.swift in Sources */,
+				AB7B469F1B240C4600B7C9DD /* HttpParser.swift in Sources */,
 				EE174E451A01FDDE00168D96 /* XWalkExtensionFactory.swift in Sources */,
-				EE7164921A716C9F00078FF9 /* XWalkHttpServer.m in Sources */,
 				EE62692419FA52FC00EFC3F8 /* XWalkInvocation.m in Sources */,
+				AB7B469D1B240C4600B7C9DD /* DemoServer.swift in Sources */,
 				EE0A1DD31A52775400C9E6D3 /* XWalkChannel.swift in Sources */,
 				EE0A1DED1A53DCFB00C9E6D3 /* XWalkThread.swift in Sources */,
+				AB7B46A01B240C4600B7C9DD /* HttpRequest.swift in Sources */,
+				AB7B46A11B240C4600B7C9DD /* HttpResponse.swift in Sources */,
 				EE62692619FA52FC00EFC3F8 /* XWalkWebView.swift in Sources */,
-				EE7164901A716C9F00078FF9 /* XWalkHttpConnection.m in Sources */,
+				AB7B46A31B240C4600B7C9DD /* Socket.swift in Sources */,
+				AB7B469E1B240C4600B7C9DD /* HttpHandlers.swift in Sources */,
+				AB7B46A21B240C4600B7C9DD /* HttpServer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
