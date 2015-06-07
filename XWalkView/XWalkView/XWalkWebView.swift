@@ -38,7 +38,7 @@ public extension WKWebView {
     internal func injectScript(code: String) -> WKUserScript {
         let script = WKUserScript(
             source: code,
-            injectionTime: WKUserScriptInjectionTime.AtDocumentEnd,
+            injectionTime: WKUserScriptInjectionTime.AtDocumentStart,
             forMainFrameOnly: false)
         configuration.userContentController.addUserScript(script)
         if self.URL != nil {
@@ -78,18 +78,16 @@ public extension WKWebView {
             return nil
         }
 
-        var httpd = objc_getAssociatedObject(self, key.httpd) as? XWalkHttpServer
+        var httpd = objc_getAssociatedObject(self, key.httpd) as? HttpServer
         if httpd == nil {
-            httpd = XWalkHttpServer(documentRoot: readAccessURL.path)
-            if !extensionThread.executing {
-                extensionThread.start()
-            }
-            httpd!.start(extensionThread)
+            httpd = HttpServer()
+            httpd!["/(.+)"] = HttpHandlers.directory(readAccessURL.path!)
+            httpd!.start()
             objc_setAssociatedObject(self, key.httpd, httpd!, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
         }
 
         let target = URL.path!.substringFromIndex(advance(URL.path!.startIndex, count(readAccessURL.path!)))
-        let url = NSURL(scheme: "http", host: "127.0.0.1:\(httpd!.port)", path: target)
+        let url = NSURL(scheme: "http", host: "127.0.0.1:8080", path: target)
         return loadRequest(NSURLRequest(URL: url!));
     }
 }
