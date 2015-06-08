@@ -1,5 +1,6 @@
 // Platform: ios
 // fc4db9145934bd0053161cbf9ffc0caf83b770c6
+window.addEventListener('load', function() {
 /*
  Licensed to the Apache Software Foundation (ASF) under one
  or more contributor license agreements.  See the NOTICE file
@@ -1668,3 +1669,5 @@ window.cordova = require('cordova');
 require('cordova/init');
 
 })();
+
+});
