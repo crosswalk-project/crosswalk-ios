@@ -7,8 +7,10 @@ import WebKit
 public extension WKWebView {
     private struct key {
         static let thread = UnsafePointer<Void>(bitPattern: Selector("extensionThread").hashValue)
-        static let httpd = UnsafePointer<Void>(bitPattern: Selector("extensionHTTPD").hashValue)
     }
+
+    private static let httpServer: HttpServer = HttpServer()
+
     public var extensionThread: NSThread {
         get {
             if objc_getAssociatedObject(self, key.thread) == nil {
@@ -78,12 +80,9 @@ public extension WKWebView {
             return nil
         }
 
-        var httpd = objc_getAssociatedObject(self, key.httpd) as? HttpServer
-        if httpd == nil {
-            httpd = HttpServer()
-            httpd!["/(.+)"] = HttpHandlers.directory(readAccessURL.path!)
-            httpd!.start()
-            objc_setAssociatedObject(self, key.httpd, httpd!, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
+        if self.dynamicType.httpServer.acceptSocket == -1 {
+            self.dynamicType.httpServer["/(.+)"] = HttpHandlers.directory(readAccessURL.path!)
+            self.dynamicType.httpServer.start()
         }
 
         let target = URL.path!.substringFromIndex(advance(URL.path!.startIndex, count(readAccessURL.path!)))
