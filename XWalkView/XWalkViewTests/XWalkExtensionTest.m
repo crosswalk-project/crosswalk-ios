@@ -61,7 +61,7 @@
 
 @interface XWalkExtensionTest : XCTestCase <WKNavigationDelegate>
 
-@property(nonatomic, strong) WKWebView* webview;
+@property(nonatomic, strong) XWalkView* webview;
 @property(nonatomic, copy) NSString* extensionName;
 @property(nonatomic, strong) ExecutionContext* executionContext;
 @property(nonatomic, strong) ExtensionTestExtension* ext;
@@ -73,13 +73,13 @@
 - (void)setUp {
     [super setUp];
     self.extensionName = @"xwalk.test.ext";
-    self.webview = [[WKWebView alloc] initWithFrame:CGRectZero configuration:[[WKWebViewConfiguration alloc] init]];
+    self.webview = [[XWalkView alloc] initWithFrame:CGRectZero configuration:[[WKWebViewConfiguration alloc] init]];
     self.webview.navigationDelegate = self;
 
     [XWalkExtensionFactory register:self.extensionName cls:[ExtensionTestExtension class]];
 
     self.ext = (ExtensionTestExtension*)[XWalkExtensionFactory createExtension:self.extensionName];
-    [self.webview loadExtension:self.ext namespace:self.extensionName thread:nil];
+    [self.webview loadExtension:self.ext namespace:self.extensionName];
 }
 
 - (void)tearDown {
@@ -138,7 +138,7 @@
 - (void)testDidGenerateStub {
     ExtensionTestExtension* ext = (ExtensionTestExtension*)[XWalkExtensionFactory createExtension:self.extensionName];
     ext.didGenerateStubExpectation = [self expectationWithDescription:@"DidGenerateStubExtension"];
-    [self.webview loadExtension:ext namespace:self.extensionName thread:nil];
+    [self.webview loadExtension:ext namespace:self.extensionName];
 
     [self waitForExpectationsWithTimeout:1 handler:^(NSError *error) {
         if (error) {
@@ -150,7 +150,7 @@
 - (void)testDidBindExtension {
     ExtensionTestExtension* ext = (ExtensionTestExtension*)[XWalkExtensionFactory createExtension:self.extensionName];
     ext.didBindExpectation = [self expectationWithDescription:@"DidBindExtension"];
-    [self.webview loadExtension:ext namespace:self.extensionName thread:nil];
+    [self.webview loadExtension:ext namespace:self.extensionName];
 
     [self waitForExpectationsWithTimeout:1 handler:^(NSError *error) {
         if (error) {

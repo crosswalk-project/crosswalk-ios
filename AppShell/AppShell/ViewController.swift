@@ -19,7 +19,7 @@ class ViewController: UIViewController {
             }
         }
 
-        let webview = WKWebView(frame: view.frame, configuration: WKWebViewConfiguration())
+        let webview = XWalkView(frame: view.frame, configuration: WKWebViewConfiguration())
         webview.scrollView.bounces = false
         view.addSubview(webview)
 

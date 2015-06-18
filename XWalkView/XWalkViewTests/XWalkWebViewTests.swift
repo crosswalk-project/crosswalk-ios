@@ -11,23 +11,16 @@ class WebViewExtension: XWalkExtension {
 }
 
 class XWalkWebViewTests: XCTestCase {
-    var webview: WKWebView? = nil
+    var webview: XWalkView? = nil
 
     override func setUp() {
         super.setUp()
-        webview = WKWebView(frame: CGRectZero, configuration: WKWebViewConfiguration())
+        webview = XWalkView(frame: CGRectZero, configuration: WKWebViewConfiguration())
     }
 
     override func tearDown() {
         super.tearDown()
         webview = nil
-    }
-
-    func testExtensionThread() {
-        XCTAssertNotNil(webview?.extensionThread, "Failed to retrive extensionThread")
-        var thread: NSThread = NSThread()
-        webview!.extensionThread = thread
-        XCTAssertEqual(thread, webview!.extensionThread)
     }
 
     func testLoadExtension() {

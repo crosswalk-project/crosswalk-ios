@@ -6,36 +6,36 @@ import Foundation
 import WebKit
 
 public class XWalkChannel : NSObject, WKScriptMessageHandler {
-    public var mirror: XWalkReflection!
     public let name: String
-    private(set) public weak var webView: WKWebView!
-    private(set) public var thread: NSThread = NSThread.mainThread()
+    public var mirror: XWalkReflection!
     private(set) public var namespace: String = ""
+    private(set) public weak var webView: XWalkView?
+    private(set) public weak var thread: NSThread?
 
     private var instances: [Int: AnyObject] = [:]
     private var userScript: WKUserScript?
 
-    public init(webView: WKWebView, name: String? = nil) {
+    public init(webView: XWalkView) {
         struct seq{
             static var num: UInt32 = 0
         }
 
         self.webView = webView
-        self.name = name ?? "\(++seq.num)"
+        self.name = "\(++seq.num)"
         super.init()
         webView.configuration.userContentController.addScriptMessageHandler(self, name: "\(self.name)")
     }
 
-    public func bind(object: AnyObject, namespace: String, thread: NSThread) {
+    public func bind(object: AnyObject, namespace: String, thread: NSThread?) {
         self.namespace = namespace
-        self.thread = thread
+        self.thread = thread ?? NSThread.mainThread()
 
         mirror = XWalkReflection(cls: object.dynamicType)
         var script = XWalkStubGenerator(reflection: mirror).generate(name, namespace: namespace, object: object)
         let delegate = object as? XWalkDelegate
         script = delegate?.didGenerateStub?(script) ?? script
 
-        userScript = webView.injectScript(script)
+        userScript = webView?.injectScript(script)
         delegate?.didBindExtension?(self, instance: 0)
         instances[0] = object
     }
@@ -95,12 +95,12 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
             (object as? XWalkDelegate)?.didUnbindExtension?()
         } else if body["destroy"] != nil {
             // Destroy extension
-            if webView.URL != nil {
+            if webView?.URL != nil {
                 evaluateJavaScript("delete \(namespace);", completionHandler:nil)
             }
-            webView.configuration.userContentController.removeScriptMessageHandlerForName("\(name)")
+            webView?.configuration.userContentController.removeScriptMessageHandlerForName("\(name)")
             if userScript != nil {
-                webView.configuration.userContentController.removeUserScript(userScript!)
+                webView?.configuration.userContentController.removeUserScript(userScript!)
             }
             for (_, object) in instances {
                 (object as? XWalkDelegate)?.didUnbindExtension?()
@@ -115,12 +115,12 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
     public func evaluateJavaScript(string: String, completionHandler: ((AnyObject!, NSError!)->Void)?) {
         // TODO: Should call completionHandler with an NSError object when webView is nil
         if NSThread.isMainThread() {
-            webView.evaluateJavaScript(string, completionHandler: completionHandler)
+            webView?.evaluateJavaScript(string, completionHandler: completionHandler)
         } else {
             weak var weakSelf = self
             dispatch_async(dispatch_get_main_queue()) {
                 if let strongSelf = weakSelf {
-                    strongSelf.webView.evaluateJavaScript(string, completionHandler: completionHandler)
+                    strongSelf.webView?.evaluateJavaScript(string, completionHandler: completionHandler)
                 }
             }
         }
