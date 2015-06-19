@@ -10,8 +10,8 @@ public class XWalkView : WKWebView {
     private var channels: Dictionary<String, XWalkChannel> = [:]
 
     deinit {
-        for name in channels.keys {
-            self.configuration.userContentController.removeScriptMessageHandlerForName(name)
+        for channel in channels.values {
+            channel.destroyExtension()
         }
     }
 

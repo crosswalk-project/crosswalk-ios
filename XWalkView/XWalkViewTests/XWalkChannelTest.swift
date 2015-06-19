@@ -33,13 +33,14 @@ class XWalkChannelTest: XCTestCase, WKNavigationDelegate {
         channel = XWalkChannel(webView: webview!)
 
         var ext = XWalkExtensionFactory.createExtension(extensionName) as! ChannelTestExtension
+        webview?.loadExtension(ext, namespace: extensionName)
         channel?.bind(ext, namespace: extensionName, thread: nil)
     }
 
     override func tearDown() {
         super.tearDown()
-        webview = nil
         channel = nil
+        webview = nil
     }
 
     func webView(webView: WKWebView, didCommitNavigation navigation: WKNavigation!) {
@@ -68,7 +69,7 @@ class XWalkChannelTest: XCTestCase, WKNavigationDelegate {
         var expectation = self.expectationWithDescription("ExpectationEvaluateJavaScript")
         var executionContext = ExecutionContext(script: "typeof(\(extensionName));", completionHandler:{ (object, error) in
             if error != nil {
-                println("Failed to evaluate javascript, error:\(error)")
+                XCTFail("Failed to evaluate javascript, error:\(error)")
             } else {
                 expectation.fulfill()
             }

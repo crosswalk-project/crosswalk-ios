@@ -40,6 +40,20 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
         instances[0] = object
     }
 
+    public func destroyExtension() {
+        if webView?.URL != nil {
+            evaluateJavaScript("delete \(namespace);", completionHandler:nil)
+        }
+        webView?.configuration.userContentController.removeScriptMessageHandlerForName("\(name)")
+        if userScript != nil {
+            webView?.configuration.userContentController.removeUserScript(userScript!)
+        }
+        for (_, object) in instances {
+            (object as? XWalkDelegate)?.didUnbindExtension?()
+        }
+        instances.removeAll(keepCapacity: false)
+    }
+
     public func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage: WKScriptMessage) {
         let body = didReceiveScriptMessage.body as! [String: AnyObject]
         let instid = (body["instance"] as? NSNumber)?.integerValue ?? 0
@@ -94,18 +108,7 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
             instances.removeValueForKey(-instid)
             (object as? XWalkDelegate)?.didUnbindExtension?()
         } else if body["destroy"] != nil {
-            // Destroy extension
-            if webView?.URL != nil {
-                evaluateJavaScript("delete \(namespace);", completionHandler:nil)
-            }
-            webView?.configuration.userContentController.removeScriptMessageHandlerForName("\(name)")
-            if userScript != nil {
-                webView?.configuration.userContentController.removeUserScript(userScript!)
-            }
-            for (_, object) in instances {
-                (object as? XWalkDelegate)?.didUnbindExtension?()
-            }
-            instances.removeAll(keepCapacity: false)
+            destroyExtension()
         } else {
             // TODO: support user defined message?
             println("ERROR: Unknown message: \(body)")
