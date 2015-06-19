@@ -4,37 +4,27 @@
 
 import WebKit
 
-public extension WKWebView {
-    private struct key {
-        static let thread = UnsafePointer<Void>(bitPattern: Selector("extensionThread").hashValue)
-    }
-
+public class XWalkView : WKWebView {
     private static let httpServer: HttpServer = HttpServer()
+    private var extensionThread: XWalkThread?
+    private var channels: Dictionary<String, XWalkChannel> = [:]
 
-    public var extensionThread: NSThread {
-        get {
-            if objc_getAssociatedObject(self, key.thread) == nil {
-                prepareForExtension()
-                let thread = XWalkThread()
-                objc_setAssociatedObject(self, key.thread, thread, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
-                return thread
-            }
-            return objc_getAssociatedObject(self, key.thread) as! NSThread
-        }
-        set(thread) {
-            if objc_getAssociatedObject(self, key.thread) == nil {
-                prepareForExtension()
-            }
-            objc_setAssociatedObject(self, key.thread, thread, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
+    deinit {
+        for name in channels.keys {
+            self.configuration.userContentController.removeScriptMessageHandlerForName(name)
         }
     }
 
-    public func loadExtension(object: AnyObject, namespace: String, thread: NSThread? = nil) {
-        if !extensionThread.executing && thread == nil {
-            extensionThread.start()
+    public func loadExtension(object: AnyObject, namespace: String) {
+        if extensionThread == nil {
+            prepareForExtension()
+            extensionThread = XWalkThread()
+            extensionThread?.start()
         }
-        let channel = XWalkChannel(webView: self)
-        channel.bind(object, namespace: namespace, thread: thread ?? extensionThread)
+        var channel = XWalkChannel(webView: self)
+        channel.bind(object, namespace: namespace, thread: extensionThread)
+        assert(channels[channel.name] == nil, "Duplicate channel name:\(channel.name)")
+        channels[channel.name] = channel
     }
 
     internal func injectScript(code: String) -> WKUserScript {
@@ -54,7 +44,7 @@ public extension WKWebView {
     }
 
     private func prepareForExtension() {
-        let bundle = NSBundle(forClass: XWalkChannel.self)
+        let bundle = NSBundle(forClass: self.dynamicType)
         if let path = bundle.pathForResource("crosswalk", ofType: "js") {
             if let code = NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding, error: nil) {
                 injectScript(code as String)
