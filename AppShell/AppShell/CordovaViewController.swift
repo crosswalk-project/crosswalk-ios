@@ -20,7 +20,7 @@ class ViewController: CDVViewController {
             }
         }
 
-        let webview = WKWebView(frame: view.frame, configuration: WKWebViewConfiguration())
+        let webview = XWalkView(frame: view.frame, configuration: WKWebViewConfiguration())
         webview.navigationDelegate = self
         webview.scrollView.bounces = false
         view.addSubview(webview)
