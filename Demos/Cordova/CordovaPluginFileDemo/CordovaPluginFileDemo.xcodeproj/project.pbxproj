@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		AB3D6B341A790D5C00FFA82A /* sample-file in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB3D6B331A790D5C00FFA82A /* sample-file */; };
+		AB5CEA3F1B3C3571007B40AB /* XWalkView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABB3F4C71AE3448500CF5C9B /* XWalkView.framework */; };
+		AB5CEA401B3C3571007B40AB /* XWalkView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ABB3F4C71AE3448500CF5C9B /* XWalkView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AB887EF61AC69D8600ADC77B /* CordovaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB887EF51AC69D8600ADC77B /* CordovaViewController.swift */; };
 		ABAB76881A47C6E700E392B6 /* CDVAssetLibraryFilesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAB76831A47C6E700E392B6 /* CDVAssetLibraryFilesystem.m */; };
 		ABAB76891A47C6E700E392B6 /* CDVFile.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAB76851A47C6E700E392B6 /* CDVFile.m */; };
@@ -23,12 +25,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		ABAB766C1A47BEF500E392B6 /* PBXContainerItemProxy */ = {
+		AB5CEA411B3C3571007B40AB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = ABAB764E1A47BEF500E392B6 /* Project object */;
+			containerPortal = ABB3F4C11AE3448500CF5C9B /* XWalkView.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = ABAB76551A47BEF500E392B6;
-			remoteInfo = CordovaPluginFileDemo;
+			remoteGlobalIDString = EE62683419FA323900EFC3F8;
+			remoteInfo = XWalkView;
 		};
 		ABB3F4C61AE3448500CF5C9B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -92,6 +94,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				ABB3F4DA1AE344C200CF5C9B /* Cordova.framework in Embed Frameworks */,
+				AB5CEA401B3C3571007B40AB /* XWalkView.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,13 +131,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABB3F4D91AE344C200CF5C9B /* Cordova.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ABAB76681A47BEF500E392B6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				AB5CEA3F1B3C3571007B40AB /* XWalkView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +257,7 @@
 			dependencies = (
 				ABB3F4DF1AE344E900CF5C9B /* PBXTargetDependency */,
 				ABB3F4DC1AE344C200CF5C9B /* PBXTargetDependency */,
+				AB5CEA421B3C3571007B40AB /* PBXTargetDependency */,
 			);
 			name = CordovaPluginFileDemo;
 			productName = CordovaPluginFileDemo;
@@ -277,10 +275,6 @@
 				TargetAttributes = {
 					ABAB76551A47BEF500E392B6 = {
 						CreatedOnToolsVersion = 6.1;
-					};
-					ABAB766A1A47BEF500E392B6 = {
-						CreatedOnToolsVersion = 6.1;
-						TestTargetID = ABAB76551A47BEF500E392B6;
 					};
 				};
 			};
@@ -355,13 +349,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ABAB76691A47BEF500E392B6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -378,20 +365,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ABAB76671A47BEF500E392B6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		ABAB766D1A47BEF500E392B6 /* PBXTargetDependency */ = {
+		AB5CEA421B3C3571007B40AB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = ABAB76551A47BEF500E392B6 /* CordovaPluginFileDemo */;
-			targetProxy = ABAB766C1A47BEF500E392B6 /* PBXContainerItemProxy */;
+			name = XWalkView;
+			targetProxy = AB5CEA411B3C3571007B40AB /* PBXContainerItemProxy */;
 		};
 		ABB3F4DC1AE344C200CF5C9B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

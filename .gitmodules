@@ -4,6 +4,6 @@
 [submodule "third-party/Icenium/sample-file"]
 	path = third-party/Icenium/sample-file
 	url = git://github.com/Icenium/sample-file.git
-[submodule "third-party/swifter"]
-	path = third-party/swifter
-	url = https://github.com/glock45/swifter.git
+[submodule "third-party/GCDWebServer"]
+	path = third-party/GCDWebServer
+	url = https://github.com/swisspol/GCDWebServer.git

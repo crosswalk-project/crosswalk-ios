@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AB0253881AE1F563007A803C /* XWalkView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB02537F1AE1F443007A803C /* XWalkView.framework */; };
+		AB5CEA471B3C35EB007B40AB /* XWalkView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB02537F1AE1F443007A803C /* XWalkView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ABC7AAD11A7B3FEC00865FE3 /* Sample.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EEB10F841A614074000709AE /* Sample.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EE174E431A00FBA900168D96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE62693B19FA54AC00EFC3F8 /* Main.storyboard */; };
 		EE62693519FA548E00EFC3F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE62693119FA548E00EFC3F8 /* AppDelegate.swift */; };
@@ -42,6 +43,13 @@
 			remoteGlobalIDString = EE62683419FA323900EFC3F8;
 			remoteInfo = XWalkView;
 		};
+		AB5CEA481B3C35EB007B40AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB0253791AE1F443007A803C /* XWalkView.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EE62683419FA323900EFC3F8;
+			remoteInfo = XWalkView;
+		};
 		AB8DD0421AE29E3900CC6A67 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AB0253791AE1F443007A803C /* XWalkView.xcodeproj */;
@@ -66,6 +74,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				ABC7AAD11A7B3FEC00865FE3 /* Sample.framework in Embed Frameworks */,
+				AB5CEA471B3C35EB007B40AB /* XWalkView.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -187,6 +196,7 @@
 			dependencies = (
 				EEB10F9A1A614074000709AE /* PBXTargetDependency */,
 				AB02538A1AE1F56A007A803C /* PBXTargetDependency */,
+				AB5CEA491B3C35EB007B40AB /* PBXTargetDependency */,
 			);
 			name = SampleApp;
 			productName = SampleApp;
@@ -319,6 +329,11 @@
 			isa = PBXTargetDependency;
 			name = XWalkView;
 			targetProxy = AB0253891AE1F56A007A803C /* PBXContainerItemProxy */;
+		};
+		AB5CEA491B3C35EB007B40AB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = XWalkView;
+			targetProxy = AB5CEA481B3C35EB007B40AB /* PBXContainerItemProxy */;
 		};
 		AB8DD0431AE29E3900CC6A67 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
