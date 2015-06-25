@@ -14,14 +14,36 @@
 		AB2273E51AA6FDA700F9207A /* www in Resources */ = {isa = PBXBuildFile; fileRef = AB2273E41AA6FDA700F9207A /* www */; };
 		AB3ECCC01A6243B3001925A3 /* XWalkExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = AB3ECCBE1A6243B3001925A3 /* XWalkExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AB3ECCC11A6243B3001925A3 /* XWalkExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3ECCBF1A6243B3001925A3 /* XWalkExtension.m */; };
-		AB7B469D1B240C4600B7C9DD /* DemoServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7B46961B240C4600B7C9DD /* DemoServer.swift */; };
-		AB7B469E1B240C4600B7C9DD /* HttpHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7B46971B240C4600B7C9DD /* HttpHandlers.swift */; };
-		AB7B469F1B240C4600B7C9DD /* HttpParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7B46981B240C4600B7C9DD /* HttpParser.swift */; };
-		AB7B46A01B240C4600B7C9DD /* HttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7B46991B240C4600B7C9DD /* HttpRequest.swift */; };
-		AB7B46A11B240C4600B7C9DD /* HttpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7B469A1B240C4600B7C9DD /* HttpResponse.swift */; };
-		AB7B46A21B240C4600B7C9DD /* HttpServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7B469B1B240C4600B7C9DD /* HttpServer.swift */; };
-		AB7B46A31B240C4600B7C9DD /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7B469C1B240C4600B7C9DD /* Socket.swift */; };
 		AB83D7411AAED8A200C2EDC7 /* ExecutionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB83D7401AAED8A200C2EDC7 /* ExecutionContext.swift */; };
+		ABB92FDB1B3C2C3F002F05B5 /* GCDWebServer.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB92FCF1B3C2C3F002F05B5 /* GCDWebServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ABB92FDC1B3C2C3F002F05B5 /* GCDWebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB92FD01B3C2C3F002F05B5 /* GCDWebServer.m */; };
+		ABB92FDD1B3C2C3F002F05B5 /* GCDWebServerConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB92FD11B3C2C3F002F05B5 /* GCDWebServerConnection.h */; };
+		ABB92FDE1B3C2C3F002F05B5 /* GCDWebServerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB92FD21B3C2C3F002F05B5 /* GCDWebServerConnection.m */; };
+		ABB92FDF1B3C2C3F002F05B5 /* GCDWebServerFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB92FD31B3C2C3F002F05B5 /* GCDWebServerFunctions.h */; };
+		ABB92FE01B3C2C3F002F05B5 /* GCDWebServerFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB92FD41B3C2C3F002F05B5 /* GCDWebServerFunctions.m */; };
+		ABB92FE11B3C2C3F002F05B5 /* GCDWebServerHTTPStatusCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB92FD51B3C2C3F002F05B5 /* GCDWebServerHTTPStatusCodes.h */; };
+		ABB92FE21B3C2C3F002F05B5 /* GCDWebServerPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB92FD61B3C2C3F002F05B5 /* GCDWebServerPrivate.h */; };
+		ABB92FE31B3C2C3F002F05B5 /* GCDWebServerRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB92FD71B3C2C3F002F05B5 /* GCDWebServerRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ABB92FE41B3C2C3F002F05B5 /* GCDWebServerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB92FD81B3C2C3F002F05B5 /* GCDWebServerRequest.m */; };
+		ABB92FE51B3C2C3F002F05B5 /* GCDWebServerResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB92FD91B3C2C3F002F05B5 /* GCDWebServerResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ABB92FE61B3C2C3F002F05B5 /* GCDWebServerResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB92FDA1B3C2C3F002F05B5 /* GCDWebServerResponse.m */; };
+		ABB92FF01B3C2C68002F05B5 /* GCDWebServerDataRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB92FE81B3C2C68002F05B5 /* GCDWebServerDataRequest.h */; };
+		ABB92FF11B3C2C68002F05B5 /* GCDWebServerDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB92FE91B3C2C68002F05B5 /* GCDWebServerDataRequest.m */; };
+		ABB92FF21B3C2C68002F05B5 /* GCDWebServerFileRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB92FEA1B3C2C68002F05B5 /* GCDWebServerFileRequest.h */; };
+		ABB92FF31B3C2C68002F05B5 /* GCDWebServerFileRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB92FEB1B3C2C68002F05B5 /* GCDWebServerFileRequest.m */; };
+		ABB92FF41B3C2C68002F05B5 /* GCDWebServerMultiPartFormRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB92FEC1B3C2C68002F05B5 /* GCDWebServerMultiPartFormRequest.h */; };
+		ABB92FF51B3C2C68002F05B5 /* GCDWebServerMultiPartFormRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB92FED1B3C2C68002F05B5 /* GCDWebServerMultiPartFormRequest.m */; };
+		ABB92FF61B3C2C68002F05B5 /* GCDWebServerURLEncodedFormRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB92FEE1B3C2C68002F05B5 /* GCDWebServerURLEncodedFormRequest.h */; };
+		ABB92FF71B3C2C68002F05B5 /* GCDWebServerURLEncodedFormRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB92FEF1B3C2C68002F05B5 /* GCDWebServerURLEncodedFormRequest.m */; };
+		ABB930011B3C2C81002F05B5 /* GCDWebServerDataResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB92FF91B3C2C81002F05B5 /* GCDWebServerDataResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ABB930021B3C2C81002F05B5 /* GCDWebServerDataResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB92FFA1B3C2C81002F05B5 /* GCDWebServerDataResponse.m */; };
+		ABB930031B3C2C81002F05B5 /* GCDWebServerErrorResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB92FFB1B3C2C81002F05B5 /* GCDWebServerErrorResponse.h */; };
+		ABB930041B3C2C81002F05B5 /* GCDWebServerErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB92FFC1B3C2C81002F05B5 /* GCDWebServerErrorResponse.m */; };
+		ABB930051B3C2C81002F05B5 /* GCDWebServerFileResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB92FFD1B3C2C81002F05B5 /* GCDWebServerFileResponse.h */; };
+		ABB930061B3C2C81002F05B5 /* GCDWebServerFileResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB92FFE1B3C2C81002F05B5 /* GCDWebServerFileResponse.m */; };
+		ABB930071B3C2C81002F05B5 /* GCDWebServerStreamedResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB92FFF1B3C2C81002F05B5 /* GCDWebServerStreamedResponse.h */; };
+		ABB930081B3C2C81002F05B5 /* GCDWebServerStreamedResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB930001B3C2C81002F05B5 /* GCDWebServerStreamedResponse.m */; };
+		ABB9300B1B3C2FB1002F05B5 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ABB9300A1B3C2FB1002F05B5 /* libz.dylib */; };
 		ABD3E8541A8CD08300F2BAB9 /* XWalkExtensionFactoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3E8531A8CD08300F2BAB9 /* XWalkExtensionFactoryTest.swift */; };
 		ABD3E8561A8CD3F900F2BAB9 /* XWalkReflectionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3E8551A8CD3F900F2BAB9 /* XWalkReflectionTest.swift */; };
 		ABD3E85A1A8CD44D00F2BAB9 /* XWalkChannelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3E8591A8CD44D00F2BAB9 /* XWalkChannelTest.swift */; };
@@ -71,14 +93,36 @@
 		AB2273E41AA6FDA700F9207A /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		AB3ECCBE1A6243B3001925A3 /* XWalkExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XWalkExtension.h; path = XWalkView/XWalkExtension.h; sourceTree = "<group>"; };
 		AB3ECCBF1A6243B3001925A3 /* XWalkExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XWalkExtension.m; path = XWalkView/XWalkExtension.m; sourceTree = "<group>"; };
-		AB7B46961B240C4600B7C9DD /* DemoServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DemoServer.swift; path = "../third-party/swifter/Common/DemoServer.swift"; sourceTree = "<group>"; };
-		AB7B46971B240C4600B7C9DD /* HttpHandlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HttpHandlers.swift; path = "../third-party/swifter/Common/HttpHandlers.swift"; sourceTree = "<group>"; };
-		AB7B46981B240C4600B7C9DD /* HttpParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HttpParser.swift; path = "../third-party/swifter/Common/HttpParser.swift"; sourceTree = "<group>"; };
-		AB7B46991B240C4600B7C9DD /* HttpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HttpRequest.swift; path = "../third-party/swifter/Common/HttpRequest.swift"; sourceTree = "<group>"; };
-		AB7B469A1B240C4600B7C9DD /* HttpResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HttpResponse.swift; path = "../third-party/swifter/Common/HttpResponse.swift"; sourceTree = "<group>"; };
-		AB7B469B1B240C4600B7C9DD /* HttpServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HttpServer.swift; path = "../third-party/swifter/Common/HttpServer.swift"; sourceTree = "<group>"; };
-		AB7B469C1B240C4600B7C9DD /* Socket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Socket.swift; path = "../third-party/swifter/Common/Socket.swift"; sourceTree = "<group>"; };
 		AB83D7401AAED8A200C2EDC7 /* ExecutionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecutionContext.swift; sourceTree = "<group>"; };
+		ABB92FCF1B3C2C3F002F05B5 /* GCDWebServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDWebServer.h; path = "../third-party/GCDWebServer/GCDWebServer/Core/GCDWebServer.h"; sourceTree = "<group>"; };
+		ABB92FD01B3C2C3F002F05B5 /* GCDWebServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDWebServer.m; path = "../third-party/GCDWebServer/GCDWebServer/Core/GCDWebServer.m"; sourceTree = "<group>"; };
+		ABB92FD11B3C2C3F002F05B5 /* GCDWebServerConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDWebServerConnection.h; path = "../third-party/GCDWebServer/GCDWebServer/Core/GCDWebServerConnection.h"; sourceTree = "<group>"; };
+		ABB92FD21B3C2C3F002F05B5 /* GCDWebServerConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDWebServerConnection.m; path = "../third-party/GCDWebServer/GCDWebServer/Core/GCDWebServerConnection.m"; sourceTree = "<group>"; };
+		ABB92FD31B3C2C3F002F05B5 /* GCDWebServerFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDWebServerFunctions.h; path = "../third-party/GCDWebServer/GCDWebServer/Core/GCDWebServerFunctions.h"; sourceTree = "<group>"; };
+		ABB92FD41B3C2C3F002F05B5 /* GCDWebServerFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDWebServerFunctions.m; path = "../third-party/GCDWebServer/GCDWebServer/Core/GCDWebServerFunctions.m"; sourceTree = "<group>"; };
+		ABB92FD51B3C2C3F002F05B5 /* GCDWebServerHTTPStatusCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDWebServerHTTPStatusCodes.h; path = "../third-party/GCDWebServer/GCDWebServer/Core/GCDWebServerHTTPStatusCodes.h"; sourceTree = "<group>"; };
+		ABB92FD61B3C2C3F002F05B5 /* GCDWebServerPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDWebServerPrivate.h; path = "../third-party/GCDWebServer/GCDWebServer/Core/GCDWebServerPrivate.h"; sourceTree = "<group>"; };
+		ABB92FD71B3C2C3F002F05B5 /* GCDWebServerRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDWebServerRequest.h; path = "../third-party/GCDWebServer/GCDWebServer/Core/GCDWebServerRequest.h"; sourceTree = "<group>"; };
+		ABB92FD81B3C2C3F002F05B5 /* GCDWebServerRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDWebServerRequest.m; path = "../third-party/GCDWebServer/GCDWebServer/Core/GCDWebServerRequest.m"; sourceTree = "<group>"; };
+		ABB92FD91B3C2C3F002F05B5 /* GCDWebServerResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDWebServerResponse.h; path = "../third-party/GCDWebServer/GCDWebServer/Core/GCDWebServerResponse.h"; sourceTree = "<group>"; };
+		ABB92FDA1B3C2C3F002F05B5 /* GCDWebServerResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDWebServerResponse.m; path = "../third-party/GCDWebServer/GCDWebServer/Core/GCDWebServerResponse.m"; sourceTree = "<group>"; };
+		ABB92FE81B3C2C68002F05B5 /* GCDWebServerDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDWebServerDataRequest.h; path = "../third-party/GCDWebServer/GCDWebServer/Requests/GCDWebServerDataRequest.h"; sourceTree = "<group>"; };
+		ABB92FE91B3C2C68002F05B5 /* GCDWebServerDataRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDWebServerDataRequest.m; path = "../third-party/GCDWebServer/GCDWebServer/Requests/GCDWebServerDataRequest.m"; sourceTree = "<group>"; };
+		ABB92FEA1B3C2C68002F05B5 /* GCDWebServerFileRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDWebServerFileRequest.h; path = "../third-party/GCDWebServer/GCDWebServer/Requests/GCDWebServerFileRequest.h"; sourceTree = "<group>"; };
+		ABB92FEB1B3C2C68002F05B5 /* GCDWebServerFileRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDWebServerFileRequest.m; path = "../third-party/GCDWebServer/GCDWebServer/Requests/GCDWebServerFileRequest.m"; sourceTree = "<group>"; };
+		ABB92FEC1B3C2C68002F05B5 /* GCDWebServerMultiPartFormRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDWebServerMultiPartFormRequest.h; path = "../third-party/GCDWebServer/GCDWebServer/Requests/GCDWebServerMultiPartFormRequest.h"; sourceTree = "<group>"; };
+		ABB92FED1B3C2C68002F05B5 /* GCDWebServerMultiPartFormRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDWebServerMultiPartFormRequest.m; path = "../third-party/GCDWebServer/GCDWebServer/Requests/GCDWebServerMultiPartFormRequest.m"; sourceTree = "<group>"; };
+		ABB92FEE1B3C2C68002F05B5 /* GCDWebServerURLEncodedFormRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDWebServerURLEncodedFormRequest.h; path = "../third-party/GCDWebServer/GCDWebServer/Requests/GCDWebServerURLEncodedFormRequest.h"; sourceTree = "<group>"; };
+		ABB92FEF1B3C2C68002F05B5 /* GCDWebServerURLEncodedFormRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDWebServerURLEncodedFormRequest.m; path = "../third-party/GCDWebServer/GCDWebServer/Requests/GCDWebServerURLEncodedFormRequest.m"; sourceTree = "<group>"; };
+		ABB92FF91B3C2C81002F05B5 /* GCDWebServerDataResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDWebServerDataResponse.h; path = "../third-party/GCDWebServer/GCDWebServer/Responses/GCDWebServerDataResponse.h"; sourceTree = "<group>"; };
+		ABB92FFA1B3C2C81002F05B5 /* GCDWebServerDataResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDWebServerDataResponse.m; path = "../third-party/GCDWebServer/GCDWebServer/Responses/GCDWebServerDataResponse.m"; sourceTree = "<group>"; };
+		ABB92FFB1B3C2C81002F05B5 /* GCDWebServerErrorResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDWebServerErrorResponse.h; path = "../third-party/GCDWebServer/GCDWebServer/Responses/GCDWebServerErrorResponse.h"; sourceTree = "<group>"; };
+		ABB92FFC1B3C2C81002F05B5 /* GCDWebServerErrorResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDWebServerErrorResponse.m; path = "../third-party/GCDWebServer/GCDWebServer/Responses/GCDWebServerErrorResponse.m"; sourceTree = "<group>"; };
+		ABB92FFD1B3C2C81002F05B5 /* GCDWebServerFileResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDWebServerFileResponse.h; path = "../third-party/GCDWebServer/GCDWebServer/Responses/GCDWebServerFileResponse.h"; sourceTree = "<group>"; };
+		ABB92FFE1B3C2C81002F05B5 /* GCDWebServerFileResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDWebServerFileResponse.m; path = "../third-party/GCDWebServer/GCDWebServer/Responses/GCDWebServerFileResponse.m"; sourceTree = "<group>"; };
+		ABB92FFF1B3C2C81002F05B5 /* GCDWebServerStreamedResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDWebServerStreamedResponse.h; path = "../third-party/GCDWebServer/GCDWebServer/Responses/GCDWebServerStreamedResponse.h"; sourceTree = "<group>"; };
+		ABB930001B3C2C81002F05B5 /* GCDWebServerStreamedResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDWebServerStreamedResponse.m; path = "../third-party/GCDWebServer/GCDWebServer/Responses/GCDWebServerStreamedResponse.m"; sourceTree = "<group>"; };
+		ABB9300A1B3C2FB1002F05B5 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		ABD3E8531A8CD08300F2BAB9 /* XWalkExtensionFactoryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWalkExtensionFactoryTest.swift; sourceTree = "<group>"; };
 		ABD3E8551A8CD3F900F2BAB9 /* XWalkReflectionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWalkReflectionTest.swift; sourceTree = "<group>"; };
 		ABD3E8591A8CD44D00F2BAB9 /* XWalkChannelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWalkChannelTest.swift; sourceTree = "<group>"; };
@@ -112,6 +156,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABB9300B1B3C2FB1002F05B5 /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,23 +187,78 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		AB7B46951B240C3200B7C9DD /* Swifter */ = {
+		ABB92FCE1B3C2BFF002F05B5 /* GCDWebServer */ = {
 			isa = PBXGroup;
 			children = (
-				AB7B46961B240C4600B7C9DD /* DemoServer.swift */,
-				AB7B46971B240C4600B7C9DD /* HttpHandlers.swift */,
-				AB7B46981B240C4600B7C9DD /* HttpParser.swift */,
-				AB7B46991B240C4600B7C9DD /* HttpRequest.swift */,
-				AB7B469A1B240C4600B7C9DD /* HttpResponse.swift */,
-				AB7B469B1B240C4600B7C9DD /* HttpServer.swift */,
-				AB7B469C1B240C4600B7C9DD /* Socket.swift */,
+				ABB92FE71B3C2C44002F05B5 /* Core */,
+				ABB92FF81B3C2C6D002F05B5 /* Requests */,
+				ABB930091B3C2C86002F05B5 /* Responses */,
 			);
-			name = Swifter;
+			name = GCDWebServer;
+			sourceTree = "<group>";
+		};
+		ABB92FE71B3C2C44002F05B5 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				ABB92FCF1B3C2C3F002F05B5 /* GCDWebServer.h */,
+				ABB92FD01B3C2C3F002F05B5 /* GCDWebServer.m */,
+				ABB92FD11B3C2C3F002F05B5 /* GCDWebServerConnection.h */,
+				ABB92FD21B3C2C3F002F05B5 /* GCDWebServerConnection.m */,
+				ABB92FD31B3C2C3F002F05B5 /* GCDWebServerFunctions.h */,
+				ABB92FD41B3C2C3F002F05B5 /* GCDWebServerFunctions.m */,
+				ABB92FD51B3C2C3F002F05B5 /* GCDWebServerHTTPStatusCodes.h */,
+				ABB92FD61B3C2C3F002F05B5 /* GCDWebServerPrivate.h */,
+				ABB92FD71B3C2C3F002F05B5 /* GCDWebServerRequest.h */,
+				ABB92FD81B3C2C3F002F05B5 /* GCDWebServerRequest.m */,
+				ABB92FD91B3C2C3F002F05B5 /* GCDWebServerResponse.h */,
+				ABB92FDA1B3C2C3F002F05B5 /* GCDWebServerResponse.m */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		ABB92FF81B3C2C6D002F05B5 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				ABB92FE81B3C2C68002F05B5 /* GCDWebServerDataRequest.h */,
+				ABB92FE91B3C2C68002F05B5 /* GCDWebServerDataRequest.m */,
+				ABB92FEA1B3C2C68002F05B5 /* GCDWebServerFileRequest.h */,
+				ABB92FEB1B3C2C68002F05B5 /* GCDWebServerFileRequest.m */,
+				ABB92FEC1B3C2C68002F05B5 /* GCDWebServerMultiPartFormRequest.h */,
+				ABB92FED1B3C2C68002F05B5 /* GCDWebServerMultiPartFormRequest.m */,
+				ABB92FEE1B3C2C68002F05B5 /* GCDWebServerURLEncodedFormRequest.h */,
+				ABB92FEF1B3C2C68002F05B5 /* GCDWebServerURLEncodedFormRequest.m */,
+			);
+			name = Requests;
+			sourceTree = "<group>";
+		};
+		ABB930091B3C2C86002F05B5 /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				ABB92FF91B3C2C81002F05B5 /* GCDWebServerDataResponse.h */,
+				ABB92FFA1B3C2C81002F05B5 /* GCDWebServerDataResponse.m */,
+				ABB92FFB1B3C2C81002F05B5 /* GCDWebServerErrorResponse.h */,
+				ABB92FFC1B3C2C81002F05B5 /* GCDWebServerErrorResponse.m */,
+				ABB92FFD1B3C2C81002F05B5 /* GCDWebServerFileResponse.h */,
+				ABB92FFE1B3C2C81002F05B5 /* GCDWebServerFileResponse.m */,
+				ABB92FFF1B3C2C81002F05B5 /* GCDWebServerStreamedResponse.h */,
+				ABB930001B3C2C81002F05B5 /* GCDWebServerStreamedResponse.m */,
+			);
+			name = Responses;
+			sourceTree = "<group>";
+		};
+		ABB9300C1B3C2FDA002F05B5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ABB92FCE1B3C2BFF002F05B5 /* GCDWebServer */,
+				ABB9300A1B3C2FB1002F05B5 /* libz.dylib */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		EE62682B19FA323900EFC3F8 = {
 			isa = PBXGroup;
 			children = (
+				ABB9300C1B3C2FDA002F05B5 /* Frameworks */,
 				EE62683719FA323900EFC3F8 /* XWalkView */,
 				AB023EA11A8C506600580A2A /* XWalkViewTests */,
 				EE62683619FA323900EFC3F8 /* Products */,
@@ -177,7 +277,6 @@
 		EE62683719FA323900EFC3F8 /* XWalkView */ = {
 			isa = PBXGroup;
 			children = (
-				AB7B46951B240C3200B7C9DD /* Swifter */,
 				EE62691C19FA52FC00EFC3F8 /* XWalkView.h */,
 				EE0A1DEC1A53DCFB00C9E6D3 /* XWalkThread.swift */,
 				EE0A1DDD1A52A5A300C9E6D3 /* XWalkReflection.swift */,
@@ -212,9 +311,24 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABB930051B3C2C81002F05B5 /* GCDWebServerFileResponse.h in Headers */,
+				ABB92FE11B3C2C3F002F05B5 /* GCDWebServerHTTPStatusCodes.h in Headers */,
 				ABF68ECD1A6B45FC0058267B /* XWalkView.h in Headers */,
+				ABB92FDB1B3C2C3F002F05B5 /* GCDWebServer.h in Headers */,
+				ABB92FE51B3C2C3F002F05B5 /* GCDWebServerResponse.h in Headers */,
+				ABB92FE31B3C2C3F002F05B5 /* GCDWebServerRequest.h in Headers */,
+				ABB930011B3C2C81002F05B5 /* GCDWebServerDataResponse.h in Headers */,
+				ABB92FDD1B3C2C3F002F05B5 /* GCDWebServerConnection.h in Headers */,
+				ABB92FF41B3C2C68002F05B5 /* GCDWebServerMultiPartFormRequest.h in Headers */,
+				ABB92FE21B3C2C3F002F05B5 /* GCDWebServerPrivate.h in Headers */,
+				ABB930071B3C2C81002F05B5 /* GCDWebServerStreamedResponse.h in Headers */,
+				ABB92FF01B3C2C68002F05B5 /* GCDWebServerDataRequest.h in Headers */,
+				ABB930031B3C2C81002F05B5 /* GCDWebServerErrorResponse.h in Headers */,
+				ABB92FF61B3C2C68002F05B5 /* GCDWebServerURLEncodedFormRequest.h in Headers */,
+				ABB92FDF1B3C2C3F002F05B5 /* GCDWebServerFunctions.h in Headers */,
 				AB3ECCC01A6243B3001925A3 /* XWalkExtension.h in Headers */,
 				ABD475E31A4129FC00F3BDEB /* XWalkInvocation.h in Headers */,
+				ABB92FF21B3C2C68002F05B5 /* GCDWebServerFileRequest.h in Headers */,
 				ABF4635F1A67519D0049D942 /* XWalkDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,22 +446,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABB92FF31B3C2C68002F05B5 /* GCDWebServerFileRequest.m in Sources */,
+				ABB92FF71B3C2C68002F05B5 /* GCDWebServerURLEncodedFormRequest.m in Sources */,
 				EE0A1DDF1A52A5A300C9E6D3 /* XWalkReflection.swift in Sources */,
 				EE7886761A0D0CE30013A855 /* XWalkExtensionLoader.swift in Sources */,
+				ABB92FF11B3C2C68002F05B5 /* GCDWebServerDataRequest.m in Sources */,
+				ABB92FE01B3C2C3F002F05B5 /* GCDWebServerFunctions.m in Sources */,
+				ABB930041B3C2C81002F05B5 /* GCDWebServerErrorResponse.m in Sources */,
 				AB3ECCC11A6243B3001925A3 /* XWalkExtension.m in Sources */,
 				EE0A1DE01A52A5A300C9E6D3 /* XWalkStubGenerator.swift in Sources */,
-				AB7B469F1B240C4600B7C9DD /* HttpParser.swift in Sources */,
+				ABB92FF51B3C2C68002F05B5 /* GCDWebServerMultiPartFormRequest.m in Sources */,
+				ABB930061B3C2C81002F05B5 /* GCDWebServerFileResponse.m in Sources */,
 				EE174E451A01FDDE00168D96 /* XWalkExtensionFactory.swift in Sources */,
 				EE62692419FA52FC00EFC3F8 /* XWalkInvocation.m in Sources */,
-				AB7B469D1B240C4600B7C9DD /* DemoServer.swift in Sources */,
+				ABB930021B3C2C81002F05B5 /* GCDWebServerDataResponse.m in Sources */,
 				EE0A1DD31A52775400C9E6D3 /* XWalkChannel.swift in Sources */,
+				ABB92FE41B3C2C3F002F05B5 /* GCDWebServerRequest.m in Sources */,
 				EE0A1DED1A53DCFB00C9E6D3 /* XWalkThread.swift in Sources */,
-				AB7B46A01B240C4600B7C9DD /* HttpRequest.swift in Sources */,
-				AB7B46A11B240C4600B7C9DD /* HttpResponse.swift in Sources */,
+				ABB92FDC1B3C2C3F002F05B5 /* GCDWebServer.m in Sources */,
+				ABB92FE61B3C2C3F002F05B5 /* GCDWebServerResponse.m in Sources */,
 				EE62692619FA52FC00EFC3F8 /* XWalkWebView.swift in Sources */,
-				AB7B46A31B240C4600B7C9DD /* Socket.swift in Sources */,
-				AB7B469E1B240C4600B7C9DD /* HttpHandlers.swift in Sources */,
-				AB7B46A21B240C4600B7C9DD /* HttpServer.swift in Sources */,
+				ABB930081B3C2C81002F05B5 /* GCDWebServerStreamedResponse.m in Sources */,
+				ABB92FDE1B3C2C3F002F05B5 /* GCDWebServerConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
