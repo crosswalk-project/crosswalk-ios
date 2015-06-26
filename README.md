@@ -1,14 +1,14 @@
 # Crosswalk Project for iOS
 
-## Introduction
-Crosswalk Project for iOS is a sub-project of [Crosswalk](https://crosswalk-project.org/), it aims to provide a web runtime to develop sophisticated iOS native or hybrid applications.
-
 [![Build Status](https://travis-ci.org/crosswalk-project/crosswalk-ios.svg?branch=master)](https://travis-ci.org/crosswalk-project/crosswalk-ios)
 
+## Introduction
+
+Crosswalk Project for iOS is a sub-project of [Crosswalk](https://crosswalk-project.org/), it aims to provide a web runtime to develop sophisticated iOS native or hybrid applications.
 
 * Extended WKWebView
 
-  Crosswalk Project for iOS is built on top of `WKWebView`, the mordern WebKit framework debuted in iOS 8.0. We extend the WKWebView to build Crosswalk extension framework within, and we are intended to bring the least intrusion to the interface to make developers use it as natural as WKWebView itself. For the detailed information you may refer to [Embedding Mode & WKWebView](https://github.com/crosswalk-project/crosswalk-ios/wiki/Embedding-Mode-&-Native-APIs).
+  Crosswalk Project for iOS is built on top of `WKWebView`, the mordern WebKit framework debuted in iOS 8. We extend the WKWebView to build Crosswalk extension framework within. For the detailed information you may refer to [Embedding Mode & WKWebView](https://github.com/crosswalk-project/crosswalk-ios/wiki/Embedding-Mode-&-Native-APIs).
 
 * Crosswalk Extension Framework
 
@@ -19,6 +19,7 @@ Crosswalk Project for iOS is a sub-project of [Crosswalk](https://crosswalk-proj
   To leverage existing Cordova plugins, a Cordova extension is provided to simulate Cordova environment. You only need to place source files of Cordova plugins into your project and register the classes of plugins in the manifest. For more information please refer to [Cordova Plugins Support](https://github.com/crosswalk-project/crosswalk-ios/wiki/Cordova-Plugin-Support).
 
 ## System Requirement
+
 Development:
 * iOS SDK 8+
 * Xcode 6+
@@ -27,6 +28,7 @@ Deployment:
 * iOS 8+
 
 ## Quickstart
+
 Here we'd like to show you the quick demo to setup a native application with Crosswalk extension support.
 
 1. Setup The Working Directory
@@ -148,8 +150,11 @@ Here we'd like to show you the quick demo to setup a native application with Cro
 For further information please read the [Getting Started Guide](https://github.com/crosswalk-project/crosswalk-ios/wiki/Getting-Started-With-Crosswalk-for-iOS), and other articles on the [Wiki](https://github.com/crosswalk-project/crosswalk-ios/wiki).
 
 ## Community
+
 * Follow the [crosswalk-help](https://lists.crosswalk-project.org/mailman/listinfo/crosswalk-help) mailing list to ask questions
+
 * Follow the [crosswalk-dev](https://lists.crosswalk-project.org/mailman/listinfo/crosswalk-dev) mailing list for development updates
+
 * Find us on IRC: #crosswalk on freenode.net
 
 ## Demos
@@ -172,8 +177,6 @@ NOTICE: Try them after the project's submodules get initialized, using:
   ```bash
   git submodule update --init --recursive
   ```
-
-You may also try out the [HexGL-iOS Demo](https://github.com/jondong/HexGL-iOS) written in HTML5 with the Crosswalk Extension support to evaluate the performance and extensibility of the Crosswalk framework.
 
 ## Licence
 Crosswalk Project for iOS is available under the BSD license. See the [LICENSE](LICENSE) file for more info.
