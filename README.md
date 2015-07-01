@@ -27,7 +27,7 @@ Development:
 Deployment:
 * iOS 8+
 
-## Quickstart
+## Quick Start
 
 You can refer to the [Getting Started Guide](https://github.com/crosswalk-project/crosswalk-ios/wiki/Getting-Started-With-Crosswalk-for-iOS), following the quick start demo to create a Crosswalk hybrid application with a simple extension support. You can also refter to other articles on the project [Wiki](https://github.com/crosswalk-project/crosswalk-ios/wiki).
 
@@ -40,25 +40,23 @@ You can refer to the [Getting Started Guide](https://github.com/crosswalk-projec
 * Find us on IRC: #crosswalk on freenode.net
 
 ## Demos
-There're 3 built-in demos in the project:
+There is a built-in demo in the project:
 
 * [Sample](Demos/Sample)
 
 	A simple demo which shows the basic ways of XWalkView embedding, Crosswalk Extension implementation, configuration of extension and application, etc.
 
-* [CordovaPluginDeviceDemo](Demos/Cordova/CordovaPluginDeviceDemo)
+And there are two Cordova extension demos in [iOS Extension Crosswalk](https://github.com/crosswalk-project/ios-extensions-crosswalk) project:
+
+* [CordovaPluginDeviceDemo](https://github.com/crosswalk-project/ios-extensions-crosswalk/tree/master/demos/CordovaPluginDeviceDemo)
 
 	A demo to show the way to integrate Cordova Plugin with the Crosswalk Cordova Extension support, and the usage of `apache.cordova.device` plugin.
 
-* [CordovaPluginFileDemo](Demos/Cordova/CordovaPluginFileDemo)
+* [CordovaPluginFileDemo](https://github.com/crosswalk-project/ios-extensions-crosswalk/tree/master/demos/CordovaPluginFileDemo)
 
 	Another Cordova Plugin demo, which is imported from https://github.com/Icenium/sample-file.git, which demostrates the usage of `apache.cordova.file` plugin.
 
-NOTICE: Try them after the project's submodules get initialized, using:
-
-  ```bash
-  git submodule update --init --recursive
-  ```
+Follow the Quick Start instruction of [iOS Extension Crosswalk](https://github.com/crosswalk-project/ios-extensions-crosswalk) project to build and run the demos.
 
 ## Licence
 Crosswalk Project for iOS is available under the BSD license. See the [LICENSE](LICENSE) file for more info.
