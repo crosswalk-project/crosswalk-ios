@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB1603381B85722A00F31A90 /* XWalkView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD7C6951AE4A0710000D0E0 /* XWalkView.framework */; };
+		AB1603391B85722A00F31A90 /* XWalkView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ABD7C6951AE4A0710000D0E0 /* XWalkView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ABD7C69B1AE4A2780000D0E0 /* www in Resources */ = {isa = PBXBuildFile; fileRef = ABD7C69A1AE4A2780000D0E0 /* www */; };
 		ABE516AA1A00ADDE0025A92E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE516A21A00ADDE0025A92E /* AppDelegate.swift */; };
 		ABE516AC1A00ADDE0025A92E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABE516A61A00ADDE0025A92E /* Main.storyboard */; };
@@ -15,6 +17,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		AB16033A1B85722A00F31A90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ABD7C68F1AE4A0710000D0E0 /* XWalkView.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EE62683419FA323900EFC3F8;
+			remoteInfo = XWalkView;
+		};
 		ABD7C6941AE4A0710000D0E0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ABD7C68F1AE4A0710000D0E0 /* XWalkView.xcodeproj */;
@@ -45,6 +54,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				AB1603391B85722A00F31A90 /* XWalkView.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -67,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB1603381B85722A00F31A90 /* XWalkView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +139,7 @@
 			);
 			dependencies = (
 				ABD7C6991AE4A07A0000D0E0 /* PBXTargetDependency */,
+				AB16033B1B85722A00F31A90 /* PBXTargetDependency */,
 			);
 			name = AppShell;
 			productName = AppShell;
@@ -215,6 +227,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		AB16033B1B85722A00F31A90 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = XWalkView;
+			targetProxy = AB16033A1B85722A00F31A90 /* PBXContainerItemProxy */;
+		};
 		ABD7C6991AE4A07A0000D0E0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = XWalkView;
