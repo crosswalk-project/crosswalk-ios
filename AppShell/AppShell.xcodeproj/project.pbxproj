@@ -7,45 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AB1603381B85722A00F31A90 /* XWalkView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD7C6951AE4A0710000D0E0 /* XWalkView.framework */; };
-		AB1603391B85722A00F31A90 /* XWalkView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ABD7C6951AE4A0710000D0E0 /* XWalkView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9BFD8C721E18DDD9953EC1DD /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89ADBF594760E09E104AD5D /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		ABD7C69B1AE4A2780000D0E0 /* www in Resources */ = {isa = PBXBuildFile; fileRef = ABD7C69A1AE4A2780000D0E0 /* www */; };
 		ABE516AA1A00ADDE0025A92E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE516A21A00ADDE0025A92E /* AppDelegate.swift */; };
 		ABE516AC1A00ADDE0025A92E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABE516A61A00ADDE0025A92E /* Main.storyboard */; };
 		ABE516AD1A00ADDE0025A92E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABE516A81A00ADDE0025A92E /* Images.xcassets */; };
 		ABE516AE1A00ADDE0025A92E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE516A91A00ADDE0025A92E /* ViewController.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		AB16033A1B85722A00F31A90 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = ABD7C68F1AE4A0710000D0E0 /* XWalkView.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = EE62683419FA323900EFC3F8;
-			remoteInfo = XWalkView;
-		};
-		ABD7C6941AE4A0710000D0E0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = ABD7C68F1AE4A0710000D0E0 /* XWalkView.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EE62683519FA323900EFC3F8;
-			remoteInfo = XWalkView;
-		};
-		ABD7C6961AE4A0710000D0E0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = ABD7C68F1AE4A0710000D0E0 /* XWalkView.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = AB023EA01A8C506600580A2A;
-			remoteInfo = XWalkViewTests;
-		};
-		ABD7C6981AE4A07A0000D0E0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = ABD7C68F1AE4A0710000D0E0 /* XWalkView.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = EE62683419FA323900EFC3F8;
-			remoteInfo = XWalkView;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		EE0E490F1A5C72DB002D95B8 /* Embed Frameworks */ = {
@@ -54,7 +22,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AB1603391B85722A00F31A90 /* XWalkView.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,13 +30,15 @@
 
 /* Begin PBXFileReference section */
 		AB603B9819EA58CB00DECF78 /* AppShell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppShell.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		ABD7C68F1AE4A0710000D0E0 /* XWalkView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XWalkView.xcodeproj; path = ../XWalkView/XWalkView.xcodeproj; sourceTree = "<group>"; };
 		ABD7C69A1AE4A2780000D0E0 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		ABE516A21A00ADDE0025A92E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = AppShell/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		ABE516A71A00ADDE0025A92E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		ABE516A81A00ADDE0025A92E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = AppShell/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		ABE516A91A00ADDE0025A92E /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = AppShell/ViewController.swift; sourceTree = "<group>"; };
 		ABE516B31A00AEE60025A92E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = AppShell/Info.plist; sourceTree = SOURCE_ROOT; };
+		C89ADBF594760E09E104AD5D /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E34971E522C31D4ABE3E0B59 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		FBE3F810C41FDBC8F8B81639 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,24 +46,34 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB1603381B85722A00F31A90 /* XWalkView.framework in Frameworks */,
+				9BFD8C721E18DDD9953EC1DD /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A94BE1E23D36DF3CF74A29E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E34971E522C31D4ABE3E0B59 /* Pods.debug.xcconfig */,
+				FBE3F810C41FDBC8F8B81639 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		AB603B8F19EA58CB00DECF78 = {
 			isa = PBXGroup;
 			children = (
 				ABD7C69A1AE4A2780000D0E0 /* www */,
-				ABD7C68F1AE4A0710000D0E0 /* XWalkView.xcodeproj */,
 				ABE516A21A00ADDE0025A92E /* AppDelegate.swift */,
 				ABE516A61A00ADDE0025A92E /* Main.storyboard */,
 				ABE516A81A00ADDE0025A92E /* Images.xcassets */,
 				ABE516A91A00ADDE0025A92E /* ViewController.swift */,
 				AB603B9B19EA58CB00DECF78 /* Supporting Files */,
 				AB603B9919EA58CB00DECF78 /* Products */,
+				9A94BE1E23D36DF3CF74A29E /* Pods */,
+				C5A0735FBFA9F2E5C1D4257E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,13 +93,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		ABD7C6901AE4A0710000D0E0 /* Products */ = {
+		C5A0735FBFA9F2E5C1D4257E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				ABD7C6951AE4A0710000D0E0 /* XWalkView.framework */,
-				ABD7C6971AE4A0710000D0E0 /* XWalkViewTests.xctest */,
+				C89ADBF594760E09E104AD5D /* Pods.framework */,
 			);
-			name = Products;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,16 +108,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AB603BB719EA58CC00DECF78 /* Build configuration list for PBXNativeTarget "AppShell" */;
 			buildPhases = (
+				1076EA656A58DA08D463FA11 /* Check Pods Manifest.lock */,
 				AB603B9419EA58CB00DECF78 /* Sources */,
 				AB603B9519EA58CB00DECF78 /* Frameworks */,
 				AB603B9619EA58CB00DECF78 /* Resources */,
 				EE0E490F1A5C72DB002D95B8 /* Embed Frameworks */,
+				0371FBB83B8A7ECC48346B1E /* Embed Pods Frameworks */,
+				0072CFE7E6B0C1CB711DF2CB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				ABD7C6991AE4A07A0000D0E0 /* PBXTargetDependency */,
-				AB16033B1B85722A00F31A90 /* PBXTargetDependency */,
 			);
 			name = AppShell;
 			productName = AppShell;
@@ -171,35 +150,12 @@
 			mainGroup = AB603B8F19EA58CB00DECF78;
 			productRefGroup = AB603B9919EA58CB00DECF78 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = ABD7C6901AE4A0710000D0E0 /* Products */;
-					ProjectRef = ABD7C68F1AE4A0710000D0E0 /* XWalkView.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				AB603B9719EA58CB00DECF78 /* AppShell */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		ABD7C6951AE4A0710000D0E0 /* XWalkView.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = XWalkView.framework;
-			remoteRef = ABD7C6941AE4A0710000D0E0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		ABD7C6971AE4A0710000D0E0 /* XWalkViewTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = XWalkViewTests.xctest;
-			remoteRef = ABD7C6961AE4A0710000D0E0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		AB603B9619EA58CB00DECF78 /* Resources */ = {
@@ -214,6 +170,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0072CFE7E6B0C1CB711DF2CB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0371FBB83B8A7ECC48346B1E /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1076EA656A58DA08D463FA11 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		AB603B9419EA58CB00DECF78 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -225,19 +229,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		AB16033B1B85722A00F31A90 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = XWalkView;
-			targetProxy = AB16033A1B85722A00F31A90 /* PBXContainerItemProxy */;
-		};
-		ABD7C6991AE4A07A0000D0E0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = XWalkView;
-			targetProxy = ABD7C6981AE4A07A0000D0E0 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		ABE516A61A00ADDE0025A92E /* Main.storyboard */ = {
@@ -333,13 +324,9 @@
 		};
 		AB603BB819EA58CC00DECF78 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E34971E522C31D4ABE3E0B59 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Build/Products/Debug-iphoneos",
-					"$(PROJECT_DIR)/Build/Products/Debug-iphonesimulator",
-				);
 				INFOPLIST_FILE = AppShell/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -349,13 +336,9 @@
 		};
 		AB603BB919EA58CC00DECF78 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FBE3F810C41FDBC8F8B81639 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Build/Products/Debug-iphoneos",
-					"$(PROJECT_DIR)/Build/Products/Debug-iphonesimulator",
-				);
 				INFOPLIST_FILE = AppShell/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

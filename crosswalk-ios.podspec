@@ -4,7 +4,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'crosswalk-ios'
-  s.version          = '0.5.0'
+  s.version          = '1.1'
   s.summary          = 'Crosswalk for iOS is aimming to provide a web runtime to develop sophisticated iOS native or hybrid applications.'
   s.homepage         = 'https://github.com/crosswalk-project/crosswalk-ios'
   s.license          = { :type => 'BSD', :file => "LICENSE" }
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
 
   s.source_files = 'XWalkView/XWalkView/*.{h,m,swift}'
   s.resource = 'XWalkView/XWalkView/crosswalk.js'
-  s.private_header_files = 'XWalkView/XWalkView/XWalkHttpConnection.h'
+  s.dependency 'GCDWebServer', '>= 3.2'
 
 end
 

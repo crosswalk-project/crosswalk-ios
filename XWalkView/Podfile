@@ -5,6 +5,4 @@
 platform :ios, '8.0'
 use_frameworks!
 
-pod 'crosswalk-ios', :path => '../../'
-
-link_with 'SampleApp', 'Sample'
+pod 'GCDWebServer', '~> 3.2'
