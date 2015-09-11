@@ -4,14 +4,14 @@
 
 import Foundation
 
-class XWalkThread : NSThread {
+public class XWalkThread : NSThread {
     var timer: NSTimer!
 
     deinit {
         cancel()
     }
 
-    override func main() {
+    override public func main() {
         do {
             switch  Int(CFRunLoopRunInMode(kCFRunLoopDefaultMode, 60, Boolean(1))) {
                 case kCFRunLoopRunFinished:

@@ -25,7 +25,7 @@ class ViewController: UIViewController {
 
         for name in xwalk_extensions {
             if let ext: AnyObject = XWalkExtensionFactory.createExtension(name) {
-                webview.loadExtension(ext, namespace: name)
+                webview.loadExtension(ext as! NSObject, namespace: name)
             }
         }
 

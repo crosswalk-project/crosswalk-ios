@@ -33,7 +33,7 @@ class ViewController: CDVViewController {
                 ext = XWalkExtensionFactory.createExtension(name)
             }
             if let validExtension: AnyObject = ext {
-                webview.loadExtension(validExtension, namespace: name)
+                webview.loadExtension(validExtension as! NSObject, namespace: name)
             }
         }
 
