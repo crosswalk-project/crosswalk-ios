@@ -12,6 +12,6 @@ FOUNDATION_EXPORT const unsigned char XWalkViewVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <XWalkView/PublicHeader.h>
 
-#import <XWalkView/XWalkInvocation.h>
 #import <XWalkView/XWalkExtension.h>
-#import <GCDWebServer/GCDWebServer.h>
+#import <XWalkView/XWalkInvocation.h>
+#import <XWalkView/XWalkWebView.h>

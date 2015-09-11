@@ -26,7 +26,7 @@ class XWalkWebViewTests: XCTestCase {
     func testLoadExtension() {
         XWalkExtensionFactory.register("WebViewExtension", cls:WebViewExtension.self)
         if let ext: AnyObject = XWalkExtensionFactory.createExtension("WebViewExtension") {
-            webview?.loadExtension(ext, namespace: name)
+            webview?.loadExtension(ext as! NSObject, namespace: name)
         } else {
             XCTFail("testLoadExtension Failed")
         }
