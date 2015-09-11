@@ -4,7 +4,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'crosswalk-ios'
-  s.version          = '1.1.1'
+  s.version          = '1.1.2'
   s.summary          = 'Crosswalk Project for iOS provides a web runtime for sophisticated iOS native or hybrid applications.'
   s.homepage         = 'https://github.com/crosswalk-project/crosswalk-ios'
   s.license          = { :type => 'BSD', :file => "LICENSE" }
