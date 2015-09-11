@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A9DBDC9EFDD80AAE0617198D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E101D3E69998E7098A9C255 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		AB2114371BA32C8C00528DBF /* extensions.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB2114361BA32C8C00528DBF /* extensions.plist */; };
 		ABC7AAD11A7B3FEC00865FE3 /* Sample.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EEB10F841A614074000709AE /* Sample.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EB076C7D11C67EAA7BC6AA21 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E101D3E69998E7098A9C255 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		EE174E431A00FBA900168D96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE62693B19FA54AC00EFC3F8 /* Main.storyboard */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		9E101D3E69998E7098A9C255 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB2114361BA32C8C00528DBF /* extensions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = extensions.plist; sourceTree = "<group>"; };
 		D35559BBB3A47FDBA9E94430 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D50F88F4B5698EDBE79BA56D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EE6268B319FA494000EFC3F8 /* SampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +139,7 @@
 		EEB10F851A614074000709AE /* Sample */ = {
 			isa = PBXGroup;
 			children = (
+				AB2114361BA32C8C00528DBF /* extensions.plist */,
 				EEB10FA41A6140E7000709AE /* Info.plist */,
 				EEB10FA31A6140E7000709AE /* Echo.swift */,
 				EE853F231A773EA9006E5BB0 /* HelloWorld.swift */,
@@ -252,6 +255,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB2114371BA32C8C00528DBF /* extensions.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
