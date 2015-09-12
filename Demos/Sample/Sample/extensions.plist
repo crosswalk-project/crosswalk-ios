@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>XWalkExtensions</key>
+	<dict>
+		<key>xwalk.sample.hello</key>
+		<string>HelloWorld</string>
+		<key>xwalk.sample.vibrate</key>
+		<string>Vibrate</string>
+		<key>xwalk.sample.Echo</key>
+		<string>Echo</string>
+	</dict>
+</dict>
+</plist>

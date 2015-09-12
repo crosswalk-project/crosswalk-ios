@@ -45,7 +45,16 @@ import Foundation
     }
 
     private func scanBundle(bundle: NSBundle) -> Bool {
-        if let info = bundle.objectForInfoDictionaryKey("XWalkExtensions") as? NSDictionary {
+        var dict: NSDictionary?
+        let key: String = "XWalkExtensions"
+        if let plistPath = bundle.pathForResource("extensions", ofType: "plist") {
+            var rootDict = NSDictionary(contentsOfFile: plistPath)
+            dict = rootDict?.valueForKey(key) as? NSDictionary;
+        } else {
+            dict = bundle.objectForInfoDictionaryKey(key) as? NSDictionary
+        }
+
+        if let info = dict {
             let e = info.keyEnumerator()
             while let name = e.nextObject() as? String {
                 if let className = info[name] as? String {
