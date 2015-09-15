@@ -103,7 +103,7 @@
         return nil;
     }
 
-    NSInteger port = 8080;
+    long port = 8080;
     if (![XWalkView httpServer].isRunning) {
         [[XWalkView httpServer] addGETHandlerForBasePath:@"/" directoryPath:readAccessURL.path indexFilename:nil cacheAge:3600 allowRangeRequests:YES];
         [[XWalkView httpServer] startWithPort:port bonjourName:nil];
