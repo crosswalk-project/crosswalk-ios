@@ -4,7 +4,7 @@
 
 import Foundation
 
-@objc public class XWalkReflection {
+public class XWalkReflection : NSObject {
     private enum MemberType: UInt {
         case Method = 1
         case Getter
@@ -41,6 +41,7 @@ import Foundation
 
     public init(cls: AnyClass) {
         self.cls = cls
+        super.init()
         enumerate({(name, type, method, cls) -> Bool in
             if type == MemberType.Method {
                 assert(self.members[name] == nil, "ambiguous method: \(name)")
@@ -67,13 +68,13 @@ import Foundation
 
     // Basic information
     public var allMembers: [String] {
-        return members.keys.array
+        return members.keys.filter({(e)->Bool in return true})
     }
     public var allMethods: [String] {
-        return filter(members.keys.array, {(e)->Bool in return self.hasMethod(e)})
+        return members.keys.filter({(e)->Bool in return self.hasMethod(e)})
     }
     public var allProperties: [String] {
-        return filter(members.keys.array, {(e)->Bool in return self.hasProperty(e)})
+        return members.keys.filter({(e)->Bool in return self.hasProperty(e)})
     }
     public func hasMember(name: String) -> Bool {
         return members[name] != nil
@@ -114,23 +115,23 @@ import Foundation
             var end: String.Index
             if name.hasPrefix(methodPrefix) && num >= 3 {
                 type = MemberType.Method
-                start = advance(name.startIndex, 7)
+                start = name.startIndex.advancedBy(7)
                 end = start.successor()
                 while name[end] != Character(":") {
                     end = end.successor()
                 }
             } else if name.hasPrefix(getterPrefix) && num == 2 {
                 type = MemberType.Getter
-                start = advance(name.startIndex, 7)
+                start = name.startIndex.advancedBy(7)
                 end = name.endIndex
             } else if name.hasPrefix(setterPrefix) && num == 3 {
                 type = MemberType.Setter
-                start = advance(name.startIndex, 10)
+                start = name.startIndex.advancedBy(10)
                 end = name.endIndex.predecessor()
             } else if name.hasPrefix(ctorPrefix) {
                 type = MemberType.Constructor
                 start = name.startIndex
-                end = advance(start, 4)
+                end = start.advancedBy(4)
             } else {
                 continue
             }

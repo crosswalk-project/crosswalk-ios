@@ -32,7 +32,7 @@ class XWalkChannelTest: XCTestCase, WKNavigationDelegate {
         XWalkExtensionFactory.register(extensionName, cls: ChannelTestExtension.self)
         channel = XWalkChannel(webView: webview!)
 
-        var ext = XWalkExtensionFactory.createExtension(extensionName) as! ChannelTestExtension
+        let ext = XWalkExtensionFactory.createExtension(extensionName) as! ChannelTestExtension
         webview?.loadExtension(ext, namespace: extensionName)
         channel?.bind(ext, namespace: extensionName, thread: nil)
     }
@@ -54,20 +54,20 @@ class XWalkChannelTest: XCTestCase, WKNavigationDelegate {
     }
 
     func testBind() {
-        var ext = XWalkExtensionFactory.createExtension(extensionName) as! ChannelTestExtension
+        let ext = XWalkExtensionFactory.createExtension(extensionName) as! ChannelTestExtension
         ext.expectation = self.expectationWithDescription("testBindExpectation")
         channel?.bind(ext, namespace: extensionName, thread: nil)
 
         self.waitForExpectationsWithTimeout(0.1, handler:{ (error) in
-            if let e = error {
+            if let _ = error {
                 XCTFail("testBind Failed")
             }
         })
     }
 
     func testEvaluateJavaScript() {
-        var expectation = self.expectationWithDescription("ExpectationEvaluateJavaScript")
-        var executionContext = ExecutionContext(script: "typeof(\(extensionName));", completionHandler:{ (object, error) in
+        let expectation = self.expectationWithDescription("ExpectationEvaluateJavaScript")
+        let executionContext = ExecutionContext(script: "typeof(\(extensionName));", completionHandler:{ (object, error) in
             if error != nil {
                 XCTFail("Failed to evaluate javascript, error:\(error)")
             } else {
@@ -79,7 +79,7 @@ class XWalkChannelTest: XCTestCase, WKNavigationDelegate {
 
         webview?.loadHTMLString("<html></html>", baseURL: nil)
 
-        self.waitForExpectationsWithTimeout(2, handler: { (error) in
+        self.waitForExpectationsWithTimeout(3, handler: { (error) in
             if let e = error {
                 XCTFail("testEvaluateJavaScript failed, with error:\(e)")
             }

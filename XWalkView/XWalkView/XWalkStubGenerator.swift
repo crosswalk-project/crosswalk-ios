@@ -24,7 +24,7 @@ class XWalkStubGenerator {
                 if object != nil {
                     // Fetch initial value
                     let result = XWalkInvocation.call(object, selector: mirror.getGetter(name), arguments: nil)
-                    var val: AnyObject = (result.isObject ? result.nonretainedObjectValue : result as? NSNumber) ?? NSNull()
+                    let val: AnyObject = (result.isObject ? result.nonretainedObjectValue : result as? NSNumber) ?? NSNull()
                     value = toJSONString(val)
                 }
                 stub += "Extension.defineProperty(exports, '\(name)', \(value), \(!mirror.isReadonly(name)));\n"
@@ -58,7 +58,7 @@ class XWalkStubGenerator {
         let isPromise = params.last == "_Promise"
         if isPromise { params.removeLast() }
 
-        let list = ", ".join(params)
+        let list = params.joinWithSeparator(", ")
         var body = "invokeNative('\(name)', [\(list)"
         if isPromise {
             body = "var _this = \(this);\n    return new Promise(function(resolve, reject) {\n        _this.\(body)"
@@ -71,16 +71,13 @@ class XWalkStubGenerator {
 
     private func userDefinedJavaScript() -> String? {
         var className = NSStringFromClass(self.mirror.cls)
-        if (className == nil) {
-            return nil
-        }
 
-        if count(className.pathExtension) > 0 {
-            className = className.pathExtension
+        if (className as NSString).pathExtension.characters.count > 0 {
+            className = (className as NSString).pathExtension
         }
-        var bundle = NSBundle(forClass: self.mirror.cls)
+        let bundle = NSBundle(forClass: self.mirror.cls)
         if let path = bundle.pathForResource(className, ofType: "js") {
-            if let content = String(contentsOfFile: path, encoding: NSUTF8StringEncoding, error: nil) {
+            if let content = try? String(contentsOfFile: path, encoding: NSUTF8StringEncoding) {
                 return content
             }
         }
@@ -111,14 +108,13 @@ private func toJSONString(object: AnyObject, isPretty: Bool=false) -> String {
     case is NSString:
         return "'\(object as! String)'"
     default:
-        if let data = NSJSONSerialization.dataWithJSONObject(object,
-            options: isPretty ? NSJSONWritingOptions.PrettyPrinted : nil,
-            error: nil) as NSData? {
+        if let data = (try? NSJSONSerialization.dataWithJSONObject(object,
+            options: isPretty ? NSJSONWritingOptions.PrettyPrinted : NSJSONWritingOptions(rawValue: 0))) as NSData? {
                 if let string = NSString(data: data, encoding: NSUTF8StringEncoding) {
                     return string as String
                 }
         }
-        println("ERROR: Failed to convert object \(object) to JSON string")
+        print("ERROR: Failed to convert object \(object) to JSON string")
         return ""
     }
 }

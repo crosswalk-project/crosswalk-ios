@@ -12,20 +12,20 @@ public class XWalkThread : NSThread {
     }
 
     override public func main() {
-        do {
-            switch  Int(CFRunLoopRunInMode(kCFRunLoopDefaultMode, 60, Boolean(1))) {
-                case kCFRunLoopRunFinished:
+        repeat {
+            switch  CFRunLoopRunInMode(kCFRunLoopDefaultMode, 60, true) {
+                case CFRunLoopRunResult.Finished:
                     // No input source, add a timer (which will never fire) to avoid spinning.
                     let interval = NSDate.distantFuture().timeIntervalSinceNow
                     timer = NSTimer(timeInterval: interval, target: self, selector: Selector(), userInfo: nil, repeats: false)
                     NSRunLoop.currentRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode)
-                case kCFRunLoopRunHandledSource:
+                case CFRunLoopRunResult.HandledSource:
                     // Remove the timer because run loop has had input source
                     if timer != nil {
                         timer.invalidate()
                         timer = nil
                     }
-                case kCFRunLoopRunStopped:
+                case CFRunLoopRunResult.Stopped:
                     cancel()
                 default:
                     break

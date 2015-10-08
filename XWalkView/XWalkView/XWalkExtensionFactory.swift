@@ -4,7 +4,7 @@
 
 import Foundation
 
-@objc public class XWalkExtensionFactory {
+public class XWalkExtensionFactory : NSObject {
     private struct XWalkExtensionProvider {
         let bundle: NSBundle
         let className: String
@@ -17,7 +17,8 @@ import Foundation
         return single.instance
     }
 
-    private init() {
+    private override init() {
+        super.init()
         register("Extension.load",  cls: XWalkExtensionLoader.self)
     }
     private convenience init(path: String?) {
@@ -30,10 +31,10 @@ import Foundation
     private func scan(path: String) -> Bool {
         let fm = NSFileManager.defaultManager()
         if fm.fileExistsAtPath(path) == true {
-            for i in fm.contentsOfDirectoryAtPath(path, error: nil)! {
-                let name = i as! String
+            for i in try! fm.contentsOfDirectoryAtPath(path) {
+                let name:NSString = i
                 if name.pathExtension == "framework" {
-                    let bundlePath = path.stringByAppendingPathComponent(name)
+                    let bundlePath = NSString(string: path).stringByAppendingPathComponent(name as String)
                     if let bundle = NSBundle(path: bundlePath) {
                         scanBundle(bundle)
                     }
@@ -48,7 +49,7 @@ import Foundation
         var dict: NSDictionary?
         let key: String = "XWalkExtensions"
         if let plistPath = bundle.pathForResource("extensions", ofType: "plist") {
-            var rootDict = NSDictionary(contentsOfFile: plistPath)
+            let rootDict = NSDictionary(contentsOfFile: plistPath)
             dict = rootDict?.valueForKey(key) as? NSDictionary;
         } else {
             dict = bundle.objectForInfoDictionaryKey(key) as? NSDictionary
@@ -61,10 +62,10 @@ import Foundation
                     if extensions[name] == nil {
                         extensions[name] = XWalkExtensionProvider(bundle: bundle, className: className)
                     } else {
-                        println("WARNING: duplicated extension name '\(name)'")
+                        print("WARNING: duplicated extension name '\(name)'")
                     }
                 } else {
-                    println("WARNING: bad class name '\(info[name])'")
+                    print("WARNING: bad class name '\(info[name])'")
                 }
             }
             return true
@@ -76,7 +77,7 @@ import Foundation
         if extensions[name] == nil {
             let bundle = NSBundle(forClass: cls)
             var className = cls.description()
-            className = className.pathExtension.isEmpty ? className : className.pathExtension
+            className = (className as NSString).pathExtension.isEmpty ? className : (className as NSString).pathExtension
             extensions[name] = XWalkExtensionProvider(bundle: bundle, className: className)
             return true
         }
@@ -87,9 +88,12 @@ import Foundation
         if let src = extensions[name] {
             // Load bundle
             if !src.bundle.loaded {
-                var error : NSErrorPointer = nil
-                if !src.bundle.loadAndReturnError(error) {
-                    println("ERROR: Can't load bundle '\(src.bundle.bundlePath)'")
+                let error : NSErrorPointer = nil
+                do {
+                    try src.bundle.loadAndReturnError()
+                } catch let error1 as NSError {
+                    error.memory = error1
+                    print("ERROR: Can't load bundle '\(src.bundle.bundlePath)'")
                     return nil
                 }
             }
@@ -104,16 +108,16 @@ import Foundation
             classType = NSClassFromString(src.className)
             if classType == nil {
                 // Try to get the class with its framework name as prefix (for swift written class)
-                let classNameWithBundlePrefix = (src.bundle.executablePath?.lastPathComponent)! + "." + src.className
+                let classNameWithBundlePrefix = ((src.bundle.executablePath as NSString?)?.lastPathComponent)! + "." + src.className
                 classType = NSClassFromString(classNameWithBundlePrefix)
             }
             if classType == nil {
-                println("ERROR: Failed to get class:'\(src.className)' from bundle:'\(src.bundle.bundlePath)'")
+                print("ERROR: Failed to get class:'\(src.className)' from bundle:'\(src.bundle.bundlePath)'")
                 return nil;
             }
             return classType
         }
-        println("ERROR: There's no class named:'\(name)' registered as extension")
+        print("ERROR: There's no class named:'\(name)' registered as extension")
         return nil
     }
 
@@ -123,12 +127,12 @@ import Foundation
                 if method_getNumberOfArguments(class_getInstanceMethod(cls, initializer)) <= UInt32(arguments.count) + 2 {
                     return XWalkInvocation.construct(cls, initializer: initializer, arguments: arguments)
                 }
-                println("ERROR: Too few arguments to initializer '\(initializer.description)'.")
+                print("ERROR: Too few arguments to initializer '\(initializer.description)'.")
             } else {
-                println("ERROR: Initializer '\(initializer.description)' not found in class '\(cls.description())'.")
+                print("ERROR: Initializer '\(initializer.description)' not found in class '\(cls.description())'.")
             }
         } else {
-            println("ERROR: Extension '\(name)' not found")
+            print("ERROR: Extension '\(name)' not found")
         }
         return nil
     }

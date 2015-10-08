@@ -33,7 +33,7 @@ class XWalkWebViewTests: XCTestCase {
     }
 
     func testLoadFileURL() {
-        var bundle = NSBundle(identifier:"org.crosswalk-project.XWalkViewTests")
+        let bundle = NSBundle(identifier:"org.crosswalk-project.XWalkViewTests")
         if let root = bundle?.bundleURL.URLByAppendingPathComponent("www") {
             var error: NSError?
             let url = root.URLByAppendingPathComponent("webviewTest.html")

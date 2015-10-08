@@ -10,7 +10,7 @@ class XWalkExtensionLoader: XWalkExtension {
         let initializer: Selector = argument == nil ? "init" : "initWithJSValue:"
         let arguments: [AnyObject] = argument == nil ? [] : [argument!]
         if let ext: AnyObject = XWalkExtensionFactory.createExtension(name, initializer: initializer, arguments: arguments) {
-            channel.webView?.loadExtension(ext as! NSObject, namespace: namespace ?? name)
+            channel!.webView?.loadExtension(ext as! NSObject, namespace: namespace ?? name)
             // TODO: Call success callback with the extension object
             invokeCallback(_Promise, key:"resolve", arguments: nil)
         } else {
