@@ -14,7 +14,7 @@ class Echo: XWalkExtension {
 
     convenience init(fromJavaScript: AnyObject?, value: AnyObject?) {
         self.init()
-        if let prefix: AnyObject = value {
+        if let _: AnyObject = value {
             if let prefix = value as? String {
                 jsprop_prefix = prefix
             } else if let num = value as? NSNumber {

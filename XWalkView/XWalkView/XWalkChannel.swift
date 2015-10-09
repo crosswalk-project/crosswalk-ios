@@ -8,9 +8,9 @@ import WebKit
 public class XWalkChannel : NSObject, WKScriptMessageHandler {
     public let name: String
     public var mirror: XWalkReflection!
-    private(set) public var namespace: String = ""
-    private(set) public weak var webView: XWalkView?
-    private(set) public weak var thread: NSThread?
+    public var namespace: String = ""
+    public weak var webView: XWalkView?
+    public weak var thread: NSThread?
 
     private var instances: [Int: AnyObject] = [:]
     private var userScript: WKUserScript?
@@ -70,10 +70,10 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
                 } else if mirror.hasMethod(method) {
                     XWalkInvocation.asyncCallOnThread(thread, target: object, selector: mirror.getMethod(method), arguments: args)
                 } else {
-                    println("ERROR: Method '\(method)' is not defined in class '\(object.dynamicType.description())'.")
+                    print("ERROR: Method '\(method)' is not defined in class '\(object.dynamicType.description())'.")
                 }
             } else {
-                println("ERROR: Instance \(instid) does not exist.")
+                print("ERROR: Instance \(instid) does not exist.")
             }
         } else if let prop = body["property"] as? String {
             // Update property
@@ -88,13 +88,13 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
                     if selector != Selector() {
                         XWalkInvocation.asyncCallOnThread(thread, target: object, selector: selector, arguments: [value])
                     } else {
-                        println("ERROR: Property '\(prop)' is readonly.")
+                        print("ERROR: Property '\(prop)' is readonly.")
                     }
                 } else {
-                    println("ERROR: Property '\(prop)' is not defined in class '\(object.dynamicType.description())'.")
+                    print("ERROR: Property '\(prop)' is not defined in class '\(object.dynamicType.description())'.")
                 }
             } else {
-                println("ERROR: Instance \(instid) does not exist.")
+                print("ERROR: Instance \(instid) does not exist.")
             }
         } else if instid > 0 && instances[instid] == nil {
             // Create instance
@@ -111,11 +111,11 @@ public class XWalkChannel : NSObject, WKScriptMessageHandler {
             destroyExtension()
         } else {
             // TODO: support user defined message?
-            println("ERROR: Unknown message: \(body)")
+            print("ERROR: Unknown message: \(body)")
         }
     }
 
-    public func evaluateJavaScript(string: String, completionHandler: ((AnyObject!, NSError!)->Void)?) {
+    public func evaluateJavaScript(string: String, completionHandler: ((AnyObject?, NSError?)->Void)?) {
         // TODO: Should call completionHandler with an NSError object when webView is nil
         if NSThread.isMainThread() {
             webView?.evaluateJavaScript(string, completionHandler: completionHandler)

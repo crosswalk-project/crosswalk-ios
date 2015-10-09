@@ -41,10 +41,10 @@ class XWalkReflectionTest: XCTestCase {
     func testAllMembers() {
         if let allMembers = mirror?.allMembers {
             XCTAssertEqual(allMembers.count, 4)
-            XCTAssertTrue(contains(allMembers, "normalProperty"))
-            XCTAssertTrue(contains(allMembers, "constProperty"))
-            XCTAssertTrue(contains(allMembers, "demoMethodWithParams"))
-            XCTAssertTrue(contains(allMembers, "demoMethod"))
+            XCTAssertTrue(allMembers.contains("normalProperty"))
+            XCTAssertTrue(allMembers.contains("constProperty"))
+            XCTAssertTrue(allMembers.contains("demoMethodWithParams"))
+            XCTAssertTrue(allMembers.contains("demoMethod"))
         } else {
             XCTFail("Failed in testAllMembers")
         }
@@ -53,8 +53,8 @@ class XWalkReflectionTest: XCTestCase {
     func testAllMethods() {
         if let allMethods = mirror?.allMethods {
             XCTAssertEqual(allMethods.count, 2)
-            XCTAssertTrue(contains(allMethods, "demoMethodWithParams"))
-            XCTAssertTrue(contains(allMethods, "demoMethod"))
+            XCTAssertTrue(allMethods.contains("demoMethodWithParams"))
+            XCTAssertTrue(allMethods.contains("demoMethod"))
         } else {
             XCTFail("Failed in testAllMethods")
         }
@@ -63,8 +63,8 @@ class XWalkReflectionTest: XCTestCase {
     func testAllProperties() {
         if let allProperties = mirror?.allProperties {
             XCTAssertEqual(allProperties.count, 2)
-            XCTAssertTrue(contains(allProperties, "normalProperty"))
-            XCTAssertTrue(contains(allProperties, "constProperty"))
+            XCTAssertTrue(allProperties.contains("normalProperty"))
+            XCTAssertTrue(allProperties.contains("constProperty"))
         } else {
             XCTFail("Failed in testAllProperties")
         }

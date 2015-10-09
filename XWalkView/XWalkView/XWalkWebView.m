@@ -89,6 +89,11 @@
 
 - (WKNavigation*)loadFileURL:(NSURL*)URL allowingReadAccessToURL:(NSURL*)readAccessURL
 {
+    if ([self.superclass instancesRespondToSelector:NSSelectorFromString(@"loadFileURL:allowingReadAccessToURL:")]) {
+        return [super loadFileURL:URL allowingReadAccessToURL:readAccessURL];
+    }
+
+    // The implementation with embedding HTTP server for iOS 8 deployment.
     if (!URL.fileURL || !readAccessURL.fileURL) {
         NSURL* url = URL.fileURL ? readAccessURL : URL;
         [NSException raise:NSInvalidArgumentException format:@"%@ is not a file URL", url];
@@ -103,16 +108,17 @@
         return nil;
     }
 
-    long port = 8080;
+    NSUInteger port = 8080;
     if (![XWalkView httpServer].isRunning) {
         [[XWalkView httpServer] addGETHandlerForBasePath:@"/" directoryPath:readAccessURL.path indexFilename:nil cacheAge:3600 allowRangeRequests:YES];
         [[XWalkView httpServer] startWithPort:port bonjourName:nil];
     }
 
     NSString* target = [URL.path substringFromIndex:readAccessURL.path.length];
-    NSString* host = [NSString stringWithFormat:@"127.0.0.1:%ld", port];
-    NSURL* url = [[NSURL alloc] initWithScheme:@"http" host:host path:target];
-    return [self loadRequest:[NSURLRequest requestWithURL:url]];
+    NSURLComponents* components = [[NSURLComponents alloc] initWithString:@"http://127.0.0.1"];
+    components.port = [NSNumber numberWithUnsignedInteger:port];
+    components.path = target;
+    return [self loadRequest:[NSURLRequest requestWithURL:components.URL]];
 }
 
 @end
