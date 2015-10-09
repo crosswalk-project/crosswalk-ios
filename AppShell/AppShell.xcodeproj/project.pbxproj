@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9BFD8C721E18DDD9953EC1DD /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89ADBF594760E09E104AD5D /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		9BFD8C721E18DDD9953EC1DD /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89ADBF594760E09E104AD5D /* Pods.framework */; };
 		ABD7C69B1AE4A2780000D0E0 /* www in Resources */ = {isa = PBXBuildFile; fileRef = ABD7C69A1AE4A2780000D0E0 /* www */; };
 		ABE516AA1A00ADDE0025A92E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE516A21A00ADDE0025A92E /* AppDelegate.swift */; };
 		ABE516AC1A00ADDE0025A92E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABE516A61A00ADDE0025A92E /* Main.storyboard */; };
@@ -131,7 +131,9 @@
 		AB603B9019EA58CB00DECF78 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Crosswalk;
 				TargetAttributes = {
 					AB603B9719EA58CB00DECF78 = {
@@ -263,6 +265,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -330,6 +333,7 @@
 				INFOPLIST_FILE = AppShell/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.crosswalk-project.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -342,6 +346,7 @@
 				INFOPLIST_FILE = AppShell/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.crosswalk-project.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
