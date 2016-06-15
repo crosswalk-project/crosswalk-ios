@@ -5,7 +5,7 @@
 
 #import "XWalkWebView.h"
 
-#import <GCDWebServer/GCDWebServer.h>
+#import "GCDWebServer.h"
 #import "XWalkView/XWalkView-Swift.h"
 
 @interface XWalkView ()

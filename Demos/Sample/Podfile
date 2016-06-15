@@ -5,6 +5,9 @@
 platform :ios, '8.1'
 use_frameworks!
 
-pod 'crosswalk-ios', :path => '../../'
+abstract_target 'Crosswalk-Sample' do
+  pod 'crosswalk-ios', :path => '../../'
+  target 'Sample'
+  target 'SampleApp'
+end
 
-link_with 'SampleApp', 'Sample'

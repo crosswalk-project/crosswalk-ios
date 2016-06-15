@@ -5,4 +5,6 @@
 platform :ios, '8.1'
 use_frameworks!
 
-pod 'GCDWebServer', '~> 3.2'
+target 'XWalkView' do
+  pod 'GCDWebServer', '~> 3.3'
+end

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		307E64B67038B9B12CE0A03F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B515AF34EF21D39C6D6CE4BE /* Pods.framework */; };
 		AB023EA51A8C506600580A2A /* XWalkWebViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB023EA41A8C506600580A2A /* XWalkWebViewTests.swift */; };
 		AB023EA61A8C506600580A2A /* XWalkView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE62683519FA323900EFC3F8 /* XWalkView.framework */; };
 		AB023EBB1A8C87A500580A2A /* XWalkExtensionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AB023EBA1A8C87A500580A2A /* XWalkExtensionTest.m */; };
@@ -26,6 +25,7 @@
 		ABD475E31A4129FC00F3BDEB /* XWalkInvocation.h in Headers */ = {isa = PBXBuildFile; fileRef = EE62691D19FA52FC00EFC3F8 /* XWalkInvocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ABF4635F1A67519D0049D942 /* XWalkDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = ABF4635E1A6751970049D942 /* XWalkDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ABF68ECD1A6B45FC0058267B /* XWalkView.h in Headers */ = {isa = PBXBuildFile; fileRef = EE62691C19FA52FC00EFC3F8 /* XWalkView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B286BC5E8D2B04D006400EA4 /* Pods_XWalkView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 614F080BBA897CB318999ADC /* Pods_XWalkView.framework */; };
 		EE0A1DD31A52775400C9E6D3 /* XWalkChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DD21A52775400C9E6D3 /* XWalkChannel.swift */; };
 		EE0A1DDF1A52A5A300C9E6D3 /* XWalkReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DDD1A52A5A300C9E6D3 /* XWalkReflection.swift */; };
 		EE0A1DE01A52A5A300C9E6D3 /* XWalkStubGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0A1DDE1A52A5A300C9E6D3 /* XWalkStubGenerator.swift */; };
@@ -60,8 +60,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2E3B578F89FDE86405B64E5D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		82CF39F406ECF55F6AD060C6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		614F080BBA897CB318999ADC /* Pods_XWalkView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XWalkView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB023EA01A8C506600580A2A /* XWalkViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XWalkViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB023EA31A8C506600580A2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB023EA41A8C506600580A2A /* XWalkWebViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XWalkWebViewTests.swift; sourceTree = "<group>"; };
@@ -77,8 +76,9 @@
 		ABD3E8551A8CD3F900F2BAB9 /* XWalkReflectionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWalkReflectionTest.swift; sourceTree = "<group>"; };
 		ABD3E8591A8CD44D00F2BAB9 /* XWalkChannelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWalkChannelTest.swift; sourceTree = "<group>"; };
 		ABD3E85D1A8CD49F00F2BAB9 /* XWalkInvocationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWalkInvocationTest.m; sourceTree = "<group>"; };
+		ABEABC5311593E89D91BD694 /* Pods-XWalkView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XWalkView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XWalkView/Pods-XWalkView.debug.xcconfig"; sourceTree = "<group>"; };
 		ABF4635E1A6751970049D942 /* XWalkDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XWalkDelegate.h; path = XWalkView/XWalkDelegate.h; sourceTree = "<group>"; };
-		B515AF34EF21D39C6D6CE4BE /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE9D2A9727A0CC498C1809EA /* Pods-XWalkView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XWalkView.release.xcconfig"; path = "Pods/Target Support Files/Pods-XWalkView/Pods-XWalkView.release.xcconfig"; sourceTree = "<group>"; };
 		EE0A1DD21A52775400C9E6D3 /* XWalkChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkChannel.swift; path = XWalkView/XWalkChannel.swift; sourceTree = "<group>"; };
 		EE0A1DDD1A52A5A300C9E6D3 /* XWalkReflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkReflection.swift; path = XWalkView/XWalkReflection.swift; sourceTree = "<group>"; };
 		EE0A1DDE1A52A5A300C9E6D3 /* XWalkStubGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XWalkStubGenerator.swift; path = XWalkView/XWalkStubGenerator.swift; sourceTree = "<group>"; };
@@ -107,22 +107,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABB032F71B959A62002F813B /* libz.dylib in Frameworks */,
-				307E64B67038B9B12CE0A03F /* Pods.framework in Frameworks */,
+				B286BC5E8D2B04D006400EA4 /* Pods_XWalkView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5D4469E8084E3EC6FE227EA4 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				2E3B578F89FDE86405B64E5D /* Pods.debug.xcconfig */,
-				82CF39F406ECF55F6AD060C6 /* Pods.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		AB023EA11A8C506600580A2A /* XWalkViewTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,9 +142,18 @@
 			isa = PBXGroup;
 			children = (
 				ABB032F61B959A62002F813B /* libz.dylib */,
-				B515AF34EF21D39C6D6CE4BE /* Pods.framework */,
+				614F080BBA897CB318999ADC /* Pods_XWalkView.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DD23078358C50F85304171CE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ABEABC5311593E89D91BD694 /* Pods-XWalkView.debug.xcconfig */,
+				BE9D2A9727A0CC498C1809EA /* Pods-XWalkView.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		EE62682B19FA323900EFC3F8 = {
@@ -163,7 +163,7 @@
 				EE62683719FA323900EFC3F8 /* XWalkView */,
 				AB023EA11A8C506600580A2A /* XWalkViewTests */,
 				EE62683619FA323900EFC3F8 /* Products */,
-				5D4469E8084E3EC6FE227EA4 /* Pods */,
+				DD23078358C50F85304171CE /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -248,12 +248,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EE62684B19FA323900EFC3F8 /* Build configuration list for PBXNativeTarget "XWalkView" */;
 			buildPhases = (
-				32CF9825D9AF40E3F2E08401 /* Check Pods Manifest.lock */,
+				150DFF9BA0A2961F0FC7BAB5 /* 📦 Check Pods Manifest.lock */,
 				EE62683019FA323900EFC3F8 /* Sources */,
 				EE62683119FA323900EFC3F8 /* Frameworks */,
 				EE62683219FA323900EFC3F8 /* Headers */,
 				EE62683319FA323900EFC3F8 /* Resources */,
-				DB70B98FCAEA44E26ACFE4D2 /* Copy Pods Resources */,
+				879068A2B6FD52F02BF7039F /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -321,14 +321,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		32CF9825D9AF40E3F2E08401 /* Check Pods Manifest.lock */ = {
+		150DFF9BA0A2961F0FC7BAB5 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,19 +336,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		DB70B98FCAEA44E26ACFE4D2 /* Copy Pods Resources */ = {
+		879068A2B6FD52F02BF7039F /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XWalkView/Pods-XWalkView-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -510,7 +510,7 @@
 		};
 		EE62684C19FA323900EFC3F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2E3B578F89FDE86405B64E5D /* Pods.debug.xcconfig */;
+			baseConfigurationReference = ABEABC5311593E89D91BD694 /* Pods-XWalkView.debug.xcconfig */;
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -527,7 +527,7 @@
 		};
 		EE62684D19FA323900EFC3F8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 82CF39F406ECF55F6AD060C6 /* Pods.release.xcconfig */;
+			baseConfigurationReference = BE9D2A9727A0CC498C1809EA /* Pods-XWalkView.release.xcconfig */;
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
