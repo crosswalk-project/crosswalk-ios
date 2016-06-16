@@ -1,2 +1,3 @@
 language: objective-c
+before_install: gem install cocoapods --pre
 script: cd XWalkView; pod install; xcodebuild -workspace XWalkView.xcworkspace -scheme XWalkViewTests -configuration Debug -destination 'platform=iOS simulator,name=iPhone 6' test
